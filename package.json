@@ -36,6 +36,10 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-react": "^7.37.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-storybook": "^0.10.1",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
@@ -43,7 +47,9 @@
     "sass": "^1.80.3",
     "storybook": "^8.3.6",
     "stylelint": "^16.10.0",
+    "stylelint-config-recess-order": "^5.1.1",
     "stylelint-config-standard": "^36.0.1",
+    "stylelint-config-standard-scss": "^13.1.0",
     "typescript": "^5"
   },
   "lint-staged": {
