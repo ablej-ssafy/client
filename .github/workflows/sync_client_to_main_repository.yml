@@ -3,7 +3,7 @@ name: sync client to main repository
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   sync:
@@ -25,9 +25,9 @@ jobs:
       - name: Add client as subtree
         run: |
           git remote add client https://github.com/ablej-ssafy/client.git
-          git fetch client main
-          git subtree pull --prefix=client client main --message "Sync client to main repository"
+          git fetch client develop
+          git subtree pull --prefix=client client develop --message "Sync client to main repository"
 
       - name: Push changes to Github
         run: |
-          git push origin main
+          git push origin develop
