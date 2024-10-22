@@ -10,14 +10,16 @@
   font-size: 1.6rem;
   font-weight: 600;
   color: colors.$white;
+  border-radius: layout.$border_button;
   transition:
-    color 0.3s ease,
-    border-color 0.3s ease;
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 
   &:hover {
     color: colors.$primary;
     cursor: pointer;
-    border-color: colors.$primary;
+    background-color: colors.$white;
   }
 
   &.selected {
@@ -28,5 +30,4 @@
 
 .outlined {
   border: 1px solid colors.$white;
-  border-radius: layout.$border_button;
 }
