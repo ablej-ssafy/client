@@ -1,0 +1,27 @@
+.carousel {
+  position: relative;
+  width: 36rem;
+  height: 25rem;
+  perspective: 500px;
+  transform-style: preserve-3d;
+}
+
+.card-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  // 기본 그림자
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 10%);
+  transition: all 0.3s ease-out;
+  transform: rotateY(calc(var(--offset) * 50deg))
+    scaleY(calc(1 + var(--abs-offset) * -0.4))
+    translateZ(calc(var(--abs-offset) * -40rem))
+    translateX(calc(var(--direction) * -20rem));
+}
+
+// 선택된 카드에 더 강조된 그림자 효과
+.card-container[style*='--active: 1'] {
+  z-index: 1;
+  box-shadow: 0 1rem 2rem rgb(0 0 0 / 20%);
+}

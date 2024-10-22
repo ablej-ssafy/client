@@ -1,8 +1,15 @@
 'use client';
 
 import classNames from 'classnames/bind';
-import {motion, useScroll, useTransform} from 'framer-motion';
-import {useRef} from 'react';
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from 'framer-motion';
+import {useRef, useState} from 'react';
+
+import CompanyCarousel from '@/components/landing/CompanyCarousel';
 
 import styles from './secondSection.module.scss';
 
@@ -14,6 +21,7 @@ const SecondSection = () => {
     target: scrollRef,
     offset: ['start end', 'end start'],
   });
+  const [card, setCard] = useState(0);
 
   const backgroundColor = useTransform(
     scrollYProgress,
@@ -21,13 +29,20 @@ const SecondSection = () => {
     ['rgba(255, 255, 255, 0)', 'rgba(189 ,177 ,245, 1)'],
   );
 
+  const selectCard = useTransform(scrollYProgress, [0, 1], [0, 8]);
+  useMotionValueEvent(selectCard, 'change', value => {
+    setCard(Math.round(value));
+  });
+
   return (
     <motion.section
       ref={scrollRef}
       style={{backgroundColor}}
       initial={{backgroundColor: 'rgba(255, 0, 0, 0)'}}
       className={cx('section')}
-    ></motion.section>
+    >
+      <CompanyCarousel activeCard={card} />
+    </motion.section>
   );
 };
 
