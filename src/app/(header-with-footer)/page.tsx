@@ -1,3 +1,4 @@
+import FifthSection from '@/features/Landing/Sections/FifthSection';
 import FourthSection from '@/features/Landing/Sections/FourthSection';
 import MainSection from '@/features/Landing/Sections/MainSection';
 import SecondSection from '@/features/Landing/Sections/SecondSection';
@@ -10,6 +11,7 @@ export default function Home() {
       <SecondSection />
       <ThirdSection />
       <FourthSection />
+      <FifthSection />
     </main>
   );
 }
