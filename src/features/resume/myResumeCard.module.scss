@@ -1,0 +1,97 @@
+@use '@/styles/mixin/layout.scss' as mixin;
+
+.container {
+  width: 300px;
+  padding: 16px 20px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 8px rgb(0 0 0 / 10%);
+  }
+
+  @media ((width <= 430px) and (width >= 375px)) {
+    width: 33.5rem;
+  }
+}
+
+.top {
+  margin-bottom: 16px;
+
+  @include mixin.flex-default(space-between);
+
+  & > div {
+    padding: 3px 6px;
+    border-radius: 4px;
+  }
+
+  & > div:first-child {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #8b6fee;
+    background-color: #f3f0ff;
+  }
+
+  & > div:last-child {
+    margin: -1px -3px 0 0;
+    font-size: 1.3rem;
+    color: #aaa;
+    cursor: pointer;
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease;
+
+    @include mixin.flex-default;
+
+    & > * {
+      margin: 0 4px 1px 0;
+    }
+
+    &:hover {
+      color: #727272;
+      background-color: #f3f3f3;
+    }
+  }
+}
+
+.center {
+  & > div:first-child {
+    margin-bottom: 4px;
+    overflow: hidden;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  & > div:last-child {
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+    color: #aaa;
+  }
+}
+
+.link {
+  display: flex;
+  justify-content: end;
+
+  & > span {
+    font-size: 1.4rem;
+    color: #969696;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    @include mixin.flex-default;
+
+    & > * {
+      margin: 0 0 1px 2px;
+    }
+
+    &:hover {
+      color: #494949;
+    }
+  }
+}
