@@ -4,9 +4,10 @@ import classNames from 'classnames/bind';
 import type {Variants} from 'framer-motion';
 import * as motion from 'framer-motion/client';
 import Link from 'next/link';
-import {PropsWithChildren, useEffect, useRef, useState} from 'react';
+import {PropsWithChildren, useEffect, useState} from 'react';
 
 import useScrollHeight from '@/hooks/useScrollHeight';
+import useWindowHeight from '@/hooks/useWindowHeight';
 
 import styles from './navigation.module.scss';
 
@@ -23,17 +24,17 @@ const navVarients: Variants = {
 };
 
 const Navigation = ({children}: PropsWithChildren) => {
-  const windowHeight = useRef(window.innerHeight);
+  const windowHeight = useWindowHeight();
   const scrollHeight = useScrollHeight();
   const [inverted, setInverted] = useState(false);
 
   useEffect(() => {
-    if (scrollHeight >= windowHeight.current) {
+    if (scrollHeight >= windowHeight) {
       setInverted(true);
     } else {
       setInverted(false);
     }
-  }, [scrollHeight]);
+  }, [scrollHeight, windowHeight]);
 
   return (
     <motion.nav
