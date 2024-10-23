@@ -1,0 +1,54 @@
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/constants/layout' as layout;
+
+.card {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  width: 576px;
+  padding: 40px 40px 120px;
+  background-color: colors.$primary;
+  border-radius: layout.$border_card_big;
+  transform: translateX(-50%);
+
+  & > img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 35%;
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+
+  & p,
+  h1 {
+    color: colors.$white;
+  }
+
+  .paragraph {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .title {
+    font-size: 3.2rem;
+    font-weight: 600;
+  }
+
+  .description {
+    font-size: 2.4rem;
+    font-weight: 400;
+
+    & + .title {
+      margin-top: 10px;
+    }
+  }
+
+  .paragraph + .paragraph {
+    margin-top: 20px;
+  }
+
+  .title + .paragraph {
+    margin-top: 20px;
+  }
+}

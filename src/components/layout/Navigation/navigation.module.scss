@@ -1,0 +1,25 @@
+@use '@/styles/constants/layout' as layout;
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/constants/dimensions' as dimensions;
+
+.navigation {
+  position: fixed;
+  z-index: dimensions.$foreground;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: layout.$nav_height;
+  padding: 0 layout.$nav_padding;
+
+  .title {
+    font-size: 3rem;
+    font-weight: 600;
+    color: colors.$white;
+  }
+
+  .nav-items {
+    display: flex;
+    gap: 1rem;
+  }
+}
