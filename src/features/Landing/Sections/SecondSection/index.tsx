@@ -41,6 +41,15 @@ const SecondSection = () => {
       initial={{backgroundColor: 'rgba(255, 0, 0, 0)'}}
       className={cx('section')}
     >
+      <motion.p
+        initial={{y: -100, opacity: 0}}
+        whileInView={{y: 0, opacity: 1}}
+        transition={{duration: 2}}
+        viewport={{once: true, margin: '-500px'}}
+      >
+        수많은 기업중 적합학 기업이 <br />
+        어디인지 궁금하지 않나요?
+      </motion.p>
       <CompanyCarousel activeCard={card} />
     </motion.section>
   );
