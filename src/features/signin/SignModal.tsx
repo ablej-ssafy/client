@@ -13,14 +13,14 @@ interface SignModalProps {
   setSignInOpen: (value: boolean) => void;
 }
 
-export enum SignSTEP {
+export enum SIGN_STEP {
   SIGNIN,
   USERINFO,
   CAREER,
 }
 
 const SignModal = ({setSignInOpen}: SignModalProps) => {
-  const [step, setStep] = useState<SignSTEP>(SignSTEP.SIGNIN);
+  const [step, setStep] = useState<SIGN_STEP>(SIGN_STEP.SIGNIN);
   return (
     <div className={styles['modal-overlay']}>
       <div className={styles['modal-content']}>
@@ -29,8 +29,8 @@ const SignModal = ({setSignInOpen}: SignModalProps) => {
           size={20}
           onClick={() => setSignInOpen(false)}
         />
-        {step === SignSTEP.SIGNIN && <SigninInput setStep={setStep} />}
-        {step === SignSTEP.USERINFO && (
+        {step === SIGN_STEP.SIGNIN && <SigninInput setStep={setStep} />}
+        {step === SIGN_STEP.USERINFO && (
           <>
             <p className={styles['text-header']}>이제 곧 시작</p>
             <p className={styles['text-content']}>얼마 안남았어요...!</p>
@@ -40,7 +40,7 @@ const SignModal = ({setSignInOpen}: SignModalProps) => {
             <InfoInput setStep={setStep} />
           </>
         )}
-        {step === SignSTEP.CAREER && (
+        {step === SIGN_STEP.CAREER && (
           <>
             <p className={styles['text-header']}>마지막 한 단계</p>
             <p className={styles['text-content']}>

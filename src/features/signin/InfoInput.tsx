@@ -3,7 +3,7 @@
 import {useForm} from 'react-hook-form';
 
 import SignInput from '@/features/signin/SignInput';
-import {SignSTEP} from '@/features/signin/SignModal';
+import {SIGN_STEP} from '@/features/signin/SignModal';
 
 import styles from './infoInput.module.scss';
 
@@ -15,7 +15,7 @@ interface SignupForm {
 }
 
 interface InfoInputProps {
-  setStep: (value: SignSTEP) => void;
+  setStep: (value: SIGN_STEP) => void;
 }
 
 const InfoInput = ({setStep}: InfoInputProps) => {
@@ -27,7 +27,7 @@ const InfoInput = ({setStep}: InfoInputProps) => {
 
   const onSubmit = (data: SignupForm) => {
     console.log(data);
-    setStep(SignSTEP.CAREER);
+    setStep(SIGN_STEP.CAREER);
   };
 
   const onInValid = (errors: object) => {
