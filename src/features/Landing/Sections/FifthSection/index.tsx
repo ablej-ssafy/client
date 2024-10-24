@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import BackgroundImage from '@/assets/images/main-sub-bg.jpg';
 import GlassCard from '@/features/Landing/GlassCard';
+import ReviewCarousel from '@/features/Landing/ReviewCarousel';
 
 import styles from './fifthSection.module.scss';
 
@@ -17,8 +18,17 @@ const FifthSection = () => {
         className={cx('background')}
         fill
       />
-      <GlassCard />
       <div className={cx('filter')} />
+      <GlassCard />
+      <div className={cx('title')}>
+        <p>실제 추기로 보는 AI HeadHunting</p>
+        <h2>
+          AI HeadHunting을 사용해 구직과
+          <br />
+          체용에 성공 경험담을 확인하세요
+        </h2>
+      </div>
+      <ReviewCarousel />
     </section>
   );
 };
