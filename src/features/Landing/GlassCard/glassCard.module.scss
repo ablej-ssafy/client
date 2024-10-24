@@ -1,10 +1,14 @@
 @use '@/styles/constants/colors' as colors;
 @use '@/styles/constants/layout' as layout;
 
-.glass-card {
+.container {
   position: absolute;
   top: -100px;
   left: 50%;
+  transform: translateX(-50%);
+}
+
+.glass-card {
   display: flex;
   width: 722px;
   height: 394px;
@@ -13,7 +17,6 @@
   backdrop-filter: blur(5.7px);
   border: 1px solid rgb(12 8 226 / 9%);
   border-radius: layout.$border_card_medium;
-  transform: translateX(-50%);
 
   .card-section {
     display: flex;
