@@ -1,0 +1,34 @@
+@use '@/styles/mixin/layout.scss' as mixin;
+
+.custom-button {
+  height: 36px;
+  padding: 0 16px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+
+  @include mixin.flex-default;
+}
+
+.type1 {
+  color: #6e55ff;
+  background-color: #fff;
+  border-color: #6e55ff;
+
+  &:hover {
+    background-color: #f3f0ff;
+  }
+}
+
+.type2 {
+  color: #fff;
+  background-color: #6e55ff;
+  border-color: #fff;
+
+  &:hover {
+    background-color: #856fff;
+  }
+}
