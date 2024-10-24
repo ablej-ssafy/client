@@ -3,6 +3,7 @@
 .section {
   width: 100%;
   height: fit-content;
+  padding-bottom: 60vh;
 
   .lottie-list {
     width: fit-content;
@@ -30,6 +31,7 @@
 
 @media screen and (width >= 1500px) {
   .section {
+    box-sizing: content-box;
     height: 120vh;
   }
 
