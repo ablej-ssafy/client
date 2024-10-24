@@ -1,6 +1,7 @@
 'use client';
 
 import {ErrorMessage} from '@hookform/error-message';
+import {InputHTMLAttributes} from 'react';
 
 import styles from './signInput.module.scss';
 
@@ -8,7 +9,7 @@ interface SignInputProps {
   name: string;
   placeholder: string;
   type?: string;
-  register: React.InputHTMLAttributes<HTMLInputElement>;
+  register: InputHTMLAttributes<HTMLInputElement>;
   errors: object;
 }
 
@@ -22,6 +23,7 @@ const SignInput = ({
   return (
     <>
       <input
+        id={name}
         className={styles.input}
         {...register}
         placeholder={placeholder}

@@ -1,6 +1,6 @@
 'use client';
 
-import {useState} from 'react';
+import {ChangeEvent, useState} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {RxCross2} from 'react-icons/rx';
 
@@ -38,7 +38,7 @@ const CareerInput = () => {
     );
   };
 
-  const handleYearsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleYearsChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue('years', parseInt(e.target.value));
     setYears(parseInt(e.target.value));
   };
@@ -56,7 +56,9 @@ const CareerInput = () => {
       className={styles['signup-form']}
       onSubmit={handleSubmit(onSubmit, onInValid)}
     >
-      <label className={styles['form-label']}>관심 직무</label>
+      <label htmlFor="career" className={styles['form-label']}>
+        관심 직무
+      </label>
       {/* 선택된 직무들 */}
       <Controller
         name="career"
@@ -72,7 +74,7 @@ const CareerInput = () => {
           </div>
         )}
       />
-      <input className={styles.input} placeholder="관심 직무" />
+      <input id="career" className={styles.input} placeholder="관심 직무" />
 
       <div className={styles.work}>
         {/* 검색 결과를 예시로 작성 */}
@@ -83,7 +85,9 @@ const CareerInput = () => {
         ))}
       </div>
 
-      <label className={styles['form-label']}>경력 : {years}</label>
+      <label htmlFor="years" className={styles['form-label']}>
+        경력 : {years}
+      </label>
       <div className={styles['slider-container']}>
         <div className={styles['slider-rail']} />
         <div
@@ -91,6 +95,7 @@ const CareerInput = () => {
           style={{width: `${(years / 30) * 100}%`}}
         />
         <input
+          id="years"
           className={styles.years}
           type="range"
           min={0}

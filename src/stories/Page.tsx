@@ -1,6 +1,6 @@
 import './page.css';
 
-import React from 'react';
+import {useState} from 'react';
 
 import {Header} from './Header';
 
@@ -8,8 +8,8 @@ type User = {
   name: string;
 };
 
-export const Page: React.FC = () => {
-  const [user, setUser] = React.useState<User>();
+export const Page = () => {
+  const [user, setUser] = useState<User>();
 
   return (
     <article>

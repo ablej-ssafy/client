@@ -38,16 +38,20 @@ const InfoInput = ({setStep}: InfoInputProps) => {
       className={styles['signup-form']}
       onSubmit={handleSubmit(onSubmit, onInValid)}
     >
-      <label className={styles['form-label']}>이메일</label>
+      <label htmlFor="email" className={styles['form-label']}>
+        이메일
+      </label>
       <SignInput
-        name="이메일"
+        name="email"
         placeholder="이메일"
         register={register('email', {required: '이메일을 입력해주세요'})}
         errors={errors}
       />
-      <label className={styles['form-label']}>비밀번호</label>
+      <label htmlFor="password" className={styles['form-label']}>
+        비밀번호
+      </label>
       <SignInput
-        name="비밀번호"
+        name="password"
         placeholder="비밀번호"
         type="password"
         register={register('password', {
@@ -55,9 +59,11 @@ const InfoInput = ({setStep}: InfoInputProps) => {
         })}
         errors={errors}
       />
-      <label className={styles['form-label']}>비밀번호 확인</label>
+      <label htmlFor="password_confirm" className={styles['form-label']}>
+        비밀번호 확인
+      </label>
       <SignInput
-        name="비밀번호 확인"
+        name="password_confirm"
         placeholder="비밀번호 확인"
         type="password"
         register={register('password_confirm', {
@@ -65,9 +71,11 @@ const InfoInput = ({setStep}: InfoInputProps) => {
         })}
         errors={errors}
       />
-      <label className={styles['form-label']}>이름</label>
+      <label htmlFor="name" className={styles['form-label']}>
+        이름
+      </label>
       <SignInput
-        name="이름"
+        name="name"
         placeholder="이름"
         register={register('name', {
           required: '이름을 입력해주세요',
