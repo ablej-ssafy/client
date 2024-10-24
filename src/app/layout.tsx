@@ -2,6 +2,7 @@ import '@/styles/index.scss';
 
 import type {Metadata} from 'next';
 import localFont from 'next/font/local';
+import {ReactNode} from 'react';
 
 // Pretendard 폰트 설정
 const pretendard = localFont({
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
