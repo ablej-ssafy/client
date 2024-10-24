@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 
-import DescriptionCard from '@/features/temp/DescriptionCard';
+import DescriptionCard from '@/features/landing/DescriptionCard';
 
 import styles from './thirdSection.module.scss';
 
