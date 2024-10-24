@@ -37,7 +37,14 @@ const DescriptionCard = () => {
         <br />
         큐레이팅 해드립니다.
       </p>
-      <Image src={CandidateImage} alt={'candidate image'} />
+      <motion.div
+        className={cx('image-container')}
+        initial={{rotate: 340, scale: 0.01}}
+        whileInView={{rotate: 0, scale: 1}}
+        viewport={{margin: '-150px', once: true}}
+      >
+        <Image src={CandidateImage} alt={'candidate image'} />
+      </motion.div>
     </motion.article>
   );
 };

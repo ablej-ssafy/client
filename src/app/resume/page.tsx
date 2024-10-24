@@ -1,5 +1,3 @@
-'use Client';
-
 import React from 'react';
 
 import MyResume from '@/features/resume/MyResume';
