@@ -2,8 +2,8 @@
 
 import {useForm} from 'react-hook-form';
 
-import SignInput from '@/components/signin/SignInput';
-import {SignSTEP} from '@/components/signin/SignModal';
+import SignInput from '@/features/signin/SignInput';
+import {SignSTEP} from '@/features/signin/SignModal';
 
 import styles from './infoInput.module.scss';
 
@@ -38,14 +38,14 @@ const InfoInput = ({setStep}: InfoInputProps) => {
       className={styles['signup-form']}
       onSubmit={handleSubmit(onSubmit, onInValid)}
     >
-      <p className={styles['form-label']}>이메일</p>
+      <label className={styles['form-label']}>이메일</label>
       <SignInput
         name="이메일"
         placeholder="이메일"
         register={register('email', {required: '이메일을 입력해주세요'})}
         errors={errors}
       />
-      <p className={styles['form-label']}>비밀번호</p>
+      <label className={styles['form-label']}>비밀번호</label>
       <SignInput
         name="비밀번호"
         placeholder="비밀번호"
@@ -55,7 +55,7 @@ const InfoInput = ({setStep}: InfoInputProps) => {
         })}
         errors={errors}
       />
-      <p className={styles['form-label']}>비밀번호 확인</p>
+      <label className={styles['form-label']}>비밀번호 확인</label>
       <SignInput
         name="비밀번호 확인"
         placeholder="비밀번호 확인"
@@ -65,7 +65,7 @@ const InfoInput = ({setStep}: InfoInputProps) => {
         })}
         errors={errors}
       />
-      <p className={styles['form-label']}>이름</p>
+      <label className={styles['form-label']}>이름</label>
       <SignInput
         name="이름"
         placeholder="이름"

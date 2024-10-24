@@ -2,7 +2,7 @@
 
 import {useState} from 'react';
 
-import SignModal from '@/components/signin/SignModal';
+import SignModal from '@/features/signin/SignModal';
 
 const SignInPage = () => {
   const [signInOpen, setSignInOpen] = useState(false);

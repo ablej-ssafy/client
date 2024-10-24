@@ -56,7 +56,7 @@ const CareerInput = () => {
       className={styles['signup-form']}
       onSubmit={handleSubmit(onSubmit, onInValid)}
     >
-      <p className={styles['form-label']}>관심 직무</p>
+      <label className={styles['form-label']}>관심 직무</label>
       {/* 선택된 직무들 */}
       <Controller
         name="career"
@@ -83,7 +83,7 @@ const CareerInput = () => {
         ))}
       </div>
 
-      <p className={styles['form-label']}>경력 : {years}</p>
+      <label className={styles['form-label']}>경력 : {years}</label>
       <div className={styles['slider-container']}>
         <div className={styles['slider-rail']} />
         <div

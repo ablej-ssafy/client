@@ -3,9 +3,9 @@
 import {useState} from 'react';
 import {RxCross2} from 'react-icons/rx';
 
-import CareerInput from '@/components/signin/CareerInput';
-import InfoInput from '@/components/signin/InfoInput';
-import SigninInput from '@/components/signin/SigninInput';
+import CareerInput from '@/features/signin/CareerInput';
+import InfoInput from '@/features/signin/InfoInput';
+import SigninInput from '@/features/signin/SigninInput';
 
 import styles from './signModal.module.scss';
 
