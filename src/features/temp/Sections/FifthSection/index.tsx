@@ -2,8 +2,8 @@ import classNames from 'classnames/bind';
 import Image from 'next/image';
 
 import BackgroundImage from '@/assets/images/main-sub-bg.jpg';
-import GlassCard from '@/features/landing/GlassCard';
-import ReviewCarousel from '@/features/landing/ReviewCarousel';
+import GlassCard from '@/features/temp/GlassCard';
+import ReviewCarousel from '@/features/temp/ReviewCarousel';
 
 import styles from './fifthSection.module.scss';
 

@@ -28,7 +28,7 @@ const IconCard = ({imageOption, description, title}: LottieCardProps) => {
       whileInView="visible"
       viewport={{once: true, margin: '-200px'}}
     >
-      <Image {...imageOption} className={cx('image')} />
+      <Image {...imageOption} alt={'3D 이미지'} className={cx('image')} />
       <motion.div variants={variants}>
         <motion.h2 variants={variants}>{title}</motion.h2>
         <motion.p variants={variants} className={cx('paragraph')}>

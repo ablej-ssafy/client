@@ -9,7 +9,7 @@ import {
 } from 'framer-motion';
 import {useRef, useState} from 'react';
 
-import CompanyCarousel from '@/features/landing/CompanyCarousel';
+import CompanyCarousel from '@/features/temp/CompanyCarousel';
 
 import styles from './secondSection.module.scss';
 
