@@ -7,7 +7,7 @@ import {FcGoogle} from 'react-icons/fc';
 import {RiKakaoTalkFill} from 'react-icons/ri';
 
 import SignInput from '@/features/signin/SignInput';
-import {SignSTEP} from '@/features/signin/SignModal';
+import {SIGN_STEP} from '@/features/signin/SignModal';
 import SocialIcon from '@/features/signin/SocialIcon';
 
 import styles from './signinInput.module.scss';
@@ -20,7 +20,7 @@ interface SigninForm {
 }
 
 interface SigninInputProps {
-  setStep: Dispatch<SetStateAction<SignSTEP>>;
+  setStep: Dispatch<SetStateAction<SIGN_STEP>>;
 }
 
 const SigninInput = ({setStep}: SigninInputProps) => {
@@ -39,7 +39,7 @@ const SigninInput = ({setStep}: SigninInputProps) => {
   };
 
   const handleSignUp = () => {
-    setStep(SignSTEP.USERINFO);
+    setStep(SIGN_STEP.USERINFO);
   };
 
   return (
