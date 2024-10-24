@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import Image from 'next/image';
 
 import BackgroundImage from '@/assets/images/main-sub-bg.jpg';
+import GlassCard from '@/features/Landing/GlassCard';
 
 import styles from './fifthSection.module.scss';
 
@@ -16,6 +17,7 @@ const FifthSection = () => {
         className={cx('background')}
         fill
       />
+      <GlassCard />
       <div className={cx('filter')} />
     </section>
   );
