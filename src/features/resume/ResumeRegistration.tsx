@@ -1,5 +1,6 @@
 'use client';
 
+import classNames from 'classnames/bind';
 import React, {ChangeEvent, DragEvent, KeyboardEvent, useState} from 'react';
 
 import Button from '@/components/common/Button';
@@ -7,7 +8,7 @@ import Button from '@/components/common/Button';
 import styles from './resumeRegistration.module.scss';
 
 // 파일 확장자 검사
-const isValidFileType = (file: File, allowedTypes: string[]): boolean => {
+const isValidFileType = (file: File, allowedTypes: string[]) => {
   if (allowedTypes.includes(file.type)) {
     console.log('유효한 파일이 선택되었습니다:', file);
     return true;
@@ -16,6 +17,8 @@ const isValidFileType = (file: File, allowedTypes: string[]): boolean => {
     return false;
   }
 };
+
+const cx = classNames.bind(styles);
 
 const ResumeRegistration = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -93,7 +96,7 @@ const ResumeRegistration = () => {
     <div className={styles.container}>
       <h2>PDF 이력서 등록</h2>
       <div
-        className={`${styles.upload} ${isDragging ? styles.dragging : ''}`}
+        className={cx('upload', {dragging: isDragging})}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}

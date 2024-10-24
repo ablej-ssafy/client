@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import React from 'react';
 
 import styles from './button.module.scss';
@@ -9,15 +9,12 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-const Button = ({color = 'type1', text, onClick}: ButtonProps) => {
-  const buttonClass = classNames(styles['custom-button'], {
-    [styles['type1']]: color === 'type1',
-    [styles['type2']]: color === 'type2',
-  });
+const cx = classNames.bind(styles);
 
+const Button = ({color = 'type1', text, onClick}: ButtonProps) => {
   return (
     <div
-      className={buttonClass}
+      className={cx('custom-button', `${color}`)}
       style={{borderColor: color, color: color}}
       role="button"
       tabIndex={0}
