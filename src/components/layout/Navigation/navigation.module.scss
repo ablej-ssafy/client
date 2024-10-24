@@ -21,5 +21,9 @@
   .nav-items {
     display: flex;
     gap: 1rem;
+
+    & > a:last-child {
+      margin-left: 1rem;
+    }
   }
 }

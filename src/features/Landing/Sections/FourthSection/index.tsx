@@ -1,25 +1,44 @@
 'use client';
 
 import classNames from 'classnames/bind';
+import type {Variants} from 'framer-motion';
 import * as motion from 'framer-motion/client';
 
 import CandidateImage from '@/assets/images/add-candidate.png';
 import JobOfferImage from '@/assets/images/contract-job-offer.png';
 import JobFolder from '@/assets/images/job-folder.png';
+import IconCard from '@/features/landing/IconCard';
 
-import IconCard from '../../IconCard';
 import styles from './fourthSection.module.scss';
 
 const cx = classNames.bind(styles);
 
+const variants: Variants = {
+  hidden: {opacity: 0, y: -100},
+  visible: {opacity: 1, y: 0, transition: {duration: 1}},
+};
+
 const FourthSection = () => {
   return (
     <section className={cx('section')}>
-      <motion.div className={cx('section-header')}>
-        <p>AI 채용공고 큐레이팅</p>
-        <h1>AI HeadHunting을 소개합니다.</h1>
+      <motion.div
+        className={cx('section-header')}
+        variants={variants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{once: true}}
+      >
+        <motion.p whileInView="visible">AI 채용공고 큐레이팅</motion.p>
+        <motion.h1 whileInView="visible">
+          AI HeadHunting을 소개합니다.
+        </motion.h1>
       </motion.div>
-      <div className={cx('lottie-list')}>
+      <motion.div
+        className={cx('lottie-list')}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{once: true, margin: '-500px'}}
+      >
         <IconCard
           title={'Drag And Drop'}
           description={
@@ -62,7 +81,7 @@ const FourthSection = () => {
             alt: '인재 검색 이미지',
           }}
         />
-      </div>
+      </motion.div>
     </section>
   );
 };
