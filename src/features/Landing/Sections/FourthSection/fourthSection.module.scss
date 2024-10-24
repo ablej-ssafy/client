@@ -2,7 +2,7 @@
 
 .section {
   width: 100%;
-  height: 120vh;
+  height: fit-content;
 
   .lottie-list {
     width: fit-content;
@@ -29,6 +29,10 @@
 }
 
 @media screen and (width >= 1500px) {
+  .section {
+    height: 120vh;
+  }
+
   .lottie-list {
     display: flex;
   }
