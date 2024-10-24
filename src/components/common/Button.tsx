@@ -9,7 +9,7 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({color = 'type1', text, onClick}) => {
+const Button = ({color = 'type1', text, onClick}: ButtonProps) => {
   const buttonClass = classNames(styles['custom-button'], {
     [styles['type1']]: color === 'type1',
     [styles['type2']]: color === 'type2',

@@ -1,6 +1,6 @@
 'use client';
 
-import React, {ChangeEvent, DragEvent, useState} from 'react';
+import React, {ChangeEvent, DragEvent, KeyboardEvent, useState} from 'react';
 
 import Button from '@/components/common/Button';
 
@@ -17,7 +17,7 @@ const isValidFileType = (file: File, allowedTypes: string[]): boolean => {
   }
 };
 
-const ResumeRegistration: React.FC = () => {
+const ResumeRegistration = () => {
   const [file, setFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -51,7 +51,7 @@ const ResumeRegistration: React.FC = () => {
   };
 
   // 접근성을 위한 key 동작 추가
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLLabelElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLLabelElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
       document.getElementById('file')?.click();
     }
