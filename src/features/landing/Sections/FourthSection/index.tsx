@@ -7,7 +7,7 @@ import * as motion from 'framer-motion/client';
 import CandidateImage from '@/assets/images/add-candidate.png';
 import JobOfferImage from '@/assets/images/contract-job-offer.png';
 import JobFolder from '@/assets/images/job-folder.png';
-import IconCard from '@/features/landing/IconCard';
+import IconCard from '@/features/temp/IconCard';
 
 import styles from './fourthSection.module.scss';
 

@@ -6,7 +6,9 @@ import styles from './companyImage.module.scss';
 const cx = classNames.bind(styles);
 
 const CompanyImage = (props: ImageProps) => {
-  return <Image {...props} className={cx('company-image')} />;
+  return (
+    <Image {...props} alt={'회사 이미지'} className={cx('company-image')} />
+  );
 };
 
 export default CompanyImage;
