@@ -1,7 +1,13 @@
 'use client';
 
 import classNames from 'classnames/bind';
-import React, {ChangeEvent, DragEvent, KeyboardEvent, useState} from 'react';
+import React, {
+  ChangeEvent,
+  DragEvent,
+  KeyboardEvent,
+  useRef,
+  useState,
+} from 'react';
 
 import Button from '@/components/common/Button';
 
@@ -23,6 +29,7 @@ const cx = classNames.bind(styles);
 const ResumeRegistration = () => {
   const [file, setFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // 파일 선택 시
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +63,7 @@ const ResumeRegistration = () => {
   // 접근성을 위한 key 동작 추가
   const handleKeyDown = (e: KeyboardEvent<HTMLLabelElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
-      document.getElementById('file')?.click();
+      fileInputRef.current?.click();
     }
   };
 
