@@ -1,19 +1,19 @@
-import type {ReactNode} from 'react';
+'use client';
 
-import Navigation from '@/components/layout/Navigation';
-import NavigationButton from '@/components/layout/NavigationButton';
+import {ReactNode} from 'react';
+
+import ModalProvider from '@/components/layout/Modal/ModalProvider';
+import Header from '@/features/header-footer/Header';
+import SignModal from '@/features/signin/SignIn/SignModal';
 
 const MainPageLayout = ({children}: {children: ReactNode}) => {
   return (
     <>
-      <Navigation>
-        <NavigationButton href={'/announcement'}>맞춤채용공고</NavigationButton>
-        <NavigationButton href={'/resume'}>이력서</NavigationButton>
-        <NavigationButton buttonType="outlined" href={'/'}>
-          로그인
-        </NavigationButton>
-      </Navigation>
+      <Header />
       {children}
+      <ModalProvider border>
+        <SignModal />
+      </ModalProvider>
     </>
   );
 };
