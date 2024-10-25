@@ -1,0 +1,7 @@
+@use '@/styles/constants/colors' as colors;
+
+.sidebar-divider {
+  width: 100%;
+  height: 1px;
+  background-color: colors.$gray1;
+}
