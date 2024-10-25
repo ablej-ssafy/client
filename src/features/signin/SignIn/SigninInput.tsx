@@ -7,8 +7,8 @@ import {FcGoogle} from 'react-icons/fc';
 import {RiKakaoTalkFill} from 'react-icons/ri';
 
 import Input from '@/components/common/Input';
-import {SIGN_STEP} from '@/features/signin/SignModal';
-import SocialIcon from '@/features/signin/SocialIcon';
+import {SIGN_STEP} from '@/features/signin/SignIn/SignModal';
+import SocialIcon from '@/features/signin/SignIn/SocialIcon';
 
 import styles from './signinInput.module.scss';
 

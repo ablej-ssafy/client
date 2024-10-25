@@ -3,7 +3,7 @@
 import {useForm} from 'react-hook-form';
 
 import Input from '@/components/common/Input';
-import {SIGN_STEP} from '@/features/signin/SignModal';
+import {SIGN_STEP} from '@/features/signin/SignIn/SignModal';
 
 import styles from './infoInput.module.scss';
 

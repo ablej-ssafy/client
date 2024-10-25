@@ -1,18 +1,7 @@
 @use '@/styles/constants/colors' as colors;
 @use '@/styles/constants/layout' as layout;
 
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(0 0 0 / 50%);
-}
-
-.modal-content {
-  position: relative;
+.sign-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,15 +9,6 @@
   width: layout.$signin_width;
   height: layout.$signin_height;
   padding: 0.8rem;
-  background-color: colors.$white;
-  border-radius: layout.$signin_border_radius;
-}
-
-.close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  cursor: pointer;
 }
 
 .container {
