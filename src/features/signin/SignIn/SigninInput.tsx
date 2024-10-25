@@ -6,7 +6,7 @@ import {useForm} from 'react-hook-form';
 import {FcGoogle} from 'react-icons/fc';
 import {RiKakaoTalkFill} from 'react-icons/ri';
 
-import SignInput from '@/features/signin/SignIn/SignInput';
+import Input from '@/components/common/Input';
 import {SIGN_STEP} from '@/features/signin/SignIn/SignModal';
 import SocialIcon from '@/features/signin/SignIn/SocialIcon';
 
@@ -52,17 +52,15 @@ const SigninInput = ({setStep}: SigninInputProps) => {
         className={styles['signin-form']}
         onSubmit={handleSubmit(onSubmit, onInValid)}
       >
-        <SignInput
-          name="이메일"
+        <Input
           placeholder="이메일"
-          register={register('email', {required: '이메일을 입력해주세요'})}
+          {...register('email', {required: '이메일을 입력해주세요'})}
           errors={errors}
         />
-        <SignInput
-          name="비밀번호"
+        <Input
           placeholder="비밀번호"
           type="password"
-          register={register('password', {
+          {...register('password', {
             required: '비밀번호를 입력해주세요',
           })}
           errors={errors}
