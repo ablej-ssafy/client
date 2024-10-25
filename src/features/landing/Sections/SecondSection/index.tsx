@@ -47,7 +47,7 @@ const SecondSection = () => {
         transition={{duration: 2}}
         viewport={{once: true, margin: '-500px'}}
       >
-        수많은 기업중 적합학 기업이 <br />
+        수많은 기업중 적합한 기업이 <br />
         어디인지 궁금하지 않나요?
       </motion.p>
       <CompanyCarousel activeCard={card} />
