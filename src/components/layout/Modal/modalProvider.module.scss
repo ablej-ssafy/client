@@ -1,14 +1,14 @@
 @use '@/styles/constants/colors' as colors;
 @use '@/styles/constants/layout' as layout;
+@use '@/styles/mixin/layout.scss' as mixin;
 
 .modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: rgb(0 0 0 / 50%);
+
+  @include mixin.flex-default;
 }
 
 .modal-content {
@@ -19,10 +19,6 @@
   &.border {
     border-radius: layout.$signin_border_radius;
   }
-}
-
-.border {
-  border-radius: layout.$signin_border_radius;
 }
 
 .close {
