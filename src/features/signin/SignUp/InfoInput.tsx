@@ -2,8 +2,8 @@
 
 import {useForm} from 'react-hook-form';
 
-import SignInput from '@/features/signin/SignInput';
-import {SIGN_STEP} from '@/features/signin/SignModal';
+import SignInput from '@/features/signin/SignIn/SignInput';
+import {SIGN_STEP} from '@/features/signin/SignIn/SignModal';
 
 import styles from './infoInput.module.scss';
 

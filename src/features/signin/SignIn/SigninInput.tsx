@@ -6,9 +6,9 @@ import {useForm} from 'react-hook-form';
 import {FcGoogle} from 'react-icons/fc';
 import {RiKakaoTalkFill} from 'react-icons/ri';
 
-import SignInput from '@/features/signin/SignInput';
-import {SIGN_STEP} from '@/features/signin/SignModal';
-import SocialIcon from '@/features/signin/SocialIcon';
+import SignInput from '@/features/signin/SignIn/SignInput';
+import {SIGN_STEP} from '@/features/signin/SignIn/SignModal';
+import SocialIcon from '@/features/signin/SignIn/SocialIcon';
 
 import styles from './signinInput.module.scss';
 

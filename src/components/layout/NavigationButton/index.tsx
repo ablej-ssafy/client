@@ -8,6 +8,7 @@ interface NavigationButtonProps extends PropsWithChildren {
   href: string;
   buttonType?: 'outlined';
   selected?: boolean;
+  signinOpen?: () => void;
 }
 
 const cx = classNames.bind(styles);
@@ -16,8 +17,20 @@ const NavigationButton = ({
   children,
   buttonType,
   selected,
+  signinOpen,
   ...props
 }: NavigationButtonProps) => {
+  if (buttonType === 'outlined') {
+    return (
+      <button
+        className={cx('button', {outlined: buttonType}, selected)}
+        onClick={signinOpen}
+      >
+        {children}
+      </button>
+    );
+  }
+
   return (
     <Link {...props} className={cx('button', {outlined: buttonType}, selected)}>
       {children}
