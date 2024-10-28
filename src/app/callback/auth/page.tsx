@@ -8,18 +8,17 @@ import {useAuthStore} from '@/zustand/useAuthStore';
 const Auth = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const {setAccessToken, setRefreshToken} = useAuthStore(state => state);
+  const login = useAuthStore(state => state.login);
 
   const initialize = useCallback(() => {
     const accessToken = searchParams.get('accessToken');
     const refreshToken = searchParams.get('refreshToken');
 
     if (accessToken && refreshToken) {
-      setAccessToken(accessToken);
-      setRefreshToken(refreshToken);
+      login(accessToken, refreshToken);
       router.replace('/');
     }
-  }, [router, searchParams, setAccessToken, setRefreshToken]);
+  }, [router, searchParams]);
 
   useEffect(() => {
     initialize();
