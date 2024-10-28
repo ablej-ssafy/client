@@ -10,8 +10,8 @@
 
 .glass-card {
   display: flex;
-  width: 722px;
-  height: 394px;
+  width: 560px;
+  height: 320px;
   padding: 0 3rem;
   background: rgb(12 8 226 / 15%);
   backdrop-filter: blur(5.7px);
@@ -25,14 +25,14 @@
     justify-content: center;
 
     &:first-child {
-      font-size: 3.6rem;
+      font-size: 2.8rem;
       font-weight: 600;
       line-height: 5.5rem;
       word-break: keep-all;
     }
 
     &:last-child {
-      font-size: 6.4rem;
+      font-size: 4.8rem;
       font-weight: 600;
 
       p {
