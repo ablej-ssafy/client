@@ -20,8 +20,6 @@ const URL = {
 const MyPageLayout = ({children}: PropsWithChildren) => {
   const pathname = usePathname();
 
-  console.log(pathname);
-
   return (
     <div className={cx('my-page')}>
       <Sidebar>
