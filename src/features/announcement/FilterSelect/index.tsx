@@ -1,11 +1,17 @@
 'use client';
 
-import React, {useEffect, useRef, useState} from 'react';
+import classNames from 'classnames/bind';
+import React, {useState} from 'react';
 import {IoIosArrowDown} from 'react-icons/io';
+
+import Button from '@/components/common/Button';
 
 import styles from './filterSelect.module.scss';
 
+const cx = classNames.bind(styles);
+
 const FilterSelect = () => {
+  // 더미데이터입니다. 삭제될 코드.
   const data = {
     resumeList: [
       '이력서 제ASDFAWEFAWED목1asdfasdfasfawesdfaWFASDFASDFA',
@@ -25,9 +31,8 @@ const FilterSelect = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(data.resumeList[0]);
-  const selectBoxRef = useRef<HTMLDivElement>(null);
 
-  const toggleDropdown = () => {
+  const handleToggleDropdown = () => {
     setIsOpen(prev => !prev);
   };
 
@@ -36,33 +41,17 @@ const FilterSelect = () => {
     setIsOpen(false);
   };
 
-  // selectbox 외부 클릭 시 드롭다운 닫기
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      selectBoxRef.current &&
-      !selectBoxRef.current.contains(event.target as Node)
-    ) {
-      setIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   return (
     <div className={styles.container}>
       <div
         className={styles.selectbox}
-        onClick={toggleDropdown}
-        ref={selectBoxRef}
+        onClick={handleToggleDropdown}
+        onBlur={() => setIsOpen(false)}
+        tabIndex={0} // 포커스 관리
       >
         <div>
           <div>{selectedItem}</div>
-          <IoIosArrowDown />
+          <IoIosArrowDown className={cx({'icon-open': isOpen})} />
         </div>
         {isOpen && (
           <ul className={styles.dropdown}>
@@ -75,8 +64,8 @@ const FilterSelect = () => {
         )}
       </div>
       <div className={styles['right-button']}>
-        <div>새로고침</div>
-        <div>이력서 펼치기</div>
+        <Button text="이력서 펼치기" height={40} />
+        <Button text="새로고침" color="type2" height={40} />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
+import MyResumeCard from './../MyResumeCard';
 import styles from './myResume.module.scss';
-import MyResumeCard from './MyResumeCard';
 
 const MyResume = () => {
   return (

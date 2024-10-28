@@ -3,13 +3,14 @@
 .container {
   @include mixin.flex-default(space-between);
 
-  margin: 12px; // 지울거임
+  // 지워질 코드
+  margin: 12px;
 }
 
 .selectbox {
   position: relative;
-  width: 300px;
-  padding: 10px 12px;
+  width: 280px;
+  padding: 8px 12px;
   cursor: pointer;
   border: 1px solid #e6e6e6;
   border-radius: 4px;
@@ -17,16 +18,21 @@
   @include mixin.no-user-select;
 
   & > div {
+    flex-wrap: wrap;
     font-size: 1.6rem;
 
     @include mixin.flex-default(space-between);
 
     & > div {
-      max-width: 256px;
+      width: 234px;
 
       @include mixin.ellipsis;
     }
   }
+}
+
+.icon-open {
+  transform: rotate(180deg);
 }
 
 .dropdown {
@@ -57,5 +63,7 @@
 }
 
 .right-button {
+  gap: 8px;
+
   @include mixin.flex-default;
 }
