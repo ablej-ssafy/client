@@ -30,23 +30,25 @@ type NormalInputProps = BaseInputProps & {
   name?: string;
 };
 
-type InputProps = ErrorInputProps | NormalInputProps;
+export type InputProps = ErrorInputProps | NormalInputProps;
 
 const cx = classNames.bind(styles);
 
 const Input = ({widthSize, width, errors, ...props}: InputProps) => {
   const {name} = props;
+  const hasError = name && errors && errors[name]?.message;
+
   return (
     <div>
       <input
-        className={cx('input', {fill: widthSize === 'fill'}, {errors})}
+        className={cx('input', {fill: widthSize === 'fill'}, {error: hasError})}
         {...props}
         style={{width: widthSize === 'free' ? width : undefined}}
       />
-      {!!name && (
+      {hasError && (
         <ErrorMessage
           errors={errors}
-          name={name}
+          name={name!}
           render={({message}) => <p>{message}</p>}
         />
       )}
