@@ -53,6 +53,7 @@ const Input = ({
     <div>
       <input
         className={cx(
+          'input',
           inputStyle,
           {fill: widthSize === 'fill'},
           {error: hasError},

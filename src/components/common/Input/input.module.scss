@@ -1,6 +1,11 @@
 @use '@/styles/constants/colors' as colors;
 @use '@/styles/constants/layout' as layout;
 
+.input:read-only {
+  background-color: colors.$gray1;
+  outline: none;
+}
+
 .primary {
   width: 33.8rem;
   height: 3.5rem;
