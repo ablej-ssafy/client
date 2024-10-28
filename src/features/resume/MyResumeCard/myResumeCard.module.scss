@@ -1,4 +1,4 @@
-@use '@/styles/mixin/layout.scss' as mixin;
+@use '@/styles/mixin/index' as mixin;
 
 .container {
   width: 300px;
@@ -60,11 +60,10 @@
 .center {
   & > div:first-child {
     margin-bottom: 4px;
-    overflow: hidden;
     font-size: 1.8rem;
     font-weight: bold;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+
+    @include mixin.ellipsis;
   }
 
   & > div:last-child {

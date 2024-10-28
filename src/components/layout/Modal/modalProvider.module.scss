@@ -1,6 +1,6 @@
 @use '@/styles/constants/colors' as colors;
 @use '@/styles/constants/layout' as layout;
-@use '@/styles/mixin/layout.scss' as mixin;
+@use '@/styles/mixin/index' as mixin;
 
 .modal-overlay {
   position: fixed;
