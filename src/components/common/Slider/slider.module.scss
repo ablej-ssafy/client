@@ -1,0 +1,42 @@
+@use '@/styles/constants/colors' as colors;
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 43rem;
+
+  & > label {
+    margin-bottom: 0.8rem;
+    font-size: 1.6rem;
+    color: colors.$gray5;
+  }
+
+  .slider {
+    appearance: none;
+    border: 0;
+    border-radius: 12px;
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      width: 25px;
+      height: 25px;
+      margin-top: -7px;
+      appearance: none;
+      cursor: pointer;
+      background-color: colors.$primary;
+      border: 3px solid colors.$white;
+      border-radius: 50%;
+    }
+
+    &::-webkit-slider-runnable-track {
+      height: 1rem;
+    }
+  }
+
+  &.fill {
+    flex: 1;
+    align-self: stretch;
+    width: 100%;
+  }
+}

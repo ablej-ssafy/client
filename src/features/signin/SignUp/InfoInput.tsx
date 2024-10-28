@@ -45,6 +45,7 @@ const InfoInput = ({setStep}: InfoInputProps) => {
         placeholder="이메일"
         {...register('email', {required: '이메일을 입력해주세요'})}
         errors={errors}
+        inputStyle="primary"
       />
       <label htmlFor="password" className={styles['form-label']}>
         비밀번호
@@ -56,6 +57,7 @@ const InfoInput = ({setStep}: InfoInputProps) => {
           required: '비밀번호를 입력해주세요',
         })}
         errors={errors}
+        inputStyle="primary"
       />
       <label htmlFor="password_confirm" className={styles['form-label']}>
         비밀번호 확인
@@ -67,6 +69,7 @@ const InfoInput = ({setStep}: InfoInputProps) => {
           required: '비밀번호를 다시 입력해주세요',
         })}
         errors={errors}
+        inputStyle="primary"
       />
       <label htmlFor="name" className={styles['form-label']}>
         이름
@@ -77,6 +80,7 @@ const InfoInput = ({setStep}: InfoInputProps) => {
           required: '이름을 입력해주세요',
         })}
         errors={errors}
+        inputStyle="primary"
       />
       <button type="submit" className={styles.button}>
         다음
