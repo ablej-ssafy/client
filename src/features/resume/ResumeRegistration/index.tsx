@@ -1,13 +1,8 @@
 'use client';
 
 import classNames from 'classnames/bind';
-import React, {
-  ChangeEvent,
-  DragEvent,
-  KeyboardEvent,
-  useRef,
-  useState,
-} from 'react';
+import type {ChangeEvent, DragEvent, KeyboardEvent} from 'react';
+import React, {useRef, useState} from 'react';
 
 import Button from '@/components/common/Button';
 
