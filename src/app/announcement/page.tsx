@@ -1,13 +1,9 @@
 import React from 'react';
 
-import AnnouncementCard from '@/features/announcement/AnnouncementCard';
+import NoResume from '@/features/announcement/NoResume';
 
 const AnnouncementPage = () => {
-  return (
-    <>
-      <AnnouncementCard />
-    </>
-  );
+  return <NoResume />;
 };
 
 export default AnnouncementPage;
