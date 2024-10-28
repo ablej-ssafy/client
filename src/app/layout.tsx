@@ -1,4 +1,4 @@
-import '@/styles/index';
+import '@/styles/index.scss';
 
 import type {Metadata} from 'next';
 import localFont from 'next/font/local';
