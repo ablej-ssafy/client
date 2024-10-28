@@ -1,12 +1,9 @@
 import React from 'react';
 
+import NoResume from '@/features/announcement/NoResume';
+
 const AnnouncementPage = () => {
-  return (
-    <>
-      <div>등록된 이력서가 없습니다.</div>
-      <div>이력서 등록하러 가기</div>
-    </>
-  );
+  return <NoResume />;
 };
 
 export default AnnouncementPage;

@@ -2,9 +2,6 @@
 
 .container {
   @include mixin.flex-default(space-between);
-
-  // 지워질 코드
-  margin: 12px;
 }
 
 .selectbox {
