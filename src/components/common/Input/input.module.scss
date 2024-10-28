@@ -1,6 +1,7 @@
 @use '@/styles/constants/colors' as colors;
+@use '@/styles/constants/layout' as layout;
 
-.input {
+.primary {
   width: 33.8rem;
   height: 3.5rem;
   padding: 1rem;
@@ -10,6 +11,26 @@
   background-color: colors.$gray1;
   border: none;
   border-radius: 0.8rem;
+
+  &:focus {
+    outline-color: colors.$primary;
+  }
+
+  &::placeholder {
+    margin-left: 2rem;
+    font-size: 1.2rem;
+  }
+}
+
+.secondary {
+  width: 43rem;
+  height: 4.8rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
+  color: colors.$black;
+  border: 1px solid colors.$gray2;
+  border-radius: layout.$border_card_medium;
 
   &:focus {
     outline-color: colors.$primary;

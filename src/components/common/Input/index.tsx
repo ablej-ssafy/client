@@ -7,8 +7,13 @@ import type {FieldErrors} from 'react-hook-form'; // react-hook-form 사용 시
 
 import styles from './input.module.scss';
 
-type BaseInputProps = InputHTMLAttributes<HTMLInputElement> &
+type BaseInputProps = InputStyle &
+  InputHTMLAttributes<HTMLInputElement> &
   (FreeWidthSizeProps | FixedWidthSizeProps);
+
+type InputStyle = {
+  inputStyle: 'primary' | 'secondary';
+};
 
 type FixedWidthSizeProps = {
   widthSize?: 'fill';
@@ -34,14 +39,24 @@ export type InputProps = ErrorInputProps | NormalInputProps;
 
 const cx = classNames.bind(styles);
 
-const Input = ({widthSize, width, errors, ...props}: InputProps) => {
+const Input = ({
+  inputStyle,
+  widthSize,
+  width,
+  errors,
+  ...props
+}: InputProps) => {
   const {name} = props;
   const hasError = name && errors && errors[name]?.message;
 
   return (
     <div>
       <input
-        className={cx('input', {fill: widthSize === 'fill'}, {error: hasError})}
+        className={cx(
+          inputStyle,
+          {fill: widthSize === 'fill'},
+          {error: hasError},
+        )}
         {...props}
         style={{width: widthSize === 'free' ? width : undefined}}
       />

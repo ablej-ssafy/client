@@ -4,7 +4,15 @@
   & > label {
     display: block;
     margin-bottom: 0.6rem;
-    font-size: 1.2rem;
     color: colors.$gray5;
+  }
+
+  .primary {
+    font-size: 1.2rem;
+  }
+
+  .secondary {
+    margin-bottom: 0.8rem;
+    font-size: 1.6rem;
   }
 }
