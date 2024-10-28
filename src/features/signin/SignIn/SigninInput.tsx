@@ -80,10 +80,10 @@ const SigninInput = ({setStep}: SigninInputProps) => {
       </div>
 
       <div className={styles.social}>
-        <SocialIcon>
+        <SocialIcon social="google">
           <FcGoogle size={25} />
         </SocialIcon>
-        <SocialIcon>
+        <SocialIcon social="kakao">
           <RiKakaoTalkFill size={25} color="#191919" />
         </SocialIcon>
         {/* <SocialIcon>
