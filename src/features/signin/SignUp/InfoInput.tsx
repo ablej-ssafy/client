@@ -2,8 +2,8 @@
 
 import {useForm} from 'react-hook-form';
 
-import SignInput from '@/features/signin/SignInput';
-import {SIGN_STEP} from '@/features/signin/SignModal';
+import Input from '@/components/common/Input';
+import {SIGN_STEP} from '@/features/signin/SignIn/SignModal';
 
 import styles from './infoInput.module.scss';
 
@@ -41,20 +41,18 @@ const InfoInput = ({setStep}: InfoInputProps) => {
       <label htmlFor="email" className={styles['form-label']}>
         이메일
       </label>
-      <SignInput
-        name="email"
+      <Input
         placeholder="이메일"
-        register={register('email', {required: '이메일을 입력해주세요'})}
+        {...register('email', {required: '이메일을 입력해주세요'})}
         errors={errors}
       />
       <label htmlFor="password" className={styles['form-label']}>
         비밀번호
       </label>
-      <SignInput
-        name="password"
+      <Input
         placeholder="비밀번호"
         type="password"
-        register={register('password', {
+        {...register('password', {
           required: '비밀번호를 입력해주세요',
         })}
         errors={errors}
@@ -62,11 +60,10 @@ const InfoInput = ({setStep}: InfoInputProps) => {
       <label htmlFor="password_confirm" className={styles['form-label']}>
         비밀번호 확인
       </label>
-      <SignInput
-        name="password_confirm"
+      <Input
         placeholder="비밀번호 확인"
         type="password"
-        register={register('password_confirm', {
+        {...register('password_confirm', {
           required: '비밀번호를 다시 입력해주세요',
         })}
         errors={errors}
@@ -74,10 +71,9 @@ const InfoInput = ({setStep}: InfoInputProps) => {
       <label htmlFor="name" className={styles['form-label']}>
         이름
       </label>
-      <SignInput
-        name="name"
+      <Input
         placeholder="이름"
-        register={register('name', {
+        {...register('name', {
           required: '이름을 입력해주세요',
         })}
         errors={errors}

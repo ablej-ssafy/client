@@ -13,6 +13,11 @@ import styles from './navigation.module.scss';
 
 const cx = classNames.bind(styles);
 
+interface NavigationProps extends PropsWithChildren {
+  invertBackground?: boolean;
+  position?: 'static';
+}
+
 const navVarients: Variants = {
   normal: {
     transition: {duration: 0.3},
@@ -23,7 +28,11 @@ const navVarients: Variants = {
   },
 };
 
-const Navigation = ({children}: PropsWithChildren) => {
+const Navigation = ({
+  children,
+  position,
+  invertBackground,
+}: NavigationProps) => {
   const windowHeight = useWindowHeight();
   const scrollHeight = useScrollHeight();
   const [inverted, setInverted] = useState(false);
@@ -38,7 +47,11 @@ const Navigation = ({children}: PropsWithChildren) => {
 
   return (
     <motion.nav
-      className={cx('navigation', {inverted: inverted})}
+      className={cx(
+        'navigation',
+        {static: position === 'static'},
+        {inverted: invertBackground},
+      )}
       variants={navVarients}
       initial={'normal'}
       animate={inverted ? 'inverted' : 'normal'}

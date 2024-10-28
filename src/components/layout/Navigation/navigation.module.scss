@@ -27,3 +27,11 @@
     }
   }
 }
+
+.inverted {
+  background-color: colors.$primary !important;
+}
+
+.static {
+  position: static;
+}
