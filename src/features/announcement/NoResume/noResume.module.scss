@@ -1,4 +1,5 @@
 @use '@/styles/mixin/index' as mixin;
+@use '@/styles/constants/colors' as colors;
 
 .container {
   flex-direction: column;
@@ -18,10 +19,10 @@
     padding: 0 20px;
     font-size: 1.6rem;
     font-weight: 600;
-    color: #6e55ff;
+    color: colors.$primary;
     cursor: pointer;
     background-color: #fff;
-    border: 1px solid #6e55ff;
+    border: 1px solid colors.$primary;
     border-radius: 4px;
     transition: background-color 0.2s ease;
 

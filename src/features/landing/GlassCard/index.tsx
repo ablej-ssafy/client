@@ -30,11 +30,11 @@ const GlassCard = () => {
       >
         <motion.div className={cx('card-section')} variants={variants}>
           <motion.p variants={variants}>
-            지금까지&nbsp;
+            지금까지
             <motion.span className={cx('strong')} variants={variants}>
               AI HeadHunting
             </motion.span>
-            을 사용해 취업한&nbsp;
+            을 사용해 취업한
             <motion.span variants={variants}>구직자 수</motion.span>
           </motion.p>
         </motion.div>
