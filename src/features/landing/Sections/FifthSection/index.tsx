@@ -21,7 +21,7 @@ const FifthSection = () => {
       <div className={cx('filter')} />
       <GlassCard />
       <div className={cx('title')}>
-        <p>실제 추기로 보는 AI HeadHunting</p>
+        <p>실제 추가로 보는 AI HeadHunting</p>
         <h2>
           AI HeadHunting을 사용해 구직과
           <br />

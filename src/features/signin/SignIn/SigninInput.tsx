@@ -56,6 +56,7 @@ const SigninInput = ({setStep}: SigninInputProps) => {
           placeholder="이메일"
           {...register('email', {required: '이메일을 입력해주세요'})}
           errors={errors}
+          inputStyle="primary"
         />
         <Input
           placeholder="비밀번호"
@@ -64,6 +65,7 @@ const SigninInput = ({setStep}: SigninInputProps) => {
             required: '비밀번호를 입력해주세요',
           })}
           errors={errors}
+          inputStyle="primary"
         />
         <button type="submit" className={cx('button', 'sign-in')}>
           로그인

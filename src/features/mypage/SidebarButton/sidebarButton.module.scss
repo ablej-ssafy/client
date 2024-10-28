@@ -1,0 +1,46 @@
+@use '@/styles/constants/layout' as layout;
+@use '@/styles/constants/colors' as colors;
+
+.sidebar-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 4.6rem;
+  padding: 0 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: colors.$gray3;
+  cursor: pointer;
+  background-color: transparent;
+  border-width: 0;
+  border-radius: layout.$border_button;
+  transition:
+    color 0.2s,
+    background-color 0.2s,
+    scale 0.1s;
+
+  &:hover {
+    color: colors.$gray5;
+    background-color: colors.$gray3;
+  }
+
+  &:active {
+    scale: 1.02;
+  }
+}
+
+.selected {
+  color: colors.$black;
+}
+
+.warning {
+  color: colors.$red !important;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:active {
+    scale: 1;
+  }
+}
