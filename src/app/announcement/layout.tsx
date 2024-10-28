@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 
 import FilterSelect from '@/features/announcement/FilterSelect';
 
-const AnnouncementLayout = ({children}: {children: React.ReactNode}) => {
+const AnnouncementLayout = ({children}: {children: ReactNode}) => {
   return (
     <>
       <FilterSelect />
