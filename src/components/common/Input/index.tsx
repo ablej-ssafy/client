@@ -61,7 +61,7 @@ const Input = ({
         type={
           name === 'password' || name === 'password_confirm'
             ? 'password'
-            : undefined
+            : 'text'
         }
         style={{width: widthSize === 'free' ? width : undefined}}
       />
