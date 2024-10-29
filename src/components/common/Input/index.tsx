@@ -48,9 +48,8 @@ const Input = ({
 }: InputProps) => {
   const {name} = props;
   const hasError = name && errors && errors[name]?.message;
-
   return (
-    <div>
+    <div className={styles.container}>
       <input
         className={cx(
           'input',
@@ -59,13 +58,20 @@ const Input = ({
           {error: hasError},
         )}
         {...props}
+        type={
+          name === 'password' || name === 'password_confirm'
+            ? 'password'
+            : 'text'
+        }
         style={{width: widthSize === 'free' ? width : undefined}}
       />
       {hasError && (
         <ErrorMessage
           errors={errors}
           name={name!}
-          render={({message}) => <p>{message}</p>}
+          render={({message}) => (
+            <p className={styles['error-message']}>{message}</p>
+          )}
         />
       )}
     </div>
