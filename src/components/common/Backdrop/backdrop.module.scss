@@ -1,0 +1,8 @@
+@use '@/styles/constants/dimensions' as dimensions;
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: dimensions.$foreground;
+  backdrop-filter: blur(2px);
+}
