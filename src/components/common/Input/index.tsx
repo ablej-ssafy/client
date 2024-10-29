@@ -25,7 +25,6 @@ type FreeWidthSizeProps = {
 
 export type InputProps = BaseInputProps & {
   error?: string | string[];
-  name: string;
 };
 
 const cx = classNames.bind(styles);

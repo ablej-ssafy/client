@@ -7,7 +7,6 @@ import styles from './labelInput.module.scss';
 
 type LabelInputProps = InputProps & {
   label: string;
-  name: string;
 };
 
 const cx = classNames.bind(styles);
