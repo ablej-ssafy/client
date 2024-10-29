@@ -1,6 +1,6 @@
 import {ReactNode} from 'react';
 
-import ModalProvider from '@/components/layout/Modal/ModalProvider';
+import ModalProvider from '@/components/layout/ModalProvider';
 import Header from '@/features/header-footer/Header';
 import SignModal from '@/features/signin/SignIn/SignModal';
 
