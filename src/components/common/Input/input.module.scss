@@ -1,6 +1,10 @@
 @use '@/styles/constants/colors' as colors;
 @use '@/styles/constants/layout' as layout;
 
+.container {
+  position: relative;
+}
+
 .input:read-only {
   background-color: colors.$gray1;
   outline: none;
@@ -53,5 +57,12 @@
 }
 
 .error {
-  border: 2px solid colors.$red;
+  border: 1px solid colors.$red;
+}
+
+.error-message {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  color: colors.$red;
 }
