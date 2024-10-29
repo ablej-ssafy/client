@@ -2,10 +2,11 @@
 
 import classNames from 'classnames/bind';
 import {Dispatch, SetStateAction} from 'react';
-import {useForm} from 'react-hook-form';
+import {useFormState} from 'react-dom';
 import {FcGoogle} from 'react-icons/fc';
 import {RiKakaoTalkFill} from 'react-icons/ri';
 
+import loginAction from '@/actions/loginAction';
 import Input from '@/components/common/Input';
 import {SIGN_STEP} from '@/features/signin/SignIn/SignModal';
 import SocialIcon from '@/features/signin/SignIn/SocialIcon';
@@ -14,29 +15,14 @@ import styles from './signinInput.module.scss';
 
 const cx = classNames.bind(styles);
 
-interface SigninForm {
-  email: string;
-  password: string;
-}
-
 interface SigninInputProps {
   setStep: Dispatch<SetStateAction<SIGN_STEP>>;
 }
 
+const INITIAL_STATE = {email: [], password: [], error: ''};
+
 const SigninInput = ({setStep}: SigninInputProps) => {
-  const {
-    register,
-    handleSubmit,
-    formState: {errors},
-  } = useForm<SigninForm>();
-
-  const onSubmit = (data: SigninForm) => {
-    console.log(data);
-  };
-
-  const onInValid = (errors: object) => {
-    console.log(errors);
-  };
+  const [state, formAction] = useFormState(loginAction, INITIAL_STATE);
 
   const handleSignUp = () => {
     setStep(SIGN_STEP.USERINFO);
@@ -48,25 +34,24 @@ const SigninInput = ({setStep}: SigninInputProps) => {
       <p className={styles['text-content']}>
         지금 로그인하고 AI로 채용공고를 추천받아보세요.
       </p>
-      <form
-        className={styles['signin-form']}
-        onSubmit={handleSubmit(onSubmit, onInValid)}
-      >
+      <form action={formAction} className={styles['signin-form']}>
         <Input
           placeholder="이메일"
-          {...register('email', {required: '이메일을 입력해주세요'})}
-          errors={errors}
+          type="email"
           inputStyle="primary"
+          name="email"
+          error={state?.email}
         />
         <Input
           placeholder="비밀번호"
           type="password"
-          {...register('password', {
-            required: '비밀번호를 입력해주세요',
-          })}
-          errors={errors}
           inputStyle="primary"
+          name="password"
+          error={state?.password}
         />
+        {state && state.error && (
+          <p className={styles['error']}>{state.error}</p>
+        )}
         <button type="submit" className={cx('button', 'sign-in')}>
           로그인
         </button>
@@ -88,9 +73,6 @@ const SigninInput = ({setStep}: SigninInputProps) => {
         <SocialIcon social="kakao">
           <RiKakaoTalkFill size={25} color="#191919" />
         </SocialIcon>
-        {/* <SocialIcon>
-            <AiFillGithub size={25} />
-          </SocialIcon> */}
       </div>
     </div>
   );
