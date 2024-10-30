@@ -61,6 +61,19 @@
     color: #9c9c9c;
     background-color: #f7f7f7;
     border-radius: 4px;
+
+    @include mixin.flex-default;
+
+    & > svg {
+      padding: 1px;
+      margin-left: 6px;
+      cursor: pointer;
+      border-radius: 40%;
+
+      &:hover {
+        background-color: #e6e6e6;
+      }
+    }
   }
 
   .change-file {

@@ -3,6 +3,7 @@
 import classNames from 'classnames/bind';
 import type {ChangeEvent, DragEvent, KeyboardEvent} from 'react';
 import React, {useRef, useState} from 'react';
+import {IoMdClose} from 'react-icons/io';
 
 import Button from '@/components/common/Button';
 
@@ -119,7 +120,10 @@ const ResumeRegistration = () => {
         ) : (
           <div className={styles['file-selected']}>
             <p>파일을 업로드 하시겠습니까?</p>
-            <div className={styles.title}>{file.name}</div>
+            <div className={styles.title}>
+              {file.name}
+              <IoMdClose size={16} onClick={handleRemoveFile} />
+            </div>
             <Button color="type2" text="이력서 업로드" onClick={handleUpload} />
             <div className={styles['change-file']} onClick={handleRemoveFile}>
               다른 파일 선택
