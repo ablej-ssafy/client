@@ -8,6 +8,11 @@
   cursor: pointer;
 }
 
+.selected {
+  background-color: colors.$white;
+  border-radius: 2rem;
+}
+
 .title {
   margin-right: 1rem;
   font-size: 1.8rem;

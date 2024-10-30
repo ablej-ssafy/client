@@ -1,5 +1,7 @@
 'use client';
 
+import classNames from 'classnames/bind';
+// import { useSearchParams } from 'next/navigation';
 import {useRef} from 'react';
 import {useDrag, useDrop} from 'react-dnd';
 import {FaStarOfLife} from 'react-icons/fa6';
@@ -7,12 +9,16 @@ import {IoMenu} from 'react-icons/io5';
 
 import styles from './dragAndDrop.module.scss';
 
+const cx = classNames.bind(styles);
+
 interface DragAndDropProps {
   id: number;
   index: number;
   title: string;
   essential?: boolean;
+  path: string;
   moveCardHandler: (dragIndex: number, hoverIndex: number) => void;
+  setNowItem: (title: string) => void;
 }
 
 const DragAndDrop = ({
@@ -20,8 +26,11 @@ const DragAndDrop = ({
   index,
   title,
   essential,
+  path,
   moveCardHandler,
+  setNowItem,
 }: DragAndDropProps) => {
+  // const searchParams = useSearchParams()
   const ref = useRef<HTMLDivElement>(null);
 
   const [{isDragging}, drag, preview] = useDrag({
@@ -44,11 +53,16 @@ const DragAndDrop = ({
 
   preview(drop(drag(ref)));
 
+  const handleClick = () => {
+    setNowItem(path);
+  };
+
   return (
     <div
       ref={ref}
-      className={styles.container}
-      style={{opacity: isDragging ? '0.5' : '1'}}
+      className={cx('container')}
+      style={{opacity: isDragging ? '0.4' : '1'}}
+      onClick={handleClick}
     >
       <div>
         <span className={styles.title}>{title}</span>

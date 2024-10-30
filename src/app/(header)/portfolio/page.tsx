@@ -1,6 +1,7 @@
 'use client';
 
-import {useState} from 'react';
+import classNames from 'classnames/bind';
+import {useEffect, useState} from 'react';
 import {DndProvider} from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend';
 
@@ -8,26 +9,29 @@ import DragAndDrop from '@/components/common/DragAndDrop/index';
 
 import styles from './page.module.scss';
 
+const cx = classNames.bind(styles);
+
 interface Task {
   id: number;
   title: string;
   essential: boolean;
+  path: string;
 }
 
 const tasks: Task[] = [
-  {id: 1, title: '프로필', essential: true},
-  {id: 2, title: '학력', essential: true},
-  {id: 3, title: '경력 및 분야', essential: false},
-  {id: 4, title: '수상 및 활동', essential: false},
-  {id: 5, title: '기술스택', essential: false},
-  {id: 6, title: '프로젝트', essential: false},
-  {id: 7, title: '포트폴리오', essential: false},
-  {id: 8, title: 'URL', essential: false},
-  {id: 9, title: '자격증', essential: false},
+  {id: 1, title: '프로필', essential: true, path: 'profile'},
+  {id: 2, title: '학력', essential: true, path: 'education'},
+  {id: 3, title: '경력 및 분야', essential: false, path: 'history'},
+  {id: 4, title: '수상 및 활동', essential: false, path: 'activity'},
+  {id: 5, title: '기술스택', essential: false, path: 'skill'},
+  {id: 6, title: '프로젝트', essential: false, path: 'project'},
+  {id: 7, title: '자격증', essential: false, path: 'license'},
+  {id: 8, title: '어학성적', essential: false, path: 'language'},
 ];
 
 const PortFolioPage = () => {
   const [items, setItems] = useState(tasks);
+  const [nowItem, setNowItem] = useState<string>(items[0].path);
 
   const moveCardHandler = (dragIndex: number, hoverIndex: number) => {
     if (dragIndex === hoverIndex) return;
@@ -40,8 +44,12 @@ const PortFolioPage = () => {
     });
   };
 
+  useEffect(() => {
+    console.log('nowItem', nowItem);
+  }, [nowItem]);
+
   return (
-    <div className={styles.container}>
+    <div className={cx('container')}>
       <DndProvider backend={HTML5Backend}>
         {items.map((item, index) => {
           return (
@@ -51,7 +59,9 @@ const PortFolioPage = () => {
               index={index}
               title={item.title}
               essential={item.essential}
+              path={item.path}
               moveCardHandler={moveCardHandler}
+              setNowItem={setNowItem}
             />
           );
         })}
