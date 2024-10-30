@@ -1,0 +1,23 @@
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/mixin/index' as mixin;
+
+.container {
+  @include mixin.flex-default(space-between);
+
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+}
+
+.title {
+  margin-right: 1rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.essential {
+  color: colors.$red;
+}
+
+.menu {
+  padding-left: 1rem;
+}
