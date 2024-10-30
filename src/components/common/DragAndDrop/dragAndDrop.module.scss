@@ -4,7 +4,7 @@
 .container {
   @include mixin.flex-default(space-between);
 
-  padding: 1rem 2.5rem;
+  padding: 1rem 2rem;
   cursor: pointer;
 }
 
@@ -13,13 +13,19 @@
   border-radius: 2rem;
 }
 
+.text {
+  display: flex;
+  align-items: flex-start;
+}
+
 .title {
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   font-size: 1.8rem;
   font-weight: 500;
 }
 
 .essential {
+  margin-top: 0.5rem;
   color: colors.$red;
 }
 

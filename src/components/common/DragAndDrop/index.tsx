@@ -1,7 +1,8 @@
 'use client';
 
 import classNames from 'classnames/bind';
-// import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import {usePathname} from 'next/navigation';
 import {useRef} from 'react';
 import {useDrag, useDrop} from 'react-dnd';
 import {FaStarOfLife} from 'react-icons/fa6';
@@ -18,7 +19,6 @@ interface DragAndDropProps {
   essential?: boolean;
   path: string;
   moveCardHandler: (dragIndex: number, hoverIndex: number) => void;
-  setNowItem: (title: string) => void;
 }
 
 const DragAndDrop = ({
@@ -28,9 +28,9 @@ const DragAndDrop = ({
   essential,
   path,
   moveCardHandler,
-  setNowItem,
 }: DragAndDropProps) => {
-  // const searchParams = useSearchParams()
+  const pathname = usePathname().split('/')[2];
+  const selected = pathname === path;
   const ref = useRef<HTMLDivElement>(null);
 
   const [{isDragging}, drag, preview] = useDrag({
@@ -53,25 +53,22 @@ const DragAndDrop = ({
 
   preview(drop(drag(ref)));
 
-  const handleClick = () => {
-    setNowItem(path);
-  };
-
   return (
-    <div
-      ref={ref}
-      className={cx('container')}
-      style={{opacity: isDragging ? '0.4' : '1'}}
-      onClick={handleClick}
-    >
-      <div>
-        <span className={styles.title}>{title}</span>
-        {essential && <FaStarOfLife className={styles.essential} />}
+    <Link href={`/portfolio/${path}`}>
+      <div
+        ref={ref}
+        className={cx('container', {selected})}
+        style={{opacity: isDragging ? '0.4' : '1'}}
+      >
+        <div className={styles.text}>
+          <span className={styles.title}>{title}</span>
+          {essential && <FaStarOfLife className={styles.essential} size={6} />}
+        </div>
+        <div className={styles.menu}>
+          <IoMenu size={18} />
+        </div>
       </div>
-      <div className={styles.menu}>
-        <IoMenu size={18} />
-      </div>
-    </div>
+    </Link>
   );
 };
 
