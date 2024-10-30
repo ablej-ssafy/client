@@ -1,64 +1,82 @@
 'use client';
 import classNames from 'classnames/bind';
-import {useState} from 'react';
+import {disassemble} from 'es-hangul';
+import {MouseEvent, useState} from 'react';
+
+import {Job} from '@/types/ableJ';
 
 import styles from './jobComboBox.module.scss';
 
 const cx = classNames.bind(styles);
 
-// const JOBS: Job[] = [
-//   {id: 1, title: '개발자'},
-//   {id: 2, title: '디자이너'},
-//   {id: 3, title: '기획자'},
-//   {
-//     id: 4,
-//     title: '마케터',
-//   },
-//   {id: 5, title: '기타'},
-//   {id: 6, title: '기타2'},
-// ];
+const JOBS: Job[] = [
+  {id: 1, title: '개발자'},
+  {id: 2, title: '디자이너'},
+  {id: 3, title: '기획자'},
+  {
+    id: 4,
+    title: '마케터',
+  },
+  {id: 5, title: '기타'},
+  {id: 6, title: '기타2'},
+];
 
 const JobComboBox = () => {
-  const [, setOpen] = useState(false);
-  const [text, setText] = useState('');
-  // const [selectedJob, setSelectedJob] = useState<number[]>([]);
-  // const jobs = useJobs();
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedJobs, setSelectedJobs] = useState<Job['id'][]>([]);
+  const [keyword, setKeyword] = useState('');
 
-  // const handleClickJob = (e: MouseEvent<HTMLButtonElement>) => {
-  //   const {value} = e.currentTarget;
-  //   setSelectedJob(prev => [...prev, Number(value)]);
-  //   setOpen(false);
-  // };
+  const handleSelectJobs = (e: MouseEvent<HTMLButtonElement>) => {
+    const jobId = +e.currentTarget.value;
+
+    if (selectedJobs.includes(jobId)) {
+      setSelectedJobs(prevJobs => prevJobs.filter(id => id !== jobId));
+      return;
+    }
+    setSelectedJobs(prevJobs => [...prevJobs, jobId]);
+  };
 
   return (
     <div className={cx('combobox')}>
+      {selectedJobs.map(jobId => (
+        <input key={jobId} type="hidden" readOnly name="jobIds" value={jobId} />
+      ))}
       <button
         className={cx('combobox-button')}
-        value={text}
-        onChange={e => setText(e.currentTarget.value)}
-        onClick={() => setOpen(prev => !prev)}
+        onClick={() => setIsOpen(prev => !prev)}
       >
-        {/*{selectedJob.join(' ')}*/}
+        {selectedJobs
+          .map(jobId => JOBS.find(({id}) => jobId === id)?.title)
+          .join(' ')}
       </button>
-      {/*{open && <div>(*/}
-      {/*    <input*/}
-      {/*      type="text"*/}
-      {/*      className={cx('dropdown-input')}*/}
-      {/*      value={text}*/}
-      {/*      onChange={e => setText(e.currentTarget.value)}*/}
-      {/*    />*/}
-      {/*  ) &&*/}
-      {/*  !!JOBS.length && (*/}
-      {/*    <ul className={cx('dropdown')}>*/}
-      {/*      {JOBS.map(job => (*/}
-      {/*        <li className={cx('dropdown-menu')} key={job.id}>*/}
-      {/*          <button onClick={handleClickJob} value={job.id}>*/}
-      {/*            {job.title}*/}
-      {/*          </button>*/}
-      {/*        </li>*/}
-      {/*      ))}*/}
-      {/*    </ul>*/}
-      {/*  ) }*/}
+      {isOpen && (
+        <div className={cx('dropdown')}>
+          <input
+            type="text"
+            placeholder="직무를 입력해주세요."
+            className={cx('combobox-input')}
+            onChange={e => setKeyword(e.currentTarget.value)}
+            value={keyword}
+          />
+          <ul className={cx('dropdown-list')}>
+            {JOBS.filter(job =>
+              disassemble(job.title).includes(disassemble(keyword)),
+            ).map(job => (
+              <li key={job.id}>
+                <button
+                  className={cx('dropdown-button', {
+                    selected: selectedJobs.includes(job.id),
+                  })}
+                  value={job.id}
+                  onClick={handleSelectJobs}
+                >
+                  {job.title}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

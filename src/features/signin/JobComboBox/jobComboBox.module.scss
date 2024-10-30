@@ -2,13 +2,21 @@
 @use '@/styles/constants/layout' as layout;
 @use '@/styles/constants/dimensions' as dimensions;
 
+$combobox-height: 35px;
+$combobox-padding: 10px;
+
 .combobox {
   position: relative;
   width: 100%;
 
   .combobox-button {
+    display: flex; /* 추가 */
+    align-items: center; /* 추가 */
     width: 100%;
-    height: 3.5rem;
+    height: $combobox-height;
+    padding: 0 $combobox-padding;
+    text-align: left;
+    cursor: pointer;
     background-color: colors.$gray1;
     border: 0;
     border-radius: layout.$border_button;
@@ -16,34 +24,42 @@
 
   .dropdown {
     position: absolute;
-    top: 3.5rem;
+    top: $combobox-height;
     width: 100%;
-    min-height: 3.5rem;
-    max-height: 14rem;
+    max-height: calc($combobox-height * 5);
     overflow-y: scroll;
-    background-color: colors.$gray2;
+    background-color: colors.$white;
+    border: 1px solid colors.$gray2;
     border-radius: layout.$border_button;
 
     &::-webkit-scrollbar {
       display: none;
     }
 
-    .dropdown-input {
+    .combobox-input {
       width: 100%;
-      height: 3.5rem;
-      padding: 1rem;
+      height: $combobox-height;
+      padding: 0 $combobox-padding;
       border: 0;
-
-      &:focus {
-        outline: none;
-      }
+      outline: none;
     }
 
-    .dropdown-menu > button {
-      width: 100%;
-      height: 3.5rem;
+    .dropdown-list {
       list-style: none;
-      border: 0;
+
+      .dropdown-button {
+        width: 100%;
+        height: $combobox-height;
+        padding: 0 $combobox-padding;
+        text-align: left;
+        background-color: transparent;
+        border: 0;
+        border-top: 1px solid colors.$gray2;
+
+        &.selected {
+          background-color: colors.$gray1;
+        }
+      }
     }
   }
 }
