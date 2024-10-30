@@ -3,8 +3,7 @@
 import {useState} from 'react';
 
 import SigninInput from '@/features/signin/SignIn/SigninInput';
-import CareerInput from '@/features/signin/SignUp/CareerInput';
-import InfoInput from '@/features/signin/SignUp/InfoInput';
+import CareerStep from '@/features/signin/SignUp/CareerStep';
 
 import styles from './signModal.module.scss';
 
@@ -28,7 +27,7 @@ const SignModal = () => {
           <p className={styles['text-content']}>
             회원가입을 하시면 AI 큐레이팅을 사용할 수 있습니다.
           </p>
-          <InfoInput setStep={setStep} />
+          {/*<InfoStep setStep={setStep} />*/}
         </>
       )}
 
@@ -38,7 +37,7 @@ const SignModal = () => {
           <p className={styles['text-content']}>
             회원님의 경력과 관심 직무를 선택해주세요.
           </p>
-          <CareerInput />
+          <CareerStep />
         </>
       )}
     </div>
