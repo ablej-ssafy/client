@@ -1,22 +1,12 @@
 @use '@/styles/mixin/index' as mixin;
 
 .container {
-  width: 1236px;
-  margin: 40px auto;
+  width: 100%;
 
   & > h2 {
-    width: 100%;
     margin-bottom: 2rem;
     font-size: 2.4rem;
     font-weight: 600;
-  }
-
-  @media ((width <= 430px) and (width >= 375px)) {
-    width: 33.5rem;
-  }
-
-  @media (width <= 375px) {
-    width: 30rem;
   }
 }
 
