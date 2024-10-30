@@ -39,7 +39,7 @@ const signupAction = async (_prevState: unknown, formData: FormData) => {
 
   const response = await ableJ.login(data?.email, data?.password);
 
-  if (!response.ok) {
+  if (!response.success) {
     return {
       error: '로그인에 실패하였습니다.',
       email: [],

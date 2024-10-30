@@ -1,3 +1,5 @@
+import {ResponseType} from '@/types/common';
+
 export type Email = string;
 export type Password = string;
 export type Name = string;
@@ -12,3 +14,10 @@ export interface SignupForm {
   careerYear: number;
   jobIds: number[];
 }
+
+export type LoginResponseData = {
+  accessToken: AccessToken;
+  refreshToken: RefreshToken;
+};
+
+export type LoginResponse = ResponseType<LoginResponseData>;

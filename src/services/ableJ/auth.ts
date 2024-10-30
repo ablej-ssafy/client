@@ -1,5 +1,5 @@
 import httpClient from '@/configs/httpClient';
-import {Email, Name, Password} from '@/types/ableJ';
+import {Email, LoginResponse, Name, Password} from '@/types/ableJ';
 
 export default {
   /**
@@ -7,7 +7,7 @@ export default {
    * @param email 이메일
    * @param password 비밀번호
    */
-  login: async (email: Email, password: Password) => {
+  login: async (email: Email, password: Password): Promise<LoginResponse> => {
     return httpClient.post('/api/v1/auth/sign-in', {email, password});
   },
   /**

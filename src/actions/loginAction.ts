@@ -29,7 +29,9 @@ const loginAction = async (_prevState: unknown, formData: FormData) => {
 
   const response = await ableJ.login(data?.email, data?.password);
 
-  if (!response.ok) {
+  console.log(response);
+
+  if (!response.success) {
     return {
       error: '로그인에 실패하였습니다.',
       email: [],
@@ -37,8 +39,7 @@ const loginAction = async (_prevState: unknown, formData: FormData) => {
     };
   }
 
-  const responseData = await response.json();
-  const {accessToken, refreshToken} = responseData.data;
+  const {accessToken, refreshToken} = response.data;
 
   cookies().set('accessToken', accessToken, {secure: true, httpOnly: true});
   cookies().set('refreshToken', refreshToken, {secure: true, httpOnly: true});
