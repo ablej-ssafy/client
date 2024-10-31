@@ -2,10 +2,8 @@
 
 import type {ReactNode} from 'react';
 
-import ModalProvider from '@/components/layout/ModalProvider';
 import Navigation from '@/components/layout/Navigation';
 import NavigationButton from '@/components/layout/NavigationButton';
-import SignModal from '@/features/signin/SignIn/SignModal';
 import useModalStore from '@/zustand/useModalStore';
 
 const MainPageLayout = ({children}: {children: ReactNode}) => {
@@ -23,9 +21,6 @@ const MainPageLayout = ({children}: {children: ReactNode}) => {
           로그인
         </NavigationButton>
       </Navigation>
-      <ModalProvider border>
-        <SignModal />
-      </ModalProvider>
       {children}
     </>
   );

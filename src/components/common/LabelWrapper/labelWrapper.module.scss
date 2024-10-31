@@ -1,0 +1,13 @@
+@use '@/styles/constants/colors' as colors;
+
+.label-wrapper {
+  display: contents;
+
+  & > label {
+    display: block;
+    margin-right: auto;
+    margin-bottom: 0.8rem;
+    color: colors.$gray5;
+    text-align: left;
+  }
+}

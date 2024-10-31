@@ -1,5 +1,4 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import type {FieldError, FieldErrors} from 'react-hook-form';
 
 import Input from './index';
 
@@ -49,10 +48,5 @@ export const PrimaryWithError: Story = {
     widthSize: 'fill',
     name: 'errorInput',
     placeholder: 'Input with Error',
-    errors: {
-      errorInput: {
-        message: '에러 메세지 입니다',
-      } as FieldError,
-    } as FieldErrors,
   },
 };
