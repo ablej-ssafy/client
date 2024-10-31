@@ -8,7 +8,7 @@ import {RiKakaoTalkFill} from 'react-icons/ri';
 
 import loginAction from '@/actions/loginAction';
 import Input from '@/components/common/Input';
-import Index from '@/features/signin/SocialIcon';
+import Index from '@/features/auth/SocialIcon';
 
 import styles from './signin.module.scss';
 

@@ -1,7 +1,7 @@
 'use client';
 
-import SignUpCareerStep from '@/features/signin/SignUpCareerStep';
-import SignUpInfoStep from '@/features/signin/SignUpInfoStep';
+import SignUpCareerStep from '@/features/auth/SignUpCareerStep';
+import SignUpInfoStep from '@/features/auth/SignUpInfoStep';
 import useFunnel from '@/hooks/useFunnel';
 
 const SignUpModal = () => {
