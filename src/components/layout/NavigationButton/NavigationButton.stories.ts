@@ -25,7 +25,6 @@ export const OutlinedButton: Story = {
   args: {
     buttonType: 'outlined',
     children: 'Sign In',
-    signinOpen: () => alert('Sign In button clicked'),
   },
 };
 
