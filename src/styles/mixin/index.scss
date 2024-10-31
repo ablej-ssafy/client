@@ -31,3 +31,23 @@
     background-color: #b3b3b9;
   }
 }
+
+@mixin grid-default {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  justify-items: center;
+  width: 100%;
+
+  @media (width <= 1280px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (width <= 860px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (width <= 560px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

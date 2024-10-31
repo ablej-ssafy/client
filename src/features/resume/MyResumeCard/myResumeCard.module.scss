@@ -1,20 +1,16 @@
 @use '@/styles/mixin/index' as mixin;
 
 .container {
-  width: 300px;
+  width: 100%;
   padding: 16px 20px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   cursor: pointer;
   border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  border-radius: 6px;
   transition: box-shadow 0.3s ease;
 
   &:hover {
     box-shadow: 0 6px 8px rgb(0 0 0 / 10%);
-  }
-
-  @media (width <= 430px) {
-    width: 100%;
   }
 }
 
@@ -63,11 +59,16 @@
 
 .center {
   & > div:first-child {
+    width: 200px;
     margin-bottom: 4px;
     font-size: 1.8rem;
-    font-weight: bold;
+    font-weight: 600;
 
     @include mixin.ellipsis;
+
+    @media (width <= 540px) {
+      width: 286px;
+    }
   }
 
   & > div:last-child {
