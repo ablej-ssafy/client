@@ -7,7 +7,7 @@ import {z} from 'zod';
 import LabelInput from '@/components/common/LabelInput';
 import {useSignupForm} from '@/context/signup-context';
 
-import styles from './infoStep.module.scss';
+import styles from './signupInfoStep.module.scss';
 
 interface InfoStepProps {
   handleNext: VoidFunction;
@@ -24,7 +24,7 @@ const InfoStepScheme = z.object({
   name: z.string(),
 });
 
-const InfoStep = ({handleNext}: InfoStepProps) => {
+const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
   const [, setForm] = useSignupForm();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
@@ -91,4 +91,4 @@ const InfoStep = ({handleNext}: InfoStepProps) => {
   );
 };
 
-export default InfoStep;
+export default SignUpInfoStep;

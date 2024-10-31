@@ -1,7 +1,7 @@
 'use client';
 
-import CareerStep from '@/features/signin/SignUp/CareerStep';
-import InfoStep from '@/features/signin/SignUp/InfoStep';
+import SignUpCareerStep from '@/features/signin/SignUpCareerStep';
+import SignUpInfoStep from '@/features/signin/SignUpInfoStep';
 import useFunnel from '@/hooks/useFunnel';
 
 const SignUpModal = () => {
@@ -10,10 +10,10 @@ const SignUpModal = () => {
   return (
     <Funnel>
       <Step name="info">
-        <InfoStep handleNext={() => setStep('career')} />
+        <SignUpInfoStep handleNext={() => setStep('career')} />
       </Step>
       <Step name="career">
-        <CareerStep />
+        <SignUpCareerStep />
       </Step>
     </Funnel>
   );

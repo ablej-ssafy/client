@@ -8,7 +8,7 @@ import Slider from '@/components/common/Slider';
 import {useSignupForm} from '@/context/signup-context';
 import JobComboBox from '@/features/signin/JobComboBox';
 
-import styles from './careerStep.module.scss';
+import styles from './signupCareerStep.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -21,7 +21,7 @@ const INITIAL_STATE = {
   error: '',
 };
 
-const CareerStep = () => {
+const SignUpCareerStep = () => {
   const [, formAction] = useFormState(signupAction, INITIAL_STATE);
   const [prevForm] = useSignupForm();
 
@@ -46,4 +46,4 @@ const CareerStep = () => {
   );
 };
 
-export default CareerStep;
+export default SignUpCareerStep;

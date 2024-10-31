@@ -8,7 +8,7 @@ import {RiKakaoTalkFill} from 'react-icons/ri';
 
 import loginAction from '@/actions/loginAction';
 import Input from '@/components/common/Input';
-import SocialIcon from '@/features/signin/SignIn/SocialIcon';
+import Index from '@/features/signin/SocialIcon';
 
 import styles from './signin.module.scss';
 
@@ -56,12 +56,12 @@ const SignInModal = () => {
         <div className={cx('border-line')} />
       </div>
       <div className={cx('social')}>
-        <SocialIcon social="google">
+        <Index social="google">
           <FcGoogle size={25} />
-        </SocialIcon>
-        <SocialIcon social="kakao">
+        </Index>
+        <Index social="kakao">
           <RiKakaoTalkFill size={25} color="#191919" />
-        </SocialIcon>
+        </Index>
       </div>
     </div>
   );
