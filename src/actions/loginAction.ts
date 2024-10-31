@@ -40,10 +40,21 @@ const loginAction = async (_prevState: unknown, formData: FormData) => {
   }
 
   const {accessToken, refreshToken} = response.data;
+  const cookieStore = cookies();
 
-  cookies().set('accessToken', accessToken, {secure: true, httpOnly: true});
-  cookies().set('refreshToken', refreshToken, {secure: true, httpOnly: true});
-  cookies().set('authenticated', 'true', {secure: true});
+  cookieStore.set('accessToken', accessToken, {
+    expires: new Date(1),
+    secure: true,
+    httpOnly: true,
+    path: '/',
+  });
+  cookieStore.set('refreshToken', refreshToken, {
+    expires: new Date(1),
+    secure: true,
+    httpOnly: true,
+    path: '/',
+  });
+  cookieStore.set('authenticated', 'true', {secure: true, path: '/'});
   redirect('/');
 };
 

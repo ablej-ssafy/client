@@ -23,16 +23,27 @@ const MyPageLayout = ({children}: PropsWithChildren) => {
   return (
     <div className={cx('my-page')}>
       <Sidebar>
-        <SidebarButton href={URL.PROFILE} selected={pathname === URL.PROFILE}>
+        <SidebarButton
+          buttonType="link"
+          href={URL.PROFILE}
+          selected={pathname === URL.PROFILE}
+        >
           프로필
         </SidebarButton>
-        <SidebarButton href={URL.SCRAP} selected={pathname === URL.SCRAP}>
+        <SidebarButton
+          buttonType="link"
+          href={URL.SCRAP}
+          selected={pathname === URL.SCRAP}
+        >
           스크랩
         </SidebarButton>
         <SidebarDivider />
-        <SidebarButton href="/" warning>
-          로그아웃
-        </SidebarButton>
+        <form>
+          <SidebarButton warning type="submit">
+            로그아웃
+          </SidebarButton>
+          <input />
+        </form>
       </Sidebar>
       {children}
     </div>
