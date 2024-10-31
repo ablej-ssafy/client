@@ -1,9 +1,10 @@
 'use client';
 import classNames from 'classnames/bind';
 import {disassemble} from 'es-hangul';
-import {MouseEvent, useState} from 'react';
+import {MouseEvent, useRef, useState} from 'react';
 
 import LabelWrapper from '@/components/common/LabelWrapper';
+import useClickOutside from '@/hooks/useClickOutside';
 import {Job} from '@/types/ableJ';
 
 import styles from './jobComboBox.module.scss';
@@ -23,9 +24,11 @@ const JOBS: Job[] = [
 ];
 
 const JobComboBox = () => {
+  const ref = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedJobs, setSelectedJobs] = useState<Job['id'][]>([]);
   const [keyword, setKeyword] = useState('');
+  useClickOutside(ref, () => setIsOpen(false));
 
   const handleSelectJobs = (e: MouseEvent<HTMLButtonElement>) => {
     const jobId = +e.currentTarget.value;
@@ -39,7 +42,7 @@ const JobComboBox = () => {
 
   return (
     <LabelWrapper label="관심직무">
-      <div className={cx('combobox')}>
+      <div className={cx('combobox')} ref={ref}>
         {selectedJobs.map(jobId => (
           <input
             key={jobId}
