@@ -25,11 +25,15 @@
 }
 
 .job-title {
-  width: 100%;
+  width: 240px;
   padding: 8px 0 6px;
   font-size: 1.8rem;
 
   @include mixin.ellipsis;
+
+  @media (width <= 540px) {
+    width: 286px;
+  }
 }
 
 .company-name {

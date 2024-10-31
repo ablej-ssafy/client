@@ -5,6 +5,11 @@
 
   @include mixin.grid-default;
 
+  @media (width >= 1500px) {
+    width: 1300px;
+    margin: 0 auto 30px;
+  }
+
   @media (width < 600px) {
     margin-top: 18px;
   }

@@ -59,11 +59,16 @@
 
 .center {
   & > div:first-child {
+    width: 200px;
     margin-bottom: 4px;
     font-size: 1.8rem;
-    font-weight: bold;
+    font-weight: 600;
 
     @include mixin.ellipsis;
+
+    @media (width <= 540px) {
+      width: 286px;
+    }
   }
 
   & > div:last-child {
