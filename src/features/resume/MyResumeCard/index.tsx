@@ -1,4 +1,4 @@
-import {CiFileOn} from 'react-icons/ci';
+import {BsTrash3} from 'react-icons/bs';
 import {IoIosArrowForward} from 'react-icons/io';
 
 import styles from './myResumeCard.module.scss';
@@ -15,7 +15,7 @@ const MyResumeCard = () => {
       <div className={styles.top}>
         <div>{data.type}</div>
         <div>
-          <CiFileOn size={16} /> 펼치기
+          <BsTrash3 size={20} />
         </div>
       </div>
       <div className={styles.center}>
@@ -24,7 +24,7 @@ const MyResumeCard = () => {
       </div>
       <div className={styles.link}>
         <span>
-          추천 기업 보러가기
+          추천 기업
           <IoIosArrowForward />
         </span>
       </div>

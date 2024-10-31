@@ -36,16 +36,18 @@ const SecondSection = () => {
 
   return (
     <motion.section
+      id="second-section"
       ref={scrollRef}
       style={{backgroundColor}}
       initial={{backgroundColor: 'rgba(255, 0, 0, 0)'}}
       className={cx('section')}
     >
       <motion.p
-        initial={{y: -100, opacity: 0}}
+        initial={{y: -60, opacity: 0}}
         whileInView={{y: 0, opacity: 1}}
-        transition={{duration: 2}}
-        viewport={{once: true, margin: '-500px'}}
+        transition={{duration: 1.5}}
+        viewport={{once: true, margin: '-400px'}}
+        style={{marginBottom: '140px'}}
       >
         수많은 기업중 적합한 기업이 <br />
         어디인지 궁금하지 않나요?
