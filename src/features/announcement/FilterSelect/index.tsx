@@ -2,7 +2,8 @@
 
 import classNames from 'classnames/bind';
 import React, {useState} from 'react';
-import {IoIosArrowDown} from 'react-icons/io';
+import {CiFileOn} from 'react-icons/ci';
+import {IoIosArrowDown, IoIosRefresh} from 'react-icons/io';
 
 import Button from '@/components/common/Button';
 
@@ -66,6 +67,10 @@ const FilterSelect = () => {
       <div className={styles['right-button']}>
         <Button text="이력서 펼치기" height={40} />
         <Button text="새로고침" color="type2" height={40} />
+      </div>
+      <div className={styles['mobile-right-button']}>
+        <CiFileOn size={24} />
+        <IoIosRefresh size={24} />
       </div>
     </div>
   );

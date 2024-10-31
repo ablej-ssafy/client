@@ -1,7 +1,21 @@
 @use '@/styles/mixin/index' as mixin;
 
 .container {
+  flex-wrap: wrap;
+  width: 100%;
+
   @include mixin.flex-default(space-between);
+
+  @media (width >= 1500px) {
+    width: 1300px;
+    margin: 0 auto 30px;
+  }
+
+  @media (width <= 600px) {
+    flex-direction: column-reverse;
+    align-items: end;
+    margin-top: -8px;
+  }
 }
 
 .selectbox {
@@ -21,10 +35,15 @@
     @include mixin.flex-default(space-between);
 
     & > div {
-      width: 234px;
+      width: 90%;
 
       @include mixin.ellipsis;
     }
+  }
+
+  @media (width <= 600px) {
+    width: 100%;
+    margin-top: 12px;
   }
 }
 
@@ -59,8 +78,25 @@
   }
 }
 
-.right-button {
+.right-button,
+.mobile-right-button {
   gap: 8px;
+  cursor: pointer;
 
   @include mixin.flex-default;
+}
+
+.mobile-right-button {
+  display: none;
+  color: #a1a1a1;
+}
+
+@media (width <= 600px) {
+  .right-button {
+    display: none;
+  }
+
+  .mobile-right-button {
+    display: flex;
+  }
 }
