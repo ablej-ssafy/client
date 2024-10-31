@@ -1,9 +1,9 @@
 @use '@/styles/mixin/index' as mixin;
 
 .container {
-  width: 300px;
+  width: 100%;
   padding: 16px 20px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   cursor: pointer;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
