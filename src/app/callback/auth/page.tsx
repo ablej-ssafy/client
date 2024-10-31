@@ -18,7 +18,7 @@ const Auth = () => {
       login(accessToken, refreshToken);
       router.replace('/');
     }
-  }, [router, searchParams]);
+  }, [login, router, searchParams]);
 
   useEffect(() => {
     initialize();
