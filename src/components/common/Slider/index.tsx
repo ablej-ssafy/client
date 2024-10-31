@@ -1,6 +1,8 @@
 import classNames from 'classnames/bind';
 import {InputHTMLAttributes} from 'react';
 
+import LabelWrapper from '@/components/common/LabelWrapper';
+
 import styles from './slider.module.scss';
 
 interface SliderProps
@@ -15,26 +17,23 @@ interface SliderProps
 const cx = classNames.bind(styles);
 
 const Slider = ({unit, fill, label, ...props}: SliderProps) => {
+  const composedLabel = `${label}: ${props.value}${unit ?? ''}`;
   const middle = (props.value / props.max) * 100;
 
   return (
-    <div className={cx('slider-container', {fill: fill})}>
-      {!!label && (
-        <label htmlFor={label}>
-          {label} : {props.value}
-          {unit}
-        </label>
-      )}
-      <input
-        {...props}
-        className={cx('slider')}
-        style={{
-          background: `linear-gradient(to right, #6255FF 0%, #6255FF ${middle}%, #ececec ${middle}%, #ececec 100%)`,
-        }}
-        id={label}
-        type="range"
-      />
-    </div>
+    <LabelWrapper label={composedLabel}>
+      <div className={cx('slider-container', {fill: fill})} id={composedLabel}>
+        <input
+          {...props}
+          className={cx('slider')}
+          style={{
+            background: `linear-gradient(to right, #6255FF 0%, #6255FF ${middle}%, #ececec ${middle}%, #ececec 100%)`,
+          }}
+          id={label}
+          type="range"
+        />
+      </div>
+    </LabelWrapper>
   );
 };
 
