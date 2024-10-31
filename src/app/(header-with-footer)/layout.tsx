@@ -1,7 +1,7 @@
 import {ReactNode} from 'react';
 
 import Footer from '@/components/layout/Footer';
-import Header from '@/features/header-footer/Header';
+import Header from '@/components/layout/Header';
 
 const MainPageLayout = ({children}: {children: ReactNode}) => {
   return (

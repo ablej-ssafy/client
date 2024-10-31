@@ -13,9 +13,9 @@ import styles from './navigation.module.scss';
 
 const cx = classNames.bind(styles);
 
-interface NavigationProps extends PropsWithChildren {
+export interface NavigationProps extends PropsWithChildren {
   invertBackground?: boolean;
-  position?: 'static';
+  staticPosition?: boolean;
 }
 
 const navVarients: Variants = {
@@ -30,7 +30,7 @@ const navVarients: Variants = {
 
 const Navigation = ({
   children,
-  position,
+  staticPosition,
   invertBackground,
 }: NavigationProps) => {
   const windowHeight = useWindowHeight();
@@ -49,7 +49,7 @@ const Navigation = ({
     <motion.nav
       className={cx(
         'navigation',
-        {static: position === 'static'},
+        {static: staticPosition},
         {inverted: invertBackground},
       )}
       variants={navVarients}

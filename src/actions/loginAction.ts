@@ -43,6 +43,7 @@ const loginAction = async (_prevState: unknown, formData: FormData) => {
 
   cookies().set('accessToken', accessToken, {secure: true, httpOnly: true});
   cookies().set('refreshToken', refreshToken, {secure: true, httpOnly: true});
+  cookies().set('authenticated', 'true', {secure: true});
   redirect('/');
 };
 
