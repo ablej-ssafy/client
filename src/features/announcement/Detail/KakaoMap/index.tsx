@@ -6,7 +6,7 @@ import styles from './map.module.scss';
 const KakaoMap = () => {
   return (
     <div className={styles.map}>
-      <span>여기는 지도 자리</span>
+      <span>여기는 지도 자리다</span>
       {/* <Script src={KAKAO_SDK_URL} strategy="beforeInteractive" />
       <Map center={{lat: 37.4864252, lng: 126.892126}}></Map> */}
     </div>
