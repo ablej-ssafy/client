@@ -18,7 +18,6 @@ type Story = StoryObj<typeof Navigation>;
 export const Default: Story = {
   args: {
     invertBackground: false,
-    staticPosition: false,
   },
   render: args => (
     <Navigation {...args}>
@@ -34,7 +33,6 @@ export const Default: Story = {
 export const InvertedBackground: Story = {
   args: {
     invertBackground: true,
-    staticPosition: false,
   },
   render: args => (
     <Navigation {...args}>
