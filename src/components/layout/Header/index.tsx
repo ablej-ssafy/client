@@ -14,7 +14,9 @@ const Header = async (props: NavigationProps) => {
       {isLoggedIn ? (
         <NavigationButton href="/mypage">마이페이지</NavigationButton>
       ) : (
-        <NavigationButton href="/signin">로그인</NavigationButton>
+        <NavigationButton href="/signin" buttonType="outlined">
+          로그인
+        </NavigationButton>
       )}
     </Navigation>
   );
