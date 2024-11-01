@@ -1,0 +1,21 @@
+@use '@/styles/mixin/index' as mixin;
+@use '@/styles/constants/colors' as colors;
+
+.display-row {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 0;
+}
+
+.text-bold-14-gray {
+  @include mixin.text-bold(500, 1.4rem);
+
+  width: 9rem;
+  color: #979797;
+}
+
+.text-bold-14-black {
+  @include mixin.text-bold(500, 1.4rem);
+
+  color: colors.$black;
+}

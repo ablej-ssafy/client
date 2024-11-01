@@ -1,0 +1,11 @@
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/mixin/index' as mixin;
+
+.title {
+  padding: 0.5rem 1.2rem;
+  color: colors.$primary;
+  background-color: rgba(colors.$primary, 0.1);
+  border-radius: 0.5rem;
+
+  @include mixin.text-bold(600, 2rem);
+}
