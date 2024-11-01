@@ -32,4 +32,19 @@ export default {
   signUp: async (email: Email, password: Password, name: Name) => {
     return httpClient.post('/api/v1/auth/sign-in', {email, password, name});
   },
+  /**
+   * 토큰을 저장하는 함수
+   * @param accessToken 액세스 토큰
+   * @param refreshToken 리프레시 토큰
+   */
+  setCredentials: async (accessToken: string, refreshToken: string) => {
+    return fetch(
+      process.env.NEXT_PUBLIC_NEXT_SERVER_URL + '/callback/auth/api',
+      {
+        headers: {'Content-Type': 'application/json'},
+        method: 'POST',
+        body: JSON.stringify({accessToken, refreshToken}),
+      },
+    );
+  },
 };
