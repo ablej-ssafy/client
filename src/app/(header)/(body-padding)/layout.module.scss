@@ -1,0 +1,19 @@
+.child-container {
+  padding: 35px 100px;
+
+  @media (width <= 1280px) {
+    padding: 35px 60px;
+  }
+
+  @media (width <= 1024px) {
+    padding: 35px 40px;
+  }
+
+  @media (width <= 768px) {
+    padding: 30px 32px;
+  }
+
+  @media (width <= 430px) {
+    padding: 24px 16px;
+  }
+}

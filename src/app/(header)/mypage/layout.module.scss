@@ -1,0 +1,7 @@
+@use '@/styles/constants/layout' as layout;
+
+.my-page {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - #{layout.$nav_height});
+}

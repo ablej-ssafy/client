@@ -1,0 +1,81 @@
+@use '@/styles/mixin/index' as mixin;
+
+.container {
+  width: 100%;
+  margin-bottom: 24px;
+
+  & > h2 {
+    margin-bottom: 2rem;
+    font-size: 2.4rem;
+    font-weight: 600;
+  }
+
+  @media (width >= 1500px) {
+    width: 1300px;
+    margin: 0 auto 30px;
+  }
+}
+
+.dragging {
+  background-color: #f3f0ff;
+}
+
+.upload {
+  flex-direction: column;
+  width: 100%;
+  height: 186px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+
+  @include mixin.flex-default;
+
+  & > p {
+    margin-top: 16px;
+    font-size: 1.4rem;
+    color: #aaa;
+  }
+
+  & > input {
+    display: none;
+  }
+}
+
+.file-selected {
+  flex-direction: column;
+
+  @include mixin.flex-default;
+
+  & > p {
+    margin-top: 16px;
+    font-size: 1.6em;
+  }
+
+  .title {
+    padding: 4px 8px;
+    margin: 12px 0 16px;
+    font-size: 1.3rem;
+    color: #9c9c9c;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+
+    @include mixin.flex-default;
+
+    & > svg {
+      padding: 1px;
+      margin-left: 6px;
+      cursor: pointer;
+      border-radius: 40%;
+
+      &:hover {
+        background-color: #e6e6e6;
+      }
+    }
+  }
+
+  .change-file {
+    margin-top: 12px;
+    font-size: 1.4rem;
+    color: #aaa;
+    cursor: pointer;
+  }
+}

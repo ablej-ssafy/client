@@ -1,0 +1,77 @@
+@use '@/styles/constants/colors' as colors;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .text-header {
+    font-size: 3rem;
+    font-weight: 600;
+    color: colors.$black;
+  }
+
+  .text-content {
+    font-size: 1.2rem;
+    color: colors.$gray4;
+  }
+
+  .signin-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33.8rem;
+    height: 3.5rem;
+    margin-top: 2.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.8rem;
+  }
+
+  .sign-in {
+    color: colors.$white;
+    background-color: colors.$primary;
+  }
+
+  .sign-up {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    color: colors.$primary;
+    background-color: transparent;
+  }
+
+  .line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .border-line {
+    width: 10rem;
+    height: 0.1rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
+    background-color: colors.$gray3;
+  }
+
+  .social {
+    display: flex;
+    flex-direction: row;
+  }
+}

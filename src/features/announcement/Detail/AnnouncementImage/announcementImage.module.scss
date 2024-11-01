@@ -1,0 +1,13 @@
+@use '@/styles/mixin/index' as mixin;
+
+.image-container {
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+
+  @include mixin.flex-default;
+}
+
+.image {
+  border-radius: 2rem;
+}

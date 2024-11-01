@@ -1,0 +1,15 @@
+@use '@/styles/constants/colors' as colors;
+
+.container {
+  display: flex;
+  flex-direction: row;
+  padding: 2.5rem;
+}
+
+.drag-and-drop {
+  width: 23rem;
+  height: 40rem;
+  padding: 1rem;
+  background-color: #eef1ff;
+  border-radius: 2rem;
+}

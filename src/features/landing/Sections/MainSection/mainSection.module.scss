@@ -1,0 +1,112 @@
+@use '@/styles/constants/dimensions' as dimensions;
+@use '@/styles/constants/colors' as colors;
+
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+
+  &.main {
+    a {
+      position: absolute;
+      left: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 5.2rem;
+      padding: 0 26px;
+      margin-top: 5rem;
+      font-size: 2rem;
+      color: colors.$white;
+      border: 1px solid colors.$white;
+      border-radius: 8px;
+      transition:
+        color 0.3s ease,
+        border-color,
+        0.3s ease;
+      transform: translateX(-50%);
+
+      &:hover {
+        color: colors.$primary;
+        border-color: colors.$primary;
+      }
+    }
+  }
+
+  .icon-wrapper {
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
+
+    & > div {
+      cursor: pointer;
+      animation: move-icon 1.5s infinite ease-in-out;
+
+      &::before,
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 24px;
+        content: '';
+        border: 2px solid #b6b6b6;
+      }
+
+      &::before {
+        left: -10px;
+        transform: translateX(-50%) rotate(30deg);
+      }
+
+      &::after {
+        left: 10px;
+        transform: translateX(-50%) rotate(-30deg);
+      }
+    }
+
+    & > span {
+      display: block;
+      width: 50px;
+      height: 30px;
+      margin: -16px 0 0 -25px;
+      cursor: pointer;
+    }
+
+    @keyframes move-icon {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @media (width <= 430px) {
+      display: none;
+    }
+  }
+
+  &.second {
+    background-color: rgb(241 238 255);
+  }
+}
+
+.main-bg {
+  position: absolute;
+  inset: 0;
+  z-index: dimensions.$background;
+  filter: brightness(0.7);
+}
+
+.quote {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  z-index: dimensions.$base;
+  font-size: 3rem;
+  font-weight: 500;
+  color: colors.$white;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}

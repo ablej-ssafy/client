@@ -1,0 +1,29 @@
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/constants/layout' as layout;
+@use '@/styles/mixin/index' as mixin;
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: rgb(0 0 0 / 50%);
+
+  @include mixin.flex-default;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  background-color: colors.$white;
+
+  &.border {
+    border-radius: layout.$border_card_big;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}

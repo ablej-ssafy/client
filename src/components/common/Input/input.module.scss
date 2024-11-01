@@ -1,0 +1,68 @@
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/constants/layout' as layout;
+
+.container {
+  position: relative;
+}
+
+.input:read-only {
+  background-color: colors.$gray1;
+  outline: none;
+}
+
+.primary {
+  width: 33.8rem;
+  height: 3.5rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: colors.$black;
+  background-color: colors.$gray1;
+  border: none;
+  border-radius: 0.8rem;
+
+  &:focus {
+    outline-color: colors.$primary;
+  }
+
+  &::placeholder {
+    margin-left: 2rem;
+    font-size: 1.2rem;
+  }
+}
+
+.secondary {
+  width: 43rem;
+  height: 4.8rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
+  color: colors.$black;
+  border: 1px solid colors.$gray2;
+  border-radius: layout.$border_card_medium;
+
+  &:focus {
+    outline-color: colors.$primary;
+  }
+
+  &::placeholder {
+    margin-left: 2rem;
+    font-size: 1.2rem;
+  }
+}
+
+.fill {
+  flex: 1;
+  width: 100%;
+}
+
+.error {
+  border: 1px solid colors.$red;
+}
+
+.error-message {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  color: colors.$red;
+}

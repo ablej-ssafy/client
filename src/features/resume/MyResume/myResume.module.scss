@@ -1,0 +1,30 @@
+@use '@/styles/mixin/index' as mixin;
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  @media (width >= 1500px) {
+    width: 1300px;
+    margin: 0 auto 30px;
+  }
+}
+
+.card-container-flex {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  & > h2 {
+    width: 100%;
+    margin-bottom: 2rem;
+    font-size: 2.4rem;
+    font-weight: 600;
+  }
+}
+
+.card-container-grid {
+  @include mixin.grid-default;
+}

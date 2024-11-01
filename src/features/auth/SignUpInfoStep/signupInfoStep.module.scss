@@ -1,0 +1,39 @@
+@use '@/styles/constants/colors' as colors;
+
+.text-header {
+  font-size: 3rem;
+  font-weight: 600;
+  color: colors.$black;
+}
+
+.text-content {
+  font-size: 1.2rem;
+  color: colors.$gray4;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-top: 2rem;
+}
+
+.form-label {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  font-weight: 700;
+}
+
+.button {
+  width: 33.8rem;
+  height: 3.5rem;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: colors.$white;
+  cursor: pointer;
+  background-color: colors.$primary;
+  border: none;
+  border-radius: 0.8rem;
+}

@@ -1,0 +1,63 @@
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/constants/dimensions' as dimensions;
+
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 440px;
+  overflow: hidden;
+
+  .review-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+
+    .review {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 0 14rem;
+      font-size: 1.8rem;
+      font-weight: 500;
+      line-height: 4rem;
+      text-align: center;
+    }
+  }
+
+  .button {
+    position: absolute;
+    z-index: dimensions.$foreground;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid colors.$primary;
+    border-radius: 23px;
+
+    & > svg {
+      color: colors.$primary;
+    }
+  }
+
+  .right {
+    top: 50%;
+    right: 35px;
+    transform: translateY(-50%);
+  }
+
+  .left {
+    top: 50%;
+    left: 35px;
+    transform: translateY(-50%);
+  }
+}

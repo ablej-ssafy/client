@@ -1,0 +1,97 @@
+@use '@/styles/constants/colors' as colors;
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  margin-top: 2rem;
+
+  .input-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 0;
+  }
+}
+
+.text-header {
+  width: 100%;
+  font-size: 3rem;
+  font-weight: 600;
+  color: colors.$black;
+  text-align: center;
+}
+
+.text-content {
+  width: 100%;
+  font-size: 1.2rem;
+  color: colors.$gray4;
+  text-align: center;
+}
+
+.form-label {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  font-weight: 700;
+}
+
+.button {
+  width: 33.8rem;
+  height: 3.5rem;
+  margin-top: 2.5rem;
+  font-size: 1.2rem;
+  color: colors.$white;
+  cursor: pointer;
+  background-color: colors.$primary;
+  border: none;
+  border-radius: 0.8rem;
+}
+
+.input {
+  width: 33.8rem;
+  height: 3.5rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: colors.$black;
+  background-color: colors.$gray1;
+  border: none;
+  border-radius: 0.8rem;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    margin-left: 2rem;
+    font-size: 1.2rem;
+  }
+}
+
+.work {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0.5rem;
+}
+
+.work-tag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  color: colors.$white;
+  background-color: colors.$primary;
+  border-radius: 1rem;
+
+  > p {
+    margin-right: 0.5rem;
+  }
+}
