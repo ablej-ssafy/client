@@ -3,8 +3,8 @@
 
 .container {
   flex-direction: column;
-  width: 500px;
-  margin: 200px auto 0;
+  width: 100%;
+  margin: 175px auto 0;
 
   @include mixin.flex-default;
 
