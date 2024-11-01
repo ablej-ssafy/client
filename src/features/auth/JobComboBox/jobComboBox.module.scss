@@ -27,14 +27,9 @@ $combobox-padding: 10px;
     top: $combobox-height;
     width: 100%;
     max-height: calc($combobox-height * 5);
-    overflow-y: scroll;
     background-color: colors.$white;
     border: 1px solid colors.$gray2;
     border-radius: layout.$border_button;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
 
     .combobox-input {
       width: 100%;
@@ -45,7 +40,13 @@ $combobox-padding: 10px;
     }
 
     .dropdown-list {
+      max-height: calc($combobox-height * 4);
+      overflow-y: scroll;
       list-style: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       .dropdown-button {
         width: 100%;

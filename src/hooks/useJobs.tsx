@@ -12,7 +12,7 @@ const useJobs = () => {
   }, []);
 
   useEffect(() => {
-    fetchAllJobs();
+    (async () => await fetchAllJobs())();
   }, [fetchAllJobs]);
 
   return jobs;

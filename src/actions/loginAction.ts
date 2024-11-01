@@ -1,7 +1,6 @@
 'use server';
 
 import {cookies} from 'next/headers';
-import {redirect} from 'next/navigation';
 import {z} from 'zod';
 
 import ableJ from '@/services/ableJ';
@@ -10,6 +9,12 @@ const scheme = z.object({
   email: z.string().email({message: '이메일 형식이 잘못 되었습니다.'}),
   password: z.string().min(8, {message: '비밀번호는 8자 이상이어야 합니다.'}),
 });
+
+const cookieOptions = {
+  secure: true,
+  httpOnly: true,
+  path: '/',
+};
 
 const loginAction = async (_prevState: unknown, formData: FormData) => {
   const {success, error, data} = scheme.safeParse({
@@ -24,6 +29,7 @@ const loginAction = async (_prevState: unknown, formData: FormData) => {
       email: error?.flatten().fieldErrors.email,
       password: error?.flatten().fieldErrors.password,
       error: '',
+      success: false,
     };
   }
 
@@ -36,14 +42,26 @@ const loginAction = async (_prevState: unknown, formData: FormData) => {
       error: '로그인에 실패하였습니다.',
       email: [],
       password: [],
+      success: false,
     };
   }
 
   const {accessToken, refreshToken} = response.data;
+  const cookieStore = cookies();
 
-  cookies().set('accessToken', accessToken, {secure: true, httpOnly: true});
-  cookies().set('refreshToken', refreshToken, {secure: true, httpOnly: true});
-  redirect('/');
+  cookieStore.set('accessToken', accessToken, cookieOptions);
+  cookieStore.set('refreshToken', refreshToken, cookieOptions);
+  cookieStore.set('authenticated', 'true', {
+    ...cookieOptions,
+    httpOnly: false,
+  });
+
+  return {
+    error: '',
+    email: [],
+    password: [],
+    success: true,
+  };
 };
 
 export default loginAction;

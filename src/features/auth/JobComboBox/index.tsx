@@ -5,29 +5,19 @@ import {MouseEvent, useRef, useState} from 'react';
 
 import LabelWrapper from '@/components/common/LabelWrapper';
 import useClickOutside from '@/hooks/useClickOutside';
+import useJobs from '@/hooks/useJobs';
 import {Job} from '@/types/ableJ';
 
 import styles from './jobComboBox.module.scss';
 
 const cx = classNames.bind(styles);
 
-const JOBS: Job[] = [
-  {id: 1, title: '개발자'},
-  {id: 2, title: '디자이너'},
-  {id: 3, title: '기획자'},
-  {
-    id: 4,
-    title: '마케터',
-  },
-  {id: 5, title: '기타'},
-  {id: 6, title: '기타2'},
-];
-
 const JobComboBox = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedJobs, setSelectedJobs] = useState<Job['id'][]>([]);
   const [keyword, setKeyword] = useState('');
+  const jobs = useJobs();
   useClickOutside(ref, () => setIsOpen(false));
 
   const handleSelectJobs = (e: MouseEvent<HTMLButtonElement>) => {
@@ -58,7 +48,7 @@ const JobComboBox = () => {
           id="관심직무"
         >
           {selectedJobs
-            .map(jobId => JOBS.find(({id}) => jobId === id)?.title)
+            .map(jobId => jobs.find(({id}) => jobId === id)?.title)
             .join(' ')}
         </button>
         {isOpen && (
@@ -71,21 +61,23 @@ const JobComboBox = () => {
               value={keyword}
             />
             <ul className={cx('dropdown-list')}>
-              {JOBS.filter(job =>
-                disassemble(job.title).includes(disassemble(keyword)),
-              ).map(job => (
-                <li key={job.id}>
-                  <button
-                    className={cx('dropdown-button', {
-                      selected: selectedJobs.includes(job.id),
-                    })}
-                    value={job.id}
-                    onClick={handleSelectJobs}
-                  >
-                    {job.title}
-                  </button>
-                </li>
-              ))}
+              {jobs
+                .filter(job =>
+                  disassemble(job.title).includes(disassemble(keyword)),
+                )
+                .map(job => (
+                  <li key={job.id}>
+                    <button
+                      className={cx('dropdown-button', {
+                        selected: selectedJobs.includes(job.id),
+                      })}
+                      value={job.id}
+                      onClick={handleSelectJobs}
+                    >
+                      {job.title}
+                    </button>
+                  </li>
+                ))}
             </ul>
           </div>
         )}

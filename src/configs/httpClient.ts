@@ -23,11 +23,12 @@ class HttpClient {
 
   private beforeRequest(options?: CustomOptions): RequestInit {
     if (!options) {
-      return {};
+      return {cache: 'no-store'};
     }
 
     if (options.body && options.body instanceof FormData) {
       return {
+        cache: 'no-store',
         ...options,
         body: options.body,
         headers: {
@@ -39,6 +40,7 @@ class HttpClient {
 
     if (options.body && typeof options.body === 'object') {
       return {
+        cache: 'no-store',
         ...options,
         body: JSON.stringify(options.body),
         headers: {
