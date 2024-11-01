@@ -17,12 +17,21 @@ jobs:
           token: ${{ secrets.GIT_TOKEN }}
           fetch-depth: 0
       
-      - name: Get last commit author
+      - name: Checkout client repository
+        uses: actions/checkout@v3
+        with:
+          repository: ablej-ssafy/client
+          path: temp_client
+          fetch-depth: 0
+
+      - name: Get client last commit author
         id: get-author
+        working-directory: temp_client
         run: echo "author=$(git log -1 --pretty=format:'%an')" >> $GITHUB_OUTPUT
 
-      - name: Get last commit author email
+      - name: Get client last commit author email
         id: get-author-email
+        working-directory: temp_client
         run: echo "email=$(git log -1 --pretty=format:'%ae')" >> $GITHUB_OUTPUT
 
       - name: Configure Git
