@@ -17,7 +17,11 @@ const cx = classNames.bind(styles);
 
 const INITIAL_STATE = {email: [], password: [], error: '', success: false};
 
-const LoginStep = () => {
+interface LoginStepProps {
+  isModal?: boolean;
+}
+
+const LoginStep = ({isModal = false}: LoginStepProps) => {
   const [state, formAction] = useFormState(loginAction, INITIAL_STATE);
   const router = useRouter();
 
@@ -53,9 +57,19 @@ const LoginStep = () => {
           로그인
         </button>
       </form>
-      <Link className={cx('button', 'sign-up')} href={'/signup'} replace>
-        회원가입
-      </Link>
+      {isModal ? (
+        <Link className={cx('button', 'sign-up')} href={'/signup'} replace>
+          회원가입
+        </Link>
+      ) : (
+        <a
+          className={cx('button', 'sign-up')}
+          href={process.env.NEXT_PUBLIC_NEXT_SERVER_URL + '/signup'}
+        >
+          회원가입
+        </a>
+      )}
+
       <div className={cx('line')}>
         <div className={cx('border-line')} />
         <p>OR</p>

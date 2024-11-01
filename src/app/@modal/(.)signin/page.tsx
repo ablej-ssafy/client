@@ -3,7 +3,7 @@
 import LoginStep from '@/features/auth/LoginStep';
 
 const SignInModal = () => {
-  return <LoginStep />;
+  return <LoginStep isModal={true} />;
 };
 
 export default SignInModal;
