@@ -46,6 +46,7 @@ const JobComboBox = () => {
           className={cx('combobox-button')}
           onClick={() => setIsOpen(prev => !prev)}
           id="관심직무"
+          type="button"
         >
           {selectedJobs
             .map(jobId => jobs.find(({id}) => jobId === id)?.title)
@@ -73,6 +74,7 @@ const JobComboBox = () => {
                       })}
                       value={job.id}
                       onClick={handleSelectJobs}
+                      type="button"
                     >
                       {job.title}
                     </button>

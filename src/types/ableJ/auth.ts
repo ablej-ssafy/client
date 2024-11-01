@@ -21,3 +21,4 @@ export type LoginResponseData = {
 };
 
 export type LoginResponse = ResponseType<LoginResponseData>;
+export type SignUpResponse = ResponseType<null>;

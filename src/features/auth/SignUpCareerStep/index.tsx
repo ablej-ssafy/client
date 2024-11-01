@@ -1,6 +1,7 @@
 'use client';
 
 import classNames from 'classnames/bind';
+import {useRouter} from 'next/navigation';
 import {useFormState} from 'react-dom';
 
 import signupAction from '@/actions/signupAction';
@@ -19,11 +20,17 @@ const INITIAL_STATE = {
   careerYear: [],
   jobIds: [],
   error: '',
+  success: false,
 };
 
 const SignUpCareerStep = () => {
-  const [, formAction] = useFormState(signupAction, INITIAL_STATE);
   const [prevForm] = useSignupForm();
+  const [state, formAction] = useFormState(signupAction, INITIAL_STATE);
+  const router = useRouter();
+
+  if (state.success) {
+    router.back();
+  }
 
   return (
     <form className={cx('signup-form')} action={formAction}>
@@ -37,7 +44,7 @@ const SignUpCareerStep = () => {
       <input name="name" value={prevForm.name} readOnly hidden />
       <div className={cx('input-container')}>
         <JobComboBox />
-        <Slider max={25} name="age" value={0} fill label="경력" />
+        <Slider max={25} name="careerYear" value={0} fill label="경력" />
       </div>
       <button type="submit" className={cx('button')}>
         회원가입 완료

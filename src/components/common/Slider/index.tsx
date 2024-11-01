@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import {InputHTMLAttributes} from 'react';
+import {InputHTMLAttributes, useState} from 'react';
 
 import LabelWrapper from '@/components/common/LabelWrapper';
 
@@ -17,8 +17,9 @@ interface SliderProps
 const cx = classNames.bind(styles);
 
 const Slider = ({unit, fill, label, ...props}: SliderProps) => {
-  const composedLabel = `${label}: ${props.value}${unit ?? ''}`;
-  const middle = (props.value / props.max) * 100;
+  const [value, setValue] = useState(0);
+  const composedLabel = `${label}: ${value}${unit ?? ''}`;
+  const middle = (value / props.max) * 100;
 
   return (
     <LabelWrapper label={composedLabel}>
@@ -31,6 +32,8 @@ const Slider = ({unit, fill, label, ...props}: SliderProps) => {
           }}
           id={label}
           type="range"
+          onChange={e => setValue(Number(e.target.value))}
+          value={value}
         />
       </div>
     </LabelWrapper>
