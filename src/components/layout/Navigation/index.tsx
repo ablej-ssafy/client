@@ -23,7 +23,8 @@ const navVarients: Variants = {
     transition: {duration: 0.3},
   },
   inverted: {
-    backgroundColor: '#6e55ff',
+    backgroundColor: 'rgba(110, 85, 255, 0.45)',
+    backdropFilter: 'blur(25px)',
     transition: {duration: 0.3},
   },
 };
