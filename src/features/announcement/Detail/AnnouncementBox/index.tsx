@@ -1,5 +1,5 @@
 import AnnouncementContent from '@/features/announcement/Detail/AnnouncementContent';
-import Map from '@/features/announcement/Detail/Map';
+import KakaoMap from '@/features/announcement/Detail/KakaoMap';
 import ScrapButton from '@/features/announcement/Detail/ScrapButton';
 
 import styles from './announcementBox.module.scss';
@@ -20,7 +20,7 @@ const AnnouncementBox = () => {
       <div>
         <div className={styles['scrap-map']}>
           <ScrapButton />
-          <Map />
+          <KakaoMap />
         </div>
       </div>
     </div>
