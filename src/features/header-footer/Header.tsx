@@ -8,7 +8,9 @@ const Header = () => {
     <Navigation>
       <NavigationButton href={'/announcement'}>맞춤채용공고</NavigationButton>
       <NavigationButton href={'/resume'}>이력서</NavigationButton>
-      <NavigationButton href="/signin">로그인</NavigationButton>
+      <NavigationButton href="/signin" buttonType="outlined">
+        로그인
+      </NavigationButton>
     </Navigation>
   );
 };
