@@ -5,10 +5,9 @@ import type {Variants} from 'framer-motion';
 import * as motion from 'framer-motion/client';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
-import {PropsWithChildren, useEffect, useState} from 'react';
+import {PropsWithChildren} from 'react';
 
-import useScrollHeight from '@/hooks/useScrollHeight';
-import useWindowHeight from '@/hooks/useWindowHeight';
+import useInvertNavigation from '@/hooks/useInvertNavigation';
 
 import styles from './navigation.module.scss';
 
@@ -35,17 +34,7 @@ const Navigation = ({children, invertBackground}: NavigationProps) => {
   const staticPosition = STATIC_NAVIGATION_PATH.some(path =>
     pathname.startsWith(path),
   );
-  const windowHeight = useWindowHeight();
-  const scrollHeight = useScrollHeight();
-  const [inverted, setInverted] = useState(false);
-
-  useEffect(() => {
-    if (scrollHeight >= windowHeight) {
-      setInverted(true);
-    } else {
-      setInverted(false);
-    }
-  }, [scrollHeight, windowHeight]);
+  const inverted = useInvertNavigation(1);
 
   return (
     <motion.nav
