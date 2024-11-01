@@ -2,22 +2,28 @@
 
 import classNames from 'classnames/bind';
 import Link from 'next/link';
+import {useRouter} from 'next/navigation';
 import {useFormState} from 'react-dom';
 import {FcGoogle} from 'react-icons/fc';
 import {RiKakaoTalkFill} from 'react-icons/ri';
 
 import loginAction from '@/actions/loginAction';
 import Input from '@/components/common/Input';
-import Index from '@/features/signin/SocialIcon';
+import Index from '@/features/auth/SocialIcon';
 
 import styles from './signin.module.scss';
 
 const cx = classNames.bind(styles);
 
-const INITIAL_STATE = {email: [], password: [], error: ''};
+const INITIAL_STATE = {email: [], password: [], error: '', success: false};
 
 const SignInModal = () => {
   const [state, formAction] = useFormState(loginAction, INITIAL_STATE);
+  const router = useRouter();
+
+  if (state.success) {
+    router.back();
+  }
 
   return (
     <div className={cx('container')}>

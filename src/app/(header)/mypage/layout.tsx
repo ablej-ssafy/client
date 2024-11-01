@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import {usePathname} from 'next/navigation';
 import {PropsWithChildren} from 'react';
 
+import SidebarLogoutButton from '@/features/auth/SidebarLogoutButton';
 import Sidebar from '@/features/mypage/Sidebar';
 import SidebarButton from '@/features/mypage/SidebarButton';
 import SidebarDivider from '@/features/mypage/SidebarDivider';
@@ -23,16 +24,22 @@ const MyPageLayout = ({children}: PropsWithChildren) => {
   return (
     <div className={cx('my-page')}>
       <Sidebar>
-        <SidebarButton href={URL.PROFILE} selected={pathname === URL.PROFILE}>
+        <SidebarButton
+          buttonType="link"
+          href={URL.PROFILE}
+          selected={pathname === URL.PROFILE}
+        >
           프로필
         </SidebarButton>
-        <SidebarButton href={URL.SCRAP} selected={pathname === URL.SCRAP}>
+        <SidebarButton
+          buttonType="link"
+          href={URL.SCRAP}
+          selected={pathname === URL.SCRAP}
+        >
           스크랩
         </SidebarButton>
         <SidebarDivider />
-        <SidebarButton href="/" warning>
-          로그아웃
-        </SidebarButton>
+        <SidebarLogoutButton />
       </Sidebar>
       {children}
     </div>
