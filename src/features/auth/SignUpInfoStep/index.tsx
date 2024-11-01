@@ -46,7 +46,6 @@ const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
     });
 
     if (!success) {
-      console.log(error);
       setError(error);
       return;
     }

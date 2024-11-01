@@ -22,8 +22,6 @@ const loginAction = async (_prevState: unknown, formData: FormData) => {
     password: formData.get('password'),
   });
 
-  console.log(error?.flatten().fieldErrors.email);
-
   if (!success) {
     return {
       email: error?.flatten().fieldErrors.email,
@@ -34,8 +32,6 @@ const loginAction = async (_prevState: unknown, formData: FormData) => {
   }
 
   const response = await ableJ.login(data?.email, data?.password);
-
-  console.log(response);
 
   if (!response.success) {
     return {

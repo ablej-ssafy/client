@@ -36,8 +36,6 @@ const signupAction = async (_prevState: unknown, formData: FormData) => {
 
   const response = await ableJ.signUp(data);
 
-  console.log(response);
-
   if (!response.success) {
     return {
       error: '회원가입에 실패하였습니다.',

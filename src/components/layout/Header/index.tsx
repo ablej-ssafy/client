@@ -5,8 +5,6 @@ import auth from '@/utils/auth';
 const Header = async (props: NavigationProps) => {
   const isLoggedIn = auth.getLoginStatus();
 
-  console.log(isLoggedIn);
-
   return (
     <Navigation {...props}>
       <NavigationButton href="/announcement">맞춤채용공고</NavigationButton>
