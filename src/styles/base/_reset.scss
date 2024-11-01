@@ -166,3 +166,9 @@ textarea:not([rows]) {
 :target {
   scroll-margin-block: 5ex;
 }
+
+button {
+  padding: 0;
+  background-color: none;
+  border: none;
+}

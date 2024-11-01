@@ -1,10 +1,12 @@
 'use client';
 
 import classNames from 'classnames/bind';
-import type {ChangeEvent, DragEvent, KeyboardEvent} from 'react';
+import type {ChangeEvent, DragEvent, FormEvent, KeyboardEvent} from 'react';
 import React, {useRef, useState} from 'react';
+import {useFormState} from 'react-dom';
 import {IoMdClose} from 'react-icons/io';
 
+import resumeUpdateAction from '@/actions/resumeUpdateAction';
 import Button from '@/components/common/Button';
 
 import styles from './resumeRegistration.module.scss';
@@ -21,8 +23,10 @@ const isValidFileType = (file: File, allowedTypes: string[]) => {
 };
 
 const cx = classNames.bind(styles);
+const INITIAL_STATE = {file: null, error: '', success: false};
 
 const ResumeRegistration = () => {
+  const [, formAction] = useFormState(resumeUpdateAction, INITIAL_STATE);
   const [file, setFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -56,37 +60,23 @@ const ResumeRegistration = () => {
     }
   };
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!file) {
+      console.log('선택된 파일이 없습니다.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formAction(formData);
+  };
+
   // 접근성을 위한 key 동작 추가
   const handleKeyDown = (e: KeyboardEvent<HTMLLabelElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
       fileInputRef.current?.click();
-    }
-  };
-
-  // 파일 등록 - 임시 함수입니다. 로직 이사갈 예정
-  const handleUpload = async () => {
-    if (!file) {
-      return;
-    }
-
-    console.log('이력서 등록 요청');
-
-    const formData = new FormData();
-    formData.append('pdfFile', file);
-
-    try {
-      const response = await fetch('https://noteme.kro.kr/api/v1/resume/pdf', {
-        method: 'POST',
-        // headers: {
-        //   Authorization: 'Bearer ',
-        // },
-        body: formData,
-      });
-
-      const result = await response.json();
-      console.log('파일 업로드 성공:', result);
-    } catch (error) {
-      console.error('업로드 중 오류 발생:', error);
     }
   };
 
@@ -98,39 +88,42 @@ const ResumeRegistration = () => {
   return (
     <div className={styles.container}>
       <h2>PDF 이력서 등록</h2>
-      <div
-        className={cx('upload', {dragging: isDragging})}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-      >
-        {!file ? (
-          <>
-            <input
-              type="file"
-              accept="application/pdf"
-              onChange={handleFileChange}
-              id="file"
-            />
-            <label htmlFor="file" tabIndex={0} onKeyDown={handleKeyDown}>
-              <Button text="업로드 파일 선택" />
-            </label>
-            <p>또는 파일을 이곳으로 드래그합니다</p>
-          </>
-        ) : (
-          <div className={styles['file-selected']}>
-            <p>파일을 업로드 하시겠습니까?</p>
-            <div className={styles.title}>
-              {file.name}
-              <IoMdClose size={16} onClick={handleRemoveFile} />
+      <form onSubmit={handleSubmit} className={cx('upload-form')}>
+        <div
+          className={cx('upload', {dragging: isDragging})}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+        >
+          <input
+            type="file"
+            accept="application/pdf"
+            onChange={handleFileChange}
+            id="file"
+            ref={fileInputRef}
+            name="file"
+          />
+          {!file ? (
+            <>
+              <label htmlFor="file" tabIndex={0} onKeyDown={handleKeyDown}>
+                <Button text="업로드 파일 선택" />
+              </label>
+              <p>또는 파일을 이곳으로 드래그합니다</p>
+            </>
+          ) : (
+            <div className={styles['file-selected']}>
+              <p>파일을 업로드 하시겠습니까?</p>
+              <div className={styles.title}>
+                {file.name}
+                <IoMdClose size={16} onClick={handleRemoveFile} />
+              </div>
+              <button type="submit">
+                <Button color="type2" text="이력서 업로드" />
+              </button>
             </div>
-            <Button color="type2" text="이력서 업로드" onClick={handleUpload} />
-            <div className={styles['change-file']} onClick={handleRemoveFile}>
-              다른 파일 선택
-            </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      </form>
     </div>
   );
 };
