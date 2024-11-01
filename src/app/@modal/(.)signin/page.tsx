@@ -53,7 +53,7 @@ const SignInModal = () => {
           로그인
         </button>
       </form>
-      <Link className={cx('button', 'sign-up')} href={'/signup'}>
+      <Link className={cx('button', 'sign-up')} href={'/signup'} replace>
         회원가입
       </Link>
       <div className={cx('line')}>
