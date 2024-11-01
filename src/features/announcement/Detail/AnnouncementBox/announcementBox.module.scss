@@ -6,6 +6,13 @@
   height: 100%;
 }
 
+@media (width <= 800px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .announcement-info {
   display: flex;
   flex-direction: column;

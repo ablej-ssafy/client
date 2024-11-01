@@ -4,11 +4,11 @@ import AnnouncementTitle from '@/features/announcement/Detail/AnnouncementTitle'
 
 const AnnouncementDetailPage = () => {
   return (
-    <div>
+    <>
       <AnnouncementImage />
       <AnnouncementTitle />
       <AnnouncementBox />
-    </div>
+    </>
   );
 };
 

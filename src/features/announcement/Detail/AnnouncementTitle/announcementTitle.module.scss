@@ -2,10 +2,9 @@
 @use '@/styles/mixin/index' as mixin;
 
 .display-row {
-  display: flex;
+  @include mixin.flex-default(space-between);
+
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .text-bold-18 {

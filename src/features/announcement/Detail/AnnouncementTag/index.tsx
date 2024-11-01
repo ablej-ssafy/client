@@ -7,9 +7,9 @@ interface AnnouncementTagProps {
 
 const AnnouncementTag = ({title, content}: AnnouncementTagProps) => {
   return (
-    <div className={styles['display-row']}>
-      <p className={styles['text-bold-14-gray']}>{title}</p>
-      <p className={styles['text-bold-14-black']}>{content}</p>
+    <div className={styles.container}>
+      <p className={styles['text-title']}>{title}</p>
+      <p className={styles['text-content']}>{content}</p>
     </div>
   );
 };

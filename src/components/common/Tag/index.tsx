@@ -5,11 +5,7 @@ interface TagProps {
 }
 
 const Tag = ({title}: TagProps) => {
-  return (
-    <div>
-      <span className={styles.title}>{title}</span>
-    </div>
-  );
+  return <span className={styles.title}>{title}</span>;
 };
 
 export default Tag;
