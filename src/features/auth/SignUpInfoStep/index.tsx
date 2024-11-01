@@ -15,19 +15,23 @@ interface InfoStepProps {
 
 const cx = classNames.bind(styles);
 
-const InfoStepScheme = z.object({
-  email: z.string().email({message: '이메일 형식이 잘못 되었습니다.'}),
-  password: z.string().min(8, {message: '비밀번호는 8자 이상이어야 합니다.'}),
-  passwordConfirm: z
-    .string()
-    .min(8, {message: '비밀번호는 8자 이상이어야 합니다.'}),
-  name: z.string(),
-});
+const InfoStepScheme = z
+  .object({
+    email: z.string().email({message: '이메일 형식이 잘못 되었습니다.'}),
+    password: z.string().min(8, {message: '비밀번호는 8자 이상이어야 합니다.'}),
+    passwordConfirm: z.string(),
+    name: z.string(),
+  })
+  .refine(data => data.password === data.passwordConfirm, {
+    message: '비밀번호와 비밀번호 확인이 일치하지 않습니다.',
+    path: ['passwordConfirm'],
+  });
 
 const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
   const [, setForm] = useSignupForm();
   const [error, setError] =
     useState<ZodError<z.infer<typeof InfoStepScheme>>>();
+  const fieldErrors = error?.flatten().fieldErrors;
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
@@ -65,7 +69,7 @@ const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
         name="email"
         type="email"
         defaultValue=""
-        error={error?.message}
+        error={fieldErrors?.email}
       />
       <LabelInput
         inputStyle="primary"
@@ -73,7 +77,7 @@ const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
         name="password"
         type="password"
         defaultValue=""
-        error={error?.message}
+        error={fieldErrors?.password}
       />
       <LabelInput
         inputStyle="primary"
@@ -81,7 +85,7 @@ const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
         type="password"
         name="password-confirm"
         defaultValue=""
-        error={error?.message}
+        error={fieldErrors?.passwordConfirm}
       />
       <LabelInput
         inputStyle="primary"
@@ -90,6 +94,7 @@ const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
         name="name"
         placeholder="홍길동"
         defaultValue=""
+        error={fieldErrors?.name}
       />
       <button type="submit" className={cx('button')}>
         다음
