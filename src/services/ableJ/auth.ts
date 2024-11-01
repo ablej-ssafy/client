@@ -46,16 +46,4 @@ export default {
       },
     );
   },
-  /**
-   * 토큰을 저장하는 함수
-   * @param accessToken 액세스 토큰
-   * @param refreshToken 리프레시 토큰
-   */
-  setCredentials: async (accessToken: string, refreshToken: string) => {
-    return fetch('http://localhost:3000/callback/auth/api', {
-      headers: {'Content-Type': 'application/json'},
-      method: 'POST',
-      body: JSON.stringify({accessToken, refreshToken}),
-    });
-  },
 };
