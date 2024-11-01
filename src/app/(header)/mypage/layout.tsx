@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import {usePathname} from 'next/navigation';
 import {PropsWithChildren} from 'react';
 
+import SidebarLogoutButton from '@/features/auth/SidebarLogoutButton';
 import Sidebar from '@/features/mypage/Sidebar';
 import SidebarButton from '@/features/mypage/SidebarButton';
 import SidebarDivider from '@/features/mypage/SidebarDivider';
@@ -38,12 +39,7 @@ const MyPageLayout = ({children}: PropsWithChildren) => {
           스크랩
         </SidebarButton>
         <SidebarDivider />
-        <form>
-          <SidebarButton warning type="submit">
-            로그아웃
-          </SidebarButton>
-          <input />
-        </form>
+        <SidebarLogoutButton />
       </Sidebar>
       {children}
     </div>

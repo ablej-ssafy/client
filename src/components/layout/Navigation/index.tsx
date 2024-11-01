@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import type {Variants} from 'framer-motion';
 import * as motion from 'framer-motion/client';
 import Link from 'next/link';
+import {usePathname} from 'next/navigation';
 import {PropsWithChildren, useEffect, useState} from 'react';
 
 import useScrollHeight from '@/hooks/useScrollHeight';
@@ -15,8 +16,9 @@ const cx = classNames.bind(styles);
 
 export interface NavigationProps extends PropsWithChildren {
   invertBackground?: boolean;
-  staticPosition?: boolean;
 }
+
+const STATIC_NAVIGATION_PATH = ['/announcement', '/resume', '/mypage'];
 
 const navVarients: Variants = {
   normal: {
@@ -28,11 +30,11 @@ const navVarients: Variants = {
   },
 };
 
-const Navigation = ({
-  children,
-  staticPosition,
-  invertBackground,
-}: NavigationProps) => {
+const Navigation = ({children, invertBackground}: NavigationProps) => {
+  const pathname = usePathname();
+  const staticPosition = STATIC_NAVIGATION_PATH.some(path =>
+    pathname.startsWith(path),
+  );
   const windowHeight = useWindowHeight();
   const scrollHeight = useScrollHeight();
   const [inverted, setInverted] = useState(false);
