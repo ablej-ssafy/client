@@ -2,9 +2,10 @@ import httpClient from '@/configs/httpClient';
 import {
   Email,
   LoginResponse,
-  Name,
   Password,
   RefreshToken,
+  SignupForm,
+  SignUpResponse,
 } from '@/types/ableJ';
 
 export default {
@@ -25,12 +26,10 @@ export default {
   },
   /**
    * 회원가입 요청을 보내는 함수
-   * @param email 이메일
-   * @param password 비밀번호
-   * @param name 이름
+   * @param form 회원가입 폼
    */
-  signUp: async (email: Email, password: Password, name: Name) => {
-    return httpClient.post('/api/v1/auth/sign-in', {email, password, name});
+  signUp: async (form: SignupForm): Promise<SignUpResponse> => {
+    return httpClient.post('/api/v1/auth/sign-up', form);
   },
   /**
    * 토큰을 저장하는 함수

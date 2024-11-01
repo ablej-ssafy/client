@@ -1,8 +1,8 @@
 'use client';
 
 import classNames from 'classnames/bind';
-import {FormEventHandler} from 'react';
-import {z} from 'zod';
+import {FormEventHandler, useState} from 'react';
+import {z, ZodError} from 'zod';
 
 import LabelInput from '@/components/common/LabelInput';
 import {useSignupForm} from '@/context/signup-context';
@@ -26,9 +26,12 @@ const InfoStepScheme = z.object({
 
 const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
   const [, setForm] = useSignupForm();
+  const [error, setError] =
+    useState<ZodError<z.infer<typeof InfoStepScheme>>>();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
+    e.stopPropagation();
 
     const form = new FormData(e.currentTarget);
     const {data, error, success} = InfoStepScheme.safeParse({
@@ -40,6 +43,7 @@ const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
 
     if (!success) {
       console.log(error);
+      setError(error);
       return;
     }
 
@@ -61,6 +65,7 @@ const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
         name="email"
         type="email"
         defaultValue=""
+        error={error?.message}
       />
       <LabelInput
         inputStyle="primary"
@@ -68,6 +73,7 @@ const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
         name="password"
         type="password"
         defaultValue=""
+        error={error?.message}
       />
       <LabelInput
         inputStyle="primary"
@@ -75,6 +81,7 @@ const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
         type="password"
         name="password-confirm"
         defaultValue=""
+        error={error?.message}
       />
       <LabelInput
         inputStyle="primary"
