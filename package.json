@@ -21,6 +21,7 @@
     "framer-motion": "^11.11.9",
     "next": "14.2.15",
     "react": "^18",
+    "react-datepicker": "^7.5.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18",
