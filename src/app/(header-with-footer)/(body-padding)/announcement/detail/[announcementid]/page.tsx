@@ -1,11 +1,11 @@
 import AnnouncementBox from '@/features/announcement/Detail/AnnouncementBox';
-import AnnouncementImage from '@/features/announcement/Detail/AnnouncementImage';
+import AnnouncementCarousel from '@/features/announcement/Detail/AnnouncementCarousel';
 import AnnouncementTitle from '@/features/announcement/Detail/AnnouncementTitle';
 
 const AnnouncementDetailPage = () => {
   return (
     <>
-      <AnnouncementImage />
+      <AnnouncementCarousel />
       <AnnouncementTitle />
       <AnnouncementBox />
     </>
