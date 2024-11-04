@@ -2,6 +2,7 @@
 
 import MyResumeCard from '@/features/resume/MyResumeCard';
 import useFetchResumeList from '@/hooks/useFetchResumeList';
+import {getTodayDate} from '@/utils/date';
 
 import styles from './myResume.module.scss';
 
@@ -16,7 +17,7 @@ const MyResume = () => {
           <MyResumeCard
             key={0}
             title={'포트폴리오'}
-            date={'2024.01.02'}
+            date={getTodayDate()}
             type="포트폴리오"
           />
           {resumeList.map(item => (

@@ -8,7 +8,13 @@ export default {
    * @param accessToken 액세스 토큰
    */
   resumeUpload: async (formData: FormData, accessToken: string) => {
-    return httpClient.post('/api/v1/recruitment/recommend', formData, {
+    const file = formData.get('file') as File;
+    const originalName = Buffer.from(file.name, 'ascii').toString('utf8');
+
+    const newFormData = new FormData();
+    newFormData.append('file', file, originalName);
+
+    return httpClient.post('/recruitment/recommend', newFormData, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -20,7 +26,7 @@ export default {
    * @param accessToken 액세스 토큰
    */
   getResumeList: async (accessToken: string) => {
-    return httpClient.get<GetResumePDFResponse>('/api/v1/resume/pdf', {
+    return httpClient.get<GetResumePDFResponse>('/resume/pdf', {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

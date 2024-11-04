@@ -24,7 +24,7 @@ const MyResumeCard = ({title, date, type}: ResumeCardProps) => {
       </div>
       <div className={styles.center}>
         <div>{title}</div>
-        <div>{date}</div>
+        <div>{date.replaceAll('-', '.')}</div>
       </div>
       <div className={styles.link}>
         <span>
