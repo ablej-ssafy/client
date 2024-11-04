@@ -2,7 +2,7 @@
 
 import {cookies} from 'next/headers';
 
-import resumeService from '@/services/ableJ/resume';
+import resumeService from '@/services/ableJ';
 
 const resumeUpdateAction = async (_prevState: unknown, formData: FormData) => {
   const cookieStore = cookies();
