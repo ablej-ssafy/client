@@ -9,8 +9,7 @@ const useFetchResumeList = () => {
   const fetchResumeList = async () => {
     const result = await getResumeListAction();
     if (result) {
-      console.log(result);
-      setResumeList(result);
+      setResumeList(result.reverse());
     }
   };
 
