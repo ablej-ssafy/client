@@ -17,7 +17,7 @@ const MyResume = async () => {
     return;
   }
 
-  const response = await resumeService.getResumeList(token);
+  const {data} = await resumeService.getResumeList(token);
 
   return (
     <div className={styles.container}>
@@ -30,7 +30,7 @@ const MyResume = async () => {
             date={getTodayDate()}
             type="포트폴리오"
           />
-          {response.data.map(item => (
+          {data?.length && data.map(item => (
             <MyResumeCard
               key={item.id}
               title={item.fileName}
