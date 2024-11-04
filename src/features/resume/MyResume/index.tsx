@@ -1,13 +1,23 @@
-'use client';
+'use server';
+
+import {cookies} from 'next/headers';
 
 import MyResumeCard from '@/features/resume/MyResumeCard';
-import useFetchResumeList from '@/hooks/useFetchResumeList';
+import resumeService from '@/services/ableJ';
 import {getTodayDate} from '@/utils/date';
 
 import styles from './myResume.module.scss';
 
-const MyResume = () => {
-  const resumeList = useFetchResumeList();
+const MyResume = async () => {
+  const cookieStore = cookies();
+  const token = cookieStore.get('accessToken')?.value;
+
+  if (!token) {
+    console.log('Access Token이 없습니다.');
+    return;
+  }
+
+  const {data} = await resumeService.getResumeList(token);
 
   return (
     <div className={styles.container}>
@@ -20,7 +30,7 @@ const MyResume = () => {
             date={getTodayDate()}
             type="포트폴리오"
           />
-          {resumeList.map(item => (
+          {data?.length && data.map(item => (
             <MyResumeCard
               key={item.id}
               title={item.fileName}
