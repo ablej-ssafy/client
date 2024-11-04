@@ -6,7 +6,7 @@ import React, {useRef, useState} from 'react';
 import {useFormState} from 'react-dom';
 import {IoMdClose} from 'react-icons/io';
 
-import resumeUpdateAction from '@/actions/resumeUpdateAction';
+import resumeUpdateAction from '@/actions/resume/resumeUpdateAction';
 import Button from '@/components/common/Button';
 
 import styles from './resumeRegistration.module.scss';

@@ -22,6 +22,18 @@ export default {
   },
 
   /**
+   * pdf 파일 삭제 요청을 보내는 함수
+   * @param resumeId pdf 파일 id
+   */
+  resumeDelete: async (resumeId: number, accessToken: string) => {
+    return httpClient.delete(`/resume/pdf/${resumeId}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+
+  /**
    * 이력서 목록을 가져오는 함수
    * @param accessToken 액세스 토큰
    */
