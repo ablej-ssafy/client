@@ -1,18 +1,26 @@
 import type {Meta, StoryObj} from '@storybook/react';
 
-import CompanyCard from './';
+import Tag from './';
 
 const meta = {
-  title: 'Common/CompanyCard',
-  component: CompanyCard,
+  title: 'Common/Tag',
+  component: Tag,
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof CompanyCard>;
+  argTypes: {
+    title: {
+      control: 'text',
+    },
+  },
+} satisfies Meta<typeof Tag>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    title: 'Default',
+  },
 };
