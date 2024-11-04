@@ -32,6 +32,10 @@
   cursor: pointer;
   background-color: rgba(colors.$primary, 0.5);
   border-radius: 50%;
+
+  &:hover {
+    background-color: colors.$primary;
+  }
 }
 
 .hr {

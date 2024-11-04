@@ -1,6 +1,9 @@
+'use client';
+
 import classNames from 'classnames/bind';
 import Image from 'next/image';
-import {LuBookmark} from 'react-icons/lu';
+import {useState} from 'react';
+import {MdBookmark, MdBookmarkBorder} from 'react-icons/md';
 
 import companyLogo from '@/assets/images/companylogo.png';
 import AnnouncementTag from '@/features/announcement/Detail/AnnouncementTag';
@@ -10,6 +13,12 @@ import styles from './announcementTitle.module.scss';
 const cx = classNames.bind(styles);
 
 const AnnouncementTitle = () => {
+  const [isScrap, setIsScrap] = useState<boolean>(false);
+
+  const handleClick = () => {
+    setIsScrap(!isScrap);
+  };
+
   return (
     <div>
       <div className={cx('display-row', 'margin-y')}>
@@ -23,8 +32,8 @@ const AnnouncementTitle = () => {
           />
           <span className={styles['text-bold-18']}>미리디</span>
         </div>
-        <div className={styles.circle}>
-          <LuBookmark size={25} />
+        <div className={styles.circle} onClick={handleClick}>
+          {isScrap ? <MdBookmark size={25} /> : <MdBookmarkBorder size={25} />}
         </div>
       </div>
       <span className={styles['text-bold-24']}>

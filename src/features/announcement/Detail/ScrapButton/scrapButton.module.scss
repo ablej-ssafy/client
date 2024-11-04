@@ -4,8 +4,13 @@
 .container {
   gap: 1rem;
   padding: 0.5rem;
+  cursor: pointer;
   background-color: rgba(colors.$primary, 0.5);
   border-radius: 1rem;
+
+  &:hover {
+    background-color: colors.$primary;
+  }
 
   @include mixin.flex-default;
 }
