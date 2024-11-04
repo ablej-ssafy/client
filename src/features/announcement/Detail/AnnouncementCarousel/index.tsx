@@ -32,20 +32,20 @@ const ImageList: ImageListType[] = [
 
 const AnnouncementCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [currentList, setCurrentList] = useState<ImageListType[]>();
+  const [currentList, setCurrentList] = useState<ImageListType[]>([]);
   let touchStartX: number;
   let touchEndX: number;
 
   const carouselRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    if (carouselRef.current !== null) {
+    if (carouselRef.current) {
       carouselRef.current.style.transform = `translateX(-${currentIndex * 50}%)`;
     }
   }, [currentIndex]);
 
   useEffect(() => {
-    if (ImageList.length !== 0) {
+    if (ImageList.length) {
       const startData = ImageList[0];
       const endData = ImageList[ImageList.length - 1];
       const newList = [endData, ...ImageList, startData];

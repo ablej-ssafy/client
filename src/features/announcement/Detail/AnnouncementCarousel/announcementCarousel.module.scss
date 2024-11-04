@@ -44,13 +44,13 @@
 }
 
 .carousel-item {
-  @include mixin.flex-default;
-
   width: 50%;
   padding: 5px;
   overflow: hidden;
   object-fit: cover;
   transition: border 300ms;
+
+  @include mixin.flex-default;
 
   img {
     flex-shrink: 0;
