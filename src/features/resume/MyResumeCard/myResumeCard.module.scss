@@ -27,6 +27,14 @@
   & > div:first-child {
     font-size: 1.2rem;
     font-weight: bold;
+  }
+
+  & > .self {
+    color: #fa8261;
+    background-color: #ffece6;
+  }
+
+  & > .default {
     color: #8b6fee;
     background-color: #f3f0ff;
   }

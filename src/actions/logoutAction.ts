@@ -11,8 +11,7 @@ const logoutAction = async () => {
   const refreshToken = cookieStore.get('refreshToken');
 
   if (refreshToken) {
-    const response = await ableJ.logout(refreshToken as unknown as string);
-    console.log(response);
+    await ableJ.logout(refreshToken as unknown as string);
   }
 
   cookieStore.delete('accessToken');
