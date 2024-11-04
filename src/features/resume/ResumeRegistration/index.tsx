@@ -13,13 +13,7 @@ import styles from './resumeRegistration.module.scss';
 
 // 파일 확장자 검사
 const isValidFileType = (file: File, allowedTypes: string[]) => {
-  if (allowedTypes.includes(file.type)) {
-    console.log('유효한 파일이 선택되었습니다:', file);
-    return true;
-  } else {
-    console.log(`${allowedTypes} 파일만 업로드할 수 있습니다.`);
-    return false;
-  }
+  return allowedTypes.includes(file.type) ? true : false;
 };
 
 const cx = classNames.bind(styles);
