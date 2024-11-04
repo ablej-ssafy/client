@@ -1,27 +1,23 @@
-'use client';
+'use server';
 
-import {useEffect, useState} from 'react';
+import {cookies} from 'next/headers';
 
-import getResumeListAction from '@/actions/getResumeListAction';
 import MyResumeCard from '@/features/resume/MyResumeCard';
-import {ResumePDF} from '@/types/ableJ/resume';
+import resumeService from '@/services/ableJ';
 import {getTodayDate} from '@/utils/date';
 
 import styles from './myResume.module.scss';
 
-const MyResume = () => {
-  const [resumeList, setResumeList] = useState<ResumePDF[]>([]);
+const MyResume = async () => {
+  const cookieStore = cookies();
+  const token = cookieStore.get('accessToken')?.value;
 
-  const fetchResumeList = async () => {
-    const result = await getResumeListAction();
-    if (result) {
-      setResumeList(result);
-    }
-  };
+  if (!token) {
+    console.log('Access Token이 없습니다.');
+    return;
+  }
 
-  useEffect(() => {
-    fetchResumeList();
-  }, []);
+  const response = await resumeService.getResumeList(token);
 
   return (
     <div className={styles.container}>
@@ -34,7 +30,7 @@ const MyResume = () => {
             date={getTodayDate()}
             type="포트폴리오"
           />
-          {resumeList.map(item => (
+          {response.data.map(item => (
             <MyResumeCard
               key={item.id}
               title={item.fileName}
