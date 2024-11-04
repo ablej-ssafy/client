@@ -14,12 +14,12 @@ const getResumeListAction = async () => {
   }
 
   try {
-    const data = await resumeService.getResumeList(token);
+    const response = await resumeService.getResumeList(token);
 
-    console.log(data.data);
-    return data.data;
+    console.log(response.data);
+    return response.data;
   } catch (error) {
-    console.error('파일 업로드 중 오류:', error);
+    console.error('pdf 이력서 목록 가져오는 중 오류:', error);
 
     return;
   }

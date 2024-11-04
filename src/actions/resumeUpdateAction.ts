@@ -14,9 +14,9 @@ const resumeUpdateAction = async (_prevState: unknown, formData: FormData) => {
   }
 
   try {
-    const result = await resumeService.resumeUpload(formData, token);
+    const response = await resumeService.resumeUpload(formData, token);
 
-    console.log(result);
+    console.log(response);
     return {file: null, error: '', success: true};
   } catch (error) {
     console.error('파일 업로드 중 오류:', error);
