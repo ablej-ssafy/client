@@ -32,7 +32,6 @@ class HttpClient {
         ...options,
         body: options.body,
         headers: {
-          'Content-Type': 'multipart/form-data',
           ...options.headers,
         },
       };
@@ -60,6 +59,19 @@ class HttpClient {
 
     return await response.json();
   }
+
+  // private async afterResponse<T>(
+  //   responsePromise: Promise<Response>,
+  // ): Promise<T> {
+  //   try {
+  //     const response = await responsePromise;
+
+  //     return await response.json();
+  //   } catch (error) {
+  //     console.error('API 요청 실패', error);
+  //     throw error;
+  //   }
+  // }
 
   /**
    * HTTP 요청을 보내는 함수
