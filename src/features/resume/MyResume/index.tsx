@@ -1,27 +1,12 @@
 'use client';
 
-import {useEffect, useState} from 'react';
-
-import getResumeListAction from '@/actions/getResumeListAction';
 import MyResumeCard from '@/features/resume/MyResumeCard';
-import {ResumePDF} from '@/types/ableJ/resume';
+import useFetchResumeList from '@/hooks/useFetchResumeList';
 
 import styles from './myResume.module.scss';
 
 const MyResume = () => {
-  const [resumeList, setResumeList] = useState<ResumePDF[]>([]);
-
-  const fetchResumeList = async () => {
-    const result = await getResumeListAction();
-    if (result) {
-      console.log(result);
-      setResumeList(result);
-    }
-  };
-
-  useEffect(() => {
-    fetchResumeList();
-  }, []);
+  const resumeList = useFetchResumeList();
 
   return (
     <div className={styles.container}>
