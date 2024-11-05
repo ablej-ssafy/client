@@ -1,26 +1,44 @@
 import AnnouncementContent from '@/features/announcement/Detail/AnnouncementContent';
 import KakaoMap from '@/features/announcement/Detail/KakaoMap';
 import ScrapButton from '@/features/announcement/Detail/ScrapButton';
+import {Company} from '@/types/ableJ';
 
 import styles from './announcementBox.module.scss';
 
-const mockContent =
-  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+interface AnnouncementBoxProps {
+  intro: string;
+  task: string;
+  requirement: string;
+  preference?: string;
+  benefit: string;
+  companyInfo: Company;
+}
 
-const AnnouncementBox = () => {
+const AnnouncementBox = ({
+  intro,
+  task,
+  requirement,
+  preference,
+  benefit,
+  companyInfo,
+}: AnnouncementBoxProps) => {
   return (
     <div className={styles.container}>
       <div className={styles['announcement-info']}>
-        <AnnouncementContent title="회사 소개" content={mockContent} />
-        <AnnouncementContent title="주요 업무" content={mockContent} />
-        <AnnouncementContent title="자격 요건" content={mockContent} />
-        <AnnouncementContent title="채용 전형" content={mockContent} />
-        <AnnouncementContent title="우대 사항" content={mockContent} />
+        <AnnouncementContent title="회사 소개" content={intro} />
+        <AnnouncementContent title="주요 업무" content={task} />
+        <AnnouncementContent title="자격 요건" content={requirement} />
+        {preference && (
+          <AnnouncementContent title="채용 전형" content={preference} />
+        )}
+        <AnnouncementContent title="우대 사항" content={benefit} />
       </div>
       <div>
         <div className={styles['scrap-map']}>
-          <ScrapButton />
-          <KakaoMap />
+          <div className={styles['scrap-button']}>
+            <ScrapButton />
+          </div>
+          <KakaoMap companyInfo={companyInfo} />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
-export type ResponseType<T> = {
+export interface ResponseType<T> {
   success: boolean;
   code: number;
   message: string;
   data: T;
-};
+}

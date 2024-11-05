@@ -1,38 +1,42 @@
 'use client';
 
-import Image, {StaticImageData} from 'next/image';
+import Image from 'next/image';
 import {TouchEventHandler, useEffect, useRef, useState} from 'react';
 import {HiArrowCircleLeft, HiArrowCircleRight} from 'react-icons/hi';
 
 import Image1 from '@/assets/images/announcement1.png';
-import Image2 from '@/assets/images/announcement2.png';
-import Image3 from '@/assets/images/announcement3.png';
-import Image4 from '@/assets/images/announcement4.png';
-import Image5 from '@/assets/images/announcement5.png';
-import Image6 from '@/assets/images/announcement6.png';
 
+// import Image2 from '@/assets/images/announcement2.png';
+// import Image3 from '@/assets/images/announcement3.png';
+// import Image4 from '@/assets/images/announcement4.png';
+// import Image5 from '@/assets/images/announcement5.png';
+// import Image6 from '@/assets/images/announcement6.png';
 import styles from './announcementCarousel.module.scss';
 
-interface ImageListType {
-  id: number;
-  imageURL: StaticImageData;
+// interface ImageListType {
+//   id: number;
+//   imageURL: StaticImageData;
+// }
+
+// const ImageList: ImageListType[] = [
+//   {
+//     id: 1,
+//     imageURL: Image1,
+//   },
+//   {id: 2, imageURL: Image2},
+//   {id: 3, imageURL: Image3},
+//   {id: 4, imageURL: Image4},
+//   {id: 5, imageURL: Image5},
+//   {id: 6, imageURL: Image6},
+// ];
+
+interface AnnouncementCarouselProps {
+  imageArray: string[];
 }
 
-const ImageList: ImageListType[] = [
-  {
-    id: 1,
-    imageURL: Image1,
-  },
-  {id: 2, imageURL: Image2},
-  {id: 3, imageURL: Image3},
-  {id: 4, imageURL: Image4},
-  {id: 5, imageURL: Image5},
-  {id: 6, imageURL: Image6},
-];
-
-const AnnouncementCarousel = () => {
+const AnnouncementCarousel = ({imageArray}: AnnouncementCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [currentList, setCurrentList] = useState<ImageListType[]>([]);
+  const [currentList, setCurrentList] = useState<string[]>([]);
   let touchStartX: number;
   let touchEndX: number;
 
@@ -40,19 +44,21 @@ const AnnouncementCarousel = () => {
 
   useEffect(() => {
     if (carouselRef.current) {
-      carouselRef.current.style.transform = `translateX(-${currentIndex * 50}%)`;
+      const translateValue =
+        window.innerWidth <= 512 ? currentIndex * 100 : currentIndex * 50;
+      carouselRef.current.style.transform = `translateX(-${translateValue}%)`;
     }
   }, [currentIndex]);
 
   useEffect(() => {
-    if (ImageList.length) {
-      const startData = ImageList[0];
-      const endData = ImageList[ImageList.length - 1];
-      const newList = [endData, ...ImageList, startData];
+    if (imageArray.length) {
+      const startData = imageArray[0];
+      const endData = imageArray[imageArray.length - 1];
+      const newList = [endData, ...imageArray, startData];
 
       setCurrentList(newList);
     }
-  }, []);
+  }, [imageArray]);
 
   const moveToNthSlide = (index: number) => {
     setTimeout(() => {
@@ -67,11 +73,11 @@ const AnnouncementCarousel = () => {
     const newIndex = currentIndex + direction;
 
     // 슬라이드가 끝일때 가장 앞으로 이동
-    if (newIndex === ImageList.length + 1) {
+    if (newIndex === imageArray.length + 1) {
       moveToNthSlide(1);
     } else if (newIndex === 0) {
       // 맨 앞이면 맨 뒤로 이동
-      moveToNthSlide(ImageList.length);
+      moveToNthSlide(imageArray.length);
     }
 
     setCurrentIndex(prev => prev + direction);
@@ -131,7 +137,8 @@ const AnnouncementCarousel = () => {
 
             return (
               <li key={key} className={styles['carousel-item']}>
-                <Image src={image.imageURL} alt="carousel=img" />
+                {/* <Image src={image} alt="carousel=img" /> */}
+                <Image src={Image1} alt="carousel=img" />
               </li>
             );
           })}

@@ -10,6 +10,10 @@
   .container {
     grid-template-columns: 1fr;
   }
+
+  .scrap-button {
+    display: none;
+  }
 }
 
 .announcement-info {

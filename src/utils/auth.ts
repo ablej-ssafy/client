@@ -6,14 +6,7 @@ export default {
     return getCookie('authenticated', {cookies}) === 'true';
   },
 
-  getAccessToken: async () => {
-    const token = getCookie('accessToken', {cookies});
-
-    if (!token) {
-      console.log('Access Token이 없습니다.');
-      return;
-    }
-
-    return token;
+  getAccessToken: () => {
+    return getCookie('accessToken', {cookies});
   },
 };

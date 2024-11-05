@@ -8,10 +8,14 @@ interface AnnouncementContentProps {
 }
 
 const AnnouncementContent = ({title, content}: AnnouncementContentProps) => {
+  const formattedContent = content.replace(/\n/g, '<br />');
   return (
     <div className={styles.container}>
       <Tag title={title} />
-      <span className={styles.content}>{content}</span>
+      <p
+        className={styles.content}
+        dangerouslySetInnerHTML={{__html: formattedContent}}
+      ></p>
     </div>
   );
 };
