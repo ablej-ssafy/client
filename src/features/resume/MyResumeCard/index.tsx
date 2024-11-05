@@ -10,18 +10,21 @@ import styles from './myResumeCard.module.scss';
 
 interface ResumeCardProps {
   id: number;
+  url: string;
   title: string;
   date: string;
   type?: string;
 }
 
-const MyResumeCard = ({id, title, date, type}: ResumeCardProps) => {
+const MyResumeCard = ({id, url, title, date, type}: ResumeCardProps) => {
   const handleDelete = async () => {
     const response = await resumeDeleteAction(id);
     if (response.success) {
       await revalidateResumePage();
     }
   };
+
+  console.log(url);
 
   return (
     <div className={styles.container}>

@@ -25,6 +25,7 @@ const MyResume = async () => {
           <MyResumeCard
             key={0}
             id={0}
+            url={''}
             title={'포트폴리오'}
             date={getTodayDate()}
             type="포트폴리오"
@@ -36,6 +37,7 @@ const MyResume = async () => {
                   <MyResumeCard
                     key={item.id}
                     id={item.id}
+                    url={item.url}
                     title={item.fileName}
                     date={item.createdAt}
                   />

@@ -13,6 +13,7 @@ export interface Job {
 
 export interface ResumePDF {
   id: number;
+  url: string;
   fileName: string;
   createdAt: string;
 }
