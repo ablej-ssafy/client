@@ -6,6 +6,7 @@ import React, {useRef, useState} from 'react';
 import {IoMdClose} from 'react-icons/io';
 
 import resumeUpdateAction from '@/actions/resume/resumeUpdateAction';
+import {revalidateResumePage} from '@/actions/resume/revalidatePathAction';
 import Button from '@/components/common/Button';
 
 import styles from './resumeRegistration.module.scss';
@@ -63,7 +64,10 @@ const ResumeRegistration = () => {
     formData.append('file', file);
 
     const response = await resumeUpdateAction({}, formData);
-    console.log(response.success);
+    if (response.success) {
+      handleRemoveFile();
+      await revalidateResumePage();
+    }
   };
 
   // 접근성을 위한 key 동작 추가

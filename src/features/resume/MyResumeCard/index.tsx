@@ -4,6 +4,7 @@ import {BsTrash3} from 'react-icons/bs';
 import {IoIosArrowForward} from 'react-icons/io';
 
 import resumeDeleteAction from '@/actions/resume/resumeDeleteAction';
+import {revalidateResumePage} from '@/actions/resume/revalidatePathAction';
 
 import styles from './myResumeCard.module.scss';
 
@@ -16,8 +17,10 @@ interface ResumeCardProps {
 
 const MyResumeCard = ({id, title, date, type}: ResumeCardProps) => {
   const handleDelete = async () => {
-    const result = await resumeDeleteAction(id);
-    console.log(result);
+    const response = await resumeDeleteAction(id);
+    if (response.success) {
+      await revalidateResumePage();
+    }
   };
 
   return (
