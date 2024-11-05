@@ -13,7 +13,7 @@ import styles from './resumeRegistration.module.scss';
 
 // 파일 확장자 검사
 const isValidFileType = (file: File, allowedTypes: string[]) => {
-  return allowedTypes.includes(file.type) ? true : false;
+  return allowedTypes.includes(file.type);
 };
 
 const cx = classNames.bind(styles);

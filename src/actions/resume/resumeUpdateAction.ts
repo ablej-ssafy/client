@@ -21,7 +21,7 @@ const resumeUpdateAction = async (
     console.log(response);
     return {success: true};
   } catch (error) {
-    console.error('파일 업로드 중 오류:', error);
+    console.error('파일 업로드 중 api 오류:', error);
     return {success: false};
   }
 };
