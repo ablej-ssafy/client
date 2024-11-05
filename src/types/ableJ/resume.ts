@@ -6,16 +6,17 @@ export type JobSubId = number;
 export type Resume = string;
 export type JobTitle = string;
 
-export type Job = {
+export interface Job {
   id: JobId;
   title: JobTitle;
-};
+}
 
-export type ResumePDF = {
+export interface ResumePDF {
   id: number;
   fileName: string;
   createdAt: string;
-};
+}
+
 export type GetResumePDFResponse = ResponseType<ResumePDF[]>;
 
 export type GetAllJobsResponseData = Job[];

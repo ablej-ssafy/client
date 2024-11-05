@@ -7,13 +7,41 @@ import {MdBookmark, MdBookmarkBorder} from 'react-icons/md';
 
 import companyLogo from '@/assets/images/companylogo.png';
 import AnnouncementTag from '@/features/announcement/Detail/AnnouncementTag';
+import {Category, Company} from '@/types/ableJ';
 
 import styles from './announcementTitle.module.scss';
 
 const cx = classNames.bind(styles);
 
-const AnnouncementTitle = () => {
+interface AnnouncementTitleProps {
+  name: string;
+  category: Category;
+  childCategories: Category[];
+  company: Company;
+  hireRound?: string;
+  dueTime?: Date;
+  annualTo: number;
+  annualFrom?: number;
+}
+
+const AnnouncementTitle = ({
+  name,
+  category,
+  childCategories,
+  company,
+  hireRound,
+  dueTime,
+  annualTo,
+  annualFrom,
+}: AnnouncementTitleProps) => {
   const [isScrap, setIsScrap] = useState<boolean>(false);
+  const location = company.location + ' > ' + company.strict;
+  const annual = annualFrom
+    ? `${annualFrom} ~ ${annualTo}년`
+    : `${annualTo}년 이상`;
+  const hire = hireRound ? `(${hireRound})` : '';
+  const closedDate = dueTime ? dueTime.toISOString().slice(0, 10) : '상시 채용';
+  const categoryJoin = `${category.name} > ${childCategories.map(child => child.name).join(', ')}`;
 
   const handleClick = () => {
     setIsScrap(!isScrap);
@@ -30,20 +58,18 @@ const AnnouncementTitle = () => {
             width={45}
             height={45}
           />
-          <span className={styles['text-bold-18']}>미리디</span>
+          <span className={styles['text-bold-18']}>{company.name}</span>
         </div>
         <div className={styles.circle} onClick={handleClick}>
           {isScrap ? <MdBookmark size={25} /> : <MdBookmarkBorder size={25} />}
         </div>
       </div>
-      <span className={styles['text-bold-24']}>
-        [커머스프로덕션] 프론트엔드 개발자
-      </span>
+      <span className={styles['text-bold-24']}>{name}</span>
       <div className={styles['margin-y']}>
-        <AnnouncementTag title="근무 지역" content="서울 > 구로구" />
-        <AnnouncementTag title="경력" content="3-10년" />
-        <AnnouncementTag title="마감일" content="10.11" />
-        <AnnouncementTag title="직무" content="프론트엔드" />
+        <AnnouncementTag title="근무 지역" content={location} />
+        <AnnouncementTag title="경력" content={`${annual} ${hire}`} />
+        <AnnouncementTag title="마감일" content={closedDate} />
+        <AnnouncementTag title="직무" content={categoryJoin} />
       </div>
       <hr className={styles.hr} />
     </div>

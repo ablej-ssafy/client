@@ -1,5 +1,3 @@
-'use server';
-
 import {cookies} from 'next/headers';
 
 import MyResumeCard from '@/features/resume/MyResumeCard';
@@ -30,13 +28,14 @@ const MyResume = async () => {
             date={getTodayDate()}
             type="포트폴리오"
           />
-          {data?.length && data.map(item => (
-            <MyResumeCard
-              key={item.id}
-              title={item.fileName}
-              date={item.createdAt}
-            />
-          ))}
+          {data?.length &&
+            data.map(item => (
+              <MyResumeCard
+                key={item.id}
+                title={item.fileName}
+                date={item.createdAt}
+              />
+            ))}
         </div>
       </div>
     </div>
