@@ -15,4 +15,9 @@
     font-weight: 600;
     color: colors.$gray5;
   }
+
+  & > div {
+    flex: 1;
+    align-self: stretch;
+  }
 }
