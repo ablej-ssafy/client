@@ -3,7 +3,7 @@ import {GetResumePDFResponse} from '@/types/ableJ';
 
 export default {
   /**
-   * 이력서 업로드 요청을 보내는 함수
+   * PDF 파일 업로드 요청을 보내는 함수
    * @param file 이력서 pdf 파일
    * @param accessToken 액세스 토큰
    */
@@ -22,7 +22,7 @@ export default {
   },
 
   /**
-   * pdf 파일 삭제 요청을 보내는 함수
+   * PDF 파일 삭제 요청을 보내는 함수
    * @param resumeId pdf 파일 id
    */
   resumeDelete: async (resumeId: number, accessToken: string) => {
@@ -34,7 +34,7 @@ export default {
   },
 
   /**
-   * 이력서 목록을 가져오는 함수
+   * PDF 파일 목록을 가져오는 함수
    * @param accessToken 액세스 토큰
    */
   getResumeList: async (accessToken: string) => {
