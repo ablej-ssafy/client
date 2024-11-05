@@ -7,6 +7,7 @@ import styles from './navigationButton.module.scss';
 interface NavigationButtonProps extends PropsWithChildren {
   href: string;
   buttonType?: 'outlined';
+  color?: 'white' | 'black' | 'primary';
   selected?: boolean;
 }
 
@@ -16,10 +17,19 @@ const NavigationButton = ({
   children,
   buttonType,
   selected,
+  color = 'black',
   ...props
 }: NavigationButtonProps) => {
   return (
-    <Link {...props} className={cx('button', {outlined: buttonType}, selected)}>
+    <Link
+      {...props}
+      className={cx(
+        'button',
+        color,
+        {outlined: buttonType},
+        {selected: selected},
+      )}
+    >
       {children}
     </Link>
   );

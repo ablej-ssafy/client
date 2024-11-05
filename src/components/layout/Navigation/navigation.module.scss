@@ -6,20 +6,30 @@
   position: fixed;
   z-index: dimensions.$foreground;
   display: flex;
+  gap: 30px;
   align-items: center;
-  justify-content: space-between;
   width: 100%;
   height: layout.$nav_height;
   padding: 0 layout.$nav_padding;
+  background-color: colors.$white;
 
   .title {
     font-size: 2.6rem;
     font-weight: 600;
     color: colors.$white;
+
+    &.white {
+      color: colors.$white;
+    }
+
+    &.black {
+      color: colors.$black;
+    }
   }
 
-  .nav-items {
+  .nav-button-container {
     display: flex;
+    flex: 1;
     gap: 1rem;
 
     & > a:last-child,

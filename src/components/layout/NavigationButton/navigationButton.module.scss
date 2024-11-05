@@ -9,7 +9,7 @@
   padding: 0 14px;
   font-size: 1.5rem;
   font-weight: 600;
-  color: colors.$white;
+  color: white;
   background-color: transparent;
   border-radius: layout.$border_button;
   transition:
@@ -27,6 +27,18 @@
     color: colors.$primary;
     border-color: colors.$primary;
   }
+}
+
+.white {
+  color: colors.$white;
+}
+
+.black {
+  color: colors.$black;
+}
+
+.primary {
+  color: colors.$primary;
 }
 
 .outlined {

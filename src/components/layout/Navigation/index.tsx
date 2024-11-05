@@ -15,6 +15,8 @@ const cx = classNames.bind(styles);
 
 export interface NavigationProps extends PropsWithChildren {
   invertBackground?: boolean;
+  staticPosition?: boolean;
+  logoColor?: 'white' | 'black';
 }
 
 const STATIC_NAVIGATION_PATH = ['/announcement', '/resume', '/mypage'];
@@ -30,7 +32,11 @@ const navVarients: Variants = {
   },
 };
 
-const Navigation = ({children, invertBackground}: NavigationProps) => {
+const Navigation = ({
+  children,
+  invertBackground,
+  logoColor = 'black',
+}: NavigationProps) => {
   const pathname = usePathname();
   const staticPosition = STATIC_NAVIGATION_PATH.some(path =>
     pathname.startsWith(path),
@@ -48,10 +54,10 @@ const Navigation = ({children, invertBackground}: NavigationProps) => {
       initial={'normal'}
       animate={inverted ? 'inverted' : 'normal'}
     >
-      <Link className={cx('title')} href={'/'}>
+      <Link className={cx('title', logoColor)} href={'/'}>
         AI HeadHunting
       </Link>
-      <ul className={cx('nav-items')}>{children}</ul>
+      <div className={cx('nav-button-container')}>{children}</div>
     </motion.nav>
   );
 };
