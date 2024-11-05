@@ -11,7 +11,7 @@ const ExperienceInfoSection = () => {
   return (
     <Board>
       <SectionHeader title="경력 및 분야">
-        <AddSectionItemButton />
+        <AddSectionItemButton text="경력 추가" />
       </SectionHeader>
       <Divider />
       <Input isLabeled label="회사명" />
