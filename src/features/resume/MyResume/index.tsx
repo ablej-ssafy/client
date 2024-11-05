@@ -30,19 +30,18 @@ const MyResume = async () => {
             date={getTodayDate()}
             type="포트폴리오"
           />
-          {data
-            ? data
-                .reverse()
-                .map(item => (
-                  <MyResumeCard
-                    key={item.id}
-                    id={item.id}
-                    url={item.url}
-                    title={item.fileName}
-                    date={item.createdAt}
-                  />
-                ))
-            : null}
+          {!!data &&
+            data
+              .reverse()
+              .map(item => (
+                <MyResumeCard
+                  key={item.id}
+                  id={item.id}
+                  url={item.url}
+                  title={item.fileName}
+                  date={item.createdAt}
+                />
+              ))}
         </div>
       </div>
     </div>
