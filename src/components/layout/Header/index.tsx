@@ -7,7 +7,7 @@ const Header = async (props: NavigationProps) => {
 
   return (
     <Navigation {...props}>
-      <NavigationButton href="/announcement">맞춤채용공고</NavigationButton>
+      <NavigationButton href="/recommends">맞춤채용공고</NavigationButton>
       <NavigationButton href="/resume">이력서</NavigationButton>
       {isLoggedIn ? (
         <NavigationButton href="/mypage">마이페이지</NavigationButton>

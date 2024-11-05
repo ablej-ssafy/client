@@ -6,35 +6,13 @@ import {HiArrowCircleLeft, HiArrowCircleRight} from 'react-icons/hi';
 
 import Image1 from '@/assets/images/announcement1.png';
 
-// import Image2 from '@/assets/images/announcement2.png';
-// import Image3 from '@/assets/images/announcement3.png';
-// import Image4 from '@/assets/images/announcement4.png';
-// import Image5 from '@/assets/images/announcement5.png';
-// import Image6 from '@/assets/images/announcement6.png';
-import styles from './announcementCarousel.module.scss';
+import styles from './recruitmentCarousel.module.scss';
 
-// interface ImageListType {
-//   id: number;
-//   imageURL: StaticImageData;
-// }
-
-// const ImageList: ImageListType[] = [
-//   {
-//     id: 1,
-//     imageURL: Image1,
-//   },
-//   {id: 2, imageURL: Image2},
-//   {id: 3, imageURL: Image3},
-//   {id: 4, imageURL: Image4},
-//   {id: 5, imageURL: Image5},
-//   {id: 6, imageURL: Image6},
-// ];
-
-interface AnnouncementCarouselProps {
+interface RecruitmentCarouselProps {
   imageArray: string[];
 }
 
-const AnnouncementCarousel = ({imageArray}: AnnouncementCarouselProps) => {
+const RecruitmentCarousel = ({imageArray}: RecruitmentCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [currentList, setCurrentList] = useState<string[]>([]);
 
@@ -148,4 +126,4 @@ const AnnouncementCarousel = ({imageArray}: AnnouncementCarouselProps) => {
   );
 };
 
-export default AnnouncementCarousel;
+export default RecruitmentCarousel;

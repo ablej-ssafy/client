@@ -6,14 +6,14 @@ import {useState} from 'react';
 import {MdBookmark, MdBookmarkBorder} from 'react-icons/md';
 
 import companyLogo from '@/assets/images/companylogo.png';
-import AnnouncementTag from '@/features/announcement/Detail/AnnouncementTag';
+import RecruitmentTag from '@/features/recruitment/Detail/RecruitmentTag';
 import {Category, Company} from '@/types/ableJ';
 
-import styles from './announcementTitle.module.scss';
+import styles from './recruitmentTitle.module.scss';
 
 const cx = classNames.bind(styles);
 
-interface AnnouncementTitleProps {
+interface RecruitmentTitleProps {
   name: string;
   category: Category;
   childCategories: Category[];
@@ -24,7 +24,7 @@ interface AnnouncementTitleProps {
   annualFrom?: number;
 }
 
-const AnnouncementTitle = ({
+const RecruitmentTitle = ({
   name,
   category,
   childCategories,
@@ -33,7 +33,7 @@ const AnnouncementTitle = ({
   dueTime,
   annualTo,
   annualFrom,
-}: AnnouncementTitleProps) => {
+}: RecruitmentTitleProps) => {
   const [isScrap, setIsScrap] = useState<boolean>(false);
   const location = company.location + ' > ' + company.strict;
   const annual = annualFrom
@@ -66,14 +66,14 @@ const AnnouncementTitle = ({
       </div>
       <span className={styles['text-bold-24']}>{name}</span>
       <div className={styles['margin-y']}>
-        <AnnouncementTag title="근무 지역" content={location} />
-        <AnnouncementTag title="경력" content={`${annual} ${hire}`} />
-        <AnnouncementTag title="마감일" content={closedDate} />
-        <AnnouncementTag title="직무" content={categoryJoin} />
+        <RecruitmentTag title="근무 지역" content={location} />
+        <RecruitmentTag title="경력" content={`${annual} ${hire}`} />
+        <RecruitmentTag title="마감일" content={closedDate} />
+        <RecruitmentTag title="직무" content={categoryJoin} />
       </div>
       <hr className={styles.hr} />
     </div>
   );
 };
 
-export default AnnouncementTitle;
+export default RecruitmentTitle;

@@ -1,13 +1,13 @@
 import Tag from '@/components/common/Tag';
 
-import styles from './announcementContent.module.scss';
+import styles from './recruitmentContent.module.scss';
 
-interface AnnouncementContentProps {
+interface RecruitmentContentProps {
   title: string;
   content: string;
 }
 
-const AnnouncementContent = ({title, content}: AnnouncementContentProps) => {
+const RecruitmentContent = ({title, content}: RecruitmentContentProps) => {
   const formattedContent = content.replace(/\n/g, '<br />');
   return (
     <div className={styles.container}>
@@ -20,4 +20,4 @@ const AnnouncementContent = ({title, content}: AnnouncementContentProps) => {
   );
 };
 
-export default AnnouncementContent;
+export default RecruitmentContent;
