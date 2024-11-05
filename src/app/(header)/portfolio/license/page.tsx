@@ -1,7 +1,9 @@
 'use client';
 
+import CertificateInfoSection from '@/features/portfolio/section/CertificateInfoSection';
+
 const LicensePage = () => {
-  return <div>LicensePage</div>;
+  return <CertificateInfoSection />;
 };
 
 export default LicensePage;

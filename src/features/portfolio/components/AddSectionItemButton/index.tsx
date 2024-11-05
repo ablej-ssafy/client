@@ -16,7 +16,7 @@ const AddSectionItemButton = ({text, ...props}: AddSectionItemButtonProps) => {
     <div className={cx('button-container')}>
       {text && <span className={cx('button-text')}>{text}</span>}
       <button className={cx('button')} {...props}>
-        <CgAddR size={28} />
+        <CgAddR size={24} />
       </button>
     </div>
   );

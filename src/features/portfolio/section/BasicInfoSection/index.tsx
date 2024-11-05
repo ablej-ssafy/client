@@ -1,4 +1,3 @@
-import AddSectionItemButton from '@/features/portfolio/components/AddSectionItemButton';
 import Board from '@/features/portfolio/components/Board';
 import Divider from '@/features/portfolio/components/Divider';
 import ImageInput from '@/features/portfolio/components/ImageInput';
@@ -9,9 +8,7 @@ import TextArea from '@/features/portfolio/components/TextArea';
 const BasicInfoSection = () => {
   return (
     <Board>
-      <SectionHeader title="기본 정보">
-        <AddSectionItemButton />
-      </SectionHeader>
+      <SectionHeader title="기본 정보" />
       <Divider />
       <ImageInput isLabeled={true} label="프로필 사진" />
       <Input isLabeled={true} label="이름" />

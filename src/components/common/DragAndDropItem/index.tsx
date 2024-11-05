@@ -21,7 +21,7 @@ interface DragAndDropProps {
   moveCardHandler: (dragIndex: number, hoverIndex: number) => void;
 }
 
-const DragAndDrop = ({
+const DragAndDropItem = ({
   id,
   index,
   title,
@@ -72,4 +72,4 @@ const DragAndDrop = ({
   );
 };
 
-export default DragAndDrop;
+export default DragAndDropItem;

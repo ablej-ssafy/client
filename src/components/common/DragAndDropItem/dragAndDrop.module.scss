@@ -20,7 +20,7 @@
 
 .title {
   margin-right: 0.5rem;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 500;
 }
 
@@ -31,4 +31,8 @@
 
 .menu {
   padding-left: 1rem;
+
+  & > svg {
+    color: colors.$primary;
+  }
 }

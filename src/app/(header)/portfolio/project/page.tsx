@@ -1,7 +1,9 @@
 'use client';
 
+import ProjectInfoSection from '@/features/portfolio/section/ProjectInfoSection';
+
 const ProjectPage = () => {
-  return <div>ProjectPage</div>;
+  return <ProjectInfoSection />;
 };
 
 export default ProjectPage;

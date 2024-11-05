@@ -1,7 +1,9 @@
 'use client';
 
+import LanguageProficiencyInfoSection from '@/features/portfolio/section/LanguageProficiencyInfoSection';
+
 const LanguagePage = () => {
-  return <div>LanguagePage</div>;
+  return <LanguageProficiencyInfoSection />;
 };
 
 export default LanguagePage;

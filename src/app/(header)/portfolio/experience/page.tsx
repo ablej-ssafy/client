@@ -1,7 +1,9 @@
 'use client';
 
+import ExperienceInfoSection from '@/features/portfolio/section/ExperienceInfoSection';
+
 const ExperiencePage = () => {
-  return <div>ExperiencePage</div>;
+  return <ExperienceInfoSection />;
 };
 
 export default ExperiencePage;
