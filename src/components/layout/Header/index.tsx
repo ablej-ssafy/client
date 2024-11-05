@@ -18,7 +18,7 @@ const Header = (props: NavigationProps) => {
           <NavigationButton href="/resume" invert={props.invert}>
             채용공고
           </NavigationButton>
-          <NavigationButton href="/resume" invert={props.invert}>
+          <NavigationButton href="/portfolio" invert={props.invert}>
             포트폴리오
           </NavigationButton>
           <NavigationButton href="/resume" invert={props.invert}>
