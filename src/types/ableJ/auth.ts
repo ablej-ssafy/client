@@ -15,10 +15,10 @@ export interface SignupForm {
   jobIds: number[];
 }
 
-export type LoginResponseData = {
+export interface LoginResponseData {
   accessToken: AccessToken;
   refreshToken: RefreshToken;
-};
+}
 
 export type LoginResponse = ResponseType<LoginResponseData>;
 export type SignUpResponse = ResponseType<null>;
