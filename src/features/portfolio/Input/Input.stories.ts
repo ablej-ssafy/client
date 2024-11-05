@@ -1,14 +1,14 @@
 import type {Meta, StoryObj} from '@storybook/react';
 
-import Button from './';
+import Input from './';
 
 const meta = {
-  title: 'Portfolio/Button',
-  component: Button,
+  title: 'Portfolio/Input',
+  component: Input,
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof Input>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
