@@ -1,11 +1,11 @@
 import type {ReactNode} from 'react';
 
-import Header from '@/components/layout/Header';
+import GeneralHeader from '@/components/layout/GeneralHeader';
 
 const MainPageLayout = ({children}: {children: ReactNode}) => {
   return (
     <>
-      <Header />
+      <GeneralHeader />
       {children}
     </>
   );

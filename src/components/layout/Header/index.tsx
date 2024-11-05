@@ -5,25 +5,38 @@ import NavigationButtonContainer from '@/components/layout/NavigationButtonConta
 import NavigationLinkContainer from '@/components/layout/NavigationLinkContainer';
 import auth from '@/utils/auth';
 
-const Header = async (props: NavigationProps) => {
+const Header = (props: NavigationProps) => {
   const isLoggedIn = auth.getLoginStatus();
 
   return (
     <Navigation {...props}>
       <NavigationButtonContainer>
         <NavigationLinkContainer>
-          <NavigationButton href="/announcement">
+          <NavigationButton href="/announcement" invert={props.invert}>
             AI 맞춤채용공고
           </NavigationButton>
-          <NavigationButton href="/resume">채용공고</NavigationButton>
-          <NavigationButton href="/resume">포트폴리오</NavigationButton>
-          <NavigationButton href="/resume">이력서</NavigationButton>
+          <NavigationButton href="/resume" invert={props.invert}>
+            채용공고
+          </NavigationButton>
+          <NavigationButton href="/resume" invert={props.invert}>
+            포트폴리오
+          </NavigationButton>
+          <NavigationButton href="/resume" invert={props.invert}>
+            이력서
+          </NavigationButton>
         </NavigationLinkContainer>
         <SearchButton />
         {isLoggedIn ? (
-          <NavigationButton href="/mypage">마이페이지</NavigationButton>
+          <NavigationButton href="/mypage" invert={props.invert}>
+            마이페이지
+          </NavigationButton>
         ) : (
-          <NavigationButton href="/signin" buttonType="outlined">
+          <NavigationButton
+            href="/signin"
+            outlined
+            invert={props.invert}
+            selected
+          >
             로그인
           </NavigationButton>
         )}
