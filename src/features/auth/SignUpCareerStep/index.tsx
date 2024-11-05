@@ -6,7 +6,7 @@ import {useFormState} from 'react-dom';
 
 import signupAction from '@/actions/signupAction';
 import Slider from '@/components/common/Slider';
-import {useSignupForm} from '@/context/signup-context';
+import {useSignupForm} from '@/context/SignupContext';
 import JobComboBox from '@/features/auth/JobComboBox';
 
 import styles from './signupCareerStep.module.scss';

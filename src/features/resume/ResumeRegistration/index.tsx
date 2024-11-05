@@ -3,7 +3,6 @@
 import classNames from 'classnames/bind';
 import type {ChangeEvent, DragEvent, FormEvent, KeyboardEvent} from 'react';
 import React, {useRef, useState} from 'react';
-import {useFormState} from 'react-dom';
 import {IoMdClose} from 'react-icons/io';
 
 import resumeUpdateAction from '@/actions/resume/resumeUpdateAction';
@@ -17,10 +16,8 @@ const isValidFileType = (file: File, allowedTypes: string[]) => {
 };
 
 const cx = classNames.bind(styles);
-const INITIAL_STATE = {file: null, error: '', success: false};
 
 const ResumeRegistration = () => {
-  const [, formAction] = useFormState(resumeUpdateAction, INITIAL_STATE);
   const [file, setFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -54,7 +51,7 @@ const ResumeRegistration = () => {
     }
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!file) {
@@ -64,7 +61,9 @@ const ResumeRegistration = () => {
 
     const formData = new FormData();
     formData.append('file', file);
-    formAction(formData);
+
+    const response = await resumeUpdateAction({}, formData);
+    console.log(response.success);
   };
 
   // 접근성을 위한 key 동작 추가
