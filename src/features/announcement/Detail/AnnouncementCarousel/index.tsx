@@ -37,9 +37,9 @@ interface AnnouncementCarouselProps {
 const AnnouncementCarousel = ({imageArray}: AnnouncementCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [currentList, setCurrentList] = useState<string[]>([]);
-  let touchStartX: number;
-  let touchEndX: number;
 
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
   const carouselRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -88,7 +88,7 @@ const AnnouncementCarousel = ({imageArray}: AnnouncementCarouselProps) => {
   };
 
   const handleTouchStart: TouchEventHandler<HTMLDivElement> = e => {
-    touchStartX = e.nativeEvent.touches[0].clientX;
+    touchStartX.current = e.nativeEvent.touches[0].clientX;
   };
 
   const handleTouchMove: TouchEventHandler<HTMLDivElement> = e => {
@@ -96,13 +96,13 @@ const AnnouncementCarousel = ({imageArray}: AnnouncementCarouselProps) => {
 
     if (carouselRef.current !== null) {
       carouselRef.current.style.transform = `translateX(calc(-${currentIndex}00% - ${
-        (touchStartX - currentTouchX) * 2 || 0
+        (touchStartX.current - currentTouchX) * 2 || 0
       }px))`;
     }
   };
 
   const handleTouchEnd: TouchEventHandler<HTMLDivElement> = e => {
-    touchEndX = e.nativeEvent.changedTouches[0].clientX;
+    touchEndX.current = e.nativeEvent.changedTouches[0].clientX;
 
     if (touchStartX >= touchEndX) {
       handleSwipe(1);

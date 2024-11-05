@@ -12,8 +12,7 @@ const AnnouncementDetailPage = async () => {
     return;
   }
 
-  const response = await AnnouncementService.getAnnouncementDetail(1, token);
-  const {data} = response;
+  const {data} = await AnnouncementService.getAnnouncementDetail(1, token);
 
   return (
     <>
