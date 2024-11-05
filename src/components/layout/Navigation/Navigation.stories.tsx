@@ -21,7 +21,7 @@ export const Default: Story = {
   },
   render: args => (
     <Navigation {...args}>
-      <NavigationButton href="/announcement">맞춤채용공고</NavigationButton>
+      <NavigationButton href="/recommend">맞춤채용공고</NavigationButton>
       <NavigationButton href="/resume">이력서</NavigationButton>
       <NavigationButton buttonType="outlined" href="/">
         로그인
@@ -36,7 +36,7 @@ export const InvertedBackground: Story = {
   },
   render: args => (
     <Navigation {...args}>
-      <NavigationButton href="/announcement">맞춤채용공고</NavigationButton>
+      <NavigationButton href="/recommend">맞춤채용공고</NavigationButton>
       <NavigationButton href="/resume">이력서</NavigationButton>
       <NavigationButton buttonType="outlined" href="/">
         로그인

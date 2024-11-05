@@ -1,8 +1,8 @@
 import CompanyCard from '@/components/common/CompanyCard';
 
-import styles from './announcement.module.scss';
+import styles from './recommend.module.scss';
 
-const Announcement = () => {
+const Recommend = () => {
   return (
     <div className={styles.container}>
       <CompanyCard />
@@ -14,4 +14,4 @@ const Announcement = () => {
   );
 };
 
-export default Announcement;
+export default Recommend;

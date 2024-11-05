@@ -1,10 +1,10 @@
-import AnnouncementBox from '@/features/announcement/Detail/AnnouncementBox';
-import AnnouncementCarousel from '@/features/announcement/Detail/AnnouncementCarousel';
-import AnnouncementTitle from '@/features/announcement/Detail/AnnouncementTitle';
-import AnnouncementService from '@/services/ableJ';
+import RecruitmentBox from '@/features/recruitment/Detail/RecruitmentBox';
+import RecruitmentCarousel from '@/features/recruitment/Detail/RecruitmentCarousel';
+import RecruitmentTitle from '@/features/recruitment/Detail/RecruitmentTitle';
+import RecruitmentService from '@/services/ableJ';
 import auth from '@/utils/auth';
 
-const AnnouncementDetailPage = async () => {
+const RecruitmentDetailPage = async () => {
   const token = await auth.getAccessToken();
 
   if (!token) {
@@ -12,12 +12,12 @@ const AnnouncementDetailPage = async () => {
     return;
   }
 
-  const {data} = await AnnouncementService.getAnnouncementDetail(1, token);
+  const {data} = await RecruitmentService.getRecruitmentDetail(1, token);
 
   return (
     <>
-      <AnnouncementCarousel imageArray={data.images} />
-      <AnnouncementTitle
+      <RecruitmentCarousel imageArray={data.images} />
+      <RecruitmentTitle
         name={data.name}
         category={data.category}
         childCategories={data.childCategories}
@@ -27,7 +27,7 @@ const AnnouncementDetailPage = async () => {
         annualTo={data.annualTo}
         annualFrom={data.annualFrom}
       />
-      <AnnouncementBox
+      <RecruitmentBox
         intro={data.intro}
         task={data.task}
         requirement={data.requirement}
@@ -39,4 +39,4 @@ const AnnouncementDetailPage = async () => {
   );
 };
 
-export default AnnouncementDetailPage;
+export default RecruitmentDetailPage;

@@ -1,6 +1,6 @@
 import {ResponseType} from '@/types/common';
 
-export interface AnnouncementDetail {
+export interface RecruitmentDetail {
   recruitmentId: number;
   name: string;
   category: Category;
@@ -35,4 +35,4 @@ export interface Company {
   strict?: string;
 }
 
-export type AnnouncementDetailResponse = ResponseType<AnnouncementDetail>;
+export type RecruitmentDetailResponse = ResponseType<RecruitmentDetail>;

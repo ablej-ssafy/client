@@ -1,11 +1,11 @@
-import styles from './announcementTag.module.scss';
+import styles from './recruitmentTag.module.scss';
 
-interface AnnouncementTagProps {
+interface RecruitmentTagProps {
   title: string;
   content: string;
 }
 
-const AnnouncementTag = ({title, content}: AnnouncementTagProps) => {
+const RecruitmentTag = ({title, content}: RecruitmentTagProps) => {
   return (
     <div className={styles.container}>
       <p className={styles['text-title']}>{title}</p>
@@ -14,4 +14,4 @@ const AnnouncementTag = ({title, content}: AnnouncementTagProps) => {
   );
 };
 
-export default AnnouncementTag;
+export default RecruitmentTag;
