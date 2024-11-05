@@ -14,7 +14,19 @@ export default {
     const newFormData = new FormData();
     newFormData.append('file', file, originalName);
 
-    return httpClient.post('/recruitment/recommend', newFormData, {
+    return httpClient.post('/recommend', newFormData, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+
+  /**
+   * pdf 파일 삭제 요청을 보내는 함수
+   * @param resumeId pdf 파일 id
+   */
+  resumeDelete: async (resumeId: number, accessToken: string) => {
+    return httpClient.delete(`/resume/pdf/${resumeId}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

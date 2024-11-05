@@ -5,7 +5,7 @@ import {FormEventHandler, useState} from 'react';
 import {z, ZodError} from 'zod';
 
 import LabelInput from '@/components/common/LabelInput';
-import {useSignupForm} from '@/context/signup-context';
+import {useSignupForm} from '@/context/SignupContext';
 
 import styles from './signupInfoStep.module.scss';
 

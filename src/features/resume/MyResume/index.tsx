@@ -24,18 +24,23 @@ const MyResume = async () => {
         <div className={styles['card-container-grid']}>
           <MyResumeCard
             key={0}
+            id={0}
             title={'포트폴리오'}
             date={getTodayDate()}
             type="포트폴리오"
           />
-          {data?.length &&
-            data.map(item => (
-              <MyResumeCard
-                key={item.id}
-                title={item.fileName}
-                date={item.createdAt}
-              />
-            ))}
+          {data
+            ? data
+                .reverse()
+                .map(item => (
+                  <MyResumeCard
+                    key={item.id}
+                    id={item.id}
+                    title={item.fileName}
+                    date={item.createdAt}
+                  />
+                ))
+            : null}
         </div>
       </div>
     </div>
