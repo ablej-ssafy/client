@@ -1,7 +1,7 @@
 import NoResume from '@/features/recommend/NoResume';
 
-const RecommendsPage = () => {
+const RecommendPage = () => {
   return <NoResume />;
 };
 
-export default RecommendsPage;
+export default RecommendPage;

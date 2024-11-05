@@ -17,7 +17,7 @@ export interface NavigationProps extends PropsWithChildren {
   invertBackground?: boolean;
 }
 
-const STATIC_NAVIGATION_PATH = ['/recommends', '/resume', '/mypage'];
+const STATIC_NAVIGATION_PATH = ['/recommend', '/resume', '/mypage'];
 
 const navVarients: Variants = {
   normal: {
