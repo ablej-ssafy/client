@@ -1,7 +1,8 @@
 import {getCookie} from 'cookies-next';
+import {cookies} from 'next/headers';
 
 export default {
   getLoginStatus: () => {
-    return !!getCookie('authenticated');
+    return !!getCookie('authenticated', {cookies});
   },
 };

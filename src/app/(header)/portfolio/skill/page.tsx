@@ -1,7 +1,9 @@
 'use client';
 
+import SkillSection from '@/features/portfolio/section/SkillSection';
+
 const SkillPage = () => {
-  return <div>SkillPage</div>;
+  return <SkillSection />;
 };
 
 export default SkillPage;
