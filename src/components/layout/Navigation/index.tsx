@@ -1,58 +1,23 @@
-'use client';
-
 import classNames from 'classnames/bind';
-import type {Variants} from 'framer-motion';
-import * as motion from 'framer-motion/client';
 import Link from 'next/link';
-import {usePathname} from 'next/navigation';
 import {PropsWithChildren} from 'react';
-
-import useInvertNavigation from '@/hooks/useInvertNavigation';
 
 import styles from './navigation.module.scss';
 
 const cx = classNames.bind(styles);
 
 export interface NavigationProps extends PropsWithChildren {
-  invertBackground?: boolean;
+  invert?: boolean;
 }
 
-const STATIC_NAVIGATION_PATH = ['/recommend', '/resume', '/mypage'];
-
-const navVarients: Variants = {
-  normal: {
-    transition: {duration: 0.3},
-  },
-  inverted: {
-    backgroundColor: 'rgba(110, 85, 255, 0.45)',
-    backdropFilter: 'blur(25px)',
-    transition: {duration: 0.3},
-  },
-};
-
-const Navigation = ({children, invertBackground}: NavigationProps) => {
-  const pathname = usePathname();
-  const staticPosition = STATIC_NAVIGATION_PATH.some(path =>
-    pathname.startsWith(path),
-  );
-  const inverted = useInvertNavigation(1);
-
+const Navigation = ({children, invert}: NavigationProps) => {
   return (
-    <motion.nav
-      className={cx(
-        'navigation',
-        {static: staticPosition},
-        {inverted: invertBackground},
-      )}
-      variants={navVarients}
-      initial={'normal'}
-      animate={inverted ? 'inverted' : 'normal'}
-    >
-      <Link className={cx('title')} href={'/'}>
+    <nav className={cx('navigation', {invert: invert})}>
+      <Link className={cx('title', {invert: invert})} href={'/'}>
         AI HeadHunting
       </Link>
-      <ul className={cx('nav-items')}>{children}</ul>
-    </motion.nav>
+      <div className={cx('nav-button-container')}>{children}</div>
+    </nav>
   );
 };
 

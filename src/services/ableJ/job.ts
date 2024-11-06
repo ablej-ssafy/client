@@ -3,6 +3,6 @@ import {GetAllJobsResponse} from '@/types/ableJ';
 
 export default {
   getAllJobs: async () => {
-    return httpClient.get<GetAllJobsResponse>('/jobs');
+    return httpClient.get<GetAllJobsResponse>('/recruitment/category');
   },
 };

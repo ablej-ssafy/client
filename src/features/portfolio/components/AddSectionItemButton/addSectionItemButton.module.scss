@@ -1,0 +1,19 @@
+.button-container {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  justify-content: center;
+
+  .button-text {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: transparent;
+  }
+}

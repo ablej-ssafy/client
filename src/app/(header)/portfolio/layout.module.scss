@@ -1,15 +1,23 @@
 @use '@/styles/constants/colors' as colors;
+@use '@/styles/constants/layout' as layout;
 
 .container {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  height: 100%;
+  min-height: calc(100vh - #{layout.$nav_height});
   padding: 2.5rem;
-}
+  background-color: #f6f6f6;
 
-.drag-and-drop {
-  width: 23rem;
-  height: 40rem;
-  padding: 1rem;
-  background-color: #eef1ff;
-  border-radius: 2rem;
+  .main {
+    grid-column: 2;
+    height: fit-content;
+    background-color: colors.$white;
+    border-radius: layout.$border_button;
+  }
+
+  .sidebar {
+    grid-column: 3;
+  }
 }

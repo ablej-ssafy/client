@@ -1,0 +1,10 @@
+@use '@/styles/constants/colors' as colors;
+
+.divider {
+  flex: 1;
+  width: 100%;
+  min-width: 300px;
+  height: 1px;
+  min-height: 1px;
+  background-color: colors.$gray2;
+}

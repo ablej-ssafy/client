@@ -1,7 +1,9 @@
 'use client';
 
+import ActivityInfoSection from '@/features/portfolio/section/ActivityInfoSection';
+
 const ActivityPage = () => {
-  return <div>ActivityPage</div>;
+  return <ActivityInfoSection />;
 };
 
 export default ActivityPage;

@@ -1,7 +1,9 @@
 'use client';
 
+import EducationInfoSection from '@/features/portfolio/section/EducationInfoSection';
+
 const EducationPage = () => {
-  return <div>EducationPage</div>;
+  return <EducationInfoSection />;
 };
 
 export default EducationPage;

@@ -9,13 +9,38 @@
   padding: 0 14px;
   font-size: 1.5rem;
   font-weight: 600;
-  color: colors.$white;
+  color: colors.$black;
   background-color: transparent;
   border-radius: layout.$border_button;
   transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+
+  &:hover {
+    color: colors.$primary;
+    cursor: pointer;
+  }
+
+  &.selected {
+    color: colors.$primary;
+  }
+
+  &.outlined {
+    border: 1px solid colors.$black;
+
+    &:hover {
+      border-color: colors.$primary;
+    }
+
+    &.selected {
+      border-color: colors.$primary;
+    }
+  }
+}
+
+.invert {
+  color: colors.$white;
 
   &:hover {
     color: colors.$primary;
@@ -23,12 +48,7 @@
     background-color: colors.$white;
   }
 
-  &.selected {
-    color: colors.$primary;
-    border-color: colors.$primary;
+  &.outlined {
+    border: 1px solid colors.$white;
   }
-}
-
-.outlined {
-  border: 1px solid colors.$white;
 }

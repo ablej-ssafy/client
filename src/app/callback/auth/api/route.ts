@@ -13,8 +13,11 @@ export const POST = async (request: Request) => {
   const data = await response;
 
   const cookieStore = cookies();
-  cookieStore.set('accessToken', data.accessToken, cookieOptions);
   cookieStore.set('refreshToken', data.refreshToken, cookieOptions);
+  cookieStore.set('accessToken', data.accessToken, {
+    ...cookieOptions,
+    httpOnly: false,
+  });
   cookieStore.set('authenticated', 'true', {
     ...cookieOptions,
     httpOnly: false,

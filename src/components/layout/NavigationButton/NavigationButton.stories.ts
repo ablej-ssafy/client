@@ -18,12 +18,14 @@ export const Default: Story = {
     href: '/home',
     children: 'Home',
     selected: false,
+    outlined: false,
+    invert: false,
   },
 };
 
 export const OutlinedButton: Story = {
   args: {
-    buttonType: 'outlined',
+    outlined: true,
     children: 'Sign In',
   },
 };

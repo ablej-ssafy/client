@@ -1,12 +1,12 @@
-import {ReactNode} from 'react';
+import type {ReactNode} from 'react';
 
 import Footer from '@/components/layout/Footer';
-import Header from '@/components/layout/Header';
+import GeneralHeader from '@/components/layout/GeneralHeader';
 
 const MainPageLayout = ({children}: {children: ReactNode}) => {
   return (
     <>
-      <Header />
+      <GeneralHeader />
       {children}
       <Footer />
     </>

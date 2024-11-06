@@ -1,7 +1,9 @@
 'use client';
 
+import BasicInfoSection from '@/features/portfolio/section/BasicInfoSection';
+
 const ProfilePage = () => {
-  return <div>ProfilePage</div>;
+  return <BasicInfoSection />;
 };
 
 export default ProfilePage;
