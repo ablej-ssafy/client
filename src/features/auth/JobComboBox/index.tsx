@@ -62,24 +62,25 @@ const JobComboBox = () => {
               value={keyword}
             />
             <ul className={cx('dropdown-list')}>
-              {jobs
-                .filter(job =>
-                  disassemble(job.title).includes(disassemble(keyword)),
-                )
-                .map(job => (
-                  <li key={job.id}>
-                    <button
-                      className={cx('dropdown-button', {
-                        selected: selectedJobs.includes(job.id),
-                      })}
-                      value={job.id}
-                      onClick={handleSelectJobs}
-                      type="button"
-                    >
-                      {job.title}
-                    </button>
-                  </li>
-                ))}
+              {!!jobs?.length &&
+                jobs
+                  .filter(job =>
+                    disassemble(job.title).includes(disassemble(keyword)),
+                  )
+                  .map(job => (
+                    <li key={job.id}>
+                      <button
+                        className={cx('dropdown-button', {
+                          selected: selectedJobs.includes(job.id),
+                        })}
+                        value={job.id}
+                        onClick={handleSelectJobs}
+                        type="button"
+                      >
+                        {job.title}
+                      </button>
+                    </li>
+                  ))}
             </ul>
           </div>
         )}
