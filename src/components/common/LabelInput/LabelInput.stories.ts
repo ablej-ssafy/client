@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 
-import LabelInput from './index';
+import LabelInput from './';
 
 const meta = {
   title: 'Common/LabelInput',

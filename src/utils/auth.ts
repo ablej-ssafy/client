@@ -5,4 +5,8 @@ export default {
   getLoginStatus: () => {
     return !!getCookie('authenticated', {cookies});
   },
+
+  getAccessToken: () => {
+    return getCookie('accessToken', {cookies});
+  },
 };

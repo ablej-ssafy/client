@@ -43,7 +43,7 @@ const FourthSection = () => {
           title={'Drag And Drop'}
           description={
             <>
-              <span>더이상 채용공고를 찾기 마세요</span>
+              <span>더이상 채용공고를 찾지 마세요</span>
               <span>AI HeadHunting이 구직자의 이력서에 기반해서</span>
               <span>채용공고를 추천해드립니다.</span>
             </>

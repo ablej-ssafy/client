@@ -3,30 +3,22 @@
 import classNames from 'classnames/bind';
 import type {ChangeEvent, DragEvent, FormEvent, KeyboardEvent} from 'react';
 import React, {useRef, useState} from 'react';
-import {useFormState} from 'react-dom';
 import {IoMdClose} from 'react-icons/io';
 
-import resumeUpdateAction from '@/actions/resumeUpdateAction';
+import resumeUpdateAction from '@/actions/resume/resumeUpdateAction';
+import {revalidateResumePage} from '@/actions/resume/revalidatePathAction';
 import Button from '@/components/common/Button';
 
 import styles from './resumeRegistration.module.scss';
 
 // 파일 확장자 검사
 const isValidFileType = (file: File, allowedTypes: string[]) => {
-  if (allowedTypes.includes(file.type)) {
-    console.log('유효한 파일이 선택되었습니다:', file);
-    return true;
-  } else {
-    console.log(`${allowedTypes} 파일만 업로드할 수 있습니다.`);
-    return false;
-  }
+  return allowedTypes.includes(file.type);
 };
 
 const cx = classNames.bind(styles);
-const INITIAL_STATE = {file: null, error: '', success: false};
 
 const ResumeRegistration = () => {
-  const [, formAction] = useFormState(resumeUpdateAction, INITIAL_STATE);
   const [file, setFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -60,7 +52,7 @@ const ResumeRegistration = () => {
     }
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!file) {
@@ -70,7 +62,12 @@ const ResumeRegistration = () => {
 
     const formData = new FormData();
     formData.append('file', file);
-    formAction(formData);
+
+    const response = await resumeUpdateAction({}, formData);
+    if (response.success) {
+      handleRemoveFile();
+      await revalidateResumePage();
+    }
   };
 
   // 접근성을 위한 key 동작 추가

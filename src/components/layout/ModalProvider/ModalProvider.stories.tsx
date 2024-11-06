@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 
 import useModalStore from '@/zustand/useModalStore';
 
-import ModalProvider from './index';
+import ModalProvider from './';
 
 const meta: Meta<typeof ModalProvider> = {
   title: 'Layout/ModalProvider',

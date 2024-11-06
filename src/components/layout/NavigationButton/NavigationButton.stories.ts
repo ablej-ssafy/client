@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 
-import NavigationButton from './index';
+import NavigationButton from './';
 
 const meta: Meta<typeof NavigationButton> = {
   title: 'Layout/NavigationButton',

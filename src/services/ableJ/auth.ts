@@ -15,21 +15,21 @@ export default {
    * @param password 비밀번호
    */
   login: async (email: Email, password: Password): Promise<LoginResponse> => {
-    return httpClient.post('/api/v1/auth/sign-in', {email, password});
+    return httpClient.post('/auth/sign-in', {email, password});
   },
   /**
    * 로그아웃 요청을 보내는 함수
    * @param refreshToken 리프레시 토큰
    */
   logout: async (refreshToken: RefreshToken) => {
-    return httpClient.post('/api/v1/auth/sign-out', {refreshToken});
+    return httpClient.post('/auth/sign-out', {refreshToken});
   },
   /**
    * 회원가입 요청을 보내는 함수
    * @param form 회원가입 폼
    */
   signUp: async (form: SignupForm): Promise<SignUpResponse> => {
-    return httpClient.post('/api/v1/auth/sign-up', form);
+    return httpClient.post('/auth/sign-up', form);
   },
   /**
    * 토큰을 저장하는 함수

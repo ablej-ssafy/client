@@ -1,0 +1,22 @@
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/mixin/index' as mixin;
+
+.container {
+  gap: 1rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: rgba(colors.$primary, 0.5);
+  border-radius: 1rem;
+
+  &:hover {
+    background-color: colors.$primary;
+  }
+
+  @include mixin.flex-default;
+}
+
+.scrap {
+  color: colors.$white;
+
+  @include mixin.text-bold(600, 2rem);
+}

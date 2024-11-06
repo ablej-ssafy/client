@@ -1,0 +1,31 @@
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  height: 100%;
+}
+
+@media (width <= 800px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .scrap-button {
+    display: none;
+  }
+}
+
+.recruitment-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.scrap-map {
+  position: sticky;
+  top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

@@ -1,0 +1,29 @@
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/mixin/index' as mixin;
+
+.container {
+  border: 1px solid #d2d2d2;
+  border-radius: 1rem;
+}
+
+.map {
+  width: 100%;
+  height: 230px;
+  background-color: #d2d2d2;
+  border-radius: 1rem 1rem 0 0;
+
+  @include mixin.flex-default;
+}
+
+.location {
+  padding: 1.5rem;
+  text-align: center;
+
+  @include mixin.text-bold(500, 1.4rem);
+}
+
+.marker-container {
+  width: 100%;
+  height: 100%;
+  background-color: colors.$primary;
+}

@@ -42,7 +42,7 @@ const MainSection = () => {
             <br />
             나에게 맞는 채용 공고를 확인하세요
           </motion.p>
-          <Link href="/announcement">기업 추천 받기</Link>
+          <Link href="/recommend">기업 추천 받기</Link>
         </div>
         <div className={styles['icon-wrapper']}>
           <div onClick={handleScroll}></div>

@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 
-import CompanyImage from './index';
+import CompanyImage from './';
 
 const meta = {
   title: 'Common/CompanyImage',

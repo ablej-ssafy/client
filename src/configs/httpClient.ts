@@ -2,7 +2,7 @@ type CustomBody = BodyInit | object;
 type CustomOptions = Omit<RequestInit, 'body'> & {body?: CustomBody};
 
 class HttpClient {
-  static BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  static BASE_URL = process.env.NEXT_PUBLIC_BASE_URL + '/api/v1';
   private static instance: null | HttpClient = null;
   private static httpClient: typeof fetch;
 
