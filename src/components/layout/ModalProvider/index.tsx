@@ -1,5 +1,3 @@
-'use client';
-
 import classNames from 'classnames/bind';
 import {ReactNode} from 'react';
 import {RxCross2} from 'react-icons/rx';
