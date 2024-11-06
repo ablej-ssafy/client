@@ -1,5 +1,7 @@
 'use client';
 
+import {useRouter} from 'next/navigation';
+import type {MouseEvent} from 'react';
 import {useState} from 'react';
 import {BsTrash3} from 'react-icons/bs';
 import {IoIosArrowForward} from 'react-icons/io';
@@ -20,12 +22,18 @@ interface ResumeCardProps {
 
 const MyResumeCard = ({id, url, title, date, type}: ResumeCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const handleDelete = async () => {
     const response = await resumeDeleteAction(id);
     if (response.success) {
       await revalidateResumePage();
     }
+  };
+
+  const handleNavigateToRecommend = (e: MouseEvent) => {
+    e.stopPropagation();
+    router.push(`/recommend/${id}`);
   };
 
   const handleOpenPDF = () => {
@@ -58,7 +66,7 @@ const MyResumeCard = ({id, url, title, date, type}: ResumeCardProps) => {
           <div>{title}</div>
           <div>{date.replaceAll('-', '.')}</div>
         </div>
-        <div className={styles.link}>
+        <div className={styles.link} onClick={handleNavigateToRecommend}>
           <span>
             추천 기업
             <IoIosArrowForward />

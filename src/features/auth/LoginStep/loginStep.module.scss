@@ -13,7 +13,8 @@
   }
 
   .text-content {
-    font-size: 1.2rem;
+    margin-top: 4px;
+    font-size: 1.4rem;
     color: colors.$gray4;
   }
 
@@ -38,7 +39,7 @@
     width: 33.8rem;
     height: 3.5rem;
     margin-top: 2.5rem;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     cursor: pointer;
     border: none;
     border-radius: 0.8rem;
@@ -60,10 +61,16 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-top: 4px;
+
+    & > p {
+      font-size: 1.2rem;
+      color: colors.$gray4;
+    }
   }
 
   .border-line {
-    width: 10rem;
+    width: 14rem;
     height: 0.1rem;
     margin-right: 2rem;
     margin-left: 2rem;
