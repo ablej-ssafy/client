@@ -1,5 +1,5 @@
 import httpClient from '@/configs/httpClient';
-import {GetResumePDFResponse} from '@/types/ableJ';
+import {GetAllTechSkillsResponse, GetResumePDFResponse} from '@/types/ableJ';
 
 export default {
   /**
@@ -41,6 +41,13 @@ export default {
     return httpClient.get<GetResumePDFResponse>('/resume/pdf', {
       headers: {
         Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+  getAllSkills: async (accessToken?: string) => {
+    return httpClient.get<GetAllTechSkillsResponse>('/tech/skill', {
+      headers: {
+        Authorization: accessToken ? `Bearer ${accessToken}` : '',
       },
     });
   },
