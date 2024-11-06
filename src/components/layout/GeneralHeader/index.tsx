@@ -1,18 +1,16 @@
 import classNames from 'classnames/bind';
 
+import LoginButton from '@/app/components/LoginButton';
 import Header from '@/components/layout/Header';
-import {NavigationProps} from '@/components/layout/Navigation';
 
 import styles from './generalHeader.module.scss';
 
 const cx = classNames.bind(styles);
 
-type GeneralHeaderProps = NavigationProps;
-
-const GeneralHeader = (props: GeneralHeaderProps) => {
+const GeneralHeader = () => {
   return (
     <>
-      <Header {...props} />
+      <Header rightComponent={<LoginButton />} />
       <div className={cx('clearfix')} />
     </>
   );

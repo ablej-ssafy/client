@@ -1,9 +1,13 @@
-import Header from '@/components/layout/Header';
+'use client';
 
-const LandingHeader = () => {
-  // const inverted = useInvertNavigation(1);
-  // FIXME: 하이드레이션 에러
-  return <Header />;
+import Header, {HeaderProps} from '@/components/layout/Header';
+import useInvertNavigation from '@/hooks/useInvertNavigation';
+
+type LandingHeaderProps = Omit<HeaderProps, 'invert'>;
+
+const LandingHeader = ({rightComponent}: LandingHeaderProps) => {
+  const inverted = useInvertNavigation(1);
+  return <Header invert={!inverted} rightComponent={rightComponent} />;
 };
 
 export default LandingHeader;
