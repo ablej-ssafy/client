@@ -45,8 +45,11 @@ const loginAction = async (_prevState: unknown, formData: FormData) => {
   const {accessToken, refreshToken} = response.data;
   const cookieStore = cookies();
 
-  cookieStore.set('accessToken', accessToken, cookieOptions);
   cookieStore.set('refreshToken', refreshToken, cookieOptions);
+  cookieStore.set('accessToken', accessToken, {
+    ...cookieOptions,
+    httpOnly: false,
+  });
   cookieStore.set('authenticated', 'true', {
     ...cookieOptions,
     httpOnly: false,
