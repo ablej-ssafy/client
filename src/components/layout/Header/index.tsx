@@ -21,16 +21,16 @@ const Header = ({rightComponent, ...props}: HeaderProps) => {
       <NavigationButtonContainer>
         <NavigationLinkContainer>
           <NavigationButton
-            href="/announcement"
+            href="/recommend"
             invert={props.invert}
-            selected={pathname.includes('/announcement')}
+            selected={pathname.includes('/recommend')}
           >
             AI 맞춤채용공고
           </NavigationButton>
           <NavigationButton
-            href="/resume"
+            href="/recruitments"
             invert={props.invert}
-            selected={pathname.includes('/resume')}
+            selected={pathname.includes('/recruitments')}
           >
             채용공고
           </NavigationButton>
