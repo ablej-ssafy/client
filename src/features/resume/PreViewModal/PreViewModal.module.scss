@@ -1,0 +1,44 @@
+@use '@/styles/mixin/index' as mixin;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0 0 0 / 50%);
+
+  @include mixin.flex-default;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  height: 92vh;
+  max-height: 750px;
+  background-color: #fff;
+
+  iframe {
+    height: 100%;
+  }
+}
+
+@media (width <= 768px) {
+  .modal {
+    width: 80%;
+  }
+}
+
+@media (width <= 430px) {
+  .overlay {
+    min-width: 360px;
+  }
+
+  .modal {
+    width: 90%;
+    min-width: 328px;
+    height: 80vh;
+  }
+}

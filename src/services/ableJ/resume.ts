@@ -14,7 +14,7 @@ export default {
     const newFormData = new FormData();
     newFormData.append('file', file, originalName);
 
-    return httpClient.post('/recommend', newFormData, {
+    return httpClient.post('/resume/pdf', newFormData, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
