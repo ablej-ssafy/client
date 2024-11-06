@@ -11,13 +11,13 @@
   background-color: #f6f6f6;
 
   .main {
-    grid-column: 2; // Spans the first two columns
+    grid-column: 2;
     height: fit-content;
     background-color: colors.$white;
     border-radius: layout.$border_button;
   }
 
   .sidebar {
-    grid-column: 3; // Occupies the third column
+    grid-column: 3;
   }
 }
