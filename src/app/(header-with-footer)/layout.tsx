@@ -1,13 +1,12 @@
-import {ReactNode} from 'react';
+import type {ReactNode} from 'react';
 
-import LoginButton from '@/app/components/LoginButton';
 import Footer from '@/components/layout/Footer';
-import LandingHeader from '@/components/layout/LandingHeader';
+import GeneralHeader from '@/components/layout/GeneralHeader';
 
 const MainPageLayout = ({children}: {children: ReactNode}) => {
   return (
     <>
-      <LandingHeader rightComponent={<LoginButton />} />
+      <GeneralHeader />
       {children}
       <Footer />
     </>
