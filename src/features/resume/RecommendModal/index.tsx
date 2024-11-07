@@ -17,8 +17,6 @@ interface PreviewModalProps {
 const RecommendModal = ({isOpen, onClose, cards}: PreviewModalProps) => {
   if (!isOpen) return null;
 
-  console.log(cards);
-
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>

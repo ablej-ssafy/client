@@ -60,7 +60,6 @@ const ResumeRegistration = () => {
     e.preventDefault();
 
     if (!file) {
-      console.log('선택된 파일이 없습니다.');
       return;
     }
 

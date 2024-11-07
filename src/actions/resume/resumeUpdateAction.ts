@@ -19,7 +19,6 @@ const resumeUpdateAction = async (
 
   try {
     const response = await resumeService.resumeUpload(formData, token);
-    console.log(response);
     return {success: true, data: response.data};
   } catch (error) {
     console.error('파일 업로드 중 api 오류:', error);
