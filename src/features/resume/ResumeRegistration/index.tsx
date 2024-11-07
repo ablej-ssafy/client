@@ -21,10 +21,10 @@ const isValidFileType = (file: File, allowedTypes: string[]) => {
 const cx = classNames.bind(styles);
 
 const ResumeRegistration = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [cards, setCards] = useState<RecruitmentCard[]>([]);
   const [file, setFile] = useState<File | null>(null);
-  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // 파일 선택 시
