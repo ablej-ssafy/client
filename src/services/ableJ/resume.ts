@@ -6,6 +6,7 @@ import {
   GetResumePDFResponse,
   ResumeBasicInfo,
 } from '@/types/ableJ';
+import {ResponseType} from '@/types/common';
 
 export default {
   /**
@@ -88,11 +89,15 @@ export default {
    * @param accessToken 액세스 토큰
    */
   updateResumeBasicInfo: async (
-    resumeBasicInfo: ResumeBasicInfo,
+    resumeBasicInfo: Omit<ResumeBasicInfo, 'resumeBasicId'>,
     accessToken: AccessToken,
   ) => {
-    return httpClient.post('/resume/basic-info', resumeBasicInfo, {
-      headers: {Authorization: `Bearer ${accessToken}`},
-    });
+    return httpClient.post<ResponseType<null>>(
+      '/resume/basic',
+      resumeBasicInfo,
+      {
+        headers: {Authorization: `Bearer ${accessToken}`},
+      },
+    );
   },
 };

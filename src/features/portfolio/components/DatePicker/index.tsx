@@ -39,7 +39,7 @@ const CustomDatePicker = (props: CustomDatePicker) => {
         closeOnScroll={e => e.target === document}
         customInput={<DateButton />}
         tabIndex={1}
-        locale="ko-KR"
+        // locale="ko-KR"
         dateFormat="yyyy.MM.dd"
         name={props.name}
       />

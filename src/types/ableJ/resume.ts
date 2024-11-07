@@ -37,16 +37,16 @@ export interface Skill {
 }
 
 export interface ResumeBasicInfo {
-  resumeBasicId: ResumeBasicId;
-  title: Title;
-  profile: Profile;
-  name: Name;
-  email: Email;
-  birth: Birth;
-  phone: Phone;
-  job: string;
-  introduce: Introduce;
-  portfolioUrl: PortfolioUrl;
+  resumeBasicId?: ResumeBasicId;
+  title?: Title;
+  profile?: Profile;
+  name?: Name;
+  email?: Email;
+  birth?: Birth;
+  phone?: Phone;
+  job?: string;
+  introduce?: Introduce;
+  portfolioUrl?: PortfolioUrl;
 }
 
 export type GetResumePDFResponse = ResponseType<ResumePDF[]>;

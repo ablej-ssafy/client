@@ -1,12 +1,16 @@
 import classNames from 'classnames/bind';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {useFormState} from 'react-dom';
+import toast from 'react-hot-toast';
 
+import updateResumeBasicInfoAction from '@/actions/portfolio/updateResumeBasicInfoAction';
 import Board from '@/features/portfolio/components/Board';
 import CustomDatePicker from '@/features/portfolio/components/DatePicker';
 import Divider from '@/features/portfolio/components/Divider';
 import ImageInput from '@/features/portfolio/components/ImageInput';
 import Input from '@/features/portfolio/components/Input';
 import SectionHeader from '@/features/portfolio/components/SectionHeader';
+import SubmitButton from '@/features/portfolio/components/SubmitButton';
 import TextArea from '@/features/portfolio/components/TextArea';
 import useResumeBasicInfo from '@/hooks/useResumeBasicInfo';
 
@@ -14,14 +18,46 @@ import styles from './basicInfoSection.module.scss';
 
 const cx = classNames.bind(styles);
 
+const INITIAL_STATE = {
+  error: '',
+  success: false,
+};
+
 const BasicInfoSection = () => {
+  const [state, formAction] = useFormState(
+    updateResumeBasicInfoAction,
+    INITIAL_STATE,
+  );
+
   const basicInfo = useResumeBasicInfo();
-  const [introduce, setIntroduce] = useState(basicInfo?.introduce);
-  const [job, setJob] = useState(basicInfo?.job);
-  const [phone, setPhone] = useState(basicInfo?.phone);
+  const [name, setName] = useState('');
+  const [introduce, setIntroduce] = useState('');
+  const [job, setJob] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [birth, setBirth] = useState('');
+
+  useEffect(() => {
+    if (!state.error) return;
+    toast.error(state.error);
+  }, [state]);
+
+  useEffect(() => {
+    if (!state.success) return;
+    toast.success('저장되었습니다.');
+  }, [state]);
+
+  useEffect(() => {
+    setName(basicInfo?.name || '');
+    setIntroduce(basicInfo?.introduce || '');
+    setJob(basicInfo?.job || '');
+    setPhone(basicInfo?.phone || '');
+    setBirth(basicInfo?.birth || '');
+    setEmail(basicInfo?.email || '');
+  }, [basicInfo]);
 
   return (
-    <Board>
+    <Board action={formAction}>
       <SectionHeader title="기본 정보" />
       <Divider />
       <div className={cx('profile')}>
@@ -30,15 +66,15 @@ const BasicInfoSection = () => {
           <Input
             isLabeled={true}
             label="이메일"
-            value={basicInfo?.email}
+            value={email}
             placeholder="example@gmail.com"
             name="email"
-            readOnly
+            onChange={e => setEmail(e.target.value)}
           />
           <CustomDatePicker
             isLabeled
             label="생년월일"
-            value={basicInfo?.birth}
+            value={birth}
             name="birth"
           />
           <Input
@@ -54,8 +90,9 @@ const BasicInfoSection = () => {
       <Input
         isLabeled={true}
         label="이름"
-        value={basicInfo?.name}
+        value={name}
         name="name"
+        onChange={e => setName(e.target.value)}
         placeholder="민준수"
       />
       <Input
@@ -74,6 +111,7 @@ const BasicInfoSection = () => {
         onChange={e => setIntroduce(e.target.value)}
         placeholder="한 줄 소개를 남겨주세요."
       />
+      <SubmitButton>저장</SubmitButton>
     </Board>
   );
 };
