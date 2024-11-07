@@ -1,4 +1,6 @@
 @use '@/styles/mixin/index' as mixin;
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/constants/layout' as layout;
 
 .overlay {
   position: fixed;
@@ -13,10 +15,57 @@
 }
 
 .modal {
+  position: relative;
   display: flex;
   flex-direction: column;
-  width: 550px;
-  height: 92vh;
+  justify-content: space-between;
+  width: 900px;
   max-height: 750px;
+  padding: 64px 36px 48px;
   background-color: #fff;
+  border-radius: layout.$border_card_big;
+
+  .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 0;
+    color: #b6b6b6;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: #616161;
+    }
+  }
+
+  h3 {
+    font-size: 2.6rem;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+.card-container {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0 30px;
+}
+
+.more {
+  gap: 3px;
+  width: inline-flex;
+  margin: 20px 0 4px auto;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: rgb(165 165 165);
+  transition: color 0.2s ease-in-out;
+
+  @include mixin.flex-default;
+
+  &:hover {
+    color: colors.$primary;
+  }
 }

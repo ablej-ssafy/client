@@ -59,7 +59,7 @@ const MyResumeCard = ({id, url, title, date, type}: ResumeCardProps) => {
               handleDelete();
             }}
           >
-            <BsTrash3 size={20} />
+            {!type && <BsTrash3 size={20} />}
           </div>
         </div>
         <div className={styles.center}>
