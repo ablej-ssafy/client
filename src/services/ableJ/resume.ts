@@ -2,7 +2,9 @@ import httpClient from '@/configs/httpClient';
 import {
   AccessToken,
   GetAllTechSkillsResponse,
+  GetResumeBasicInfoResponse,
   GetResumePDFResponse,
+  ResumeBasicInfo,
 } from '@/types/ableJ';
 
 export default {
@@ -67,6 +69,29 @@ export default {
    */
   createResume: async (accessToken: AccessToken) => {
     return httpClient.post('/resume', undefined, {
+      headers: {Authorization: `Bearer ${accessToken}`},
+    });
+  },
+
+  /**
+   * 이력서 기본 정보를 가져오는 함수
+   * @param accessToken 액세스 토큰
+   */
+  getResumeBasicInfo: async (accessToken: AccessToken) => {
+    return httpClient.get<GetResumeBasicInfoResponse>('/resume/basic', {
+      headers: {Authorization: `Bearer ${accessToken}`},
+    });
+  },
+  /**
+   * 이력서 기본 정보를 업데이트하는 함수
+   * @param resumeBasicInfo 이력서 기본 정보
+   * @param accessToken 액세스 토큰
+   */
+  updateResumeBasicInfo: async (
+    resumeBasicInfo: ResumeBasicInfo,
+    accessToken: AccessToken,
+  ) => {
+    return httpClient.post('/resume/basic-info', resumeBasicInfo, {
       headers: {Authorization: `Bearer ${accessToken}`},
     });
   },

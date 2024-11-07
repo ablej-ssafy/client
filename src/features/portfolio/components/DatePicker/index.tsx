@@ -22,7 +22,9 @@ type LabeledCustomDatePicker = {
 const cx = classNames.bind(styles);
 
 const CustomDatePicker = (props: CustomDatePicker) => {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(
+    props.value ? new Date(props.value as string) : new Date(),
+  );
 
   return (
     <div className={cx('datepicker-container')}>
@@ -39,6 +41,7 @@ const CustomDatePicker = (props: CustomDatePicker) => {
         tabIndex={1}
         locale="ko-KR"
         dateFormat="yyyy.MM.dd"
+        name={props.name}
       />
     </div>
   );
