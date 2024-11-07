@@ -35,7 +35,7 @@ const loginAction = async (_prevState: unknown, formData: FormData) => {
 
   if (!response.success) {
     return {
-      error: '로그인에 실패하였습니다.',
+      error: response.message,
       email: [],
       password: [],
       success: false,

@@ -2,7 +2,9 @@
 
 import classNames from 'classnames/bind';
 import {useRouter} from 'next/navigation';
+import {useEffect} from 'react';
 import {useFormState} from 'react-dom';
+import toast from 'react-hot-toast';
 
 import signupAction from '@/actions/signupAction';
 import Slider from '@/components/common/Slider';
@@ -28,9 +30,13 @@ const SignUpCareerStep = () => {
   const [state, formAction] = useFormState(signupAction, INITIAL_STATE);
   const router = useRouter();
 
-  if (state.success) {
-    router.back();
-  }
+  useEffect(() => {
+    if (state.error) {
+      toast.error(state.error);
+      return;
+    }
+    if (state.success) router.back();
+  }, [router, state]);
 
   return (
     <form className={cx('signup-form')} action={formAction}>

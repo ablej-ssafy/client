@@ -4,12 +4,12 @@ import {useRouter, useSearchParams} from 'next/navigation';
 import {Suspense, useCallback, useEffect} from 'react';
 
 import ableJ from '@/services/ableJ';
-import {useAuthStore} from '@/zustand/useAuthStore';
+import {useRootStore} from '@/zustand/rootStore';
 
 const Auth = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const login = useAuthStore(state => state.login);
+  const login = useRootStore(state => state.login);
 
   const initialize = useCallback(async () => {
     const accessToken = searchParams.get('accessToken');
