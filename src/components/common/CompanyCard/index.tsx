@@ -23,10 +23,7 @@ const dummy = {
   scrapped: false,
 };
 
-const CompanyCard = ({
-  item = dummy,
-  scrap = true,
-}: CompanyCardProps): JSX.Element => {
+const CompanyCard = ({item = dummy, scrap = true}: CompanyCardProps) => {
   return (
     <Link href={`/recruitment/${item.recruitmentId}`} className={styles.link}>
       <div className={styles.container}>
