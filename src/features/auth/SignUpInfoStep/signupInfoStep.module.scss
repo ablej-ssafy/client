@@ -7,7 +7,9 @@
 }
 
 .text-content {
-  font-size: 1.2rem;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  font-size: 1.3rem;
   color: colors.$gray4;
 }
 
@@ -17,7 +19,6 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  margin-top: 2rem;
 }
 
 .form-label {
@@ -29,8 +30,8 @@
 .button {
   width: 33.8rem;
   height: 3.5rem;
-  margin-top: 2rem;
-  font-size: 1.2rem;
+  margin-top: 1.8rem;
+  font-size: 1.4rem;
   color: colors.$white;
   cursor: pointer;
   background-color: colors.$primary;

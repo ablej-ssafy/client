@@ -4,7 +4,8 @@
 .container {
   flex-direction: column;
   width: 100%;
-  margin: 175px auto 0;
+  height: calc(100vh - 280px);
+  margin: 0 auto;
 
   @include mixin.flex-default;
 

@@ -35,4 +35,17 @@ export interface Company {
   strict?: string;
 }
 
+export interface RecruitmentCard {
+  recruitmentId: number;
+  name: string;
+  thumbnail: string;
+  companyId: number;
+  companyName: string;
+  location: string;
+  strict: string;
+  category: string;
+  scrapped: boolean;
+}
+
 export type RecruitmentDetailResponse = ResponseType<RecruitmentDetail>;
+export type RecruitmentCardListResponse = ResponseType<RecruitmentCard[]>;
