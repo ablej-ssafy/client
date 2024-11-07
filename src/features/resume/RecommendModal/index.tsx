@@ -1,23 +1,27 @@
 'use client';
 
-import styles from './preViewModal.module.scss';
+import {RecruitmentCard} from '@/types/ableJ';
+
+import styles from './recommendModal.module.scss';
 
 interface PreviewModalProps {
   isOpen: boolean;
   onClose: () => void;
-  pdfUrl: string;
+  cards: RecruitmentCard[];
 }
 
-const PreviewModal = ({isOpen, onClose, pdfUrl}: PreviewModalProps) => {
+const RecommendModal = ({isOpen, onClose, cards}: PreviewModalProps) => {
   if (!isOpen) return null;
+
+  console.log(cards);
 
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
-        <iframe src={`${pdfUrl}#toolbar=0`} />
+        {/* {cards.map(())} */}
       </div>
     </div>
   );
 };
 
-export default PreviewModal;
+export default RecommendModal;

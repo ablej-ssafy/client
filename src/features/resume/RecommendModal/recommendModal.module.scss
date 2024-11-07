@@ -1,0 +1,22 @@
+@use '@/styles/mixin/index' as mixin;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0 0 0 / 50%);
+
+  @include mixin.flex-default;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  height: 92vh;
+  max-height: 750px;
+  background-color: #fff;
+}

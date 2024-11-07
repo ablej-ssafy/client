@@ -68,7 +68,7 @@ const MyResumeCard = ({id, url, title, date, type}: ResumeCardProps) => {
         </div>
         <div className={styles.link} onClick={handleNavigateToRecommend}>
           <span>
-            추천 기업
+            추천 공고
             <IoIosArrowForward />
           </span>
         </div>

@@ -8,7 +8,9 @@ import {IoMdClose} from 'react-icons/io';
 import resumeUpdateAction from '@/actions/resume/resumeUpdateAction';
 import {revalidateResumePage} from '@/actions/resume/revalidatePathAction';
 import Button from '@/components/common/Button';
+import {RecruitmentCard} from '@/types/ableJ';
 
+import RecommendModal from '../RecommendModal';
 import styles from './resumeRegistration.module.scss';
 
 // 파일 확장자 검사
@@ -19,8 +21,10 @@ const isValidFileType = (file: File, allowedTypes: string[]) => {
 const cx = classNames.bind(styles);
 
 const ResumeRegistration = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [cards, setCards] = useState<RecruitmentCard[]>([]);
   const [file, setFile] = useState<File | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // 파일 선택 시
@@ -67,6 +71,8 @@ const ResumeRegistration = () => {
     if (response.success) {
       handleRemoveFile();
       await revalidateResumePage();
+      setIsOpen(true);
+      setCards(response.data);
     }
   };
 
@@ -82,46 +88,57 @@ const ResumeRegistration = () => {
     setFile(null);
   };
 
+  const handleCloseRecommend = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <div className={styles.container}>
-      <h2>PDF 이력서 등록</h2>
-      <form onSubmit={handleSubmit} className={cx('upload-form')}>
-        <div
-          className={cx('upload', {dragging: isDragging})}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-        >
-          <input
-            type="file"
-            accept="application/pdf"
-            onChange={handleFileChange}
-            id="file"
-            ref={fileInputRef}
-            name="file"
-          />
-          {!file ? (
-            <>
-              <label htmlFor="file" tabIndex={0} onKeyDown={handleKeyDown}>
-                <Button text="업로드 파일 선택" />
-              </label>
-              <p>또는 파일을 이곳으로 드래그합니다</p>
-            </>
-          ) : (
-            <div className={styles['file-selected']}>
-              <p>파일을 업로드 하시겠습니까?</p>
-              <div className={styles.title}>
-                {file.name}
-                <IoMdClose size={16} onClick={handleRemoveFile} />
+    <>
+      <div className={styles.container}>
+        <h2>PDF 이력서 등록</h2>
+        <form onSubmit={handleSubmit} className={cx('upload-form')}>
+          <div
+            className={cx('upload', {dragging: isDragging})}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+          >
+            <input
+              type="file"
+              accept="application/pdf"
+              onChange={handleFileChange}
+              id="file"
+              ref={fileInputRef}
+              name="file"
+            />
+            {!file ? (
+              <>
+                <label htmlFor="file" tabIndex={0} onKeyDown={handleKeyDown}>
+                  <Button text="업로드 파일 선택" />
+                </label>
+                <p>또는 파일을 이곳으로 드래그합니다</p>
+              </>
+            ) : (
+              <div className={styles['file-selected']}>
+                <p>파일을 업로드 하시겠습니까?</p>
+                <div className={styles.title}>
+                  {file.name}
+                  <IoMdClose size={16} onClick={handleRemoveFile} />
+                </div>
+                <button type="submit">
+                  <Button color="type2" text="이력서 업로드" />
+                </button>
               </div>
-              <button type="submit">
-                <Button color="type2" text="이력서 업로드" />
-              </button>
-            </div>
-          )}
-        </div>
-      </form>
-    </div>
+            )}
+          </div>
+        </form>
+      </div>
+      <RecommendModal
+        isOpen={isOpen}
+        onClose={handleCloseRecommend}
+        cards={cards}
+      />
+    </>
   );
 };
 

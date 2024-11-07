@@ -1,5 +1,5 @@
 import httpClient from '@/configs/httpClient';
-import {GetResumePDFResponse} from '@/types/ableJ';
+import {GetResumePDFResponse, RecruitmentCardListResponse} from '@/types/ableJ';
 
 export default {
   /**
@@ -14,11 +14,15 @@ export default {
     const newFormData = new FormData();
     newFormData.append('file', file, originalName);
 
-    return httpClient.post('/resume/pdf', newFormData, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
+    return httpClient.post<RecruitmentCardListResponse>(
+      '/resume/pdf',
+      newFormData,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       },
-    });
+    );
   },
 
   /**
