@@ -1,5 +1,6 @@
 @use '@/styles/constants/layout' as layout;
 @use '@/styles/constants/colors' as colors;
+@use '@/styles/mixin' as mixin;
 
 .skill-combobox {
   align-self: stretch;
@@ -45,14 +46,13 @@
     margin-top: 4px;
 
     .skill-item {
-      display: flex;
       gap: 2px;
-      align-items: center;
-      justify-content: center;
       padding: 4px 10px;
       font-size: 1.5rem;
       cursor: pointer;
       border-radius: 16px;
+
+      @include mixin.flex-default;
     }
   }
 }
