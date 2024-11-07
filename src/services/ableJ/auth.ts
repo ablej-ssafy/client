@@ -1,8 +1,10 @@
 import httpClient from '@/configs/httpClient';
 import {
+  AccessToken,
   Email,
   LoginResponse,
   Password,
+  ProfileResponse,
   RefreshToken,
   SignupForm,
   SignUpResponse,
@@ -45,5 +47,16 @@ export default {
         body: JSON.stringify({accessToken, refreshToken}),
       },
     );
+  },
+  /**
+   * 로그인 중인 멤버의 정보를 조회합니다.
+   * @param accessToken 액세스 토큰
+   */
+  getProfile: async (accessToken: AccessToken) => {
+    return httpClient.get<ProfileResponse>('/member/me', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
   },
 };

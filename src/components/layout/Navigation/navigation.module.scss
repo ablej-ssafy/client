@@ -21,6 +21,7 @@
 
   &.invert {
     background-color: transparent !important;
+    backdrop-filter: blur(25px);
     box-shadow: none;
   }
 

@@ -3,6 +3,7 @@ import '@/styles/index.scss';
 import type {Metadata} from 'next';
 import localFont from 'next/font/local';
 import {ReactNode} from 'react';
+import {Toaster} from 'react-hot-toast';
 
 // Pretendard 폰트 설정
 const pretendard = localFont({
@@ -48,6 +49,7 @@ export default function RootLayout({
         }}
         className={`${pretendard.variable}`}
       >
+        <Toaster position="top-center" toastOptions={{duration: 1000}} />
         {children}
         {modal}
       </body>

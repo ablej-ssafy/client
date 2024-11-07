@@ -38,7 +38,7 @@ const signupAction = async (_prevState: unknown, formData: FormData) => {
 
   if (!response.success) {
     return {
-      error: '회원가입에 실패하였습니다.',
+      error: response.message,
       email: [],
       password: [],
       name: [],

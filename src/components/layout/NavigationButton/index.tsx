@@ -9,6 +9,7 @@ interface NavigationButtonProps extends PropsWithChildren {
   invert?: boolean;
   selected?: boolean;
   outlined?: boolean;
+  login?: boolean;
 }
 
 const cx = classNames.bind(styles);
@@ -18,6 +19,7 @@ const NavigationButton = ({
   outlined,
   selected,
   invert,
+  login,
   ...props
 }: NavigationButtonProps) => {
   return (
@@ -28,6 +30,7 @@ const NavigationButton = ({
         {outlined: outlined},
         {invert: invert},
         {selected: selected},
+        {login: login},
       )}
     >
       {children}
