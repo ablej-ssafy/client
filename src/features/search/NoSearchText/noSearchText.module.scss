@@ -1,0 +1,13 @@
+@use '@/styles/mixin' as mixin;
+
+.container {
+  flex-direction: column;
+  width: 100%;
+  margin-top: 50px;
+
+  @include mixin.flex-default;
+}
+
+.inner-container {
+  position: relative;
+}

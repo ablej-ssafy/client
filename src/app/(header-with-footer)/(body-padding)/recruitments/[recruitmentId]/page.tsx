@@ -12,7 +12,7 @@ const RecruitmentDetailPage = async () => {
     return;
   }
 
-  const {data} = await RecruitmentService.getRecruitmentDetail(1, token);
+  const {data} = await RecruitmentService.getRecruitmentDetail(56, token);
 
   return (
     <>

@@ -1,0 +1,20 @@
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/mixin' as mixin;
+
+.container {
+  padding: 7px 10px 7px 15px;
+  cursor: pointer;
+  border: 1px solid colors.$gray3;
+  border-radius: 10px;
+
+  @include mixin.flex-default(space-between);
+
+  &:hover {
+    background-color: colors.$gray1;
+  }
+}
+
+.text {
+  padding-right: 20px;
+  font-size: 1.4rem;
+}
