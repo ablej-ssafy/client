@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 import {useEffect} from 'react';
 import {useFormState} from 'react-dom';
+import toast from 'react-hot-toast';
 import {FcGoogle} from 'react-icons/fc';
 import {RiKakaoTalkFill} from 'react-icons/ri';
 
@@ -27,9 +28,14 @@ const LoginStep = ({isModal = false}: LoginStepProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!state.success) return;
-    router.back();
-  }, [router, state.success]);
+    if (state.error) {
+      toast.error(state.error);
+      return;
+    }
+    if (state.success) {
+      router.back();
+    }
+  }, [router, state]);
 
   return (
     <div className={cx('container')}>
@@ -54,7 +60,6 @@ const LoginStep = ({isModal = false}: LoginStepProps) => {
             error={state?.password}
           />
         </div>
-        {state && state.error && <p className={cx('error')}>{state.error}</p>}
         <button type="submit" className={cx('button', 'sign-in')}>
           로그인
         </button>
