@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-import {persist} from 'zustand/middleware/persist';
+import {persist} from 'zustand/middleware';
 
 import {AuthSlice, createAuthSlice} from '@/zustand/slices/authSlice';
 import {createProfileSlice, ProfileSlice} from '@/zustand/slices/profileSlice';

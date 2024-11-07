@@ -3,6 +3,7 @@
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
+import {useEffect} from 'react';
 import {useFormState} from 'react-dom';
 import {FcGoogle} from 'react-icons/fc';
 import {RiKakaoTalkFill} from 'react-icons/ri';
@@ -25,9 +26,10 @@ const LoginStep = ({isModal = false}: LoginStepProps) => {
   const [state, formAction] = useFormState(loginAction, INITIAL_STATE);
   const router = useRouter();
 
-  if (state.success) {
+  useEffect(() => {
+    if (!state.success) return;
     router.back();
-  }
+  }, [router, state.success]);
 
   return (
     <div className={cx('container')}>
