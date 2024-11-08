@@ -4,3 +4,13 @@ export interface ResponseType<T> {
   message: string;
   data: T;
 }
+
+export interface Paging<T> {
+  content: T;
+  page: {
+    size: number;
+    number: number;
+    totalElements: number;
+    totalPages: number;
+  };
+}

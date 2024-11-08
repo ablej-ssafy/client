@@ -19,7 +19,7 @@ export interface RecruitmentDetail {
 }
 
 export interface Category {
-  categoryId: number;
+  id: number;
   name: string;
 }
 
@@ -36,3 +36,4 @@ export interface Company {
 }
 
 export type RecruitmentDetailResponse = ResponseType<RecruitmentDetail>;
+export type CategoryResponse = ResponseType<Category[]>;

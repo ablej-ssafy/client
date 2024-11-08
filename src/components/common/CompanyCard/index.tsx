@@ -7,7 +7,7 @@ const CompanyCard = () => {
   return (
     <div className={styles.container}>
       <Image
-        src="/"
+        src="https://storage.googleapis.com/ai-headhunting-resume/company/company-thumbnail-1-cb5f7dea-9c3e-42d6-82c7-8213009d1bb6.jpg"
         alt="sample_img"
         width={50}
         height={50}

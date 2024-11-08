@@ -1,11 +1,11 @@
 import {ReactNode} from 'react';
 
-import Header from '@/components/layout/Header';
+import GeneralHeader from '@/components/layout/GeneralHeader';
 
 const HeaderLayout = ({children}: {children: ReactNode}) => {
   return (
     <>
-      <Header />
+      <GeneralHeader />
       {children}
     </>
   );

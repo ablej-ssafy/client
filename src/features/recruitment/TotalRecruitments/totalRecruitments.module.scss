@@ -1,0 +1,17 @@
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/mixin' as mixin;
+
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.search-result {
+  padding: 5%;
+  padding-right: 0;
+
+  @media (width <= 970px) {
+    padding-left: 3%;
+  }
+}

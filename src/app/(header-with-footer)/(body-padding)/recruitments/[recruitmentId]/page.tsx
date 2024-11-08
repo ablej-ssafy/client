@@ -1,18 +1,14 @@
+import {getCookie} from 'cookies-next';
+
 import RecruitmentBox from '@/features/recruitment/Detail/RecruitmentBox';
 import RecruitmentCarousel from '@/features/recruitment/Detail/RecruitmentCarousel';
 import RecruitmentTitle from '@/features/recruitment/Detail/RecruitmentTitle';
 import RecruitmentService from '@/services/ableJ';
-import auth from '@/utils/auth';
 
 const RecruitmentDetailPage = async () => {
-  const token = await auth.getAccessToken();
+  const accessToken = await getCookie('accessToken');
 
-  if (!token) {
-    console.log('Access Token이 없습니다.');
-    return;
-  }
-
-  const {data} = await RecruitmentService.getRecruitmentDetail(56, token);
+  const {data} = await RecruitmentService.getRecruitmentDetail(56, accessToken);
 
   return (
     <>

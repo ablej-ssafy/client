@@ -1,19 +1,19 @@
 .child-container {
-  padding: 103px 100px;
+  padding: 35px 100px;
 
   @media (width <= 1280px) {
-    padding: 103px 60px;
+    padding: 35px 60px;
   }
 
   @media (width <= 1024px) {
-    padding: 103px 40px;
+    padding: 35px 40px;
   }
 
   @media (width <= 768px) {
-    padding: 103px 32px;
+    padding: 35px 32px;
   }
 
   @media (width <= 430px) {
-    padding: 103px 16px;
+    padding: 28px 16px;
   }
 }
