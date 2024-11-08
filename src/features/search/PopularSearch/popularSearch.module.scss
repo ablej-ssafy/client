@@ -1,0 +1,37 @@
+@use '@/styles/mixin' as mixin;
+@use '@/styles/constants/colors' as colors;
+
+.container {
+  padding: 30px 20%;
+}
+
+.popular-title {
+  flex-direction: row;
+  gap: 0 10px;
+  margin-bottom: 10px;
+
+  @include mixin.flex-default(flex-start);
+}
+
+.popular-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 0;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.time {
+  font-size: 1.4rem;
+  color: colors.$gray4;
+}
+
+.reroll {
+  color: colors.$gray4;
+  cursor: pointer;
+}

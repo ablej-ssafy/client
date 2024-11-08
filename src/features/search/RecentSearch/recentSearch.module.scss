@@ -1,0 +1,32 @@
+@use '@/styles/mixin' as mixin;
+@use '@/styles/constants/colors' as colors;
+
+.container {
+  padding: 30px 20%;
+}
+
+.recent-title {
+  flex-direction: row;
+  margin-bottom: 10px;
+
+  @include mixin.flex-default(space-between);
+}
+
+.recent-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.delete-text {
+  font-size: 1.5rem;
+  color: colors.$gray4;
+  cursor: pointer;
+}
+
+.recent-tag {
+  flex-wrap: wrap;
+  gap: 10px 15px;
+  margin-top: 10px;
+
+  @include mixin.flex-default(flex-start);
+}
