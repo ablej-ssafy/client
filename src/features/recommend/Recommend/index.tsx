@@ -39,8 +39,8 @@ const Recommend = () => {
   return (
     <div className={styles.container}>
       {!!recruitments &&
-        recruitments.map((recruitment, index) => (
-          <CompanyCard key={index} item={recruitment} />
+        recruitments.map(recruitment => (
+          <CompanyCard key={recruitment.id} item={recruitment} />
         ))}
     </div>
   );
