@@ -4,9 +4,11 @@ import {cookies} from 'next/headers';
 import {redirect} from 'next/navigation';
 import {z} from 'zod';
 
+import ableJ from '@/services/ableJ';
+
 const scheme = z.object({
   job: z.string().nullable(),
-  profile: z.string().url().nullable(),
+  profile: z.string().nullable(),
   title: z.string().nullable(),
   name: z.string().nullable(),
   email: z.string().nullable(),
@@ -20,7 +22,7 @@ const updateResumeBasicInfoAction = async (
   _prevState: unknown,
   formData: FormData,
 ) => {
-  const {success} = scheme.safeParse({
+  const {success, data, error} = scheme.safeParse({
     job: formData.get('job'),
     profile: formData.get('profile'),
     title: formData.get('title'),
@@ -33,6 +35,7 @@ const updateResumeBasicInfoAction = async (
   });
 
   if (!success) {
+    console.error(error);
     return {
       error: '입력값이 잘못 되었습니다.',
       success: false,
@@ -45,16 +48,14 @@ const updateResumeBasicInfoAction = async (
     redirect('/signin');
   }
 
-  // const response = await ableJ.updateResumeBasicInfo(data, accessToken);
-  //
-  // console.log(response);
-  //
-  // if (!response.success) {
-  //   return {
-  //     error: response.message,
-  //     success: false,
-  //   };
-  // }
+  const response = await ableJ.updateResumeBasicInfo(data, accessToken);
+
+  if (!response.success) {
+    return {
+      error: response.message,
+      success: false,
+    };
+  }
 
   return {
     error: '',

@@ -32,6 +32,7 @@ class HttpClient {
         ...options,
         body: options.body,
         headers: {
+          // 'Content-Type': 'multipart/form-data',
           ...options.headers,
         },
       };

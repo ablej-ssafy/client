@@ -1,7 +1,7 @@
 import 'react-datepicker/dist/react-datepicker.css';
 
 import classNames from 'classnames/bind';
-import {InputHTMLAttributes, useState} from 'react';
+import {InputHTMLAttributes, useEffect, useState} from 'react';
 import DatePicker from 'react-datepicker';
 
 import DateButton from '@/features/portfolio/components/DateButton';
@@ -22,9 +22,13 @@ type LabeledCustomDatePicker = {
 const cx = classNames.bind(styles);
 
 const CustomDatePicker = (props: CustomDatePicker) => {
-  const [date, setDate] = useState(
-    props.value ? new Date(props.value as string) : new Date(),
-  );
+  const [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    setDate(
+      props.defaultValue ? new Date(props.defaultValue as string) : new Date(),
+    );
+  }, [props.defaultValue]);
 
   return (
     <div className={cx('datepicker-container')}>
@@ -39,9 +43,12 @@ const CustomDatePicker = (props: CustomDatePicker) => {
         closeOnScroll={e => e.target === document}
         customInput={<DateButton />}
         tabIndex={1}
-        // locale="ko-KR"
         dateFormat="yyyy.MM.dd"
+      />
+      <input
         name={props.name}
+        hidden
+        defaultValue={`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate().toString().padStart(2, '0')}`}
       />
     </div>
   );

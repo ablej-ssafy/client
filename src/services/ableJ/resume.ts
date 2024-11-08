@@ -4,6 +4,7 @@ import {
   GetAllTechSkillsResponse,
   GetResumeBasicInfoResponse,
   GetResumePDFResponse,
+  PostProfileImageResponse,
   ResumeBasicInfo,
 } from '@/types/ableJ';
 import {ResponseType} from '@/types/common';
@@ -97,6 +98,19 @@ export default {
       resumeBasicInfo,
       {
         headers: {Authorization: `Bearer ${accessToken}`},
+      },
+    );
+  },
+  uploadProfileImage: async (file: File, accessToken: AccessToken) => {
+    const form = new FormData();
+    form.append('file', file);
+    return httpClient.post<PostProfileImageResponse>(
+      '/resume/basic/profile',
+      form,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       },
     );
   },
