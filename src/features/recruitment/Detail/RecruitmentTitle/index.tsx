@@ -34,7 +34,7 @@ const RecruitmentTitle = ({
   annualTo,
   annualFrom,
 }: RecruitmentTitleProps) => {
-  const [isScrap, setIsScrap] = useState<boolean>(false);
+  const [isScrap, setIsScrap] = useState(false);
   const location = company.location + ' > ' + company.strict;
   const annual = annualFrom
     ? `${annualFrom} ~ ${annualTo}년`

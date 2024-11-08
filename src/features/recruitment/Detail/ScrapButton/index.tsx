@@ -6,7 +6,7 @@ import {MdBookmark, MdBookmarkBorder} from 'react-icons/md';
 import styles from './scrapButton.module.scss';
 
 const ScrapButton = () => {
-  const [isScrap, setIsScrap] = useState<boolean>(false);
+  const [isScrap, setIsScrap] = useState(false);
 
   const handleClick = () => {
     setIsScrap(!isScrap);

@@ -57,7 +57,6 @@ const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
   return (
     <form className={cx('signup-form')} onSubmit={handleSubmit}>
       <p className={cx('text-header')}>이제 곧 시작</p>
-      <p className={cx('text-content')}>얼마 안남았어요...!</p>
       <p className={cx('text-content')}>
         회원가입을 하시면 AI 큐레이팅을 사용할 수 있습니다.
       </p>

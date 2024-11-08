@@ -1,5 +1,9 @@
 import httpClient from '@/configs/httpClient';
-import {RecruitmentDetailResponse, SearchResponse} from '@/types/ableJ';
+import {
+  RecruitmentCardListResponse,
+  RecruitmentDetailResponse,
+  SearchResponse,
+} from '@/types/ableJ';
 
 export default {
   /**
@@ -52,6 +56,17 @@ export default {
       `/recruitments/category/${categoryId}?page=${page}&size=${size}`,
       {
         headers: accessToken ? {Authorization: `Bearer ${accessToken}`} : {},
+      },
+    );
+  },
+
+  getRecommendedRecruitments: async (resumeId: number, accessToken: string) => {
+    return httpClient.get<RecruitmentCardListResponse>(
+      `/recommend/${resumeId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       },
     );
   },
