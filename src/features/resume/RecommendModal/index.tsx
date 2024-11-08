@@ -30,7 +30,7 @@ const RecommendModal = ({isOpen, onClose, cards}: PreviewModalProps) => {
         </Link>
         <div className={styles['card-container']}>
           {cards.map(item => (
-            <CompanyCard key={item.recruitmentId} item={item} scrap={false} />
+            <CompanyCard key={item.id} item={item} scrap={false} />
           ))}
         </div>
       </div>

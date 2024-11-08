@@ -36,14 +36,11 @@ export interface Company {
 }
 
 export interface RecruitmentCard {
-  recruitmentId: number;
-  name: string;
-  thumbnail: string;
-  companyId: number;
+  id: number;
+  title: string;
   companyName: string;
-  location: string;
-  strict: string;
-  category: string;
+  thumbnail: string;
+  similarity: number;
   scrapped: boolean;
 }
 

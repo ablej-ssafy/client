@@ -12,20 +12,18 @@ interface CompanyCardProps {
 }
 
 const dummy = {
-  recruitmentId: 0,
-  name: '공고의 이름 자리 입니다.',
-  thumbnail: '',
-  companyId: 0,
-  companyName: '회사 이름',
-  location: '회사 위치',
-  strict: '뭔데 이거',
-  category: '카테고리',
+  id: 2143,
+  title: '[광고 추천팀] 머신러닝 엔지니어 (신입, 전문연구요원 지원 가능)',
+  companyName: '버즈빌(buzzvil)',
+  thumbnail:
+    'https://static.wanted.co.kr/images/company/99/8hp072pdi8l7xh7o__400_400.jpg',
+  similarity: 0.8176840604652934,
   scrapped: false,
 };
 
 const CompanyCard = ({item = dummy, scrap = true}: CompanyCardProps) => {
   return (
-    <Link href={`/recruitment/${item.recruitmentId}`} className={styles.link}>
+    <Link href={`/recruitment/${item.id}`} className={styles.link}>
       <div className={styles.container}>
         <Image
           src={item.thumbnail}
@@ -36,7 +34,7 @@ const CompanyCard = ({item = dummy, scrap = true}: CompanyCardProps) => {
           className={styles.img}
         />
         {scrap && <FaRegBookmark />}
-        <div className={styles['job-title']}>{item.name}</div>
+        <div className={styles['job-title']}>{item.title}</div>
         <div className={styles['company-name']}>{item.companyName}</div>
       </div>
     </Link>

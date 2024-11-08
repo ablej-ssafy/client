@@ -1,0 +1,36 @@
+@use '@/styles/mixin/index' as mixin;
+@use '@/styles/constants/colors' as colors;
+
+.container {
+  flex-direction: column;
+  width: 100%;
+  height: calc(100vh - 280px);
+  margin: 0 auto;
+
+  @include mixin.flex-default;
+
+  & > div {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+
+  & > a {
+    display: block;
+    height: 40px;
+    padding: 0 20px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: colors.$primary;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid colors.$primary;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+
+    @include mixin.flex-default;
+
+    &:hover {
+      background-color: #f3f0ff;
+    }
+  }
+}
