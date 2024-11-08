@@ -11,6 +11,7 @@ const RecruitmentPage = async ({
     categoryId: string | undefined;
   };
 }) => {
+  console.log('recruitmentPage', keyword, categoryId);
   return (
     <>
       {keyword || categoryId ? (

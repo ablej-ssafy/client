@@ -12,31 +12,45 @@ interface SearchResultProps {
   categoryId: string | undefined;
 }
 
-const fetchData = async (keyword: string) => {
+const fetchData = async (
+  keyword: string | undefined,
+  categoryId: number | undefined,
+) => {
   const accessToken = await getCookie('accessToken');
-  const {data} = await searchService.recruitmentSearch(
-    keyword,
-    0,
-    20,
-    accessToken,
-  );
 
-  return data;
+  if (keyword) {
+    const {data} = await searchService.recruitmentSearch(
+      keyword,
+      0,
+      20,
+      accessToken,
+    );
+    return data;
+  }
+
+  if (categoryId) {
+    const {data} = await searchService.getCategoryRecruitment(
+      categoryId,
+      0,
+      20,
+      accessToken,
+    );
+    return data;
+  }
+
+  throw new Error('keyword와 category 모두 없습니다.');
 };
 
 const SearchResult = async ({keyword, categoryId}: SearchResultProps) => {
-  const {content: recruitments} = await fetchData((keyword = 'front'));
+  console.log('result component', keyword, categoryId);
+  const {content: recruitments} = await fetchData(keyword, Number(categoryId));
   console.log('recruitments', recruitments);
-  // if (keyword) {
-  //   const {content: recruitments} = await fetchData(keyword);
-  // } else if (categoryId) {
-  //   // 여기서 카테고리 아이디 기반으로 검색
-  // }
+
   return (
     <div className={styles.container}>
       <CategoryBox />
       <div className={styles['search-result']}>
-        <SearchInput keyword={keyword || categoryId} />
+        <SearchInput keyword={keyword} />
         <ResultBox recruitments={recruitments} />
       </div>
     </div>

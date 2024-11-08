@@ -34,4 +34,25 @@ export default {
       },
     );
   },
+
+  /**
+   * 카테고리별 채용 공고를 가져오는 함수
+   * @param categoryId 채용 공고 아이디
+   * @param page 페이지 번호
+   * @param size 페이지 크기
+   * @param accessToken 액세스 토큰
+   */
+  getCategoryRecruitment: async (
+    categoryId: number,
+    page: number,
+    size: number,
+    accessToken?: string,
+  ) => {
+    return httpClient.get<SearchResponse>(
+      `/recruitments/category/${categoryId}?page=${page}&size=${size}`,
+      {
+        headers: accessToken ? {Authorization: `Bearer ${accessToken}`} : {},
+      },
+    );
+  },
 };
