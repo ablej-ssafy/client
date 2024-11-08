@@ -1,45 +1,46 @@
 'use client';
 
 import classNames from 'classnames/bind';
-import React, {useState} from 'react';
+import {useRouter} from 'next/navigation';
+import React, {useEffect, useState} from 'react';
 import {CiFileOn} from 'react-icons/ci';
 import {IoIosArrowDown, IoIosRefresh} from 'react-icons/io';
 
 import Button from '@/components/common/Button';
+import {ResumePDF} from '@/types/ableJ';
 
 import styles from './filterSelect.module.scss';
 
 const cx = classNames.bind(styles);
 
-const FilterSelect = () => {
-  // 더미데이터입니다. 삭제될 코드.
-  const data = {
-    resumeList: [
-      '이력서 제ASDFAWEFAWED목1asdfasdfasfawesdfaWFASDFASDFA',
-      '이력서 제목2',
-      '이력서 제목3',
-      '이력서 제목4',
-      '이력서 제목5',
-      '이력서 제목6',
-      '이력서 제목7',
-      '이력서 제목8',
-      '이력서 제목9',
-      '이력서 제목10',
-      '이력서 제목11',
-      '이력서 제목12',
-    ],
-  };
+interface ResumePDFProps {
+  data: ResumePDF[];
+}
 
+const FilterSelect = ({data}: ResumePDFProps) => {
+  const router = useRouter();
+  const hasData = data.length;
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(data.resumeList[0]);
+  const [selectedItem, setSelectedItem] = useState(
+    hasData ? data[data.length - 1].fileName : '등록된 파일이 없습니다',
+  );
+
+  useEffect(() => {
+    if (hasData) {
+      router.push(`/recommend/${data[hasData - 1].id}`);
+    }
+  }, [hasData]);
 
   const handleToggleDropdown = () => {
-    setIsOpen(prev => !prev);
+    if (!!hasData) {
+      setIsOpen(prev => !prev);
+    }
   };
 
-  const handleSelectItem = (item: string) => {
+  const handleSelectItem = (item: string, id: number) => {
     setSelectedItem(item);
     setIsOpen(false);
+    router.push(`/recommend/${id}`);
   };
 
   return (
@@ -54,11 +55,14 @@ const FilterSelect = () => {
           <div>{selectedItem}</div>
           <IoIosArrowDown className={cx({'icon-open': isOpen})} />
         </div>
-        {isOpen && (
+        {!!hasData && isOpen && (
           <ul className={styles.dropdown}>
-            {data.resumeList.map((item, index) => (
-              <li key={index} onMouseDown={() => handleSelectItem(item)}>
-                {item}
+            {data.map(item => (
+              <li
+                key={item.id}
+                onMouseDown={() => handleSelectItem(item.fileName, item.id)}
+              >
+                {item.fileName}
               </li>
             ))}
           </ul>
