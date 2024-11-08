@@ -1,7 +1,9 @@
 import httpClient from '@/configs/httpClient';
 import {
   AccessToken,
+  EducationalInfo,
   GetAllTechSkillsResponse,
+  GetEducationInfoResponse,
   GetResumeBasicInfoResponse,
   GetResumePDFResponse,
   PostProfileImageResponse,
@@ -101,6 +103,11 @@ export default {
       },
     );
   },
+  /**
+   * 프로필 이미지를 업로드하는 함수
+   * @param file 프로필 이미지 파일
+   * @param accessToken 액세스 토큰
+   */
   uploadProfileImage: async (file: File, accessToken: AccessToken) => {
     const form = new FormData();
     form.append('file', file);
@@ -113,5 +120,31 @@ export default {
         },
       },
     );
+  },
+  /**
+   * 학교 정보를 조회하는 함수
+   * @param accessToken 액세스 토큰
+   */
+  getEducationInfo: async (accessToken: AccessToken) => {
+    return httpClient.get<GetEducationInfoResponse>('/educational', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+  /**
+   * 학교 정보를 업데이트하는 함수
+   * @param educationInfos 학교 정보
+   * @param accessToken 액세스 토큰
+   */
+  updateEducationInfos: async (
+    educationInfos: {educationals: Omit<EducationalInfo, 'educationalId'>[]},
+    accessToken: AccessToken,
+  ) => {
+    return httpClient.post<ResponseType<null>>('/educational', educationInfos, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
   },
 };
