@@ -1,3 +1,5 @@
+'use client';
+
 import 'react-datepicker/dist/react-datepicker.css';
 
 import classNames from 'classnames/bind';
@@ -48,7 +50,7 @@ const CustomDatePicker = (props: CustomDatePicker) => {
       <input
         name={props.name}
         hidden
-        defaultValue={`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate().toString().padStart(2, '0')}`}
+        defaultValue={`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`}
       />
     </div>
   );

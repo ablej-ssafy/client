@@ -4,15 +4,14 @@ import {useCallback, useEffect, useState} from 'react';
 import toast from 'react-hot-toast';
 
 import ableJ from '@/services/ableJ';
-import {GetEducationInfoResponseData} from '@/types/ableJ';
+import {ExperienceInfo} from '@/types/ableJ';
 
-const useEducationInfos = () => {
-  const [educationInfos, setEducationInfos] =
-    useState<GetEducationInfoResponseData>({educationals: []});
+const useExperienceInfo = (type: 'company' | 'activity' | 'project') => {
+  const [experienceInfo, setExperienceInfo] = useState<ExperienceInfo[]>([]);
 
   const router = useRouter();
 
-  const getEducationInfo = useCallback(async () => {
+  const getExperienceInfo = useCallback(async () => {
     const accessToken = getCookie('accessToken');
 
     if (!accessToken) {
@@ -21,21 +20,21 @@ const useEducationInfos = () => {
       return;
     }
 
-    const response = await ableJ.getEducationInfo(accessToken);
+    const response = await ableJ.getExperienceInfo(type, accessToken);
 
     if (!response.success) {
       toast.error(response.message);
       return;
     }
 
-    setEducationInfos(response.data);
-  }, [router]);
+    setExperienceInfo(response.data.experiences);
+  }, [router, type]);
 
   useEffect(() => {
-    (async () => await getEducationInfo())();
-  }, [getEducationInfo]);
+    (async () => await getExperienceInfo())();
+  }, [getExperienceInfo]);
 
-  return educationInfos;
+  return experienceInfo;
 };
 
-export default useEducationInfos;
+export default useExperienceInfo;

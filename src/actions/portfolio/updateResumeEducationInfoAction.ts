@@ -1,11 +1,12 @@
 'use server';
 
+import {revalidatePath} from 'next/cache';
 import {cookies} from 'next/headers';
 import {redirect} from 'next/navigation';
 import {z} from 'zod';
 
 import ableJ from '@/services/ableJ';
-import {EducationalInfo} from '@/types/ableJ';
+import {EducationInfo} from '@/types/ableJ';
 
 const scheme = z.array(
   z.object({
@@ -17,7 +18,7 @@ const scheme = z.array(
     description: z.string().nullable(),
     startAt: z.string().nullable(),
     endAt: z.string().nullable(),
-    educationalId: z.number().nullish(),
+    educationId: z.number().nullish(),
   }),
 );
 
@@ -33,10 +34,10 @@ const updateResumeEducationInfoAction = async (
   const descriptions = formData.getAll('description');
   const startAts = formData.getAll('startAt');
   const endAts = formData.getAll('endAt');
-  const educationalId = formData.getAll('educationalId');
+  const educationId = formData.getAll('educationId');
 
-  const educationals = names.map((name, index) => {
-    const educational: EducationalInfo = {
+  const educations = names.map((name, index) => {
+    const education: EducationInfo = {
       name: (name as string) || null,
       major: (majors[index] as string) || null,
       category: (categories[index] as string) || null,
@@ -47,16 +48,14 @@ const updateResumeEducationInfoAction = async (
       endAt: (endAts[index] as string) || null,
     };
 
-    if (educationalId[index]) {
-      educational.educationalId = Number(educationalId[index]);
+    if (educationId[index]) {
+      education.educationId = Number(educationId[index]);
     }
 
-    return educational;
+    return education;
   });
 
-  const {success, data, error} = scheme.safeParse(educationals);
-
-  console.log(data);
+  const {success, data, error} = scheme.safeParse(educations);
 
   if (!success) {
     console.error(error);
@@ -73,7 +72,7 @@ const updateResumeEducationInfoAction = async (
   }
 
   const response = await ableJ.updateEducationInfos(
-    {educationals: data},
+    {educations: data},
     accessToken,
   );
 
@@ -83,6 +82,8 @@ const updateResumeEducationInfoAction = async (
       success: false,
     };
   }
+
+  revalidatePath('/portfolio/education');
 
   return {
     error: '',

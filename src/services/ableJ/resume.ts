@@ -1,9 +1,11 @@
 import httpClient from '@/configs/httpClient';
 import {
   AccessToken,
-  EducationalInfo,
+  EducationInfo,
+  ExperienceInfo,
   GetAllTechSkillsResponse,
   GetEducationInfoResponse,
+  GetExperienceInfoResponse,
   GetResumeBasicInfoResponse,
   GetResumePDFResponse,
   PostProfileImageResponse,
@@ -33,7 +35,7 @@ export default {
 
   /**
    * PDF 파일 삭제 요청을 보내는 함수
-   * @param resumeId pdf 파일 id
+   * @param resumeId pdf 파일 educationId
    */
   resumeDelete: async (resumeId: number, accessToken: AccessToken) => {
     return httpClient.delete(`/resume/pdf/${resumeId}`, {
@@ -126,7 +128,7 @@ export default {
    * @param accessToken 액세스 토큰
    */
   getEducationInfo: async (accessToken: AccessToken) => {
-    return httpClient.get<GetEducationInfoResponse>('/educational', {
+    return httpClient.get<GetEducationInfoResponse>('/education', {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -138,10 +140,73 @@ export default {
    * @param accessToken 액세스 토큰
    */
   updateEducationInfos: async (
-    educationInfos: {educationals: Omit<EducationalInfo, 'educationalId'>[]},
+    educationInfos: {educations: Omit<EducationInfo, 'educationId'>[]},
     accessToken: AccessToken,
   ) => {
-    return httpClient.post<ResponseType<null>>('/educational', educationInfos, {
+    return httpClient.post<ResponseType<null>>('/education', educationInfos, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+  /**
+   * 학교 정보를 삭제하는 함수
+   * @param educationalId 학교 정보 educationId
+   * @param accessToken 액세스 토큰
+   */
+  deleteEducationInfo: async (
+    educationalId: number,
+    accessToken: AccessToken,
+  ) => {
+    return httpClient.delete(`/education/${educationalId}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+  /**
+   * 경험 정보를 조회하는 함수
+   * @param type 경험 정보 타입
+   * @param accessToken 액세스 토큰
+   */
+  getExperienceInfo: async (
+    type: 'company' | 'activity' | 'project',
+    accessToken: AccessToken,
+  ) => {
+    return httpClient.get<GetExperienceInfoResponse>(
+      `/experience?type=${type}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      },
+    );
+  },
+  /**
+   * 경험 정보를 업데이트하는 함수
+   * @param experienceInfo 경험 정보
+   * @param accessToken 액세스 토큰
+   */
+  updateExperienceInfo: async (
+    experienceInfo: ExperienceInfo,
+    accessToken: AccessToken,
+  ) => {
+    return httpClient.post('/experience', experienceInfo, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+  /**
+   * 경험 정보를 삭제하는 함수
+   * @param experienceId 경험 정보 educationId
+   * @param accessToken 액세스 토큰
+   */
+  deleteExperienceInfo: async (
+    experienceId: number,
+    accessToken: AccessToken,
+  ) => {
+    return httpClient.delete(`/experience/${experienceId}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

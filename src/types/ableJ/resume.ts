@@ -49,7 +49,7 @@ export interface ResumeBasicInfo {
   portfolioUrl?: PortfolioUrl | null;
 }
 
-export interface EducationalInfo {
+export interface EducationInfo {
   name?: Name | null;
   major?: string | null;
   category?: string | null;
@@ -58,13 +58,26 @@ export interface EducationalInfo {
   description?: string | null;
   startAt?: string | null;
   endAt?: string | null;
-  educationalId?: number | null;
+  educationId?: number | null;
+}
+
+export interface ExperienceInfo {
+  resumeId: number;
+  experienceType: string;
+  title: string;
+  affiliation: string;
+  startAt: string;
+  endAt: string;
+  description: string;
+  referenceUrl: string;
+  experienceId: number;
 }
 
 export type GetResumePDFResponse = ResponseType<ResumePDF[]>;
 export type GetAllJobsResponseData = Job[];
 export type GetAllTechSkillsResponseData = Skill[];
-export type GetEducationInfoResponseData = {educationals: EducationalInfo[]};
+export type GetEducationInfoResponseData = {educations: EducationInfo[]};
+export type GetExperienceInfoResponseData = {experiences: ExperienceInfo[]};
 export type PostProfileImageResponseData = ProfileImageUrl;
 
 export type GetAllJobsResponse = ResponseType<GetAllJobsResponseData>;
@@ -73,5 +86,7 @@ export type GetAllTechSkillsResponse =
 export type GetResumeBasicInfoResponse = ResponseType<ResumeBasicInfo>;
 export type GetEducationInfoResponse =
   ResponseType<GetEducationInfoResponseData>;
+export type GetExperienceInfoResponse =
+  ResponseType<GetExperienceInfoResponseData>;
 export type PostProfileImageResponse =
   ResponseType<PostProfileImageResponseData>;

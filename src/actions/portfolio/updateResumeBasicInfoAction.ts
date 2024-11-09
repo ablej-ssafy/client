@@ -1,5 +1,6 @@
 'use server';
 
+import {revalidatePath} from 'next/cache';
 import {cookies} from 'next/headers';
 import {redirect} from 'next/navigation';
 import {z} from 'zod';
@@ -56,6 +57,8 @@ const updateResumeBasicInfoAction = async (
       success: false,
     };
   }
+
+  revalidatePath('/portfolio/education');
 
   return {
     error: '',

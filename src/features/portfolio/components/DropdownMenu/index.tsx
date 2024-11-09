@@ -1,3 +1,4 @@
+'use client';
 import classNames from 'classnames/bind';
 import {MouseEvent, useEffect, useRef, useState} from 'react';
 
