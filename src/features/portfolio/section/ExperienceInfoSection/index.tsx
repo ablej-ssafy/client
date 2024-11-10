@@ -17,7 +17,7 @@ const ExperienceInfoSection = ({
 }: ExperienceInfoSectionProps) => {
   const [department, position] = experience?.affiliation?.split('/') || [];
   return (
-    <div>
+    <>
       <Input
         isLabeled
         label="회사명"
@@ -61,7 +61,7 @@ const ExperienceInfoSection = ({
       <input name="experienceType" hidden readOnly defaultValue="COMPANY" />
       {children}
       <Divider />
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,4 @@
 'use server';
-
 import {revalidatePath} from 'next/cache';
 import {cookies} from 'next/headers';
 import {redirect} from 'next/navigation';
@@ -20,36 +19,35 @@ const scheme = z.array(
   }),
 );
 
-const updateResumeExperienceInfoAction = async (
+const updateResumeActivityInfoAction = async (
   _prevState: unknown,
   formData: FormData,
 ) => {
   const titles = formData.getAll('title');
-  const departments = formData.getAll('department');
-  const positions = formData.getAll('position');
+  const affiliations = formData.getAll('affiliation');
   const startAts = formData.getAll('startAt');
   const endAts = formData.getAll('endAt');
   const descriptions = formData.getAll('description');
   const experienceIds = formData.getAll('experienceId');
 
-  const experiences = titles.map((title, index) => {
-    const experience: ExperienceInfo = {
-      experienceType: 'COMPANY',
+  const activities = titles.map((title, index) => {
+    const activity: ExperienceInfo = {
+      experienceType: 'ACTIVITY',
       title: (title as string) || null,
-      affiliation: `${(departments[index] as string) || ''}/${(positions[index] as string) || ''}`,
+      affiliation: (affiliations[index] as string) || null,
       startAt: (startAts[index] as string) || null,
       endAt: (endAts[index] as string) || null,
       description: (descriptions[index] as string) || null,
     };
 
     if (experienceIds[index]) {
-      experience.experienceId = Number(experienceIds[index]);
+      activity.experienceId = Number(experienceIds[index]);
     }
 
-    return experience;
+    return activity;
   });
 
-  const {success, data, error} = scheme.safeParse(experiences);
+  const {success, data, error} = scheme.safeParse(activities);
 
   if (!success) {
     console.error(error);
@@ -85,4 +83,4 @@ const updateResumeExperienceInfoAction = async (
   };
 };
 
-export default updateResumeExperienceInfoAction;
+export default updateResumeActivityInfoAction;

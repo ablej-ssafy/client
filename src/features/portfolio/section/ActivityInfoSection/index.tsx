@@ -1,26 +1,62 @@
-import AddSectionItemButton from '@/features/portfolio/components/AddSectionItemButton';
-import Board from '@/features/portfolio/components/Board';
+import {PropsWithChildren} from 'react';
+
 import Columns from '@/features/portfolio/components/Column';
 import DatePicker from '@/features/portfolio/components/DatePicker';
 import Divider from '@/features/portfolio/components/Divider';
 import Input from '@/features/portfolio/components/Input';
-import SectionHeader from '@/features/portfolio/components/SectionHeader';
+import {ExperienceInfo} from '@/types/ableJ';
 
-const ActivityInfoSection = () => {
+interface ActivityInfoSectionProps extends PropsWithChildren {
+  activity?: ExperienceInfo;
+}
+
+const ActivityInfoSection = ({
+  activity,
+  children,
+}: ActivityInfoSectionProps) => {
   return (
-    <Board>
-      <SectionHeader title="활동">
-        <AddSectionItemButton text="활동 추가" />
-      </SectionHeader>
-      <Divider />
-      <Input isLabeled label="활동명" />
-      <Input isLabeled label="소속" />
-      <Input isLabeled label="활동 소개" />
+    <>
+      <Input
+        isLabeled
+        label="활동명"
+        name="title"
+        defaultValue={activity?.title || ''}
+      />
+      <Input
+        isLabeled
+        label="소속"
+        name="affiliation"
+        defaultValue={activity?.affiliation || ''}
+      />
+      <Input
+        isLabeled
+        label="활동 소개"
+        name="description"
+        defaultValue={activity?.description || ''}
+      />
       <Columns>
-        <DatePicker isLabeled label="시작년월" />
-        <DatePicker isLabeled label="종료년월" />
+        <DatePicker
+          isLabeled
+          label="시작년월"
+          name="startAt"
+          defaultValue={activity?.startAt || ''}
+        />
+        <DatePicker
+          isLabeled
+          label="종료년월"
+          name="endAt"
+          defaultValue={activity?.endAt || ''}
+        />
       </Columns>
-    </Board>
+      <input
+        name="experienceId"
+        hidden
+        defaultValue={activity?.experienceId || ''}
+      />
+      <input name="experienceType" hidden defaultValue="ACTIVITY" />
+      {children}
+      <Divider />
+    </>
   );
 };
 
