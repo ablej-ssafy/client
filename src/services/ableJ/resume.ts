@@ -35,7 +35,7 @@ export default {
 
   /**
    * PDF 파일 삭제 요청을 보내는 함수
-   * @param resumeId pdf 파일 educationId
+   * @param resumeId pdf 파일 experienceId
    */
   resumeDelete: async (resumeId: number, accessToken: AccessToken) => {
     return httpClient.delete(`/resume/pdf/${resumeId}`, {
@@ -151,7 +151,7 @@ export default {
   },
   /**
    * 학교 정보를 삭제하는 함수
-   * @param educationalId 학교 정보 educationId
+   * @param educationalId 학교 정보 experienceId
    * @param accessToken 액세스 토큰
    */
   deleteEducationInfo: async (
@@ -184,14 +184,14 @@ export default {
   },
   /**
    * 경험 정보를 업데이트하는 함수
-   * @param experienceInfo 경험 정보
+   * @param experienceInfos 경험 정보
    * @param accessToken 액세스 토큰
    */
   updateExperienceInfo: async (
-    experienceInfo: ExperienceInfo,
+    experienceInfos: {experiences: Omit<ExperienceInfo, 'experienceId'>[]},
     accessToken: AccessToken,
   ) => {
-    return httpClient.post('/experience', experienceInfo, {
+    return httpClient.post<ResponseType<null>>('/experience', experienceInfos, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -199,7 +199,7 @@ export default {
   },
   /**
    * 경험 정보를 삭제하는 함수
-   * @param experienceId 경험 정보 educationId
+   * @param experienceId 경험 정보 experienceId
    * @param accessToken 액세스 토큰
    */
   deleteExperienceInfo: async (

@@ -6,23 +6,23 @@ import {redirect} from 'next/navigation';
 
 import ableJ from '@/services/ableJ';
 
-const deleteResumeEducationInfoAction = async (educationalId: number) => {
+const deleteResumeExperienceInfoAction = async (experienceId: number) => {
   const accessToken = cookies().get('accessToken')?.value;
 
   if (!accessToken) {
     redirect('/signin');
   }
 
-  const response = await ableJ.deleteEducationInfo(educationalId, accessToken);
+  const response = await ableJ.deleteExperienceInfo(experienceId, accessToken);
 
   if (!response.ok) {
     return {
-      error: '학력 정보 삭제에 실패했습니다.',
+      error: '경력 및 분야 정보 삭제에 실패했습니다.',
       success: false,
     };
   }
 
-  revalidatePath('/portfolio/education');
+  revalidatePath('/portfolio/experience');
 
   return {
     error: '',
@@ -30,4 +30,4 @@ const deleteResumeEducationInfoAction = async (educationalId: number) => {
   };
 };
 
-export default deleteResumeEducationInfoAction;
+export default deleteResumeExperienceInfoAction;

@@ -3,22 +3,22 @@ import {ReactNode, useEffect, useState} from 'react';
 import {useFormState} from 'react-dom';
 import toast from 'react-hot-toast';
 
-import updateResumeEducationInfoAction from '@/actions/portfolio/updateResumeEducationInfoAction';
+import updateResumeExperienceInfoAction from '@/actions/portfolio/updateResumeExperienceInfoAction';
 import AddSectionItemButton from '@/features/portfolio/components/AddSectionItemButton';
 import Board from '@/features/portfolio/components/Board';
 import Divider from '@/features/portfolio/components/Divider';
 import SectionHeader from '@/features/portfolio/components/SectionHeader';
 import SubmitButton from '@/features/portfolio/components/SubmitButton';
-import EducationInfoSection from '@/features/portfolio/section/EducationInfoSection';
+import ExperienceInfoSection from '@/features/portfolio/section/ExperienceInfoSection';
 
 const INITIAL_STATE = {
   success: false,
   error: '',
 };
 
-const EducationLayout = ({children}: {children: ReactNode}) => {
+const ExperienceLayout = ({children}: {children: ReactNode}) => {
   const [state, action] = useFormState(
-    updateResumeEducationInfoAction,
+    updateResumeExperienceInfoAction,
     INITIAL_STATE,
   );
   const [openNewForm, setOpenNewForm] = useState(false);
@@ -36,9 +36,9 @@ const EducationLayout = ({children}: {children: ReactNode}) => {
 
   return (
     <Board action={action}>
-      <SectionHeader title="학력">
+      <SectionHeader title="경력 및 분야">
         <AddSectionItemButton
-          text="학력 추가"
+          text="경력 추가"
           type="button"
           onClick={() => setOpenNewForm(true)}
         />
@@ -46,14 +46,15 @@ const EducationLayout = ({children}: {children: ReactNode}) => {
       <Divider />
       {children}
       {openNewForm && (
-        <EducationInfoSection>
+        <ExperienceInfoSection>
           <SubmitButton type="button" onClick={() => setOpenNewForm(false)}>
             삭제
           </SubmitButton>
-        </EducationInfoSection>
+        </ExperienceInfoSection>
       )}
       <SubmitButton>저장</SubmitButton>
     </Board>
   );
 };
-export default EducationLayout;
+
+export default ExperienceLayout;

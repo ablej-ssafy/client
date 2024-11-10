@@ -50,7 +50,7 @@ class HttpClient {
       };
     }
 
-    return {...options, body: options.body};
+    return {cache: 'no-store', ...options, body: options.body};
   }
 
   private async afterResponse<T>(

@@ -62,15 +62,14 @@ export interface EducationInfo {
 }
 
 export interface ExperienceInfo {
-  resumeId: number;
-  experienceType: string;
-  title: string;
-  affiliation: string;
-  startAt: string;
-  endAt: string;
-  description: string;
-  referenceUrl: string;
-  experienceId: number;
+  experienceType: 'COMPANY' | 'PROJECT' | 'ACTIVITY';
+  title?: string | null;
+  affiliation?: string | null;
+  startAt?: string | null;
+  endAt?: string | null;
+  description?: string | null;
+  referenceUrl?: string | null;
+  experienceId?: number | null;
 }
 
 export type GetResumePDFResponse = ResponseType<ResumePDF[]>;
