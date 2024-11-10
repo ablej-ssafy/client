@@ -1,24 +1,69 @@
-import AddSectionItemButton from '@/features/portfolio/components/AddSectionItemButton';
-import Board from '@/features/portfolio/components/Board';
+import {PropsWithChildren} from 'react';
+
 import Columns from '@/features/portfolio/components/Column';
 import DatePicker from '@/features/portfolio/components/DatePicker';
 import Divider from '@/features/portfolio/components/Divider';
 import Input from '@/features/portfolio/components/Input';
-import SectionHeader from '@/features/portfolio/components/SectionHeader';
+import type {CertificationInfo} from '@/types/ableJ';
 
-const CertificateInfoSection = () => {
+interface CertificateInfoSectionProps extends PropsWithChildren {
+  certificate?: CertificationInfo;
+}
+
+const CertificateInfoSection = ({
+  certificate,
+  children,
+}: CertificateInfoSectionProps) => {
   return (
-    <Board>
-      <SectionHeader title="자격증">
-        <AddSectionItemButton text="자격증 추가" />
-      </SectionHeader>
-      <Divider />
-      <Input isLabeled label="자격증명" />
+    <>
+      <Input
+        isLabeled
+        label="자격증명"
+        name="name"
+        defaultValue={certificate?.name || ''}
+      />
       <Columns>
-        <Input isLabeled label="발급기관" />
-        <DatePicker isLabeled label="취득일" />
+        <Input
+          isLabeled
+          label="발급기관"
+          name="organization"
+          defaultValue={certificate?.organization || ''}
+        />
+        <DatePicker
+          isLabeled
+          label="취득일"
+          name="acquisitionAt"
+          defaultValue={certificate?.acquisitionAt || ''}
+        />
       </Columns>
-    </Board>
+      <Columns>
+        <Input
+          isLabeled
+          label="등급"
+          name="grade"
+          defaultValue={certificate?.grade || ''}
+        />
+        <Input
+          isLabeled
+          label="인증번호"
+          name="credential"
+          defaultValue={certificate?.credential || ''}
+        />
+      </Columns>
+      <input
+        name="certificationId"
+        hidden
+        defaultValue={certificate?.certificationId || ''}
+      />
+      <input
+        name="certificationType"
+        hidden
+        readOnly
+        defaultValue="QUALIFICATION"
+      />
+      {children}
+      <Divider />
+    </>
   );
 };
 

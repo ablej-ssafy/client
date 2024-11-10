@@ -1,9 +1,11 @@
 import httpClient from '@/configs/httpClient';
 import {
   AccessToken,
+  CertificationInfo,
   EducationInfo,
   ExperienceInfo,
   GetAllTechSkillsResponse,
+  GetCertificationInfoResponse,
   GetEducationInfoResponse,
   GetExperienceInfoResponse,
   GetResumeBasicInfoResponse,
@@ -211,5 +213,44 @@ export default {
         Authorization: `Bearer ${accessToken}`,
       },
     });
+  },
+  /**
+   * 자격증 정보를 조회하는 함수
+   * @param type 자격증 정보 타입
+   * @param accessToken 액세스 토큰
+   */
+  getCertificationInfo: async (
+    type: 'language' | 'qualification',
+    accessToken: AccessToken,
+  ) => {
+    return httpClient.get<GetCertificationInfoResponse>(
+      `/certification?type=${type}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      },
+    );
+  },
+  /**
+   * 자격증 정보를 업데이트하는 함수
+   * @param certificationInfos 자격증 정보
+   * @param accessToken 액세스 토큰
+   */
+  updateCertificationInfo: async (
+    certificationInfos: {
+      certifications: CertificationInfo[];
+    },
+    accessToken: AccessToken,
+  ) => {
+    return httpClient.post<ResponseType<null>>(
+      '/certification',
+      certificationInfos,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      },
+    );
   },
 };

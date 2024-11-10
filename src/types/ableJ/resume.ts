@@ -72,11 +72,24 @@ export interface ExperienceInfo {
   experienceId?: number | null;
 }
 
+export interface CertificationInfo {
+  name?: string | null;
+  organization?: string | null;
+  credential?: string | null;
+  acquisitionAt?: string | null;
+  grade?: string | null;
+  certificationType: 'LANGUAGE' | 'QUALIFICATION';
+  certificationId?: number | null;
+}
+
 export type GetResumePDFResponse = ResponseType<ResumePDF[]>;
 export type GetAllJobsResponseData = Job[];
 export type GetAllTechSkillsResponseData = Skill[];
 export type GetEducationInfoResponseData = {educations: EducationInfo[]};
 export type GetExperienceInfoResponseData = {experiences: ExperienceInfo[]};
+export type GetCertificationInfoResponseData = {
+  certifications: CertificationInfo[];
+};
 export type PostProfileImageResponseData = ProfileImageUrl;
 
 export type GetAllJobsResponse = ResponseType<GetAllJobsResponseData>;
@@ -87,5 +100,7 @@ export type GetEducationInfoResponse =
   ResponseType<GetEducationInfoResponseData>;
 export type GetExperienceInfoResponse =
   ResponseType<GetExperienceInfoResponseData>;
+export type GetCertificationInfoResponse =
+  ResponseType<GetCertificationInfoResponseData>;
 export type PostProfileImageResponse =
   ResponseType<PostProfileImageResponseData>;
