@@ -1,27 +1,65 @@
-import AddSectionItemButton from '@/features/portfolio/components/AddSectionItemButton';
-import Board from '@/features/portfolio/components/Board';
+import {PropsWithChildren} from 'react';
+
 import Columns from '@/features/portfolio/components/Column';
 import DatePicker from '@/features/portfolio/components/DatePicker';
 import Divider from '@/features/portfolio/components/Divider';
 import Input from '@/features/portfolio/components/Input';
-import SectionHeader from '@/features/portfolio/components/SectionHeader';
+import {ExperienceInfo} from '@/types/ableJ';
 
-const ProjectInfoSection = () => {
+interface ProjectInfoSectionProps extends PropsWithChildren {
+  project?: ExperienceInfo;
+}
+
+const ProjectInfoSection = ({project, children}: ProjectInfoSectionProps) => {
   return (
-    <Board>
-      <SectionHeader title="프로젝트">
-        <AddSectionItemButton text="프로젝트 추가" />
-      </SectionHeader>
-      <Divider />
-      <Input isLabeled label="프로젝트명" />
-      <Input isLabeled label="소속" />
-      <Input isLabeled label="내용" />
+    <>
+      <Input
+        isLabeled
+        label="프로젝트명"
+        name="title"
+        defaultValue={project?.title || ''}
+      />
+      <Input
+        isLabeled
+        label="소속"
+        name="affiliation"
+        defaultValue={project?.affiliation || ''}
+      />
+      <Input
+        isLabeled
+        label="내용"
+        name="description"
+        defaultValue={project?.description || ''}
+      />
       <Columns>
-        <DatePicker isLabeled label="시작년월" />
-        <DatePicker isLabeled label="종료연월" />
+        <DatePicker
+          isLabeled
+          label="시작년월"
+          name="startAt"
+          defaultValue={project?.startAt || ''}
+        />
+        <DatePicker
+          isLabeled
+          label="종료연월"
+          name="endAt"
+          defaultValue={project?.endAt || ''}
+        />
       </Columns>
-      <Input isLabeled label="프로젝트 URL" />
-    </Board>
+      <Input
+        isLabeled
+        label="프로젝트 URL"
+        name="referenceUrl"
+        defaultValue={project?.referenceUrl || ''}
+      />
+      <input
+        name="experienceId"
+        hidden
+        defaultValue={project?.experienceId || ''}
+      />
+      <input name="experienceType" hidden readOnly defaultValue="PROJECT" />
+      {children}
+      <Divider />
+    </>
   );
 };
 
