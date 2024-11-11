@@ -25,7 +25,7 @@ const BasicInfoSection = async () => {
   const basicInfo = response.data;
 
   return (
-    <Fragment>
+    <>
       <div className={cx('profile')}>
         <ImageInput
           isLabeled={true}
@@ -77,7 +77,7 @@ const BasicInfoSection = async () => {
         placeholder="한 줄 소개를 남겨주세요."
         defaultValue={basicInfo?.introduce || ''}
       />
-    </Fragment>
+    </>
   );
 };
 
