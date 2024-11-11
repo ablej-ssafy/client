@@ -12,15 +12,24 @@ const Recommend = () => {
   const pathSegments = pathname.split('/');
   const resumeId = pathSegments[pathSegments.length - 1];
 
-  const recruitments = useFetchRecruitments({resumeId});
+  const {recruitments, loading} = useFetchRecruitments({resumeId});
 
   return (
-    <div className={styles.container}>
-      {!!recruitments &&
-        recruitments.map(recruitment => (
-          <CompanyCard key={recruitment.id} item={recruitment} />
-        ))}
-    </div>
+    <>
+      {loading ? (
+        <div className={styles['load-container']}>
+          <div className={styles.loader}></div>
+          <p>AI 분석 결과를 가져오는 중입니다.</p>
+        </div>
+      ) : (
+        <div className={styles.container}>
+          {!!recruitments &&
+            recruitments.map(recruitment => (
+              <CompanyCard key={recruitment.id} item={recruitment} />
+            ))}
+        </div>
+      )}
+    </>
   );
 };
 
