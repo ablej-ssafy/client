@@ -8,6 +8,10 @@
   padding-bottom: 20px;
   margin-top: 15px;
   border-bottom: 1px solid colors.$gray2;
+
+  @media (width <= 932px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .company-title {
