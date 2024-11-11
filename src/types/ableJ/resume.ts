@@ -16,7 +16,7 @@ export type PortfolioUrl = string;
 
 export interface Job {
   id: JobId;
-  title: JobTitle;
+  name: JobTitle;
 }
 
 export interface ResumePDF {
