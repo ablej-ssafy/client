@@ -36,7 +36,10 @@ const CompanyCard = ({item = dummy, scrap = true}: CompanyCardProps) => {
         />
         {scrap && <FaRegBookmark />}
         <div className={styles['job-title']}>{item.title}</div>
-        <div className={styles['company-name']}>{item.companyName}</div>
+        <div className={styles['company-name']}>
+          {item.companyName}
+          {scrap && <span>적합률 {Math.round(item.similarity * 100)}</span>}
+        </div>
       </div>
     </Link>
   );
