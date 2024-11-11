@@ -1,5 +1,4 @@
 'use client';
-
 import deleteResumeLanguageProficiencyInfoAction from '@/actions/portfolio/deleteResumeLanguageProficiencyInfoAction';
 import SubmitButton from '@/features/portfolio/components/SubmitButton';
 

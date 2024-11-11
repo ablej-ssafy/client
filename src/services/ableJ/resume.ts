@@ -10,15 +10,17 @@ import {
   GetExperienceInfoResponse,
   GetResumeBasicInfoResponse,
   GetResumePDFResponse,
+  GetTechStackInfoResponse,
   PostProfileImageResponse,
   ResumeBasicInfo,
+  TechStackInfoForm,
 } from '@/types/ableJ';
 import {ResponseType} from '@/types/common';
 
 export default {
   /**
    * PDF 파일 업로드 요청을 보내는 함수
-   * @param file 이력서 pdf 파일
+   * @param formData PDF 파일
    * @param accessToken 액세스 토큰
    */
   resumeUpload: async (formData: FormData, accessToken: AccessToken) => {
@@ -252,6 +254,32 @@ export default {
         },
       },
     );
+  },
+  /**
+   * 기술 스택 정보를 조회하는 함수
+   * @param accessToken 액세스 토큰
+   */
+  getTechStackInfo: async (accessToken: AccessToken) => {
+    return httpClient.get<GetTechStackInfoResponse>('/tech/stack', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+  /**
+   * 기술 스택 정보를 업데이트하는 함수
+   * @param techStackInfos 기술 스택 정보
+   * @param accessToken 액세스 토큰
+   */
+  updateTechStackInfo: async (
+    techStackInfos: TechStackInfoForm,
+    accessToken: AccessToken,
+  ) => {
+    return httpClient.post<ResponseType<null>>('/tech/stack', techStackInfos, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
   },
   /**
    * 자격증 정보를 삭제하는 함수

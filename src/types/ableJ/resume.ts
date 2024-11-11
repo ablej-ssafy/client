@@ -82,6 +82,13 @@ export interface CertificationInfo {
   certificationId?: number | null;
 }
 
+export interface TechStackInfoForm {
+  techId?: number | null;
+  githubUrl: string | null;
+  notionUrl: string | null;
+  techSkills: Skill['skillId'][] | null;
+}
+
 export type GetResumePDFResponse = ResponseType<ResumePDF[]>;
 export type GetAllJobsResponseData = Job[];
 export type GetAllTechSkillsResponseData = Skill[];
@@ -89,6 +96,12 @@ export type GetEducationInfoResponseData = {educations: EducationInfo[]};
 export type GetExperienceInfoResponseData = {experiences: ExperienceInfo[]};
 export type GetCertificationInfoResponseData = {
   certifications: CertificationInfo[];
+};
+export type GetTechStackInfoResponseData = {
+  techId: number;
+  techSkills: Skill[] | null;
+  githubUrl: string | null;
+  notionUrl: string | null;
 };
 export type PostProfileImageResponseData = ProfileImageUrl;
 
@@ -102,5 +115,7 @@ export type GetExperienceInfoResponse =
   ResponseType<GetExperienceInfoResponseData>;
 export type GetCertificationInfoResponse =
   ResponseType<GetCertificationInfoResponseData>;
+export type GetTechStackInfoResponse =
+  ResponseType<GetTechStackInfoResponseData>;
 export type PostProfileImageResponse =
   ResponseType<PostProfileImageResponseData>;
