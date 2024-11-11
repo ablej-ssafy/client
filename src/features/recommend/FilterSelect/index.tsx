@@ -1,7 +1,7 @@
 'use client';
 
 import classNames from 'classnames/bind';
-import {useRouter} from 'next/navigation';
+import {usePathname, useRouter} from 'next/navigation';
 import React, {useEffect, useState} from 'react';
 import {CiFileOn} from 'react-icons/ci';
 import {IoIosArrowDown, IoIosRefresh} from 'react-icons/io';
@@ -18,23 +18,31 @@ interface ResumePDFProps {
   data: ResumePDF[];
 }
 
-const FilterSelect = ({data}: ResumePDFProps) => {
+const FilterSelect = ({data = []}: ResumePDFProps) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const pathLast = pathname.split('/')[2];
   const hasData = data.length;
   const [selectedOpen, setSelectedOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(
-    hasData ? data[data.length - 1].fileName : '등록된 파일이 없습니다',
-  );
-  const [selectedUrl, setSelectedUrl] = useState(
-    hasData ? data[data.length - 1].url : '',
-  );
+  const [selectedItem, setSelectedItem] = useState('선택된 파일이 없습니다');
+  const [selectedUrl, setSelectedUrl] = useState('');
 
   useEffect(() => {
     if (hasData) {
-      router.push(`/recommend/${data[hasData - 1].id}`);
+      if (pathLast) {
+        const selectedData = data.find(item => item.id === Number(pathLast));
+        if (selectedData) {
+          setSelectedItem(selectedData.fileName);
+          setSelectedUrl(selectedData.url);
+        }
+      } else {
+        setSelectedItem(data[data.length - 1].fileName);
+        setSelectedUrl(data[data.length - 1].url);
+        router.push(`/recommend/${data[hasData - 1].id}`);
+      }
     }
-  }, [hasData]);
+  }, [hasData, pathLast, data, router]);
 
   const handleToggleDropdown = () => {
     if (!!hasData) {

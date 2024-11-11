@@ -2,7 +2,7 @@ import {getCookie} from 'cookies-next';
 import {useCallback, useEffect, useState} from 'react';
 
 import recruitmentService from '@/services/ableJ';
-import {useRecommendStore} from '@/zustand/slices/recommendSlice';
+import {useRootStore} from '@/zustand/rootStore';
 
 interface UseFetchRecruitmentsProps {
   resumeId: string | undefined;
@@ -10,7 +10,7 @@ interface UseFetchRecruitmentsProps {
 
 const useFetchRecruitments = ({resumeId}: UseFetchRecruitmentsProps) => {
   const accessToken = getCookie('accessToken');
-  const {recruitments, setRecruitments, isHydrated} = useRecommendStore();
+  const {recruitments, setRecruitments, isHydrated} = useRootStore();
   const currentRecruitments = recruitments[Number(resumeId)];
   const [loading, setLoading] = useState(false);
 
