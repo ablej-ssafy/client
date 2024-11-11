@@ -20,12 +20,10 @@ const fetchData = async (
   const accessToken = cookieStore.get('accessToken')?.value;
 
   if (keyword) {
-    const {data} = await searchService.recruitmentSearch(
+    const {data} = await searchService.recruitmentSearch({
       keyword,
-      0,
-      20,
       accessToken,
-    );
+    });
     return data;
   }
 
@@ -39,7 +37,8 @@ const fetchData = async (
     return data;
   }
 
-  throw new Error('keyword와 category 모두 없습니다.');
+  const {data} = await searchService.getAllRecruitment(0, 21, accessToken);
+  return data;
 };
 
 const SearchResult = async ({keyword, categoryId}: SearchResultProps) => {
@@ -47,7 +46,7 @@ const SearchResult = async ({keyword, categoryId}: SearchResultProps) => {
 
   return (
     <div className={styles.container}>
-      <CategoryBox />
+      <CategoryBox categoryId={categoryId} />
       <div className={styles['search-result']}>
         <SearchInput keyword={keyword} />
         <ResultBox recruitments={recruitments} />

@@ -1,8 +1,5 @@
-'use client';
-
 import classNames from 'classnames/bind';
-import {useRouter, useSearchParams} from 'next/navigation';
-import {useState} from 'react';
+import Link from 'next/link';
 
 import {CATEGORY} from '@/constants/category';
 
@@ -10,33 +7,24 @@ import styles from './categoryBox.module.scss';
 
 const cx = classNames.bind(styles);
 
-const CategoryBox = () => {
-  const searchParams = useSearchParams();
-  const paramCategoryId = searchParams.get('categoryId');
-  const [selected, setSelected] = useState<number>(
-    paramCategoryId ? Number(paramCategoryId) : 0,
-  );
+interface CategoryBoxProps {
+  categoryId?: string;
+}
 
-  const router = useRouter();
-
-  const handleClick = (categoryId: number) => {
-    setSelected(categoryId);
-    router.push(`/recruitments?categoryId=${categoryId}`);
-  };
-
+const CategoryBox = ({categoryId = '0'}: CategoryBoxProps) => {
   return (
     <div className={styles.container}>
       {CATEGORY.map(category => {
         return (
-          <span
+          <Link
+            href={`/recruitments?categoryId=${category.id}`}
             key={category.id}
-            onClick={() => handleClick(category.id)}
             className={cx(
-              selected === category.id ? 'selected' : 'no-selected',
+              Number(categoryId) === category.id ? 'selected' : 'no-selected',
             )}
           >
             {category.name}
-          </span>
+          </Link>
         );
       })}
     </div>

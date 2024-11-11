@@ -4,8 +4,6 @@ import Image from 'next/image';
 import {TouchEventHandler, useEffect, useRef, useState} from 'react';
 import {HiArrowCircleLeft, HiArrowCircleRight} from 'react-icons/hi';
 
-import Image1 from '@/assets/images/announcement1.png';
-
 import styles from './carousel.module.scss';
 
 interface CarouselProps {
@@ -114,9 +112,8 @@ const Carousel = ({imageArray}: CarouselProps) => {
 
             return (
               <li key={key} className={styles['carousel-item']}>
-                {/* <Image src={image} alt="carousel=img" /> */}
                 <Image
-                  src={Image1}
+                  src={image}
                   alt="carousel=img"
                   layout="responsive"
                   width={3}

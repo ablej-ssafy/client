@@ -1,73 +1,67 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import {TbWorldSearch} from 'react-icons/tb';
 
-import companyLogo from '@/assets/images/companylogo.png';
 import KakaoMap from '@/components/common/KakaoMap';
 import Tag from '@/components/common/Tag';
 import {Company} from '@/types/ableJ';
+import {addHttp} from '@/utils/link';
 
 import styles from './companyInfo.module.scss';
 
-const companyInfo: Company = {
-  companyId: 1,
-  name: '메디인테크',
-  thumbnail:
-    'https://storage.googleapis.com/ai-headhunting-resume/company/company-thumbnail-1-cb5f7dea-9c3e-42d6-82c7-8213009d1bb6.jpg',
-  address: '서울특별시 종로구 대학로 60 동마루빌딩 2층',
-  roadAddress: '서울특별시 종로구 대학로 60',
-  latitude: 37.576534,
-  longitude: 127.0025224,
-  location: '서울',
-  strict: '종로구',
-};
+interface CompanyInfoProps {
+  companyInfo: Company;
+}
 
-const CompanyInfo = () => {
+const CompanyInfo = ({companyInfo}: CompanyInfoProps) => {
+  const industryArray = companyInfo.industryName.split(',');
+  const formattedDescription = companyInfo.description?.replace(
+    /\n/g,
+    '<br />',
+  );
+
   return (
     <div className={styles.container}>
       <div>
         <div className={styles['company-title']}>
           <Image
             className={styles['company-logo']}
-            src={companyLogo}
-            alt="회사 로고"
+            src={companyInfo.thumbnail}
+            alt={companyInfo.name}
             width={100}
             height={100}
           />
           <div className={styles['company-info']}>
-            <span className={styles['company-name']}>미리디</span>
-            <span className={styles['company-text']}>회사 주소</span>
-            <div className={styles['company-search']}>
-              <TbWorldSearch size={18} />
-              <span className={styles['company-text']}>
-                미리디 검색하러 가기
-              </span>
-            </div>
+            <span className={styles['company-name']}>{companyInfo.name}</span>
+            <span className={styles['company-text']}>
+              {companyInfo.address}
+            </span>
+            {companyInfo.link && (
+              <div className={styles['company-search']}>
+                <TbWorldSearch size={18} />
+                <Link
+                  className={styles['company-text']}
+                  href={addHttp(companyInfo.link)}
+                >
+                  {companyInfo.link}
+                </Link>
+              </div>
+            )}
           </div>
         </div>
         <div className={styles['company-tag']}>
-          <Tag title="IT" />
-          <Tag title="컨텐츠" />
+          {industryArray.map((industry, index) => (
+            <Tag key={index} title={industry} />
+          ))}
+          <Tag title={String(companyInfo.foundedYear)} type="secondary" />
+          <Tag title={`${String(companyInfo.age)}년차`} type="secondary" />
         </div>
-        <p className={styles['company-description']}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industrys standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of
-          the printing and typesetting industry. Lorem Ipsum has been the
-          industrys standard dummy text ever since the 1500s, when an unknown
-          printer took a galley of type and scrambled it to make a type specimen
-          book. It has survived not only five centuries, but also the leap into
-          electronic typesetting, remaining essentially unchanged. It was
-          popularised in the 1960s with the release of Letraset sheets
-          containing Lorem Ipsum passages, and more recently with desktop
-          publishing software like Aldus PageMaker including versions of Lorem
-          Ipsum.
-        </p>
+        {formattedDescription && (
+          <p
+            className={styles['company-description']}
+            dangerouslySetInnerHTML={{__html: formattedDescription}}
+          />
+        )}
       </div>
       <KakaoMap companyInfo={companyInfo} />
     </div>

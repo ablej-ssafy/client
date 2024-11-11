@@ -1,4 +1,5 @@
 import Auth from './auth';
+import Company from './company';
 import Job from './job';
 import Recruitment from './recruitment';
 import Resume from './resume';
@@ -10,4 +11,5 @@ export default {
   ...Resume,
   ...Recruitment,
   ...Search,
+  ...Company,
 };

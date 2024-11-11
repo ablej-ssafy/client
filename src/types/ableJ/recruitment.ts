@@ -1,3 +1,4 @@
+import {Company} from '@/types/ableJ';
 import {ResponseType} from '@/types/common';
 
 export interface RecruitmentDetail {
@@ -21,18 +22,6 @@ export interface RecruitmentDetail {
 export interface Category {
   id: number;
   name: string;
-}
-
-export interface Company {
-  companyId: number;
-  name: string;
-  thumbnail: string;
-  address: string;
-  roadAddress: string;
-  latitude: number;
-  longitude: number;
-  location?: string;
-  strict?: string;
 }
 
 export interface RecruitmentCard {
