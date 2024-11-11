@@ -1,4 +1,4 @@
-import {PropsWithChildren} from 'react';
+import {Fragment, PropsWithChildren} from 'react';
 
 import Columns from '@/features/portfolio/components/Column';
 import DatePicker from '@/features/portfolio/components/DatePicker';
@@ -15,7 +15,7 @@ const LanguageProficiencyInfoSection = ({
   children,
 }: LanguageProficiencyInfoSection) => {
   return (
-    <>
+    <Fragment key={languageInfo?.certificationId}>
       <Columns>
         <Input
           isLabeled
@@ -47,7 +47,7 @@ const LanguageProficiencyInfoSection = ({
       <input name="certificationType" hidden readOnly defaultValue="LANGUAGE" />
       {children}
       <Divider />
-    </>
+    </Fragment>
   );
 };
 

@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import {Fragment} from 'react';
 import {FaGithub} from 'react-icons/fa';
 import {RiNotionLine} from 'react-icons/ri';
 
@@ -16,7 +17,7 @@ const cx = classNames.bind(styles);
 
 const SkillSection = ({techStackInfo}: SkillSectionProps) => {
   return (
-    <>
+    <Fragment key={techStackInfo.techId}>
       <SkillCombobox techSkills={techStackInfo?.techSkills || null} />
       <div className={cx('skill-input')}>
         <FaGithub size={24} />
@@ -35,7 +36,7 @@ const SkillSection = ({techStackInfo}: SkillSectionProps) => {
         />
       </div>
       <input name="techId" hidden defaultValue={techStackInfo?.techId} />
-    </>
+    </Fragment>
   );
 };
 

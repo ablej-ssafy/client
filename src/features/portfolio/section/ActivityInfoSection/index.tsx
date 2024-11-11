@@ -1,4 +1,4 @@
-import {PropsWithChildren} from 'react';
+import {Fragment, PropsWithChildren} from 'react';
 
 import Columns from '@/features/portfolio/components/Column';
 import DatePicker from '@/features/portfolio/components/DatePicker';
@@ -15,7 +15,7 @@ const ActivityInfoSection = ({
   children,
 }: ActivityInfoSectionProps) => {
   return (
-    <>
+    <Fragment key={activity?.experienceId}>
       <Input
         isLabeled
         label="활동명"
@@ -56,7 +56,7 @@ const ActivityInfoSection = ({
       <input name="experienceType" hidden defaultValue="ACTIVITY" />
       {children}
       <Divider />
-    </>
+    </Fragment>
   );
 };
 

@@ -1,4 +1,4 @@
-import {PropsWithChildren} from 'react';
+import {Fragment, PropsWithChildren} from 'react';
 
 import Columns from '@/features/portfolio/components/Column';
 import DatePicker from '@/features/portfolio/components/DatePicker';
@@ -17,7 +17,7 @@ const ExperienceInfoSection = ({
 }: ExperienceInfoSectionProps) => {
   const [department, position] = experience?.affiliation?.split('/') || [];
   return (
-    <>
+    <Fragment key={experience?.experienceId}>
       <Input
         isLabeled
         label="회사명"
@@ -61,7 +61,7 @@ const ExperienceInfoSection = ({
       <input name="experienceType" hidden readOnly defaultValue="COMPANY" />
       {children}
       <Divider />
-    </>
+    </Fragment>
   );
 };
 

@@ -1,4 +1,4 @@
-import {PropsWithChildren} from 'react';
+import {Fragment, PropsWithChildren} from 'react';
 
 import Columns from '@/features/portfolio/components/Column';
 import DatePicker from '@/features/portfolio/components/DatePicker';
@@ -15,7 +15,7 @@ const CertificateInfoSection = ({
   children,
 }: CertificateInfoSectionProps) => {
   return (
-    <>
+    <Fragment key={certificate?.certificationId}>
       <Input
         isLabeled
         label="자격증명"
@@ -63,7 +63,7 @@ const CertificateInfoSection = ({
       />
       {children}
       <Divider />
-    </>
+    </Fragment>
   );
 };
 

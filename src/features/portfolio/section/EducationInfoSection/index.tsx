@@ -1,4 +1,4 @@
-import {ReactNode} from 'react';
+import {Fragment, ReactNode} from 'react';
 
 import EDUCATION_TYPE from '@/constants/educationType';
 import GRADE_TYPE from '@/constants/gradeType';
@@ -21,7 +21,7 @@ const EducationInfoSection = ({
   console.log('education:', education);
 
   return (
-    <>
+    <Fragment key={education?.educationId}>
       <Input
         isLabeled
         label="학교"
@@ -85,7 +85,7 @@ const EducationInfoSection = ({
       />
       {children}
       <Divider />
-    </>
+    </Fragment>
   );
 };
 

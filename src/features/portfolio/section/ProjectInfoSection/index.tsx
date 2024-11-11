@@ -1,4 +1,4 @@
-import {PropsWithChildren} from 'react';
+import {Fragment, PropsWithChildren} from 'react';
 
 import Columns from '@/features/portfolio/components/Column';
 import DatePicker from '@/features/portfolio/components/DatePicker';
@@ -12,7 +12,7 @@ interface ProjectInfoSectionProps extends PropsWithChildren {
 
 const ProjectInfoSection = ({project, children}: ProjectInfoSectionProps) => {
   return (
-    <>
+    <Fragment key={project?.experienceId}>
       <Input
         isLabeled
         label="프로젝트명"
@@ -59,7 +59,7 @@ const ProjectInfoSection = ({project, children}: ProjectInfoSectionProps) => {
       <input name="experienceType" hidden readOnly defaultValue="PROJECT" />
       {children}
       <Divider />
-    </>
+    </Fragment>
   );
 };
 
