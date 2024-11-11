@@ -1,0 +1,10 @@
+.profile {
+  display: flex;
+  gap: 30px;
+
+  .profile-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

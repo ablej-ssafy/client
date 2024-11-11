@@ -1,27 +1,53 @@
-import AddSectionItemButton from '@/features/portfolio/components/AddSectionItemButton';
-import Board from '@/features/portfolio/components/Board';
+import {Fragment, PropsWithChildren} from 'react';
+
 import Columns from '@/features/portfolio/components/Column';
 import DatePicker from '@/features/portfolio/components/DatePicker';
 import Divider from '@/features/portfolio/components/Divider';
 import Input from '@/features/portfolio/components/Input';
-import SectionHeader from '@/features/portfolio/components/SectionHeader';
+import type {CertificationInfo} from '@/types/ableJ';
 
-const LanguageProficiencyInfoSection = () => {
+interface LanguageProficiencyInfoSection extends PropsWithChildren {
+  languageInfo?: CertificationInfo;
+}
+
+const LanguageProficiencyInfoSection = ({
+  languageInfo,
+  children,
+}: LanguageProficiencyInfoSection) => {
   return (
-    <Board>
-      <SectionHeader title="어학 성적">
-        <AddSectionItemButton text="어학 추가" />
-      </SectionHeader>
-      <Divider />
+    <Fragment key={languageInfo?.certificationId}>
       <Columns>
-        <Input isLabeled label="자격증명" />
-        <Input isLabeled label="점수/등급" />
+        <Input
+          isLabeled
+          label="자격증명"
+          name="name"
+          defaultValue={languageInfo?.name || ''}
+        />
+        <Input
+          isLabeled
+          label="점수/등급"
+          name="grade"
+          defaultValue={languageInfo?.grade || ''}
+        />
       </Columns>
       <Columns>
-        <Input isLabeled label="발급기관" />
+        <Input
+          isLabeled
+          label="발급기관"
+          name="organization"
+          defaultValue={languageInfo?.organization || ''}
+        />
         <DatePicker isLabeled label="취득일" />
       </Columns>
-    </Board>
+      <input
+        name="certificationId"
+        hidden
+        defaultValue={languageInfo?.certificationId || ''}
+      />
+      <input name="certificationType" hidden readOnly defaultValue="LANGUAGE" />
+      {children}
+      <Divider />
+    </Fragment>
   );
 };
 
