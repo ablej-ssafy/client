@@ -7,6 +7,7 @@ import {CiFileOn} from 'react-icons/ci';
 import {IoIosArrowDown, IoIosRefresh} from 'react-icons/io';
 
 import Button from '@/components/common/Button';
+import PreviewModal from '@/features/resume/PreViewModal';
 import {ResumePDF} from '@/types/ableJ';
 
 import styles from './filterSelect.module.scss';
@@ -20,9 +21,13 @@ interface ResumePDFProps {
 const FilterSelect = ({data}: ResumePDFProps) => {
   const router = useRouter();
   const hasData = data.length;
+  const [selectedOpen, setSelectedOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(
     hasData ? data[data.length - 1].fileName : '등록된 파일이 없습니다',
+  );
+  const [selectedUrl, setSelectedUrl] = useState(
+    hasData ? data[data.length - 1].url : '',
   );
 
   useEffect(() => {
@@ -33,50 +38,63 @@ const FilterSelect = ({data}: ResumePDFProps) => {
 
   const handleToggleDropdown = () => {
     if (!!hasData) {
-      setIsOpen(prev => !prev);
+      setSelectedOpen(prev => !prev);
     }
   };
 
-  const handleSelectItem = (item: string, id: number) => {
-    setSelectedItem(item);
+  const handleSelectItem = (item: ResumePDF) => {
+    setSelectedItem(item.fileName);
+    setSelectedUrl(item.url);
+    setSelectedOpen(false);
+    router.push(`/recommend/${item.id}`);
+  };
+
+  const handleOpenPDF = () => {
+    setIsOpen(true);
+  };
+
+  const handleClosePDF = () => {
     setIsOpen(false);
-    router.push(`/recommend/${id}`);
   };
 
   return (
-    <div className={styles.container}>
-      <div
-        className={styles.selectbox}
-        onClick={handleToggleDropdown}
-        onBlur={() => setIsOpen(false)}
-        tabIndex={0} // 포커스 관리
-      >
-        <div>
-          <div>{selectedItem}</div>
-          <IoIosArrowDown className={cx({'icon-open': isOpen})} />
+    <>
+      <div className={styles.container}>
+        <div
+          className={styles.selectbox}
+          onClick={handleToggleDropdown}
+          onBlur={() => setSelectedOpen(false)}
+          tabIndex={0} // 포커스 관리
+        >
+          <div>
+            <div>{selectedItem}</div>
+            <IoIosArrowDown className={cx({'icon-open': selectedOpen})} />
+          </div>
+          {!!hasData && selectedOpen && (
+            <ul className={styles.dropdown}>
+              {data.map(item => (
+                <li key={item.id} onMouseDown={() => handleSelectItem(item)}>
+                  {item.fileName}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-        {!!hasData && isOpen && (
-          <ul className={styles.dropdown}>
-            {data.map(item => (
-              <li
-                key={item.id}
-                onMouseDown={() => handleSelectItem(item.fileName, item.id)}
-              >
-                {item.fileName}
-              </li>
-            ))}
-          </ul>
-        )}
+        <div className={styles['right-button']}>
+          <Button text="이력서 펼치기" height={40} onClick={handleOpenPDF} />
+          <Button text="새로고침" color="type2" height={40} />
+        </div>
+        <div className={styles['mobile-right-button']}>
+          <CiFileOn size={24} />
+          <IoIosRefresh size={24} />
+        </div>
       </div>
-      <div className={styles['right-button']}>
-        <Button text="이력서 펼치기" height={40} />
-        <Button text="새로고침" color="type2" height={40} />
-      </div>
-      <div className={styles['mobile-right-button']}>
-        <CiFileOn size={24} />
-        <IoIosRefresh size={24} />
-      </div>
-    </div>
+      <PreviewModal
+        isOpen={isOpen}
+        onClose={handleClosePDF}
+        pdfUrl={selectedUrl}
+      />
+    </>
   );
 };
 
