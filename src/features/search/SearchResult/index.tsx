@@ -1,4 +1,4 @@
-import {getCookie} from 'cookies-next';
+import {cookies} from 'next/headers';
 
 import CategoryBox from '@/features/search/CategoryBox';
 import ResultBox from '@/features/search/ResultBox';
@@ -16,7 +16,8 @@ const fetchData = async (
   keyword: string | undefined,
   categoryId: number | undefined,
 ) => {
-  const accessToken = await getCookie('accessToken');
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get('accessToken')?.value;
 
   if (keyword) {
     const {data} = await searchService.recruitmentSearch(

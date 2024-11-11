@@ -1,4 +1,4 @@
-import {getCookie} from 'cookies-next';
+import {cookies} from 'next/headers';
 
 import PopularSearch from '@/features/search/PopularSearch';
 import RecentSearch from '@/features/search/RecentSearch';
@@ -8,7 +8,9 @@ import searchService from '@/services/ableJ';
 import styles from './noSearchText.module.scss';
 
 const fetchKeyword = async () => {
-  const accessToken = await getCookie('accessToken');
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get('accessToken')?.value;
+  console.log('accessToken', accessToken);
 
   const {data} = await searchService.getRankSearch(accessToken);
 
