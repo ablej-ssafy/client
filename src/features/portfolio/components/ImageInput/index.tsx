@@ -1,37 +1,54 @@
+'use client';
 import classNames from 'classnames/bind';
-import {ChangeEvent, InputHTMLAttributes, useState} from 'react';
+import {getCookie} from 'cookies-next';
+import {useRouter} from 'next/navigation';
+import {ChangeEvent, InputHTMLAttributes, useEffect, useState} from 'react';
+import toast from 'react-hot-toast';
 import {FaImagePortrait} from 'react-icons/fa6';
+
+import ableJ from '@/services/ableJ';
 
 import styles from './imageInput.module.scss';
 
 type ImageInputProps = NormalInputProps | LabeledInputProps;
 
 type NormalInputProps = {
+  imageUrl?: string;
   isLabeled?: false;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 type LabeledInputProps = {
+  imageUrl?: string;
   isLabeled: true;
   label: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 const cx = classNames.bind(styles);
 
 const ImageInput = (props: ImageInputProps) => {
+  const router = useRouter();
   const [image, setImage] = useState('');
 
-  const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.currentTarget.files) return;
     const file = e.currentTarget.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
 
-    reader.onload = () => {
-      if (!reader.result) return;
-      setImage(reader.result.toString());
-    };
+    const accessToken = getCookie('accessToken');
+
+    if (!accessToken) {
+      toast.error('로그인이 필요합니다.');
+      router.replace('/signin');
+      return;
+    }
+
+    const response = await ableJ.uploadProfileImage(file, accessToken);
+    setImage(response.data);
 
     props.onChange?.(e);
   };
+
+  useEffect(() => {
+    setImage(props.imageUrl || '');
+  }, [props.imageUrl]);
 
   return (
     <div className={cx('image-input-container')}>
@@ -45,6 +62,7 @@ const ImageInput = (props: ImageInputProps) => {
       </label>
       <input
         {...props}
+        name=""
         id="image-input"
         type="file"
         accept="image/*"
@@ -53,6 +71,7 @@ const ImageInput = (props: ImageInputProps) => {
         className={cx('image-input')}
         onChange={handleChangeImage}
       />
+      <input name={props.name} defaultValue={image} hidden />
     </div>
   );
 };

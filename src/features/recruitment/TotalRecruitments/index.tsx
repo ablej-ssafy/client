@@ -1,6 +1,6 @@
 'use server';
 
-import {getCookie} from 'cookies-next';
+import {cookies} from 'next/headers';
 
 import CategoryBox from '@/features/search/CategoryBox';
 import ResultBox from '@/features/search/ResultBox';
@@ -10,7 +10,8 @@ import SearchService from '@/services/ableJ';
 import styles from './totalRecruitments.module.scss';
 
 const fetchRecruitments = async () => {
-  const accessToken = getCookie('accessToken');
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get('accessToken')?.value;
   const {data} = await SearchService.getAllRecruitment(0, 20, accessToken);
 
   return data;

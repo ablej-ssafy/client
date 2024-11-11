@@ -2,6 +2,7 @@
 @use '@/styles/constants/layout' as layout;
 
 .container {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -18,6 +19,8 @@
   }
 
   .sidebar {
+    position: fixed;
     grid-column: 3;
+    padding-top: 2.5rem;
   }
 }

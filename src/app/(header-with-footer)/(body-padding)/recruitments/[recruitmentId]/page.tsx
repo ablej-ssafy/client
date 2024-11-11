@@ -1,4 +1,4 @@
-import {getCookie} from 'cookies-next';
+import {cookies} from 'next/headers';
 
 import RecruitmentBox from '@/features/recruitment/Detail/RecruitmentBox';
 import RecruitmentCarousel from '@/features/recruitment/Detail/RecruitmentCarousel';
@@ -6,7 +6,8 @@ import RecruitmentTitle from '@/features/recruitment/Detail/RecruitmentTitle';
 import RecruitmentService from '@/services/ableJ';
 
 const RecruitmentDetailPage = async () => {
-  const accessToken = await getCookie('accessToken');
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get('accessToken')?.value;
 
   const {data} = await RecruitmentService.getRecruitmentDetail(56, accessToken);
 

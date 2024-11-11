@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 const SearchButton = () => {
   return (
-    <Link href="" className={cx('search-button')}>
+    <Link href="/search" className={cx('search-button')}>
       <IoSearchSharp size={20} />
       채용공고 및 회사 검색
     </Link>
