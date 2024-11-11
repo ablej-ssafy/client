@@ -8,5 +8,5 @@
   background-color: rgba(colors.$primary, 0.1);
   border-radius: 0.5rem;
 
-  @include mixin.text-bold(600, 2rem);
+  @include mixin.text-bold(600, 1.8rem);
 }

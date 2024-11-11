@@ -1,7 +1,7 @@
 import {cookies} from 'next/headers';
 
+import Carousel from '@/components/common/Carousel';
 import RecruitmentBox from '@/features/recruitment/Detail/RecruitmentBox';
-import RecruitmentCarousel from '@/features/recruitment/Detail/RecruitmentCarousel';
 import RecruitmentTitle from '@/features/recruitment/Detail/RecruitmentTitle';
 import RecruitmentService from '@/services/ableJ';
 
@@ -13,7 +13,7 @@ const RecruitmentDetailPage = async () => {
 
   return (
     <>
-      <RecruitmentCarousel imageArray={data.images} />
+      <Carousel imageArray={data.images} />
       <RecruitmentTitle
         name={data.name}
         category={data.category}

@@ -1,4 +1,4 @@
-import KakaoMap from '@/features/recruitment/Detail/KakaoMap';
+import KakaoMap from '@/components/common/KakaoMap';
 import RecruitmentContent from '@/features/recruitment/Detail/RecruitmentContent';
 import ScrapButton from '@/features/recruitment/Detail/ScrapButton';
 import {Company} from '@/types/ableJ';
