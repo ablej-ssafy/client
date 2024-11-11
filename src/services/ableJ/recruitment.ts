@@ -60,6 +60,11 @@ export default {
     );
   },
 
+  /**
+   * 추천 채용 공고를 가져오는 함수
+   * @param resumeId 추천 채용 공고를 받을 이력서 아이디
+   * @param accessToken 액세스 토큰
+   */
   getRecommendedRecruitments: async (resumeId: number, accessToken: string) => {
     return httpClient.get<RecruitmentCardListResponse>(
       `/recommend/${resumeId}`,
