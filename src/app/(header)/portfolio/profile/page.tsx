@@ -1,5 +1,3 @@
-'use client';
-
 import BasicInfoSection from '@/features/portfolio/section/BasicInfoSection';
 
 const ProfilePage = () => {

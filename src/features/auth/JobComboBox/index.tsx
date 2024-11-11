@@ -49,7 +49,7 @@ const JobComboBox = () => {
           type="button"
         >
           {selectedJobs
-            .map(jobId => jobs.find(({id}) => jobId === id)?.title)
+            .map(jobId => jobs.find(({id}) => jobId === id)?.name)
             .join(' ')}
         </button>
         {isOpen && (
@@ -65,7 +65,7 @@ const JobComboBox = () => {
               {!!jobs?.length &&
                 jobs
                   .filter(job =>
-                    disassemble(job.title).includes(disassemble(keyword)),
+                    disassemble(job.name).includes(disassemble(keyword)),
                   )
                   .map(job => (
                     <li key={job.id}>
@@ -77,7 +77,7 @@ const JobComboBox = () => {
                         onClick={handleSelectJobs}
                         type="button"
                       >
-                        {job.title}
+                        {job.name}
                       </button>
                     </li>
                   ))}

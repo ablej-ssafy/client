@@ -1,9 +1,7 @@
-'use client';
-
-import EducationInfoSection from '@/features/portfolio/section/EducationInfoSection';
+import EducationInfoSectionList from '@/features/portfolio/section/EducationInfoSection/EducationInfoSectionList';
 
 const EducationPage = () => {
-  return <EducationInfoSection />;
+  return <EducationInfoSectionList />;
 };
 
 export default EducationPage;

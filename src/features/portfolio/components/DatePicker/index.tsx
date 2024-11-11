@@ -1,3 +1,5 @@
+'use client';
+
 import 'react-datepicker/dist/react-datepicker.css';
 
 import classNames from 'classnames/bind';
@@ -22,7 +24,9 @@ type LabeledCustomDatePicker = {
 const cx = classNames.bind(styles);
 
 const CustomDatePicker = (props: CustomDatePicker) => {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(
+    props.defaultValue ? new Date(props.defaultValue as string) : new Date(),
+  );
 
   return (
     <div className={cx('datepicker-container')}>
@@ -37,8 +41,13 @@ const CustomDatePicker = (props: CustomDatePicker) => {
         closeOnScroll={e => e.target === document}
         customInput={<DateButton />}
         tabIndex={1}
-        locale="ko-KR"
         dateFormat="yyyy.MM.dd"
+        maxDate={new Date()}
+      />
+      <input
+        name={props.name}
+        hidden
+        defaultValue={`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`}
       />
     </div>
   );

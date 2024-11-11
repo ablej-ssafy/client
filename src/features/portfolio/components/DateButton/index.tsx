@@ -13,7 +13,12 @@ interface DateButtonProps {
 const DateButton = forwardRef<HTMLButtonElement, DateButtonProps>(
   ({onClick, value}, ref) => {
     return (
-      <button onClick={onClick} ref={ref} className={cx('button')}>
+      <button
+        onClick={onClick}
+        ref={ref}
+        className={cx('button')}
+        type="button"
+      >
         {value}
       </button>
     );

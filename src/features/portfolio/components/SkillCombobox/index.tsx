@@ -1,3 +1,4 @@
+'use client';
 import classNames from 'classnames/bind';
 import {MouseEvent, useRef, useState} from 'react';
 import {IoIosClose} from 'react-icons/io';
@@ -9,12 +10,18 @@ import {Skill} from '@/types/ableJ';
 
 import styles from './skillCombobox.module.scss';
 
+interface SkillComboboxProps {
+  techSkills: Skill[] | null;
+}
+
 const cx = classNames.bind(styles);
 
-const SkillCombobox = () => {
+const SkillCombobox = ({techSkills}: SkillComboboxProps) => {
   const [keyword, setKeyword] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedSkills, setSelectedSkills] = useState<Skill['skillId'][]>([]);
+  const [selectedSkills, setSelectedSkills] = useState<Skill['skillId'][]>(
+    techSkills?.map(techSkill => techSkill.skillId) || [],
+  );
   const skills = useSkills();
   const listRef = useRef<HTMLDivElement>(null);
   useClickOutside(listRef, () => setIsOpen(false));
@@ -60,7 +67,11 @@ const SkillCombobox = () => {
                     selected: selectedSkills.includes(skill.skillId),
                   })}
                 >
-                  <button value={skill.skillId} onClick={handleClickSkill}>
+                  <button
+                    value={skill.skillId}
+                    onClick={handleClickSkill}
+                    type="button"
+                  >
                     {skill.skillName}
                   </button>
                 </li>
@@ -72,15 +83,18 @@ const SkillCombobox = () => {
         {skills
           .filter(skill => selectedSkills.includes(skill.skillId))
           .map(skill => (
-            <button
-              key={skill.skillId}
-              value={skill.skillId}
-              className={cx('skill-item')}
-              onClick={handleDeleteSkill}
-            >
-              <IoIosClose size={20} />
-              {skill.skillName}
-            </button>
+            <>
+              <button
+                key={skill.skillId}
+                value={skill.skillId}
+                className={cx('skill-item')}
+                onClick={handleDeleteSkill}
+              >
+                <IoIosClose size={20} />
+                {skill.skillName}
+              </button>
+              <input hidden defaultValue={skill.skillId} name="techSkills" />
+            </>
           ))}
       </div>
     </div>
