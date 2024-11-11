@@ -1,5 +1,3 @@
-'use server';
-
 import TotalRecruitements from '@/features/recruitment/TotalRecruitments';
 import SearchResult from '@/features/search/SearchResult';
 
@@ -11,7 +9,6 @@ const RecruitmentPage = async ({
     categoryId: string | undefined;
   };
 }) => {
-  console.log('recruitmentPage', keyword, categoryId);
   return (
     <>
       {keyword || categoryId ? (
