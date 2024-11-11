@@ -5,8 +5,10 @@
 
   & > label {
     display: block;
+    margin-top: 0.3rem;
     margin-right: auto;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.3rem;
+    font-size: 1.2rem;
     color: colors.$gray5;
     text-align: left;
   }

@@ -1,0 +1,19 @@
+@use '@/styles/mixin' as mixin;
+
+.container {
+  gap: 0 20px;
+  width: 50%;
+
+  @include mixin.flex-default(flex-start);
+}
+
+.rank {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.text {
+  font-size: 1.7rem;
+  font-weight: 500;
+  cursor: pointer;
+}

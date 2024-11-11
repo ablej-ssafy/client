@@ -1,0 +1,30 @@
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/mixin' as mixin;
+
+.container {
+  position: relative;
+  width: 100%;
+  padding: 0 20%;
+}
+
+.input {
+  width: 100%;
+  padding: 8px 50px;
+  font-size: 1.6rem;
+  border: 1px solid colors.$primary;
+  border-radius: 10px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: colors.$gray3;
+  }
+}
+
+.search-icon {
+  position: absolute;
+  top: 12px;
+  left: 22%;
+}

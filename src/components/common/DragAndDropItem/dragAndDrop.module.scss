@@ -1,5 +1,5 @@
 @use '@/styles/constants/colors' as colors;
-@use '@/styles/mixin/index' as mixin;
+@use '@/styles/mixin' as mixin;
 
 .container {
   @include mixin.flex-default(space-between);

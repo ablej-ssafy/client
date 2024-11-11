@@ -19,7 +19,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
     return (
       <div {...props} ref={ref} className={cx('modal')}>
         <button className={cx('close-button')} onClick={() => router.back()}>
-          <MdClose size="28" />
+          <MdClose size="24" />
         </button>
         {children}
       </div>

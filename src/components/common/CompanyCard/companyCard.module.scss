@@ -1,7 +1,14 @@
-@use '@/styles/mixin/index' as mixin;
+@use '@/styles/mixin' as mixin;
+
+.link {
+  display: block;
+  width: 100%;
+  color: black;
+}
 
 .container {
   position: relative;
+  display: block;
   width: 100%;
   margin-bottom: 6px;
   cursor: pointer;

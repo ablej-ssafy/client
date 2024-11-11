@@ -1,0 +1,18 @@
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/mixin' as mixin;
+
+.container {
+  padding-top: 5%;
+}
+
+.result-count {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: colors.$gray4;
+}
+
+.result-box {
+  margin-top: 10px;
+
+  @include mixin.grid-3-default;
+}

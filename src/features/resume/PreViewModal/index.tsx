@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './PreViewModal.module.scss';
+import styles from './preViewModal.module.scss';
 
 interface PreviewModalProps {
   isOpen: boolean;
