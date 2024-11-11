@@ -42,6 +42,7 @@ const CustomDatePicker = (props: CustomDatePicker) => {
         customInput={<DateButton />}
         tabIndex={1}
         dateFormat="yyyy.MM.dd"
+        maxDate={new Date()}
       />
       <input
         name={props.name}
