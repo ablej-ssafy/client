@@ -10,7 +10,6 @@ import styles from './noSearchText.module.scss';
 const fetchKeyword = async () => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get('accessToken')?.value;
-  console.log('accessToken', accessToken);
 
   const {data} = await searchService.getRankSearch(accessToken);
 
@@ -19,9 +18,6 @@ const fetchKeyword = async () => {
 
 const NoSearchText = async () => {
   const {ranks, recentKeywords} = await fetchKeyword();
-
-  console.log('ranks', ranks);
-  console.log('recentKeywords', recentKeywords);
 
   return (
     <div className={styles.container}>
