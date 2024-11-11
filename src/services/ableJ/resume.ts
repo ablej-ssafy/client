@@ -253,4 +253,19 @@ export default {
       },
     );
   },
+  /**
+   * 자격증 정보를 삭제하는 함수
+   * @param certificationId 자격증 정보 experienceId
+   * @param accessToken 액세스 토큰
+   */
+  deleteCertificationInfo: async (
+    certificationId: number,
+    accessToken: AccessToken,
+  ) => {
+    return httpClient.delete(`/certification/${certificationId}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
 };

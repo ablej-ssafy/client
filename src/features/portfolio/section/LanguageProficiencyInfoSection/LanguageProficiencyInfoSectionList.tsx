@@ -2,6 +2,7 @@ import {cookies} from 'next/headers';
 import {redirect} from 'next/navigation';
 
 import LanguageProficiencyInfoSection from '@/features/portfolio/section/LanguageProficiencyInfoSection';
+import LanguageProficiencyInfoDeleteButton from '@/features/portfolio/section/LanguageProficiencyInfoSection/LanguageProficiencyInfoDeleteButton';
 import ableJ from '@/services/ableJ';
 
 const LanguageProficiencyInfoSectionList = async () => {
@@ -21,7 +22,11 @@ const LanguageProficiencyInfoSectionList = async () => {
       <LanguageProficiencyInfoSection
         key={languageInfo.certificationId}
         languageInfo={languageInfo}
-      />
+      >
+        <LanguageProficiencyInfoDeleteButton
+          certificationId={languageInfo.certificationId!}
+        />
+      </LanguageProficiencyInfoSection>
     ))
   );
 };

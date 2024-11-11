@@ -1,6 +1,7 @@
 import {cookies} from 'next/headers';
 import {redirect} from 'next/navigation';
 
+import CertificationInfoDeleteButton from '@/features/portfolio/section/CertificateInfoSection/CertificationInfoDeleteButton';
 import CertificateInfoSection from '@/features/portfolio/section/CertificateInfoSection/index';
 import ableJ from '@/services/ableJ';
 
@@ -24,7 +25,11 @@ const CertificateInfoSectionList = async () => {
       <CertificateInfoSection
         key={certification.certificationId}
         certificate={certification}
-      />
+      >
+        <CertificationInfoDeleteButton
+          certificationId={certification.certificationId!}
+        />
+      </CertificateInfoSection>
     ))
   );
 };
