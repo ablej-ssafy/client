@@ -65,7 +65,7 @@ const JobComboBox = () => {
               {!!jobs?.length &&
                 jobs
                   .filter(job =>
-                    disassemble(job.title).includes(disassemble(keyword)),
+                    disassemble(job.name).includes(disassemble(keyword)),
                   )
                   .map(job => (
                     <li key={job.id}>
