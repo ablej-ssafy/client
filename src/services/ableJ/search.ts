@@ -1,5 +1,5 @@
 import httpClient from '@/configs/httpClient';
-import {CategoryResponse, SearchResponse} from '@/types/ableJ';
+import {RankSearchResponse, SearchResponse} from '@/types/ableJ';
 
 export default {
   /**
@@ -15,21 +15,37 @@ export default {
     size: number,
     accessToken?: string,
   ) => {
-    return httpClient.get<SearchResponse>(
-      `/search/recruitment?q=${keyword}&page=${page}&size=${size}`,
-      {
-        headers: accessToken ? {Authorization: `Bearer ${accessToken}`} : {},
-      },
-    );
+    const params = new URLSearchParams();
+    params.append('q', keyword);
+    params.append('page', String(page));
+    params.append('size', String(size));
+    return httpClient.get<SearchResponse>(`/search/recruitment?${params}`, {
+      headers: accessToken ? {Authorization: `Bearer ${accessToken}`} : {},
+    });
   },
 
   /**
-   * 전체 카테고리를 조회하는 함수
+   * 인기 검색어 및 최근 검색어를 가져오는 함수
    * @param accessToken 액세스 토큰
    */
-  getAllCategories: async (accessToken?: string) => {
-    return httpClient.get<CategoryResponse>('/recruitment/category', {
+  getRankSearch: async (accessToken?: string) => {
+    return httpClient.get<RankSearchResponse>('/search', {
       headers: accessToken ? {Authorization: `Bearer ${accessToken}`} : {},
+    });
+  },
+
+  /**
+   * 최근 검색어를 삭제하는 함수
+   * @param keyword 키워드
+   * @param accessToken 액세스 토큰
+   */
+  deleteRecentSearch: async (keyword: string, accessToken: string) => {
+    const params = new URLSearchParams();
+    params.append('keyword', keyword);
+    return httpClient.delete(`/search?${params.toString()}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
   },
 };
