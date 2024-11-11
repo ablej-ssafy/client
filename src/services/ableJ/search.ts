@@ -1,5 +1,5 @@
 import httpClient from '@/configs/httpClient';
-import {CategoryResponse, SearchResponse} from '@/types/ableJ';
+import {RankSearchResponse, SearchResponse} from '@/types/ableJ';
 
 export default {
   /**
@@ -24,11 +24,11 @@ export default {
   },
 
   /**
-   * 전체 카테고리를 조회하는 함수
+   * 인기 검색어 및 최근 검색어를 가져오는 함수
    * @param accessToken 액세스 토큰
    */
-  getAllCategories: async (accessToken?: string) => {
-    return httpClient.get<CategoryResponse>('/recruitment/category', {
+  getRankSearch: async (accessToken?: string) => {
+    return httpClient.get<RankSearchResponse>('/search', {
       headers: accessToken ? {Authorization: `Bearer ${accessToken}`} : {},
     });
   },

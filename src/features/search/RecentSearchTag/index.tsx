@@ -1,11 +1,17 @@
 import {FiX} from 'react-icons/fi';
 
+import {RankContent} from '@/types/ableJ';
+
 import styles from './recentSearchTag.module.scss';
 
-const RecentSearchTag = () => {
+interface RecentSearchTagProps {
+  keyword: RankContent;
+}
+
+const RecentSearchTag = ({keyword}: RecentSearchTagProps) => {
   return (
     <div className={styles.container}>
-      <span className={styles.text}>최근 검색어</span>
+      <span className={styles.text}>{keyword.keyword}</span>
       <FiX size={15} />
     </div>
   );

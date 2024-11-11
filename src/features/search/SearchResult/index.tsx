@@ -42,9 +42,7 @@ const fetchData = async (
 };
 
 const SearchResult = async ({keyword, categoryId}: SearchResultProps) => {
-  console.log('result component', keyword, categoryId);
   const {content: recruitments} = await fetchData(keyword, Number(categoryId));
-  console.log('recruitments', recruitments);
 
   return (
     <div className={styles.container}>

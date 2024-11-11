@@ -12,4 +12,15 @@ export interface Search {
   scrapped: boolean;
 }
 
+export interface RankSearch {
+  ranks: RankContent[];
+  recentKeywords: RankContent[];
+}
+
+export interface RankContent {
+  rank: number;
+  keyword: string;
+}
+
 export type SearchResponse = ResponseType<Paging<Search[]>>;
+export type RankSearchResponse = ResponseType<RankSearch>;

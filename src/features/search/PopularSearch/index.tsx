@@ -1,28 +1,39 @@
+'use client';
+
+import {useRouter} from 'next/navigation';
 import {TbReload} from 'react-icons/tb';
 
 import PopularSearchTag from '@/features/search/PopularSearchTag';
+import {RankContent} from '@/types/ableJ';
 
 import styles from './popularSearch.module.scss';
 
-const PopularSearch = () => {
+interface PopularSearchProps {
+  keywords: RankContent[];
+}
+
+const PopularSearch = ({keywords}: PopularSearchProps) => {
+  const router = useRouter();
+
+  const handleReload = () => {
+    router.refresh();
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles['popular-title']}>
         <span className={styles['popular-text']}>인기 검색어</span>
         <span className={styles.time}>17 : 00 기준</span>
-        <TbReload size={15} className={styles.reroll} />
+        <TbReload size={15} className={styles.reroll} onClick={handleReload} />
       </div>
       <div className={styles['tag-container']}>
-        <PopularSearchTag />
-        <PopularSearchTag />
-        <PopularSearchTag />
-        <PopularSearchTag />
-        <PopularSearchTag />
-        <PopularSearchTag />
-        <PopularSearchTag />
-        <PopularSearchTag />
-        <PopularSearchTag />
-        <PopularSearchTag />
+        {keywords.length > 0 ? (
+          keywords.map(keyword => (
+            <PopularSearchTag key={keyword.rank} keyword={keyword} />
+          ))
+        ) : (
+          <span className={styles['no-keyword']}>검색 순위가 없습니다.</span>
+        )}
       </div>
     </div>
   );
