@@ -3,7 +3,7 @@
 import 'react-datepicker/dist/react-datepicker.css';
 
 import classNames from 'classnames/bind';
-import {InputHTMLAttributes, useEffect, useState} from 'react';
+import {InputHTMLAttributes, useState} from 'react';
 import DatePicker from 'react-datepicker';
 
 import DateButton from '@/features/portfolio/components/DateButton';
@@ -24,13 +24,9 @@ type LabeledCustomDatePicker = {
 const cx = classNames.bind(styles);
 
 const CustomDatePicker = (props: CustomDatePicker) => {
-  const [date, setDate] = useState(new Date());
-
-  useEffect(() => {
-    setDate(
-      props.defaultValue ? new Date(props.defaultValue as string) : new Date(),
-    );
-  }, [props.defaultValue]);
+  const [date, setDate] = useState(
+    props.defaultValue ? new Date(props.defaultValue as string) : new Date(),
+  );
 
   return (
     <div className={cx('datepicker-container')}>

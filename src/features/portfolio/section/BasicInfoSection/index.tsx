@@ -1,50 +1,31 @@
 import classNames from 'classnames/bind';
-import {useEffect} from 'react';
-import {useFormState} from 'react-dom';
-import toast from 'react-hot-toast';
+import {cookies} from 'next/headers';
+import {redirect} from 'next/navigation';
+import {Fragment} from 'react';
 
-import updateResumeBasicInfoAction from '@/actions/portfolio/updateResumeBasicInfoAction';
-import Board from '@/features/portfolio/components/Board';
 import DatePicker from '@/features/portfolio/components/DatePicker';
-import Divider from '@/features/portfolio/components/Divider';
 import ImageInput from '@/features/portfolio/components/ImageInput';
 import Input from '@/features/portfolio/components/Input';
-import SectionHeader from '@/features/portfolio/components/SectionHeader';
-import SubmitButton from '@/features/portfolio/components/SubmitButton';
 import TextArea from '@/features/portfolio/components/TextArea';
-import useResumeBasicInfo from '@/hooks/useResumeBasicInfo';
+import ableJ from '@/services/ableJ';
 
 import styles from './basicInfoSection.module.scss';
 
 const cx = classNames.bind(styles);
 
-const INITIAL_STATE = {
-  error: '',
-  success: false,
-};
+const BasicInfoSection = async () => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get('accessToken')?.value;
 
-const BasicInfoSection = () => {
-  const [state, formAction] = useFormState(
-    updateResumeBasicInfoAction,
-    INITIAL_STATE,
-  );
+  if (!accessToken) {
+    redirect('/signin');
+  }
 
-  const basicInfo = useResumeBasicInfo();
-
-  useEffect(() => {
-    if (!state.error) return;
-    toast.error(state.error);
-  }, [state]);
-
-  useEffect(() => {
-    if (!state.success) return;
-    toast.success('저장되었습니다.');
-  }, [state]);
+  const response = await ableJ.getResumeBasicInfo(accessToken);
+  const basicInfo = response.data;
 
   return (
-    <Board action={formAction}>
-      <SectionHeader title="기본 정보" />
-      <Divider />
+    <Fragment>
       <div className={cx('profile')}>
         <ImageInput
           isLabeled={true}
@@ -96,8 +77,7 @@ const BasicInfoSection = () => {
         placeholder="한 줄 소개를 남겨주세요."
         defaultValue={basicInfo?.introduce || ''}
       />
-      <SubmitButton>저장</SubmitButton>
-    </Board>
+    </Fragment>
   );
 };
 

@@ -18,8 +18,6 @@ const EducationInfoSection = ({
   education,
   children,
 }: EducationInfoSectionProps) => {
-  console.log('education:', education);
-
   return (
     <Fragment key={education?.educationId}>
       <Input

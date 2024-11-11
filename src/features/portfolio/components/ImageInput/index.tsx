@@ -1,3 +1,4 @@
+'use client';
 import classNames from 'classnames/bind';
 import {getCookie} from 'cookies-next';
 import {useRouter} from 'next/navigation';
