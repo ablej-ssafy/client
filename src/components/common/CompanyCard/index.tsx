@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import {FaRegBookmark} from 'react-icons/fa6';
+import {FaBookmark, FaRegBookmark} from 'react-icons/fa6';
 
 import {RecruitmentCard} from '@/types/ableJ';
 
@@ -34,7 +34,7 @@ const CompanyCard = ({item = dummy, scrap = true}: CompanyCardProps) => {
           objectFit="cover"
           className={styles.img}
         />
-        {scrap && <FaRegBookmark />}
+        {scrap && (item.scrapped ? <FaBookmark /> : <FaRegBookmark />)}
         <div className={styles['job-title']}>{item.title}</div>
         <div className={styles['company-name']}>
           {item.companyName}

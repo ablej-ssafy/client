@@ -9,6 +9,7 @@ import {IoIosArrowDown, IoIosRefresh} from 'react-icons/io';
 import Button from '@/components/common/Button';
 import PreviewModal from '@/features/resume/PreViewModal';
 import {ResumePDF} from '@/types/ableJ';
+import {useRootStore} from '@/zustand/rootStore';
 
 import styles from './filterSelect.module.scss';
 
@@ -50,6 +51,7 @@ const FilterSelect = ({data = []}: ResumePDFProps) => {
     }
   };
 
+  // selectBox 선택
   const handleSelectItem = (item: ResumePDF) => {
     setSelectedItem(item.fileName);
     setSelectedUrl(item.url);
@@ -57,12 +59,37 @@ const FilterSelect = ({data = []}: ResumePDFProps) => {
     router.push(`/recommend/${item.id}`);
   };
 
+  // 이력서 펼치기
   const handleOpenPDF = () => {
     setIsOpen(true);
   };
 
+  // 이력서 닫기
   const handleClosePDF = () => {
     setIsOpen(false);
+  };
+
+  // 새로고침
+  const handleRefresh = () => {
+    const recommendData = sessionStorage.getItem('recommend');
+    const pathId = Number(pathLast);
+
+    if (recommendData) {
+      const parsedData = JSON.parse(recommendData);
+
+      if (parsedData.state && parsedData.state.recruitments) {
+        delete parsedData.state.recruitments[pathId];
+
+        sessionStorage.setItem('recommend', JSON.stringify(parsedData));
+        useRootStore.setState(state => {
+          const updatedRecruitments = {...state.recruitments};
+          delete updatedRecruitments[pathId];
+          return {recruitments: updatedRecruitments};
+        });
+      }
+    }
+
+    router.replace(`/recommend/${pathId}`);
   };
 
   return (
@@ -80,17 +107,25 @@ const FilterSelect = ({data = []}: ResumePDFProps) => {
           </div>
           {!!hasData && selectedOpen && (
             <ul className={styles.dropdown}>
-              {data.map(item => (
-                <li key={item.id} onMouseDown={() => handleSelectItem(item)}>
-                  {item.fileName}
-                </li>
-              ))}
+              {data
+                .slice()
+                .reverse()
+                .map(item => (
+                  <li key={item.id} onMouseDown={() => handleSelectItem(item)}>
+                    {item.fileName}
+                  </li>
+                ))}
             </ul>
           )}
         </div>
         <div className={styles['right-button']}>
           <Button text="이력서 펼치기" height={40} onClick={handleOpenPDF} />
-          <Button text="새로고침" color="type2" height={40} />
+          <Button
+            text="새로고침"
+            color="type2"
+            height={40}
+            onClick={handleRefresh}
+          />
         </div>
         <div className={styles['mobile-right-button']}>
           <CiFileOn size={24} />
