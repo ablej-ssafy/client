@@ -1,15 +1,22 @@
-import {cookies} from 'next/headers';
-
 import RecruitmentBox from '@/features/recruitment/Detail/RecruitmentBox';
 import RecruitmentCarousel from '@/features/recruitment/Detail/RecruitmentCarousel';
 import RecruitmentTitle from '@/features/recruitment/Detail/RecruitmentTitle';
-import RecruitmentService from '@/services/ableJ';
+import recruitmentService from '@/services/ableJ';
 
-const RecruitmentDetailPage = async () => {
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get('accessToken')?.value;
+interface RecruitmentDetailPageProps {
+  params: {
+    recruitmentId: string;
+  };
+}
 
-  const {data} = await RecruitmentService.getRecruitmentDetail(56, accessToken);
+export const revalidate = 3600 * 24;
+
+const RecruitmentDetailPage = async ({
+  params: {recruitmentId},
+}: RecruitmentDetailPageProps) => {
+  const {data} = await recruitmentService.getRecruitmentDetail(
+    Number(recruitmentId),
+  );
 
   return (
     <>

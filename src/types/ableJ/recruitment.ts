@@ -13,7 +13,7 @@ export interface RecruitmentDetail {
   preference?: string;
   benefit: string;
   hireRound?: string;
-  dueTime?: Date;
+  dueTime?: string;
   annualTo: number;
   annualFrom?: number;
 }

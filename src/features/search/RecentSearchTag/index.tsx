@@ -1,5 +1,6 @@
 'use client';
 
+import {useRouter} from 'next/navigation';
 import {FiX} from 'react-icons/fi';
 
 import recentKeywordDeleteAction from '@/actions/search/recentKeywordDeleteAction';
@@ -13,6 +14,7 @@ interface RecentSearchTagProps {
 }
 
 const RecentSearchTag = ({keyword}: RecentSearchTagProps) => {
+  const router = useRouter();
   const handleDelete = async () => {
     const response = await recentKeywordDeleteAction(keyword.keyword);
 
@@ -23,9 +25,15 @@ const RecentSearchTag = ({keyword}: RecentSearchTagProps) => {
     }
   };
 
+  const handleClick = () => {
+    router.push(`/recruitments?keyword=${keyword.keyword}`);
+  };
+
   return (
     <div className={styles.container}>
-      <span className={styles.text}>{keyword.keyword}</span>
+      <span className={styles.text} onClick={handleClick}>
+        {keyword.keyword}
+      </span>
       <FiX size={15} onClick={handleDelete} />
     </div>
   );

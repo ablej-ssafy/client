@@ -8,12 +8,12 @@
   height: 100vh;
   padding: 50px 40px 40px 0;
   border-right: 1px solid colors.$gray2;
+}
 
-  span {
-    font-size: 1.4rem;
-    font-weight: 600;
-    cursor: pointer;
-  }
+.category-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .selected {

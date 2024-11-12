@@ -19,7 +19,7 @@ interface RecruitmentTitleProps {
   childCategories: Category[];
   company: Company;
   hireRound?: string;
-  dueTime?: Date;
+  dueTime?: string;
   annualTo: number;
   annualFrom?: number;
 }
@@ -40,7 +40,7 @@ const RecruitmentTitle = ({
     ? `${annualFrom} ~ ${annualTo}년`
     : `${annualTo}년 이상`;
   const hire = hireRound ? `(${hireRound})` : '';
-  const closedDate = dueTime ? dueTime.toISOString().slice(0, 10) : '상시 채용';
+  const closedDate = dueTime || '상시 채용';
   const categoryJoin = `${category.name} > ${childCategories.map(child => child.name).join(', ')}`;
 
   const handleClick = () => {
