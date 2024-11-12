@@ -1,29 +1,25 @@
 import classNames from 'classnames/bind';
-import {cookies} from 'next/headers';
-import {redirect} from 'next/navigation';
 import {Fragment} from 'react';
 
 import DatePicker from '@/features/portfolio/components/DatePicker';
 import ImageInput from '@/features/portfolio/components/ImageInput';
 import Input from '@/features/portfolio/components/Input';
 import TextArea from '@/features/portfolio/components/TextArea';
-import ableJ from '@/services/ableJ';
+import {ResumeBasicInfo} from '@/types/ableJ';
 
 import styles from './basicInfoSection.module.scss';
 
 const cx = classNames.bind(styles);
 
-const BasicInfoSection = async () => {
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get('accessToken')?.value;
+interface BasicInfoSectionProps {
+  readOnly?: boolean;
+  basicInfo?: ResumeBasicInfo;
+}
 
-  if (!accessToken) {
-    redirect('/signin');
-  }
-
-  const response = await ableJ.getResumeBasicInfo(accessToken);
-  const basicInfo = response.data;
-
+const BasicInfoSection = async ({
+  readOnly,
+  basicInfo,
+}: BasicInfoSectionProps) => {
   return (
     <>
       <div className={cx('profile')}>
@@ -32,6 +28,7 @@ const BasicInfoSection = async () => {
           label="프로필 사진"
           name="profile"
           imageUrl={basicInfo?.profile || ''}
+          readOnly={readOnly}
         />
         <div className={cx('profile-input-container')}>
           <Input
@@ -40,12 +37,14 @@ const BasicInfoSection = async () => {
             placeholder="example@gmail.com"
             name="email"
             defaultValue={basicInfo?.email || ''}
+            readOnly={readOnly}
           />
           <DatePicker
             isLabeled
             label="생년월일"
             defaultValue={basicInfo?.birth || ''}
             name="birth"
+            readOnly={readOnly}
           />
           <Input
             isLabeled={true}
@@ -53,6 +52,7 @@ const BasicInfoSection = async () => {
             placeholder="010-0000-0000"
             name="phone"
             defaultValue={basicInfo?.phone || ''}
+            readOnly={readOnly}
           />
         </div>
       </div>
@@ -62,6 +62,7 @@ const BasicInfoSection = async () => {
         name="name"
         placeholder="민준수"
         defaultValue={basicInfo?.name || ''}
+        readOnly={readOnly}
       />
       <Input
         isLabeled={true}
@@ -69,6 +70,7 @@ const BasicInfoSection = async () => {
         name="job"
         placeholder="프론트엔드 개발자"
         defaultValue={basicInfo?.job || ''}
+        readOnly={readOnly}
       />
       <TextArea
         isLabeled={true}
@@ -76,6 +78,7 @@ const BasicInfoSection = async () => {
         name="introduce"
         placeholder="한 줄 소개를 남겨주세요."
         defaultValue={basicInfo?.introduce || ''}
+        readOnly={readOnly}
       />
     </>
   );

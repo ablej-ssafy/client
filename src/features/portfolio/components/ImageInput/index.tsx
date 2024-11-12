@@ -70,6 +70,7 @@ const ImageInput = (props: ImageInputProps) => {
         alt="이미지 입력 필드"
         className={cx('image-input')}
         onChange={handleChangeImage}
+        disabled={props.readOnly}
       />
       <input name={props.name} defaultValue={image} hidden />
     </div>

@@ -8,10 +8,12 @@ import {ExperienceInfo} from '@/types/ableJ';
 
 interface ActivityInfoSectionProps extends PropsWithChildren {
   activity?: ExperienceInfo;
+  readOnly?: boolean;
 }
 
 const ActivityInfoSection = ({
   activity,
+  readOnly,
   children,
 }: ActivityInfoSectionProps) => {
   return (
@@ -21,18 +23,21 @@ const ActivityInfoSection = ({
         label="활동명"
         name="title"
         defaultValue={activity?.title || ''}
+        readOnly={readOnly}
       />
       <Input
         isLabeled
         label="소속"
         name="affiliation"
         defaultValue={activity?.affiliation || ''}
+        readOnly={readOnly}
       />
       <Input
         isLabeled
         label="활동 소개"
         name="description"
         defaultValue={activity?.description || ''}
+        readOnly={readOnly}
       />
       <Columns>
         <DatePicker
@@ -40,12 +45,14 @@ const ActivityInfoSection = ({
           label="시작년월"
           name="startAt"
           defaultValue={activity?.startAt || ''}
+          readOnly={readOnly}
         />
         <DatePicker
           isLabeled
           label="종료년월"
           name="endAt"
           defaultValue={activity?.endAt || ''}
+          readOnly={readOnly}
         />
       </Columns>
       <input

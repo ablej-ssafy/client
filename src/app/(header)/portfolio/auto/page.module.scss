@@ -6,7 +6,10 @@
   padding: 0 30px;
 
   .column-left {
+    display: flex;
+    flex-direction: column;
     grid-column: 1;
+    gap: 20px;
   }
 
   .column-right {

@@ -8,10 +8,12 @@ import type {CertificationInfo} from '@/types/ableJ';
 
 interface LanguageProficiencyInfoSection extends PropsWithChildren {
   languageInfo?: CertificationInfo;
+  readOnly?: boolean;
 }
 
 const LanguageProficiencyInfoSection = ({
   languageInfo,
+  readOnly,
   children,
 }: LanguageProficiencyInfoSection) => {
   return (
@@ -22,12 +24,14 @@ const LanguageProficiencyInfoSection = ({
           label="자격증명"
           name="name"
           defaultValue={languageInfo?.name || ''}
+          readOnly={readOnly}
         />
         <Input
           isLabeled
           label="점수/등급"
           name="grade"
           defaultValue={languageInfo?.grade || ''}
+          readOnly={readOnly}
         />
       </Columns>
       <Columns>
@@ -36,8 +40,9 @@ const LanguageProficiencyInfoSection = ({
           label="발급기관"
           name="organization"
           defaultValue={languageInfo?.organization || ''}
+          readOnly={readOnly}
         />
-        <DatePicker isLabeled label="취득일" />
+        <DatePicker isLabeled label="취득일" readOnly={readOnly} />
       </Columns>
       <input
         name="certificationId"

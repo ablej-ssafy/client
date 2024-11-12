@@ -1,36 +1,35 @@
 import classNames from 'classnames/bind';
-import {cookies} from 'next/headers';
-import {redirect} from 'next/navigation';
 import {Fragment} from 'react';
 import {FaGithub} from 'react-icons/fa';
 import {RiNotionLine} from 'react-icons/ri';
 
 import Input from '@/features/portfolio/components/Input';
 import SkillCombobox from '@/features/portfolio/components/SkillCombobox';
-import ableJ from '@/services/ableJ';
+import {GetTechStackInfoResponseData} from '@/types/ableJ';
 
 import styles from './skillSection.module.scss';
 
 const cx = classNames.bind(styles);
 
-const SkillSection = async () => {
-  const accessToken = cookies().get('accessToken')?.value;
+interface SkillSectionProps {
+  techSkill?: GetTechStackInfoResponseData;
+  readOnly?: boolean;
+}
 
-  if (!accessToken) {
-    redirect('/signin');
-  }
-
-  const {data} = await ableJ.getTechStackInfo(accessToken);
-
+const SkillSection = async ({techSkill, readOnly}: SkillSectionProps) => {
   return (
-    <Fragment key={data?.techId}>
-      <SkillCombobox techSkills={data?.techSkills || null} />
+    <Fragment key={techSkill?.techId}>
+      <SkillCombobox
+        techSkills={techSkill?.techSkills || null}
+        readOnly={readOnly}
+      />
       <div className={cx('skill-input')}>
         <FaGithub size={24} />
         <Input
           placeholder="Github 주소를 입력해주세요."
           name="githubUrl"
-          defaultValue={data?.githubUrl || ''}
+          defaultValue={techSkill?.githubUrl || ''}
+          readOnly={readOnly}
         />
       </div>
       <div className={cx('skill-input')}>
@@ -38,10 +37,11 @@ const SkillSection = async () => {
         <Input
           placeholder="Notion 주소를 입력해주세요."
           name="notionUrl"
-          defaultValue={data?.notionUrl || ''}
+          defaultValue={techSkill?.notionUrl || ''}
+          readOnly={readOnly}
         />
       </div>
-      <input name="techId" hidden defaultValue={data?.techId} />
+      <input name="techId" hidden defaultValue={techSkill?.techId} />
     </Fragment>
   );
 };
