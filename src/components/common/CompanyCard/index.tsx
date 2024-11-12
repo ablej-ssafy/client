@@ -23,7 +23,7 @@ const dummy = {
 
 const CompanyCard = ({item = dummy, scrap = true}: CompanyCardProps) => {
   return (
-    <Link href={`/recruitment/${item.id}`} className={styles.link}>
+    <Link href={`/recruitments/${item.id}`} className={styles.link}>
       <div className={styles.container}>
         <Image
           src={item.thumbnail}

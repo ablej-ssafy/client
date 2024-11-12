@@ -4,15 +4,13 @@ import Image from 'next/image';
 import {TouchEventHandler, useEffect, useRef, useState} from 'react';
 import {HiArrowCircleLeft, HiArrowCircleRight} from 'react-icons/hi';
 
-import Image1 from '@/assets/images/announcement1.png';
+import styles from './carousel.module.scss';
 
-import styles from './recruitmentCarousel.module.scss';
-
-interface RecruitmentCarouselProps {
+interface CarouselProps {
   imageArray: string[];
 }
 
-const RecruitmentCarousel = ({imageArray}: RecruitmentCarouselProps) => {
+const Carousel = ({imageArray}: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [currentList, setCurrentList] = useState<string[]>([]);
 
@@ -88,7 +86,6 @@ const RecruitmentCarousel = ({imageArray}: RecruitmentCarouselProps) => {
       handleSwipe(-1);
     }
   };
-
   return (
     <div className={styles.container}>
       <div
@@ -115,8 +112,13 @@ const RecruitmentCarousel = ({imageArray}: RecruitmentCarouselProps) => {
 
             return (
               <li key={key} className={styles['carousel-item']}>
-                {/* <Image src={image} alt="carousel=img" /> */}
-                <Image src={Image1} alt="carousel=img" />
+                <Image
+                  src={image}
+                  alt="carousel=img"
+                  layout="responsive"
+                  width={3}
+                  height={2}
+                />
               </li>
             );
           })}
@@ -126,4 +128,4 @@ const RecruitmentCarousel = ({imageArray}: RecruitmentCarouselProps) => {
   );
 };
 
-export default RecruitmentCarousel;
+export default Carousel;

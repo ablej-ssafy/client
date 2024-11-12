@@ -1,19 +1,30 @@
 import {cookies} from 'next/headers';
 
+import Carousel from '@/components/common/Carousel';
 import RecruitmentBox from '@/features/recruitment/Detail/RecruitmentBox';
-import RecruitmentCarousel from '@/features/recruitment/Detail/RecruitmentCarousel';
 import RecruitmentTitle from '@/features/recruitment/Detail/RecruitmentTitle';
-import RecruitmentService from '@/services/ableJ';
+import recruitmentService from '@/services/ableJ';
 
-const RecruitmentDetailPage = async () => {
+interface RecruitmentDetailPageProps {
+  params: {
+    recruitmentId: string;
+  };
+}
+
+const RecruitmentDetailPage = async ({params}: RecruitmentDetailPageProps) => {
+  const {recruitmentId} = params;
+
   const cookieStore = cookies();
   const accessToken = cookieStore.get('accessToken')?.value;
 
-  const {data} = await RecruitmentService.getRecruitmentDetail(56, accessToken);
+  const {data} = await recruitmentService.getRecruitmentDetail(
+    Number(recruitmentId),
+    accessToken,
+  );
 
   return (
     <>
-      <RecruitmentCarousel imageArray={data.images} />
+      <Carousel imageArray={data.images} />
       <RecruitmentTitle
         name={data.name}
         category={data.category}
@@ -23,6 +34,7 @@ const RecruitmentDetailPage = async () => {
         dueTime={data.dueTime}
         annualTo={data.annualTo}
         annualFrom={data.annualFrom}
+        thumbnail={data.company.thumbnail}
       />
       <RecruitmentBox
         intro={data.intro}
@@ -31,6 +43,7 @@ const RecruitmentDetailPage = async () => {
         preference={data.preference}
         benefit={data.benefit}
         companyInfo={data.company}
+        hireRound={data.hireRound}
       />
     </>
   );

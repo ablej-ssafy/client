@@ -4,9 +4,17 @@
 .title {
   align-self: flex-start;
   padding: 0.2rem 1.2rem;
-  color: colors.$primary;
-  background-color: rgba(colors.$primary, 0.1);
   border-radius: 0.5rem;
 
-  @include mixin.text-bold(600, 2rem);
+  @include mixin.text-bold(600, 1.8rem);
+}
+
+.primary {
+  color: colors.$primary;
+  background-color: rgba(colors.$primary, 0.1);
+}
+
+.secondary {
+  color: #fa8261;
+  background-color: #ffece6;
 }
