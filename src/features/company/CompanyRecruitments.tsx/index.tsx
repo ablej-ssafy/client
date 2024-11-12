@@ -1,4 +1,4 @@
-import CompanyCard from '@/components/common/CompanyCard';
+import RecruitmentCard from '@/components/common/RecruitmentCard';
 import {Company} from '@/types/ableJ';
 
 import styles from './companyRecruitments.module.scss';
@@ -19,7 +19,7 @@ const CompanyRecruitments = ({companyInfo}: CompanyRecruitmentsProps) => {
       <div className={styles.recruitment}>
         {companyInfo.recruitments.length > 0 &&
           companyInfo.recruitments.map(recruitment => (
-            <CompanyCard key={recruitment.recruitmentId} />
+            <RecruitmentCard key={recruitment.recruitmentId} />
           ))}
       </div>
     </div>
