@@ -8,6 +8,8 @@
 }
 
 .text-bold-18 {
+  color: colors.$black;
+
   @include mixin.text-bold(600, 1.8rem);
 }
 
@@ -21,21 +23,6 @@
 
 .margin-y {
   margin: 2rem 0;
-}
-
-.circle {
-  @include mixin.flex-default;
-
-  width: 4.5rem;
-  height: 4.5rem;
-  color: colors.$white;
-  cursor: pointer;
-  background-color: rgba(colors.$primary, 0.5);
-  border-radius: 50%;
-
-  &:hover {
-    background-color: colors.$primary;
-  }
 }
 
 .hr {

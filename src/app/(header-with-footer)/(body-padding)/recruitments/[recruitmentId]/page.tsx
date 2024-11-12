@@ -26,6 +26,7 @@ const RecruitmentDetailPage = async ({params}: RecruitmentDetailPageProps) => {
     <>
       <Carousel imageArray={data.images} />
       <RecruitmentTitle
+        recruitmentId={Number(recruitmentId)}
         name={data.name}
         category={data.category}
         childCategories={data.childCategories}
@@ -37,6 +38,7 @@ const RecruitmentDetailPage = async ({params}: RecruitmentDetailPageProps) => {
         thumbnail={data.company.thumbnail}
       />
       <RecruitmentBox
+        recruitmentId={Number(recruitmentId)}
         intro={data.intro}
         task={data.task}
         requirement={data.requirement}

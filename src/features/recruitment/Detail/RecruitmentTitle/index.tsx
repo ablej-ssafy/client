@@ -1,10 +1,8 @@
-'use client';
-
 import classNames from 'classnames/bind';
 import Image from 'next/image';
-import {useState} from 'react';
-import {MdBookmark, MdBookmarkBorder} from 'react-icons/md';
+import Link from 'next/link';
 
+import CircleScrapButton from '@/components/common/CircleScrapButton';
 import RecruitmentTag from '@/features/recruitment/Detail/RecruitmentTag';
 import {Category, Company} from '@/types/ableJ';
 
@@ -13,6 +11,7 @@ import styles from './recruitmentTitle.module.scss';
 const cx = classNames.bind(styles);
 
 interface RecruitmentTitleProps {
+  recruitmentId: number;
   name: string;
   category: Category;
   childCategories: Category[];
@@ -25,6 +24,7 @@ interface RecruitmentTitleProps {
 }
 
 const RecruitmentTitle = ({
+  recruitmentId,
   name,
   category,
   childCategories,
@@ -35,7 +35,6 @@ const RecruitmentTitle = ({
   annualFrom,
   thumbnail,
 }: RecruitmentTitleProps) => {
-  const [isScrap, setIsScrap] = useState(false);
   const location = company.location + ' > ' + company.strict;
   const annual = annualFrom
     ? `${annualFrom} ~ ${annualTo}년`
@@ -43,17 +42,13 @@ const RecruitmentTitle = ({
   const hire = hireRound ? `(${hireRound})` : '';
   const closedDate = dueTime || '상시 채용';
   const categoryJoin = `${category.name} > ${childCategories.map(child => child.name).join(', ')}`;
-
-  const handleClick = () => {
-    setIsScrap(!isScrap);
-  };
-
-  console.log('thunbnail', thumbnail);
-
   return (
     <div>
       <div className={cx('display-row', 'margin-y')}>
-        <div className={styles['display-row']}>
+        <Link
+          className={styles['display-row']}
+          href={`/company/${company.companyId}`}
+        >
           <Image
             className={styles['margin-right']}
             src={thumbnail}
@@ -62,10 +57,8 @@ const RecruitmentTitle = ({
             height={45}
           />
           <span className={styles['text-bold-18']}>{company.name}</span>
-        </div>
-        <div className={styles.circle} onClick={handleClick}>
-          {isScrap ? <MdBookmark size={25} /> : <MdBookmarkBorder size={25} />}
-        </div>
+        </Link>
+        <CircleScrapButton recruitmentId={recruitmentId} />
       </div>
       <span className={styles['text-bold-24']}>{name}</span>
       <div className={styles['margin-y']}>
