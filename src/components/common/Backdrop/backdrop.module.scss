@@ -3,6 +3,6 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  z-index: dimensions.$foreground;
+  z-index: dimensions.$modal;
   backdrop-filter: blur(2px);
 }

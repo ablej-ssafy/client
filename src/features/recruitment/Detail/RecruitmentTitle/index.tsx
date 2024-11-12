@@ -2,7 +2,6 @@ import classNames from 'classnames/bind';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import CircleScrapButton from '@/components/common/CircleScrapButton';
 import RecruitmentTag from '@/features/recruitment/Detail/RecruitmentTag';
 import {Category, Company} from '@/types/ableJ';
 
@@ -11,7 +10,6 @@ import styles from './recruitmentTitle.module.scss';
 const cx = classNames.bind(styles);
 
 interface RecruitmentTitleProps {
-  recruitmentId: number;
   name: string;
   category: Category;
   childCategories: Category[];
@@ -24,7 +22,6 @@ interface RecruitmentTitleProps {
 }
 
 const RecruitmentTitle = ({
-  recruitmentId,
   name,
   category,
   childCategories,
@@ -58,7 +55,6 @@ const RecruitmentTitle = ({
           />
           <span className={styles['text-bold-18']}>{company.name}</span>
         </Link>
-        <CircleScrapButton recruitmentId={recruitmentId} />
       </div>
       <span className={styles['text-bold-24']}>{name}</span>
       <div className={styles['margin-y']}>

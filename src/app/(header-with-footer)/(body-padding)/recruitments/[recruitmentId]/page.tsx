@@ -9,12 +9,14 @@ interface RecruitmentDetailPageProps {
   };
 }
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 export const revalidate = 3600 * 24; // 1 days
 export const dynamic = 'force-static';
 
 async function getRecruitment(recruitmentId: string) {
   const response = await fetch(
-    `https://noteme.kro.kr/api/v1/recruitments/${recruitmentId}`,
+    `${BASE_URL}/api/v1/recruitments/${recruitmentId}`,
   );
   const {data}: RecruitmentDetailResponse = await response.json();
   return data;
@@ -36,12 +38,10 @@ const RecruitmentDetailPage = async ({
   params: {recruitmentId},
 }: RecruitmentDetailPageProps) => {
   const data = await getRecruitment(recruitmentId);
-
   return (
     <>
       <Carousel imageArray={data.images} />
       <RecruitmentTitle
-        recruitmentId={Number(recruitmentId)}
         name={data.name}
         category={data.category}
         childCategories={data.childCategories}

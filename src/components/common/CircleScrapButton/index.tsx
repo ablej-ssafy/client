@@ -1,7 +1,7 @@
-import {cookies} from 'next/headers';
+import {getCookie} from 'cookies-next';
 import {MdBookmark, MdBookmarkBorder} from 'react-icons/md';
 
-import recruitmentService from '@/services/ableJ';
+import {ScrapResponse} from '@/types/ableJ';
 
 import styles from './circleScrapButton.module.scss';
 
@@ -9,25 +9,35 @@ interface CircleScrapButtonProps {
   recruitmentId: number;
 }
 
-const CircleScrapButton = async ({recruitmentId}: CircleScrapButtonProps) => {
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get('accessToken')?.value;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const accessToken = getCookie('accessToken');
 
-  const {data: isScrap} = await recruitmentService.getScrapStatus(
-    recruitmentId,
-    accessToken,
+const getScrapStatus = async (recruitmentId: number) => {
+  const response = await fetch(
+    `${BASE_URL}/api/v1/recruitments/${recruitmentId}/scrap`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      next: {
+        tags: [`recruitment-${recruitmentId}-scrap`],
+      },
+    },
   );
 
-  // const {data: isScrap} = await fetch(
-  //   `http://noteme.kro.kr:3000/api/v1/recruitments/${recruitmentId}/scrap`,
-  //   {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${accessToken}`,
-  //     },
-  //   },
-  // );
+  const {data}: ScrapResponse = await response.json();
+
+  return data;
+};
+
+const CircleScrapButton = async ({recruitmentId}: CircleScrapButtonProps) => {
+  const isScrap = await getScrapStatus(recruitmentId);
+
+  // const handleScrap = async () => {
+  //   await (isScrap
+  //     ? DeleteScrapAction(recruitmentId)
+  //     : ScrapAction(recruitmentId));
+  // };
 
   return (
     <div className={styles.circle}>

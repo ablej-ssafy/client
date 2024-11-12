@@ -1,9 +1,7 @@
-import {cookies} from 'next/headers';
-
 import Carousel from '@/components/common/Carousel';
 import CompanyInfo from '@/features/company/CompanyInfo';
 import CompanyRecruitments from '@/features/company/CompanyRecruitments.tsx';
-import companyService from '@/services/ableJ';
+import {CompanyResponse} from '@/types/ableJ';
 
 interface CompanyPageProps {
   params: {
@@ -11,16 +9,31 @@ interface CompanyPageProps {
   };
 }
 
-const CompanyPage = async ({params}: CompanyPageProps) => {
-  const {companyId} = params;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get('accessToken')?.value;
+export const revalidate = 10; // 1 days
+export const dynamic = 'force-static';
 
-  const {data} = await companyService.getCompanyInfo(
-    Number(companyId),
-    accessToken,
-  );
+async function getCompanyInfo(companyId: number) {
+  const response = await fetch(`${BASE_URL}/api/v1/companies/${companyId}`);
+
+  const {data}: CompanyResponse = await response.json();
+
+  return data;
+}
+
+// export async function generateMetaData({
+//   params: {companyId},
+// }: CompanyPageProps): Promise<Metadata> {
+//   const company = await getCompanyInfo(Number(companyId));
+
+//   return {
+//     title: company.name,
+//   };
+// }
+
+const CompanyPage = async ({params: {companyId}}: CompanyPageProps) => {
+  const data = await getCompanyInfo(Number(companyId));
 
   return (
     <>
