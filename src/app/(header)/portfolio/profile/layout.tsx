@@ -8,6 +8,7 @@ import Board from '@/features/portfolio/components/Board';
 import Divider from '@/features/portfolio/components/Divider';
 import SectionHeader from '@/features/portfolio/components/SectionHeader';
 import SubmitButton from '@/features/portfolio/components/SubmitButton';
+import useBeforeUnload from '@/hooks/useBeforeUnload';
 
 const INITIAL_STATE = {
   error: '',
@@ -15,6 +16,7 @@ const INITIAL_STATE = {
 };
 
 const ProfileLayout = ({children}: {children: ReactNode}) => {
+  useBeforeUnload();
   const [state, action] = useFormState(
     updateResumeBasicInfoAction,
     INITIAL_STATE,
