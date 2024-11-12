@@ -11,16 +11,20 @@
   padding: 2.5rem;
   background-color: #f6f6f6;
 
+  .sidebar {
+    position: fixed;
+    grid-column: 3;
+    padding-top: 2.5rem;
+  }
+
   .main {
     grid-column: 2;
     height: fit-content;
     background-color: colors.$white;
     border-radius: layout.$border_button;
-  }
 
-  .sidebar {
-    position: fixed;
-    grid-column: 3;
-    padding-top: 2.5rem;
+    &.active {
+      background-color: #efeef3;
+    }
   }
 }
