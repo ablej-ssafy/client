@@ -12,7 +12,7 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
     width: 100%;
     padding: 10px 0;
   }
@@ -28,7 +28,9 @@
 
 .text-content {
   width: 100%;
-  font-size: 1.2rem;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  font-size: 1.3rem;
   color: colors.$gray4;
   text-align: center;
 }
@@ -42,8 +44,8 @@
 .button {
   width: 33.8rem;
   height: 3.5rem;
-  margin-top: 2.5rem;
-  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
   color: colors.$white;
   cursor: pointer;
   background-color: colors.$primary;

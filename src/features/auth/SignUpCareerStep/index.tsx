@@ -41,7 +41,6 @@ const SignUpCareerStep = () => {
   return (
     <form className={cx('signup-form')} action={formAction}>
       <p className={cx('text-header')}>이제 곧 시작</p>
-      <p className={cx('text-content')}>얼마 안남았어요...!</p>
       <p className={cx('text-content')}>
         회원가입을 하시면 AI 큐레이팅을 사용할 수 있습니다.
       </p>
@@ -53,7 +52,7 @@ const SignUpCareerStep = () => {
         <Slider max={25} name="careerYear" value={0} fill label="경력" />
       </div>
       <button type="submit" className={cx('button')}>
-        회원가입 완료
+        회원가입
       </button>
     </form>
   );
