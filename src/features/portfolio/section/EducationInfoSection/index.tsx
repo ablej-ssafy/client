@@ -28,7 +28,7 @@ const EducationInfoSection = ({
       />
       <Input
         isLabeled
-        label="학교"
+        label="설명"
         name={'description'}
         defaultValue={education?.description || ''}
       />

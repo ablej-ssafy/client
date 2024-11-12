@@ -1,30 +1,36 @@
 import classNames from 'classnames/bind';
+import {cookies} from 'next/headers';
+import {redirect} from 'next/navigation';
 import {Fragment} from 'react';
 import {FaGithub} from 'react-icons/fa';
 import {RiNotionLine} from 'react-icons/ri';
 
 import Input from '@/features/portfolio/components/Input';
 import SkillCombobox from '@/features/portfolio/components/SkillCombobox';
-import {GetTechStackInfoResponseData} from '@/types/ableJ';
+import ableJ from '@/services/ableJ';
 
 import styles from './skillSection.module.scss';
 
-interface SkillSectionProps {
-  techStackInfo: GetTechStackInfoResponseData;
-}
-
 const cx = classNames.bind(styles);
 
-const SkillSection = ({techStackInfo}: SkillSectionProps) => {
+const SkillSection = async () => {
+  const accessToken = cookies().get('accessToken')?.value;
+
+  if (!accessToken) {
+    redirect('/signin');
+  }
+
+  const {data} = await ableJ.getTechStackInfo(accessToken);
+
   return (
-    <Fragment key={techStackInfo.techId}>
-      <SkillCombobox techSkills={techStackInfo?.techSkills || null} />
+    <Fragment key={data?.techId}>
+      <SkillCombobox techSkills={data?.techSkills || null} />
       <div className={cx('skill-input')}>
         <FaGithub size={24} />
         <Input
           placeholder="Github 주소를 입력해주세요."
           name="githubUrl"
-          defaultValue={techStackInfo?.githubUrl || ''}
+          defaultValue={data?.githubUrl || ''}
         />
       </div>
       <div className={cx('skill-input')}>
@@ -32,10 +38,10 @@ const SkillSection = ({techStackInfo}: SkillSectionProps) => {
         <Input
           placeholder="Notion 주소를 입력해주세요."
           name="notionUrl"
-          defaultValue={techStackInfo?.notionUrl || ''}
+          defaultValue={data?.notionUrl || ''}
         />
       </div>
-      <input name="techId" hidden defaultValue={techStackInfo?.techId} />
+      <input name="techId" hidden defaultValue={data?.techId} />
     </Fragment>
   );
 };
