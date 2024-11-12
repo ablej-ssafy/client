@@ -5,7 +5,6 @@ import Image from 'next/image';
 import {useState} from 'react';
 import {MdBookmark, MdBookmarkBorder} from 'react-icons/md';
 
-import companyLogo from '@/assets/images/companylogo.png';
 import RecruitmentTag from '@/features/recruitment/Detail/RecruitmentTag';
 import {Category, Company} from '@/types/ableJ';
 
@@ -22,6 +21,7 @@ interface RecruitmentTitleProps {
   dueTime?: string;
   annualTo: number;
   annualFrom?: number;
+  thumbnail: string;
 }
 
 const RecruitmentTitle = ({
@@ -33,6 +33,7 @@ const RecruitmentTitle = ({
   dueTime,
   annualTo,
   annualFrom,
+  thumbnail,
 }: RecruitmentTitleProps) => {
   const [isScrap, setIsScrap] = useState(false);
   const location = company.location + ' > ' + company.strict;
@@ -47,13 +48,15 @@ const RecruitmentTitle = ({
     setIsScrap(!isScrap);
   };
 
+  console.log('thunbnail', thumbnail);
+
   return (
     <div>
       <div className={cx('display-row', 'margin-y')}>
         <div className={styles['display-row']}>
           <Image
             className={styles['margin-right']}
-            src={companyLogo}
+            src={thumbnail}
             alt="회사 로고"
             width={45}
             height={45}

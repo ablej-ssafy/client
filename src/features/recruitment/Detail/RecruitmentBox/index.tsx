@@ -1,4 +1,4 @@
-import KakaoMap from '@/features/recruitment/Detail/KakaoMap';
+import KakaoMap from '@/components/common/KakaoMap';
 import RecruitmentContent from '@/features/recruitment/Detail/RecruitmentContent';
 import ScrapButton from '@/features/recruitment/Detail/ScrapButton';
 import {Company} from '@/types/ableJ';
@@ -12,6 +12,7 @@ interface RecruitmentBoxProps {
   preference?: string;
   benefit: string;
   companyInfo: Company;
+  hireRound?: string;
 }
 
 const RecruitmentBox = ({
@@ -21,6 +22,7 @@ const RecruitmentBox = ({
   preference,
   benefit,
   companyInfo,
+  hireRound,
 }: RecruitmentBoxProps) => {
   return (
     <div className={styles.container}>
@@ -28,10 +30,13 @@ const RecruitmentBox = ({
         <RecruitmentContent title="회사 소개" content={intro} />
         <RecruitmentContent title="주요 업무" content={task} />
         <RecruitmentContent title="자격 요건" content={requirement} />
+        <RecruitmentContent title="복지 및 혜택" content={benefit} />
         {preference && (
-          <RecruitmentContent title="채용 전형" content={preference} />
+          <RecruitmentContent title="우대 사항" content={preference} />
         )}
-        <RecruitmentContent title="우대 사항" content={benefit} />
+        {hireRound && (
+          <RecruitmentContent title="채용 전형" content={hireRound} />
+        )}
       </div>
       <div>
         <div className={styles['scrap-map']}>

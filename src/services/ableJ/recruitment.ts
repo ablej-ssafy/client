@@ -16,7 +16,7 @@ export default {
     page: number,
     size: number,
     accessToken?: string,
-  ) => {
+  ): Promise<SearchResponse> => {
     return httpClient.get<SearchResponse>(
       `/recruitments?page=${page}&size=${size}`,
       {

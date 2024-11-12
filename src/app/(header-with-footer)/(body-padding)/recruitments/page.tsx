@@ -1,4 +1,3 @@
-import TotalRecruitements from '@/features/recruitment/TotalRecruitments';
 import SearchResult from '@/features/search/SearchResult';
 
 const RecruitmentPage = async ({
@@ -9,15 +8,7 @@ const RecruitmentPage = async ({
     categoryId: string | undefined;
   };
 }) => {
-  return (
-    <>
-      {keyword || categoryId ? (
-        <SearchResult keyword={keyword} categoryId={categoryId} />
-      ) : (
-        <TotalRecruitements />
-      )}
-    </>
-  );
+  return <SearchResult keyword={keyword} categoryId={categoryId} />;
 };
 
 export default RecruitmentPage;

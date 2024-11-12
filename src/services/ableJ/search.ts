@@ -9,12 +9,17 @@ export default {
    * @param size 페이지 크기
    * @param accessToken 액세스 토큰
    */
-  recruitmentSearch: async (
-    keyword: string,
-    page: number,
-    size: number,
-    accessToken?: string,
-  ) => {
+  recruitmentSearch: async ({
+    keyword,
+    page = 0,
+    size = 21,
+    accessToken,
+  }: {
+    keyword: string;
+    page?: number;
+    size?: number;
+    accessToken?: string;
+  }) => {
     const params = new URLSearchParams();
     params.append('q', keyword);
     params.append('page', String(page));
