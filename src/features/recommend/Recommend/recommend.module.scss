@@ -4,7 +4,20 @@
   margin-top: 30px;
 
   @include mixin.grid-default;
+}
 
+.load-container {
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  height: calc(100vh - 280px);
+  font-size: 1.8rem;
+
+  @include mixin.flex-default;
+}
+
+.container,
+.load-container {
   @media (width >= 1500px) {
     width: 1300px;
     margin: 0 auto 30px;
@@ -12,5 +25,42 @@
 
   @media (width < 600px) {
     margin-top: 18px;
+  }
+}
+
+.loader {
+  width: 80px;
+  aspect-ratio: 6;
+
+  --g: no-repeat radial-gradient(circle closest-side, #ad9eff 90%, #fff);
+
+  background:
+    var(--g) 0% 50%,
+    var(--g) 50% 50%,
+    var(--g) 100% 50%;
+  background-size: calc(100% / 3) 100%;
+  animation: l7 1s infinite linear;
+}
+
+@keyframes l7 {
+  33% {
+    background-size:
+      calc(100% / 3) 0%,
+      calc(100% / 3) 100%,
+      calc(100% / 3) 100%;
+  }
+
+  50% {
+    background-size:
+      calc(100% / 3) 100%,
+      calc(100% / 3) 0%,
+      calc(100% / 3) 100%;
+  }
+
+  66% {
+    background-size:
+      calc(100% / 3) 100%,
+      calc(100% / 3) 100%,
+      calc(100% / 3) 0%;
   }
 }

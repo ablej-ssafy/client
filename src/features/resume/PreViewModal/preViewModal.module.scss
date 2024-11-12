@@ -1,10 +1,11 @@
 @use '@/styles/mixin' as mixin;
+@use '@/styles/constants/dimensions' as dimensions;
 
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: dimensions.$modal;
   width: 100vw;
   height: 100vh;
   background-color: rgb(0 0 0 / 50%);

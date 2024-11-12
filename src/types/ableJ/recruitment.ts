@@ -36,3 +36,4 @@ export interface RecruitmentCard {
 export type RecruitmentDetailResponse = ResponseType<RecruitmentDetail>;
 export type CategoryResponse = ResponseType<Category[]>;
 export type RecruitmentCardListResponse = ResponseType<RecruitmentCard[]>;
+export type ScrapRecruitmentResponse = ResponseType<null>;
