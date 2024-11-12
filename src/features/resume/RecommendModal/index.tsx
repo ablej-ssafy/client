@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import {MdClose, MdOutlineArrowForwardIos} from 'react-icons/md';
 
-import CompanyCard from '@/components/common/CompanyCard';
+import RecruitmentCard from '@/components/common/RecruitmentCard';
 import {RecruitmentCardType} from '@/types/ableJ';
 
 import styles from './recommendModal.module.scss';
@@ -30,7 +30,7 @@ const RecommendModal = ({isOpen, onClose, cards}: PreviewModalProps) => {
         </Link>
         <div className={styles['card-container']}>
           {cards.map(item => (
-            <CompanyCard key={item.id} item={item} scrap={false} />
+            <RecruitmentCard key={item.id} item={item} scrap={false} />
           ))}
         </div>
       </div>

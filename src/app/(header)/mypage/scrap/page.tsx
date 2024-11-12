@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 
-import CompanyCard from '@/components/common/CompanyCard';
+import RecruitmentCard from '@/components/common/RecruitmentCard';
 
 import styles from './page.module.scss';
 
@@ -10,7 +10,7 @@ const ScrapPage = () => {
   return (
     <main className={cx('page')}>
       {Array.from({length: 10}, () => null).map((_, i) => (
-        <CompanyCard key={i} />
+        <RecruitmentCard key={i} />
       ))}
     </main>
   );

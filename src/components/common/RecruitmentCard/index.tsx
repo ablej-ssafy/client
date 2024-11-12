@@ -8,9 +8,9 @@ import ScrapAction from '@/actions/recruitment/scrapAction';
 import {RecruitmentCardType} from '@/types/ableJ';
 import {useRootStore} from '@/zustand/rootStore';
 
-import styles from './companyCard.module.scss';
+import styles from './recruitmentCard.module.scss';
 
-interface CompanyCardProps {
+interface RecruitmentCardProps {
   item?: RecruitmentCardType;
   scrap?: boolean;
 }
@@ -25,7 +25,10 @@ const dummy = {
   scrapped: false,
 };
 
-const CompanyCard = ({item = dummy, scrap = true}: CompanyCardProps) => {
+const RecruitmentCard = ({
+  item = dummy,
+  scrap = true,
+}: RecruitmentCardProps) => {
   const [isScrapped, setIsScrapped] = useState(item.scrapped);
 
   const handleScrap = async () => {
@@ -108,4 +111,4 @@ const CompanyCard = ({item = dummy, scrap = true}: CompanyCardProps) => {
   );
 };
 
-export default CompanyCard;
+export default RecruitmentCard;
