@@ -2,6 +2,7 @@ import httpClient from '@/configs/httpClient';
 import {
   RecruitmentCardListResponse,
   RecruitmentDetailResponse,
+  ScrapRecruitmentResponse,
   SearchResponse,
 } from '@/types/ableJ';
 
@@ -74,5 +75,36 @@ export default {
         },
       },
     );
+  },
+
+  /**
+   * 채용 공고를 스크랩하는 함수
+   * @param recruitmentId 채용 공고 아이디
+   * @param accessToken 액세스 토큰
+   */
+  scrapRecruitment: async (recruitmentId: number, accessToken: string) => {
+    return httpClient.post<ScrapRecruitmentResponse>(
+      `/recruitments/${recruitmentId}/scrap`,
+      undefined,
+      {
+        headers: {Authorization: `Bearer ${accessToken}`},
+      },
+    );
+  },
+
+  /**
+   * 채용 공고 스크랩을 취소하는 함수
+   * @param recruitmentId 채용 공고 아이디
+   * @param accessToken 액세스 토큰
+   */
+  deleteScrapRecruitment: async (
+    recruitmentId: number,
+    accessToken: string,
+  ) => {
+    return httpClient.delete(`/recruitments/${recruitmentId}/scrap`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
   },
 };
