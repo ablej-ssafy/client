@@ -37,3 +37,4 @@ export type RecruitmentDetailResponse = ResponseType<RecruitmentDetail>;
 export type CategoryResponse = ResponseType<Category[]>;
 export type RecruitmentCardListResponse = ResponseType<RecruitmentCard[]>;
 export type ScrapResponse = ResponseType<boolean>;
+export type ScrapRecruitmentResponse = ResponseType<null>;
