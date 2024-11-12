@@ -20,7 +20,7 @@ const INITIAL_STATE = {
   password: [],
   name: [],
   careerYear: [],
-  jobIds: [],
+  jobId: [],
   error: '',
   success: false,
 };

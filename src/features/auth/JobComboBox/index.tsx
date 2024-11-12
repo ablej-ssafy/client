@@ -33,7 +33,7 @@ const JobComboBox = () => {
   return (
     <LabelWrapper label="관심직무">
       <div className={cx('combobox')} ref={ref}>
-        <input type="hidden" readOnly name="jobIds" value={selectedJob} />
+        <input type="hidden" readOnly name="jobId" value={selectedJob} />
         <button
           className={cx('combobox-button')}
           onClick={() => setIsOpen(prev => !prev)}
