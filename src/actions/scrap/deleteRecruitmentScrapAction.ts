@@ -6,10 +6,8 @@ import {redirect} from 'next/navigation';
 
 import recruitmentService from '@/services/ableJ';
 
-const deleteRecruitmentScarpAction = async (
-  _prevState: unknown,
-  formData: FormData,
-) => {
+const deleteRecruitmentScarpAction = async (formData: FormData) => {
+  console.log('deleteRecruitmentScarpAction');
   const recruitmentIdRaw = formData.get('recruitmentId');
 
   if (typeof recruitmentIdRaw !== 'string') {
@@ -28,11 +26,6 @@ const deleteRecruitmentScarpAction = async (
   await recruitmentService.deleteScrapRecruitment(recruitmentId, accessToken);
 
   revalidateTag(`recruitment-${recruitmentId}-scrap`);
-
-  return {
-    error: '',
-    success: true,
-  };
 };
 
 export default deleteRecruitmentScarpAction;

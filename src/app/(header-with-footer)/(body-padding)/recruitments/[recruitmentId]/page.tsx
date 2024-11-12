@@ -12,7 +12,7 @@ interface RecruitmentDetailPageProps {
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const revalidate = 3600 * 24; // 1 days
-export const dynamic = 'force-static';
+// export const dynamic = 'force-static';
 
 async function getRecruitment(recruitmentId: string) {
   const response = await fetch(
