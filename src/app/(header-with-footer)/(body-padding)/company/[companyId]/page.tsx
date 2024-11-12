@@ -1,3 +1,5 @@
+import {Metadata} from 'next';
+
 import Carousel from '@/components/common/Carousel';
 import CompanyInfo from '@/features/company/CompanyInfo';
 import CompanyRecruitments from '@/features/company/CompanyRecruitments.tsx';
@@ -22,15 +24,15 @@ async function getCompanyInfo(companyId: number) {
   return data;
 }
 
-// export async function generateMetaData({
-//   params: {companyId},
-// }: CompanyPageProps): Promise<Metadata> {
-//   const company = await getCompanyInfo(Number(companyId));
+export async function generateMetadata({
+  params: {companyId},
+}: CompanyPageProps): Promise<Metadata> {
+  const company = await getCompanyInfo(Number(companyId));
 
-//   return {
-//     title: company.name,
-//   };
-// }
+  return {
+    title: company.name,
+  };
+}
 
 const CompanyPage = async ({params: {companyId}}: CompanyPageProps) => {
   const data = await getCompanyInfo(Number(companyId));
