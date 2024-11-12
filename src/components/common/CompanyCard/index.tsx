@@ -5,13 +5,13 @@ import {FaBookmark, FaRegBookmark} from 'react-icons/fa6';
 
 import DeleteScrapAction from '@/actions/recruitment/deleteScrapAction';
 import ScrapAction from '@/actions/recruitment/scrapAction';
-import {RecruitmentCard} from '@/types/ableJ';
+import {RecruitmentCardType} from '@/types/ableJ';
 import {useRootStore} from '@/zustand/rootStore';
 
 import styles from './companyCard.module.scss';
 
 interface CompanyCardProps {
-  item?: RecruitmentCard;
+  item?: RecruitmentCardType;
   scrap?: boolean;
 }
 
@@ -45,7 +45,7 @@ const CompanyCard = ({item = dummy, scrap = true}: CompanyCardProps) => {
 
         Object.keys(recruitments).forEach(key => {
           recruitments[key] = recruitments[key].map(
-            (recruitment: RecruitmentCard) =>
+            (recruitment: RecruitmentCardType) =>
               recruitment.id === item.id
                 ? {...recruitment, scrapped: newScrappedState}
                 : recruitment,
@@ -57,12 +57,12 @@ const CompanyCard = ({item = dummy, scrap = true}: CompanyCardProps) => {
 
         // zustand 데이터 업데이트
         useRootStore.setState(state => {
-          const updatedRecruitments: {[key: string]: RecruitmentCard[]} = {
+          const updatedRecruitments: {[key: string]: RecruitmentCardType[]} = {
             ...state.recruitments,
           };
           Object.keys(updatedRecruitments).forEach(key => {
             updatedRecruitments[key] = updatedRecruitments[key].map(
-              (recruitment: RecruitmentCard) =>
+              (recruitment: RecruitmentCardType) =>
                 recruitment.id === item.id
                   ? {...recruitment, scrapped: newScrappedState}
                   : recruitment,

@@ -24,7 +24,7 @@ export interface Category {
   name: string;
 }
 
-export interface RecruitmentCard {
+export interface RecruitmentCardType {
   id: number;
   title: string;
   companyName: string;
@@ -35,5 +35,5 @@ export interface RecruitmentCard {
 
 export type RecruitmentDetailResponse = ResponseType<RecruitmentDetail>;
 export type CategoryResponse = ResponseType<Category[]>;
-export type RecruitmentCardListResponse = ResponseType<RecruitmentCard[]>;
+export type RecruitmentCardListResponse = ResponseType<RecruitmentCardType[]>;
 export type ScrapRecruitmentResponse = ResponseType<null>;

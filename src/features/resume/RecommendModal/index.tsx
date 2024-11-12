@@ -4,14 +4,14 @@ import Link from 'next/link';
 import {MdClose, MdOutlineArrowForwardIos} from 'react-icons/md';
 
 import CompanyCard from '@/components/common/CompanyCard';
-import {RecruitmentCard} from '@/types/ableJ';
+import {RecruitmentCardType} from '@/types/ableJ';
 
 import styles from './recommendModal.module.scss';
 
 interface PreviewModalProps {
   isOpen: boolean;
   onClose: () => void;
-  cards: RecruitmentCard[];
+  cards: RecruitmentCardType[];
 }
 
 const RecommendModal = ({isOpen, onClose, cards}: PreviewModalProps) => {

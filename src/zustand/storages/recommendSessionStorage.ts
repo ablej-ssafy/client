@@ -1,9 +1,9 @@
 import {PersistStorage} from 'zustand/middleware';
 
-import {RecruitmentCard} from '@/types/ableJ';
+import {RecruitmentCardType} from '@/types/ableJ';
 
 const recommendSessionStorage: PersistStorage<{
-  [resumeId: number]: RecruitmentCard[];
+  [resumeId: number]: RecruitmentCardType[];
 }> = {
   getItem: name => {
     const item = sessionStorage.getItem(name);

@@ -1,11 +1,14 @@
 import {persist} from 'zustand/middleware';
 
-import {RecruitmentCard} from '@/types/ableJ';
+import {RecruitmentCardType} from '@/types/ableJ';
 import recommendSessionStorage from '@/zustand/storages/recommendSessionStorage';
 
 export interface RecommendSlice {
-  recruitments: {[resumeId: number]: RecruitmentCard[]};
-  setRecruitments: (resumeId: number, recruitments: RecruitmentCard[]) => void;
+  recruitments: {[resumeId: number]: RecruitmentCardType[]};
+  setRecruitments: (
+    resumeId: number,
+    recruitments: RecruitmentCardType[],
+  ) => void;
   isHydrated: boolean;
   setIsHydrated: (hydrated: boolean) => void;
 }
@@ -14,7 +17,10 @@ export const createRecommendSlice = persist(
   set => ({
     recruitments: {},
     isHydrated: false,
-    setRecruitments: (resumeId: number, recruitments: RecruitmentCard[]) => {
+    setRecruitments: (
+      resumeId: number,
+      recruitments: RecruitmentCardType[],
+    ) => {
       set((state: RecommendSlice) => ({
         recruitments: {...state.recruitments, [resumeId]: recruitments},
       }));

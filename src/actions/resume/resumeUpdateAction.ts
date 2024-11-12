@@ -3,12 +3,12 @@
 import {cookies} from 'next/headers';
 
 import resumeService from '@/services/ableJ';
-import {RecruitmentCard} from '@/types/ableJ';
+import {RecruitmentCardType} from '@/types/ableJ';
 
 const resumeUpdateAction = async (
   _prevState: unknown,
   formData: FormData,
-): Promise<{success: boolean; data: RecruitmentCard[]}> => {
+): Promise<{success: boolean; data: RecruitmentCardType[]}> => {
   const cookieStore = cookies();
   const token = cookieStore.get('accessToken')?.value;
 
