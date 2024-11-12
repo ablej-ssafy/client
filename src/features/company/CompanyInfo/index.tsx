@@ -53,8 +53,11 @@ const CompanyInfo = ({companyInfo}: CompanyInfoProps) => {
           {industryArray.map((industry, index) => (
             <Tag key={index} title={industry} />
           ))}
-          <Tag title={String(companyInfo.foundedYear)} type="secondary" />
-          <Tag title={`${String(companyInfo.age)}년차`} type="secondary" />
+          <Tag
+            title={`${String(companyInfo.foundedYear)}  ~`}
+            type="secondary"
+          />
+          <Tag title={`설립 ${String(companyInfo.age)}년차`} type="secondary" />
         </div>
         {formattedDescription && (
           <p

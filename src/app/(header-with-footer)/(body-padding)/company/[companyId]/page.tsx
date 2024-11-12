@@ -22,7 +22,6 @@ const CompanyPage = async ({params}: CompanyPageProps) => {
     accessToken,
   );
 
-  console.log('data', data);
   return (
     <>
       <Carousel imageArray={data.images} />
