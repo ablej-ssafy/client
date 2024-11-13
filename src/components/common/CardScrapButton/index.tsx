@@ -1,28 +1,39 @@
+'use client';
+
 import {FaBookmark, FaRegBookmark} from 'react-icons/fa6';
 
-import createRecruitmentScarpAction from '@/actions/scrap/createRecruitmentScrapAction';
-import deleteRecruitmentScarpAction from '@/actions/scrap/deleteRecruitmentScrapAction';
+import styles from './cardScrapButton.module.scss';
 
 interface CompanyRecruitmentCardProps {
   recruitmentId: number;
   isScrap: boolean;
-  tag?: string;
 }
 
 const CardScrapButton = ({
   recruitmentId,
   isScrap,
-  tag,
 }: CompanyRecruitmentCardProps) => {
-  const action = isScrap
-    ? deleteRecruitmentScarpAction
-    : createRecruitmentScarpAction;
   return (
-    <form action={action}>
-      <input name="tag" type="hidden" value={tag} />
-      <input name="recruitmentId" type="hidden" value={String(recruitmentId)} />
-      {isScrap ? <FaBookmark /> : <FaRegBookmark />}
-    </form>
+    <div>
+      <input
+        type="hidden"
+        name={`isScrap-${recruitmentId}`}
+        value={String(isScrap)}
+      />
+      <label
+        htmlFor={`submit-button-${recruitmentId}`}
+        className={styles.container}
+      >
+        <input
+          type="submit"
+          name="recruitmentId"
+          value={recruitmentId}
+          id={`submit-button-${recruitmentId}`}
+          className={styles['scrap-button']}
+        />
+        {isScrap ? <FaBookmark /> : <FaRegBookmark />}
+      </label>
+    </div>
   );
 };
 

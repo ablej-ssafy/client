@@ -1,5 +1,6 @@
 import {cookies} from 'next/headers';
 
+import recruitmentScrapAction from '@/actions/scrap/recruitmentScrapAction';
 import CompanyRecruitmentCard from '@/components/common/CompanyRecruitmentCard';
 import {Company} from '@/types/ableJ';
 
@@ -59,7 +60,12 @@ const CompanyRecruitments = async ({companyInfo}: CompanyRecruitmentsProps) => {
           의 채용 공고가 총 {companyInfo.recruitments.length}건 있습니다.
         </span>
       </div>
-      <div className={styles.recruitment}>
+      <form className={styles.recruitment} action={recruitmentScrapAction}>
+        <input
+          name="tag"
+          type="hidden"
+          value={`company-${companyInfo.companyId}-recruitments-scrap`}
+        />
         {companyInfo.recruitments.length > 0 &&
           companyInfo.recruitments.map(recruitment => (
             <CompanyRecruitmentCard
@@ -69,10 +75,9 @@ const CompanyRecruitments = async ({companyInfo}: CompanyRecruitmentsProps) => {
               thumbnail={recruitment.thumbnail}
               companyName={companyInfo.name}
               isScrap={recruitmentScrap.includes(recruitment.recruitmentId)}
-              tag={`company-${companyInfo.companyId}-recruitments-scrap`}
             />
           ))}
-      </div>
+      </form>
     </div>
   );
 };

@@ -8,6 +8,8 @@ import recruitmentService from '@/services/ableJ';
 
 const createRecruitmentScarpAction = async (formData: FormData) => {
   const recruitmentIdRaw = formData.get('recruitmentId');
+  console.log(recruitmentIdRaw);
+  const tag = formData.get('tag');
 
   if (typeof recruitmentIdRaw !== 'string') {
     console.error('잘못된 요청입니다.');
@@ -27,11 +29,15 @@ const createRecruitmentScarpAction = async (formData: FormData) => {
     accessToken,
   );
 
+  console.log(response);
+
   if (!response.success) {
     throw new Error('스크랩에 실패했습니다.');
   }
 
-  revalidateTag(`recruitment-${recruitmentId}-scrap`);
+  if (tag) {
+    revalidateTag(tag as string);
+  }
 };
 
 export default createRecruitmentScarpAction;

@@ -1,3 +1,4 @@
+import recruitmentScrapAction from '@/actions/scrap/recruitmentScrapAction';
 import CompanyRecruitmentCard from '@/components/common/CompanyRecruitmentCard';
 import {Search} from '@/types/ableJ';
 
@@ -13,7 +14,7 @@ const ResultBox = async ({recruitments}: ResultBoxProps) => {
       <p className={styles['result-count']}>
         총 {recruitments.length}개의 채용 공고가 있습니다.
       </p>
-      <div className={styles['result-box']}>
+      <form className={styles['result-box']} action={recruitmentScrapAction}>
         {recruitments.length > 0 &&
           recruitments.map(recruitment => {
             return (
@@ -27,7 +28,7 @@ const ResultBox = async ({recruitments}: ResultBoxProps) => {
               />
             );
           })}
-      </div>
+      </form>
     </div>
   );
 };

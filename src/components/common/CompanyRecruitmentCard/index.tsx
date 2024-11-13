@@ -11,7 +11,6 @@ interface CompanyRecruitmentCardProps {
   thumbnail: string;
   companyName: string;
   isScrap: boolean;
-  tag?: string;
 }
 
 const CompanyRecruitmentCard = ({
@@ -20,11 +19,10 @@ const CompanyRecruitmentCard = ({
   thumbnail,
   companyName,
   isScrap,
-  tag,
 }: CompanyRecruitmentCardProps) => {
   return (
-    <Link href={`/recruitments/${recruitmentId}`} className={styles.link}>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      <Link href={`/recruitments/${recruitmentId}`} className={styles.link}>
         <Image
           src={thumbnail}
           alt="sample_img"
@@ -34,17 +32,11 @@ const CompanyRecruitmentCard = ({
           objectFit="cover"
           className={styles.img}
         />
-        <div className={styles['scrap-button']}>
-          <CardScrapButton
-            recruitmentId={recruitmentId}
-            isScrap={isScrap}
-            tag={tag}
-          />
-        </div>
-        <div className={styles['job-title']}>{name}</div>
-        <span className={styles['company-name']}>{companyName}</span>
-      </div>
-    </Link>
+      </Link>
+      <CardScrapButton recruitmentId={recruitmentId} isScrap={isScrap} />
+      <div className={styles['job-title']}>{name}</div>
+      <span className={styles['company-name']}>{companyName}</span>
+    </div>
   );
 };
 
