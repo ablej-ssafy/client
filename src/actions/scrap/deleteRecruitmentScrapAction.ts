@@ -7,7 +7,6 @@ import {redirect} from 'next/navigation';
 import recruitmentService from '@/services/ableJ';
 
 const deleteRecruitmentScarpAction = async (formData: FormData) => {
-  console.log('deleteRecruitmentScarpAction');
   const recruitmentIdRaw = formData.get('recruitmentId');
 
   if (typeof recruitmentIdRaw !== 'string') {
