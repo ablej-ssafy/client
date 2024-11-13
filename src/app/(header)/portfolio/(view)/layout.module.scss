@@ -1,5 +1,6 @@
 @use '@/styles/constants/colors' as colors;
 @use '@/styles/constants/layout' as layout;
+@use '@/styles/animations/loader' as loader;
 
 .container {
   position: relative;
@@ -25,6 +26,16 @@
 
     &.active {
       background-color: #efeef3;
+    }
+
+    &.loading::after {
+      @include loader.loader-animation;
+
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      content: '';
+      transform: translate(-50%, -50%);
     }
   }
 }

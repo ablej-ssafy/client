@@ -35,6 +35,12 @@ const AutoResumeSelectPage = async () => {
     ableJ.getCertificationInfo('language', accessToken),
   ]);
 
+  const {data, success} = await ableJ.getAiParsedResume(accessToken);
+
+  if (!success || settled.some(({status}) => status === 'rejected')) {
+    redirect('/portfolio');
+  }
+
   const basicInfo =
     settled[0].status === 'fulfilled' ? settled[0].value.data : undefined;
   const educationInfo =
@@ -105,18 +111,64 @@ const AutoResumeSelectPage = async () => {
               languageInfo={languageInfo}
             />
           ))}
-        {techStackInfo && <SkillSection readOnly techSkill={techStackInfo} />}{' '}
+        {techStackInfo && <SkillSection readOnly techSkill={techStackInfo} />}
       </div>
       <div className={cx('column-right')}>
         <h2>AI가 자동으로 채워준 포트폴리오</h2>
-        <BasicInfoSection />
-        <EducationInfoSection />
-        <ExperienceInfoSection />
-        <ActivityInfoSection />
-        <ProjectInfoSection />
+        <BasicInfoSection basicInfo={data.aiBasic} />
+        {data.aiEducationals.map(educationInfo => (
+          <EducationInfoSection
+            key={educationInfo.educationId}
+            education={educationInfo}
+          />
+        ))}
+        {data.aiExperiences
+          .filter(experience => experience.experienceType === 'COMPANY')
+          .map(experience => (
+            <ExperienceInfoSection
+              key={experience.experienceId}
+              experience={experience}
+            />
+          ))}
+        {data.aiExperiences
+          .filter(experience => experience.experienceType === 'ACTIVITY')
+          .map(experience => (
+            <ActivityInfoSection
+              key={experience.experienceId}
+              activity={experience}
+            />
+          ))}
+        {data.aiExperiences
+          .filter(experience => experience.experienceType === 'PROJECT')
+          .map(experience => (
+            <ProjectInfoSection
+              key={experience.experienceId}
+              project={experience}
+            />
+          ))}
+        {data.aiCertifications
+          .filter(
+            certificationInfo =>
+              certificationInfo.certificationType === 'QUALIFICATION',
+          )
+          .map(certificationInfo => (
+            <CertificateInfoSection
+              key={certificationInfo.certificationId}
+              certificate={certificationInfo}
+            />
+          ))}
+        {data.aiCertifications
+          .filter(
+            certificationInfo =>
+              certificationInfo.certificationType === 'QUALIFICATION',
+          )
+          .map(certificationInfo => (
+            <LanguageProficiencyInfoSection
+              key={certificationInfo.certificationId}
+              languageInfo={certificationInfo}
+            />
+          ))}
         <SkillSection />
-        <CertificateInfoSection />
-        <LanguageProficiencyInfoSection />
       </div>
     </main>
   );
