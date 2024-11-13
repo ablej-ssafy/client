@@ -16,6 +16,7 @@ const cx = classNames.bind(styles);
 const URL = {
   PROFILE: '/mypage',
   SCRAP: '/mypage/scrap',
+  GITHUB: '/mypage/github',
 } as const;
 
 const MyPageLayout = ({children}: PropsWithChildren) => {
@@ -37,6 +38,13 @@ const MyPageLayout = ({children}: PropsWithChildren) => {
           selected={pathname === URL.SCRAP}
         >
           스크랩
+        </SidebarButton>
+        <SidebarButton
+          buttonType="link"
+          href={URL.GITHUB}
+          selected={pathname === URL.GITHUB}
+        >
+          깃허브 분석
         </SidebarButton>
         <SidebarDivider />
         <SidebarLogoutButton />
