@@ -1,4 +1,4 @@
-import RecruitmentCard from '@/components/common/RecruitmentCard';
+import CompanyRecruitmentCard from '@/components/common/CompanyRecruitmentCard';
 import {Search} from '@/types/ableJ';
 
 import styles from './resultBox.module.scss';
@@ -15,8 +15,17 @@ const ResultBox = async ({recruitments}: ResultBoxProps) => {
       </p>
       <div className={styles['result-box']}>
         {recruitments.length > 0 &&
-          recruitments.map(result => {
-            return <RecruitmentCard key={result.recruitmentId} />;
+          recruitments.map(recruitment => {
+            return (
+              <CompanyRecruitmentCard
+                key={recruitment.recruitmentId}
+                recruitmentId={recruitment.recruitmentId}
+                name={recruitment.name}
+                thumbnail={recruitment.thumbnail}
+                companyName={recruitment.companyName}
+                isScrap={recruitment.scrapped}
+              />
+            );
           })}
       </div>
     </div>

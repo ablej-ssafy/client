@@ -1,4 +1,6 @@
-import RecruitmentCard from '@/components/common/RecruitmentCard';
+import {cookies} from 'next/headers';
+
+import CompanyRecruitmentCard from '@/components/common/CompanyRecruitmentCard';
 import {Company} from '@/types/ableJ';
 
 import styles from './companyRecruitments.module.scss';
@@ -7,7 +9,48 @@ interface CompanyRecruitmentsProps {
   companyInfo: Company;
 }
 
-const CompanyRecruitments = ({companyInfo}: CompanyRecruitmentsProps) => {
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
+const getCompanyRecruitmentScrap = async (
+  recruitmentIds: number[],
+  companyId: number,
+) => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get('accessToken')?.value;
+
+  if (!accessToken) {
+    console.log('accessToken이 없습니다.');
+    return;
+  }
+  const params = new URLSearchParams();
+  params.append('recruitmentIds', recruitmentIds.join(','));
+  const response = await fetch(
+    `${BASE_URL}/api/v1/recruitments/scraps?${params}`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      next: {
+        tags: [`company-${companyId}-recruitments-scrap`],
+      },
+    },
+  );
+
+  const {data} = await response.json();
+
+  return data;
+};
+
+const CompanyRecruitments = async ({companyInfo}: CompanyRecruitmentsProps) => {
+  const recruitmentIds = companyInfo.recruitments.map(
+    recruitment => recruitment.recruitmentId,
+  );
+
+  const recruitmentScrap = await getCompanyRecruitmentScrap(
+    recruitmentIds,
+    companyInfo.companyId,
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.count}>
@@ -19,7 +62,15 @@ const CompanyRecruitments = ({companyInfo}: CompanyRecruitmentsProps) => {
       <div className={styles.recruitment}>
         {companyInfo.recruitments.length > 0 &&
           companyInfo.recruitments.map(recruitment => (
-            <RecruitmentCard key={recruitment.recruitmentId} />
+            <CompanyRecruitmentCard
+              key={recruitment.recruitmentId}
+              recruitmentId={recruitment.recruitmentId}
+              name={recruitment.name}
+              thumbnail={recruitment.thumbnail}
+              companyName={companyInfo.name}
+              isScrap={recruitmentScrap.includes(recruitment.recruitmentId)}
+              tag={`company-${companyInfo.companyId}-recruitments-scrap`}
+            />
           ))}
       </div>
     </div>

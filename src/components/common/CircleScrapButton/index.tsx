@@ -33,12 +33,6 @@ const getScrapStatus = async (recruitmentId: number) => {
 const CircleScrapButton = async ({recruitmentId}: CircleScrapButtonProps) => {
   const isScrap = await getScrapStatus(recruitmentId);
 
-  // const handleScrap = async () => {
-  //   await (isScrap
-  //     ? DeleteScrapAction(recruitmentId)
-  //     : ScrapAction(recruitmentId));
-  // };
-
   return (
     <div className={styles.circle}>
       {isScrap ? <MdBookmark size={25} /> : <MdBookmarkBorder size={25} />}

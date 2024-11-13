@@ -42,6 +42,11 @@ const ScrapButton = async ({recruitmentId}: ScrapButtonProps) => {
   return (
     <form className={styles.container} action={action}>
       <input name="recruitmentId" type="hidden" value={String(recruitmentId)} />
+      <input
+        name="tag"
+        type="hidden"
+        value={`recruitment-${recruitmentId}-scrap`}
+      />
       <label htmlFor="submit-button" className={styles['submit-button']}>
         <input
           type="submit"
