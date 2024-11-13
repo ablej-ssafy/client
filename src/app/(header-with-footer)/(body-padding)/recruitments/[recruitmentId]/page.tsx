@@ -53,9 +53,23 @@ export async function generateMetadata({
   params: {recruitmentId: string};
 }) {
   const recruitment = await getRecruitment(params.recruitmentId);
+  let thumbnail = '';
+  if (recruitment.images.length > 0) {
+    thumbnail = recruitment.images[0];
+  }
   return {
     title: `${recruitment.company.name} | ${recruitment.name}`,
     description: recruitment.intro,
+    openGraph: {
+      title: recruitment.name,
+      type: 'website',
+      image: thumbnail,
+      description: recruitment.intro,
+    },
+    twitter: {
+      card: thumbnail,
+      image: thumbnail,
+    },
   };
 }
 
