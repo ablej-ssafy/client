@@ -1,8 +1,6 @@
 @use '@/styles/constants/colors' as colors;
 
 .label-wrapper {
-  display: contents;
-
   & > label {
     display: block;
     margin-top: 0.3rem;

@@ -2,7 +2,7 @@
 
 import {usePathname} from 'next/navigation';
 
-import CompanyCard from '@/components/common/CompanyCard';
+import RecruitmentCard from '@/components/common/RecruitmentCard';
 import useFetchRecruitments from '@/hooks/useFetchRecruitments';
 
 import styles from './recommend.module.scss';
@@ -25,7 +25,7 @@ const Recommend = () => {
         <div className={styles.container}>
           {!!recruitments &&
             recruitments.map(recruitment => (
-              <CompanyCard key={recruitment.id} item={recruitment} />
+              <RecruitmentCard key={recruitment.id} item={recruitment} />
             ))}
         </div>
       )}

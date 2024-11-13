@@ -1,14 +1,14 @@
 import type {Meta, StoryObj} from '@storybook/react';
 
-import CompanyCard from './';
+import RecruitmentCard from '.';
 
 const meta = {
-  title: 'Common/CompanyCard',
-  component: CompanyCard,
+  title: 'Common/RecruitmentCard',
+  component: RecruitmentCard,
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof CompanyCard>;
+} satisfies Meta<typeof RecruitmentCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

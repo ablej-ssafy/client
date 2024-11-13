@@ -8,7 +8,7 @@ import {IoMdClose} from 'react-icons/io';
 import resumeUpdateAction from '@/actions/resume/resumeUpdateAction';
 import {revalidateResumePage} from '@/actions/resume/revalidatePathAction';
 import Button from '@/components/common/Button';
-import {RecruitmentCard} from '@/types/ableJ';
+import {RecruitmentCardType} from '@/types/ableJ';
 
 import RecommendModal from '../RecommendModal';
 import styles from './resumeRegistration.module.scss';
@@ -22,7 +22,7 @@ const cx = classNames.bind(styles);
 
 const ResumeRegistration = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [cards, setCards] = useState<RecruitmentCard[]>([]);
+  const [cards, setCards] = useState<RecruitmentCardType[]>([]);
   const [file, setFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
