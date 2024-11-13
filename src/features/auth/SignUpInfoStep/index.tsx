@@ -60,40 +60,42 @@ const SignUpInfoStep = ({handleNext}: InfoStepProps) => {
       <p className={cx('text-content')}>
         회원가입을 하시면 AI 큐레이팅을 사용할 수 있습니다.
       </p>
-      <LabelInput
-        inputStyle="primary"
-        label="이메일"
-        placeholder="example@gmail.com"
-        name="email"
-        type="email"
-        defaultValue=""
-        error={fieldErrors?.email}
-      />
-      <LabelInput
-        inputStyle="primary"
-        label="비밀번호"
-        name="password"
-        type="password"
-        defaultValue=""
-        error={fieldErrors?.password}
-      />
-      <LabelInput
-        inputStyle="primary"
-        label="비밀번호 확인"
-        type="password"
-        name="password-confirm"
-        defaultValue=""
-        error={fieldErrors?.passwordConfirm}
-      />
-      <LabelInput
-        inputStyle="primary"
-        label="이름"
-        type="text"
-        name="name"
-        placeholder="홍길동"
-        defaultValue=""
-        error={fieldErrors?.name}
-      />
+      <div className={cx('input-container')}>
+        <LabelInput
+          inputStyle="primary"
+          label="이메일"
+          placeholder="example@gmail.com"
+          name="email"
+          type="email"
+          defaultValue=""
+          error={fieldErrors?.email}
+        />
+        <LabelInput
+          inputStyle="primary"
+          label="비밀번호"
+          name="password"
+          type="password"
+          defaultValue=""
+          error={fieldErrors?.password}
+        />
+        <LabelInput
+          inputStyle="primary"
+          label="비밀번호 확인"
+          type="password"
+          name="password-confirm"
+          defaultValue=""
+          error={fieldErrors?.passwordConfirm}
+        />
+        <LabelInput
+          inputStyle="primary"
+          label="이름"
+          type="text"
+          name="name"
+          placeholder="홍길동"
+          defaultValue=""
+          error={fieldErrors?.name}
+        />
+      </div>
       <button type="submit" className={cx('button')}>
         다음
       </button>

@@ -13,7 +13,7 @@ export interface SignupForm {
   password: Password;
   name: Name;
   careerYear: number;
-  jobIds: number[];
+  jobId: number;
 }
 
 export interface Profile {

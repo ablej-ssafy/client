@@ -72,7 +72,6 @@ const RecruitmentDetailPage = async ({
         category={recruitment.category}
         childCategories={recruitment.childCategories}
         company={recruitment.company}
-        hireRound={recruitment.hireRound}
         dueTime={recruitment.dueTime}
         annualTo={recruitment.annualTo}
         annualFrom={recruitment.annualFrom}

@@ -14,7 +14,6 @@ interface RecruitmentTitleProps {
   category: Category;
   childCategories: Category[];
   company: Company;
-  hireRound?: string;
   dueTime?: string;
   annualTo: number;
   annualFrom?: number;
@@ -26,7 +25,6 @@ const RecruitmentTitle = ({
   category,
   childCategories,
   company,
-  hireRound,
   dueTime,
   annualTo,
   annualFrom,
@@ -36,7 +34,6 @@ const RecruitmentTitle = ({
   const annual = annualFrom
     ? `${annualFrom} ~ ${annualTo}년`
     : `${annualTo}년 이상`;
-  const hire = hireRound ? `(${hireRound})` : '';
   const closedDate = dueTime || '상시 채용';
   const categoryJoin = `${category.name} > ${childCategories.map(child => child.name).join(', ')}`;
   return (
@@ -59,7 +56,7 @@ const RecruitmentTitle = ({
       <span className={styles['text-bold-24']}>{name}</span>
       <div className={styles['margin-y']}>
         <RecruitmentTag title="근무 지역" content={location} />
-        <RecruitmentTag title="경력" content={`${annual} ${hire}`} />
+        <RecruitmentTag title="경력" content={annual} />
         <RecruitmentTag title="마감일" content={closedDate} />
         <RecruitmentTag title="직무" content={categoryJoin} />
       </div>

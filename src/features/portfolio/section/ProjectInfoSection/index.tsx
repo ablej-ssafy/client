@@ -8,9 +8,14 @@ import {ExperienceInfo} from '@/types/ableJ';
 
 interface ProjectInfoSectionProps extends PropsWithChildren {
   project?: ExperienceInfo;
+  readOnly?: boolean;
 }
 
-const ProjectInfoSection = ({project, children}: ProjectInfoSectionProps) => {
+const ProjectInfoSection = ({
+  project,
+  readOnly,
+  children,
+}: ProjectInfoSectionProps) => {
   return (
     <Fragment key={project?.experienceId}>
       <Input
@@ -18,18 +23,21 @@ const ProjectInfoSection = ({project, children}: ProjectInfoSectionProps) => {
         label="프로젝트명"
         name="title"
         defaultValue={project?.title || ''}
+        readOnly={readOnly}
       />
       <Input
         isLabeled
         label="소속"
         name="affiliation"
         defaultValue={project?.affiliation || ''}
+        readOnly={readOnly}
       />
       <Input
         isLabeled
         label="내용"
         name="description"
         defaultValue={project?.description || ''}
+        readOnly={readOnly}
       />
       <Columns>
         <DatePicker
@@ -37,12 +45,14 @@ const ProjectInfoSection = ({project, children}: ProjectInfoSectionProps) => {
           label="시작년월"
           name="startAt"
           defaultValue={project?.startAt || ''}
+          readOnly={readOnly}
         />
         <DatePicker
           isLabeled
           label="종료연월"
           name="endAt"
           defaultValue={project?.endAt || ''}
+          readOnly={readOnly}
         />
       </Columns>
       <Input
@@ -50,6 +60,7 @@ const ProjectInfoSection = ({project, children}: ProjectInfoSectionProps) => {
         label="프로젝트 URL"
         name="referenceUrl"
         defaultValue={project?.referenceUrl || ''}
+        readOnly={readOnly}
       />
       <input
         name="experienceId"

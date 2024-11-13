@@ -15,42 +15,33 @@ const cx = classNames.bind(styles);
 const JobComboBox = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedJobs, setSelectedJobs] = useState<Job['id'][]>([]);
+  const [selectedJob, setSelectedJob] = useState<Job['id']>();
   const [keyword, setKeyword] = useState('');
   const jobs = useJobs();
   useClickOutside(ref, () => setIsOpen(false));
 
-  const handleSelectJobs = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleSelectJob = (e: MouseEvent<HTMLButtonElement>) => {
     const jobId = +e.currentTarget.value;
 
-    if (selectedJobs.includes(jobId)) {
-      setSelectedJobs(prevJobs => prevJobs.filter(id => id !== jobId));
+    if (selectedJob === jobId) {
+      setSelectedJob(undefined);
       return;
     }
-    setSelectedJobs(prevJobs => [...prevJobs, jobId]);
+    setSelectedJob(jobId);
   };
 
   return (
     <LabelWrapper label="관심직무">
       <div className={cx('combobox')} ref={ref}>
-        {selectedJobs.map(jobId => (
-          <input
-            key={jobId}
-            type="hidden"
-            readOnly
-            name="jobIds"
-            value={jobId}
-          />
-        ))}
+        <input type="hidden" readOnly name="jobId" value={selectedJob} />
         <button
           className={cx('combobox-button')}
           onClick={() => setIsOpen(prev => !prev)}
           id="관심직무"
           type="button"
         >
-          {selectedJobs
-            .map(jobId => jobs.find(({id}) => jobId === id)?.name)
-            .join(' ')}
+          {jobs.find(job => job.id === selectedJob)?.name ||
+            '직무를 선택해주세요.'}
         </button>
         {isOpen && (
           <div className={cx('dropdown')}>
@@ -71,10 +62,10 @@ const JobComboBox = () => {
                     <li key={job.id}>
                       <button
                         className={cx('dropdown-button', {
-                          selected: selectedJobs.includes(job.id),
+                          selected: job.id === selectedJob,
                         })}
                         value={job.id}
-                        onClick={handleSelectJobs}
+                        onClick={handleSelectJob}
                         type="button"
                       >
                         {job.name}

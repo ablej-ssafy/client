@@ -19,6 +19,10 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+
+  .input-container {
+    flex: 1;
+  }
 }
 
 .form-label {

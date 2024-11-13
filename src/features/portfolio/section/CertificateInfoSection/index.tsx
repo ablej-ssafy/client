@@ -8,10 +8,12 @@ import type {CertificationInfo} from '@/types/ableJ';
 
 interface CertificateInfoSectionProps extends PropsWithChildren {
   certificate?: CertificationInfo;
+  readOnly?: boolean;
 }
 
 const CertificateInfoSection = ({
   certificate,
+  readOnly,
   children,
 }: CertificateInfoSectionProps) => {
   return (
@@ -21,6 +23,7 @@ const CertificateInfoSection = ({
         label="자격증명"
         name="name"
         defaultValue={certificate?.name || ''}
+        readOnly={readOnly}
       />
       <Columns>
         <Input
@@ -28,12 +31,14 @@ const CertificateInfoSection = ({
           label="발급기관"
           name="organization"
           defaultValue={certificate?.organization || ''}
+          readOnly={readOnly}
         />
         <DatePicker
           isLabeled
           label="취득일"
           name="acquisitionAt"
           defaultValue={certificate?.acquisitionAt || ''}
+          readOnly={readOnly}
         />
       </Columns>
       <Columns>
@@ -42,12 +47,14 @@ const CertificateInfoSection = ({
           label="등급"
           name="grade"
           defaultValue={certificate?.grade || ''}
+          readOnly={readOnly}
         />
         <Input
           isLabeled
           label="인증번호"
           name="credential"
           defaultValue={certificate?.credential || ''}
+          readOnly={readOnly}
         />
       </Columns>
       <input

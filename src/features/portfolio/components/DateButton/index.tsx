@@ -1,25 +1,17 @@
 import classNames from 'classnames/bind';
-import {forwardRef, MouseEvent} from 'react';
+import {ButtonHTMLAttributes, forwardRef} from 'react';
 
 import styles from './dateButton.module.scss';
 
 const cx = classNames.bind(styles);
 
-interface DateButtonProps {
-  value?: string;
-  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
-}
+type DateButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
 const DateButton = forwardRef<HTMLButtonElement, DateButtonProps>(
-  ({onClick, value}, ref) => {
+  (props, ref) => {
     return (
-      <button
-        onClick={onClick}
-        ref={ref}
-        className={cx('button')}
-        type="button"
-      >
-        {value}
+      <button {...props} ref={ref} className={cx('button')} type="button">
+        {props.value}
       </button>
     );
   },

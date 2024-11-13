@@ -9,22 +9,27 @@ import {GetTechStackInfoResponseData} from '@/types/ableJ';
 
 import styles from './skillSection.module.scss';
 
-interface SkillSectionProps {
-  techStackInfo: GetTechStackInfoResponseData;
-}
-
 const cx = classNames.bind(styles);
 
-const SkillSection = ({techStackInfo}: SkillSectionProps) => {
+interface SkillSectionProps {
+  techSkill?: GetTechStackInfoResponseData;
+  readOnly?: boolean;
+}
+
+const SkillSection = async ({techSkill, readOnly}: SkillSectionProps) => {
   return (
-    <Fragment key={techStackInfo.techId}>
-      <SkillCombobox techSkills={techStackInfo?.techSkills || null} />
+    <Fragment key={techSkill?.techId}>
+      <SkillCombobox
+        techSkills={techSkill?.techSkills || null}
+        readOnly={readOnly}
+      />
       <div className={cx('skill-input')}>
         <FaGithub size={24} />
         <Input
           placeholder="Github 주소를 입력해주세요."
           name="githubUrl"
-          defaultValue={techStackInfo?.githubUrl || ''}
+          defaultValue={techSkill?.githubUrl || ''}
+          readOnly={readOnly}
         />
       </div>
       <div className={cx('skill-input')}>
@@ -32,10 +37,11 @@ const SkillSection = ({techStackInfo}: SkillSectionProps) => {
         <Input
           placeholder="Notion 주소를 입력해주세요."
           name="notionUrl"
-          defaultValue={techStackInfo?.notionUrl || ''}
+          defaultValue={techSkill?.notionUrl || ''}
+          readOnly={readOnly}
         />
       </div>
-      <input name="techId" hidden defaultValue={techStackInfo?.techId} />
+      <input name="techId" hidden defaultValue={techSkill?.techId} />
     </Fragment>
   );
 };

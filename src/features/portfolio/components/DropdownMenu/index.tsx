@@ -17,6 +17,7 @@ type NormalDropdownMenuPropsProps = {
   items: DropdownMenuItem[];
   defaultValue?: string;
   name?: string;
+  readOnly?: boolean;
 };
 
 type LabeledDropdownMenuPropsProps = {
@@ -25,6 +26,7 @@ type LabeledDropdownMenuPropsProps = {
   items: DropdownMenuItem[];
   defaultValue?: string;
   name?: string;
+  readOnly?: boolean;
 };
 
 interface DropdownMenuItem {
@@ -62,6 +64,7 @@ const DropdownMenu = (props: DropdownMenuProps) => {
           className={cx('dropdown-button')}
           type="button"
           onClick={() => setIsOpen(prev => !prev)}
+          disabled={props.readOnly}
         >
           {props.items.find(item => item.id === value)?.text || '선택'}
         </button>

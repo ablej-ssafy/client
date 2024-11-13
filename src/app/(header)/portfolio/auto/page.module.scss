@@ -1,0 +1,21 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  height: 100%;
+  padding: 0 30px;
+
+  .column-left {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1;
+    gap: 20px;
+  }
+
+  .column-right {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2;
+    gap: 20px;
+  }
+}

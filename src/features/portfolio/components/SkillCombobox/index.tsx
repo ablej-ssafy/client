@@ -12,11 +12,12 @@ import styles from './skillCombobox.module.scss';
 
 interface SkillComboboxProps {
   techSkills: Skill[] | null;
+  readOnly?: boolean;
 }
 
 const cx = classNames.bind(styles);
 
-const SkillCombobox = ({techSkills}: SkillComboboxProps) => {
+const SkillCombobox = ({techSkills, readOnly}: SkillComboboxProps) => {
   const [keyword, setKeyword] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSkills, setSelectedSkills] = useState<Skill['skillId'][]>(
@@ -51,6 +52,7 @@ const SkillCombobox = ({techSkills}: SkillComboboxProps) => {
           value={keyword}
           onChange={e => setKeyword(e.target.value)}
           onFocus={() => setIsOpen(true)}
+          readOnly={readOnly}
         />
         {isOpen && (
           <ul className={cx('skill-list')}>
@@ -89,6 +91,7 @@ const SkillCombobox = ({techSkills}: SkillComboboxProps) => {
                 value={skill.skillId}
                 className={cx('skill-item')}
                 onClick={handleDeleteSkill}
+                disabled={readOnly}
               >
                 <IoIosClose size={20} />
                 {skill.skillName}
