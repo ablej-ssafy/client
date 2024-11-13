@@ -13,11 +13,13 @@ interface CompanyPageProps {
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-export const revalidate = 10; // 1 days
-export const dynamic = 'force-static';
-
 async function getCompanyInfo(companyId: number) {
-  const response = await fetch(`${BASE_URL}/api/v1/companies/${companyId}`);
+  const response = await fetch(`${BASE_URL}/api/v1/companies/${companyId}`, {
+    next: {
+      revalidate: 3600 * 24,
+      tags: [`company-${companyId}`],
+    },
+  });
 
   const {data}: CompanyResponse = await response.json();
 
