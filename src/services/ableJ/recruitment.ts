@@ -3,6 +3,7 @@ import {
   RecruitmentCardListResponse,
   RecruitmentDetailResponse,
   ScrapRecruitmentResponse,
+  ScrapResponse,
   SearchResponse,
 } from '@/types/ableJ';
 
@@ -73,6 +74,20 @@ export default {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
+      },
+    );
+  },
+
+  /**
+   * 채용 공고별 스크랩 여부를 가져오는 함수
+   * @param recruitmentId 채용 공고 아이디
+   * @param accessToken 액세스 토큰
+   */
+  getScrapStatus: async (recruitmentId: number, accessToken?: string) => {
+    return httpClient.get<ScrapResponse>(
+      `/recruitments/${recruitmentId}/scrap`,
+      {
+        headers: accessToken ? {Authorization: `Bearer ${accessToken}`} : {},
       },
     );
   },

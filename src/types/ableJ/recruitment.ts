@@ -14,7 +14,7 @@ export interface RecruitmentDetail {
   preference?: string;
   benefit: string;
   hireRound?: string;
-  dueTime?: Date;
+  dueTime?: string;
   annualTo: number;
   annualFrom?: number;
 }
@@ -36,4 +36,5 @@ export interface RecruitmentCardType {
 export type RecruitmentDetailResponse = ResponseType<RecruitmentDetail>;
 export type CategoryResponse = ResponseType<Category[]>;
 export type RecruitmentCardListResponse = ResponseType<RecruitmentCardType[]>;
+export type ScrapResponse = ResponseType<boolean>;
 export type ScrapRecruitmentResponse = ResponseType<null>;

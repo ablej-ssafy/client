@@ -1,0 +1,62 @@
+import {cookies} from 'next/headers';
+import {MdBookmark, MdBookmarkBorder} from 'react-icons/md';
+
+import createRecruitmentScarpAction from '@/actions/scrap/createRecruitmentScrapAction';
+import deleteRecruitmentScarpAction from '@/actions/scrap/deleteRecruitmentScrapAction';
+import {ScrapResponse} from '@/types/ableJ';
+
+import styles from './scrapButton.module.scss';
+
+interface ScrapButtonProps {
+  recruitmentId: number;
+}
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
+const getScrapStatus = async (recruitmentId: number) => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get('accessToken')?.value;
+  const response = await fetch(
+    `${BASE_URL}/api/v1/recruitments/${recruitmentId}/scrap`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      next: {
+        tags: [`recruitment-${recruitmentId}-scrap`],
+      },
+    },
+  );
+
+  const {data}: ScrapResponse = await response.json();
+
+  return data;
+};
+
+const ScrapButton = async ({recruitmentId}: ScrapButtonProps) => {
+  const isScrap = await getScrapStatus(recruitmentId);
+  const action = isScrap
+    ? deleteRecruitmentScarpAction
+    : createRecruitmentScarpAction;
+
+  return (
+    <form className={styles.container} action={action}>
+      <input name="recruitmentId" type="hidden" value={String(recruitmentId)} />
+      <label htmlFor="submit-button" className={styles['submit-button']}>
+        <input
+          type="submit"
+          id="submit-button"
+          className={styles['scrap-button']}
+        />
+        <span className={styles.scrap}>스크랩</span>
+        {isScrap ? (
+          <MdBookmark size={25} color="white" />
+        ) : (
+          <MdBookmarkBorder size={25} color="white" />
+        )}
+      </label>
+    </form>
+  );
+};
+
+export default ScrapButton;

@@ -2,6 +2,7 @@
 @use '@/styles/mixin' as mixin;
 
 .container {
+  position: relative;
   gap: 1rem;
   padding: 0.5rem;
   cursor: pointer;
@@ -19,4 +20,15 @@
   color: colors.$white;
 
   @include mixin.text-bold(600, 2rem);
+}
+
+.scrap-button {
+  display: none;
+}
+
+.submit-button {
+  width: 100%;
+  height: 100%;
+
+  @include mixin.flex-default;
 }

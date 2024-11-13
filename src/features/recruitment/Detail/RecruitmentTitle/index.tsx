@@ -1,9 +1,6 @@
-'use client';
-
 import classNames from 'classnames/bind';
 import Image from 'next/image';
-import {useState} from 'react';
-import {MdBookmark, MdBookmarkBorder} from 'react-icons/md';
+import Link from 'next/link';
 
 import RecruitmentTag from '@/features/recruitment/Detail/RecruitmentTag';
 import {Category, Company} from '@/types/ableJ';
@@ -17,8 +14,7 @@ interface RecruitmentTitleProps {
   category: Category;
   childCategories: Category[];
   company: Company;
-  hireRound?: string;
-  dueTime?: Date;
+  dueTime?: string;
   annualTo: number;
   annualFrom?: number;
   thumbnail: string;
@@ -29,31 +25,24 @@ const RecruitmentTitle = ({
   category,
   childCategories,
   company,
-  hireRound,
   dueTime,
   annualTo,
   annualFrom,
   thumbnail,
 }: RecruitmentTitleProps) => {
-  const [isScrap, setIsScrap] = useState(false);
   const location = company.location + ' > ' + company.strict;
   const annual = annualFrom
     ? `${annualFrom} ~ ${annualTo}년`
     : `${annualTo}년 이상`;
-  const hire = hireRound ? `(${hireRound})` : '';
-  const closedDate = dueTime ? dueTime.toISOString().slice(0, 10) : '상시 채용';
+  const closedDate = dueTime || '상시 채용';
   const categoryJoin = `${category.name} > ${childCategories.map(child => child.name).join(', ')}`;
-
-  const handleClick = () => {
-    setIsScrap(!isScrap);
-  };
-
-  console.log('thunbnail', thumbnail);
-
   return (
     <div>
       <div className={cx('display-row', 'margin-y')}>
-        <div className={styles['display-row']}>
+        <Link
+          className={styles['display-row']}
+          href={`/company/${company.companyId}`}
+        >
           <Image
             className={styles['margin-right']}
             src={thumbnail}
@@ -62,15 +51,12 @@ const RecruitmentTitle = ({
             height={45}
           />
           <span className={styles['text-bold-18']}>{company.name}</span>
-        </div>
-        <div className={styles.circle} onClick={handleClick}>
-          {isScrap ? <MdBookmark size={25} /> : <MdBookmarkBorder size={25} />}
-        </div>
+        </Link>
       </div>
       <span className={styles['text-bold-24']}>{name}</span>
       <div className={styles['margin-y']}>
         <RecruitmentTag title="근무 지역" content={location} />
-        <RecruitmentTag title="경력" content={`${annual} ${hire}`} />
+        <RecruitmentTag title="경력" content={annual} />
         <RecruitmentTag title="마감일" content={closedDate} />
         <RecruitmentTag title="직무" content={categoryJoin} />
       </div>

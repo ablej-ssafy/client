@@ -1,11 +1,12 @@
 import KakaoMap from '@/components/common/KakaoMap';
+import ScrapButton from '@/components/common/ScrapButton';
 import RecruitmentContent from '@/features/recruitment/Detail/RecruitmentContent';
-import ScrapButton from '@/features/recruitment/Detail/ScrapButton';
 import {Company} from '@/types/ableJ';
 
 import styles from './recruitmentBox.module.scss';
 
 interface RecruitmentBoxProps {
+  recruitmentId: number;
   intro: string;
   task: string;
   requirement: string;
@@ -16,6 +17,7 @@ interface RecruitmentBoxProps {
 }
 
 const RecruitmentBox = ({
+  recruitmentId,
   intro,
   task,
   requirement,
@@ -41,7 +43,7 @@ const RecruitmentBox = ({
       <div>
         <div className={styles['scrap-map']}>
           <div className={styles['scrap-button']}>
-            <ScrapButton />
+            <ScrapButton recruitmentId={recruitmentId} />
           </div>
           <KakaoMap companyInfo={companyInfo} />
         </div>

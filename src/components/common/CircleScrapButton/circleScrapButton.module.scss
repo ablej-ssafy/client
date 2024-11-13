@@ -1,0 +1,17 @@
+@use '@/styles/mixin' as mixin;
+@use '@/styles/constants/colors' as colors;
+
+.circle {
+  @include mixin.flex-default;
+
+  width: 4.5rem;
+  height: 4.5rem;
+  color: colors.$white;
+  cursor: pointer;
+  background-color: rgba(colors.$primary, 0.5);
+  border-radius: 50%;
+
+  &:hover {
+    background-color: colors.$primary;
+  }
+}
