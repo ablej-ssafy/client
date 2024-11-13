@@ -16,6 +16,9 @@ const cx = classNames.bind(styles);
 const PortfolioLayout = ({children}: PropsWithChildren) => {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
+  const accessToken = getCookie('accessToken');
+
+  if (!accessToken) router.push('/signin');
 
   const handleDragEnter = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -42,10 +45,6 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
       toast.error('PDF 파일만 업로드 가능합니다.');
       return;
     }
-
-    const accessToken = getCookie('accessToken');
-
-    if (!accessToken) router.replace('/signin');
 
     await ableJ.uploadResume(resume, accessToken as string);
   };

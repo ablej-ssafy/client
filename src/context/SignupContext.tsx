@@ -7,7 +7,7 @@ const INITIAL_FORM_STATE: SignupForm = {
   password: '',
   name: '',
   careerYear: 0,
-  jobIds: [],
+  jobId: -1,
 };
 
 const INITIAL_VALUE = {
