@@ -6,7 +6,7 @@ import {redirect} from 'next/navigation';
 
 import recruitmentService from '@/services/ableJ';
 
-const deleteRecruitmentScarpAction = async (formData: FormData) => {
+const deleteRecruitmentScrapAction = async (formData: FormData) => {
   const recruitmentIdRaw = formData.get('recruitmentId');
   const tag = formData.get('tag');
 
@@ -30,4 +30,4 @@ const deleteRecruitmentScarpAction = async (formData: FormData) => {
   }
 };
 
-export default deleteRecruitmentScarpAction;
+export default deleteRecruitmentScrapAction;

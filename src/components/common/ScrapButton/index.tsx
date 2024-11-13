@@ -1,8 +1,8 @@
 import {cookies} from 'next/headers';
 import {MdBookmark, MdBookmarkBorder} from 'react-icons/md';
 
-import createRecruitmentScarpAction from '@/actions/scrap/createRecruitmentScrapAction';
-import deleteRecruitmentScarpAction from '@/actions/scrap/deleteRecruitmentScrapAction';
+import createRecruitmentScrapAction from '@/actions/scrap/createRecruitmentScrapAction';
+import deleteRecruitmentScrapAction from '@/actions/scrap/deleteRecruitmentScrapAction';
 import {ScrapResponse} from '@/types/ableJ';
 
 import styles from './scrapButton.module.scss';
@@ -36,8 +36,8 @@ const getScrapStatus = async (recruitmentId: number) => {
 const ScrapButton = async ({recruitmentId}: ScrapButtonProps) => {
   const isScrap = await getScrapStatus(recruitmentId);
   const action = isScrap
-    ? deleteRecruitmentScarpAction
-    : createRecruitmentScarpAction;
+    ? deleteRecruitmentScrapAction
+    : createRecruitmentScrapAction;
 
   return (
     <form className={styles.container} action={action}>
