@@ -6,8 +6,9 @@ import {redirect} from 'next/navigation';
 
 import recruitmentService from '@/services/ableJ';
 
-const createRecruitmentScarpAction = async (formData: FormData) => {
+const createRecruitmentScrapAction = async (formData: FormData) => {
   const recruitmentIdRaw = formData.get('recruitmentId');
+  const tag = formData.get('tag');
 
   if (typeof recruitmentIdRaw !== 'string') {
     console.error('잘못된 요청입니다.');
@@ -31,7 +32,9 @@ const createRecruitmentScarpAction = async (formData: FormData) => {
     throw new Error('스크랩에 실패했습니다.');
   }
 
-  revalidateTag(`recruitment-${recruitmentId}-scrap`);
+  if (tag) {
+    revalidateTag(tag as string);
+  }
 };
 
-export default createRecruitmentScarpAction;
+export default createRecruitmentScrapAction;

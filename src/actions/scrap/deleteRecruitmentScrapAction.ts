@@ -6,8 +6,9 @@ import {redirect} from 'next/navigation';
 
 import recruitmentService from '@/services/ableJ';
 
-const deleteRecruitmentScarpAction = async (formData: FormData) => {
+const deleteRecruitmentScrapAction = async (formData: FormData) => {
   const recruitmentIdRaw = formData.get('recruitmentId');
+  const tag = formData.get('tag');
 
   if (typeof recruitmentIdRaw !== 'string') {
     console.error('잘못된 요청입니다.');
@@ -24,7 +25,9 @@ const deleteRecruitmentScarpAction = async (formData: FormData) => {
 
   await recruitmentService.deleteScrapRecruitment(recruitmentId, accessToken);
 
-  revalidateTag(`recruitment-${recruitmentId}-scrap`);
+  if (tag) {
+    revalidateTag(tag as string);
+  }
 };
 
-export default deleteRecruitmentScarpAction;
+export default deleteRecruitmentScrapAction;
