@@ -17,8 +17,6 @@ const recruitmentScrapAction = async (formData: FormData) => {
   const isScrap = formData.get(`isScrap-${recruitmentId}`);
   const tag = formData.get('tag');
 
-  console.log('tag', tag);
-
   const accessToken = cookies().get('accessToken')?.value;
 
   if (!accessToken) {

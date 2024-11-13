@@ -14,8 +14,6 @@ const CertificationInfoDeleteButton = ({
     await deleteResumeCertificationInfoAction(certificationId);
   };
 
-  console.log('certificationId:', certificationId);
-
   return (
     <SubmitButton type="button" onClick={handleDelete}>
       삭제

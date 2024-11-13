@@ -8,7 +8,6 @@ import recruitmentService from '@/services/ableJ';
 
 const deleteRecruitmentScarpAction = async (formData: FormData) => {
   const recruitmentIdRaw = formData.get('recruitmentId');
-  console.log(recruitmentIdRaw);
   const tag = formData.get('tag');
 
   if (typeof recruitmentIdRaw !== 'string') {

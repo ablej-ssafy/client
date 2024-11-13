@@ -7,7 +7,6 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const getScrapStatus = async (recruitmentId: number) => {
   const accessToken = getCookie('accessToken');
-  console.log('accessToken: ', accessToken);
 
   const response = await fetch(
     `${BASE_URL}/api/v1/recruitments/${recruitmentId}/scrap`,

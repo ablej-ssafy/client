@@ -8,7 +8,6 @@ import recruitmentService from '@/services/ableJ';
 
 const createRecruitmentScarpAction = async (formData: FormData) => {
   const recruitmentIdRaw = formData.get('recruitmentId');
-  console.log(recruitmentIdRaw);
   const tag = formData.get('tag');
 
   if (typeof recruitmentIdRaw !== 'string') {
@@ -28,8 +27,6 @@ const createRecruitmentScarpAction = async (formData: FormData) => {
     recruitmentId,
     accessToken,
   );
-
-  console.log(response);
 
   if (!response.success) {
     throw new Error('스크랩에 실패했습니다.');
