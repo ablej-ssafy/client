@@ -1,7 +1,5 @@
 'use client';
 
-import {useState} from 'react';
-
 import PopularSearch from '@/features/search/PopularSearch';
 import RecentSearch from '@/features/search/RecentSearch';
 import SearchInput from '@/features/search/SearchInput';
@@ -15,17 +13,11 @@ interface NoSearchTextProps {
 }
 
 const NoSearchText = ({ranks, recentKeywords}: NoSearchTextProps) => {
-  const [isText, setIsText] = useState<boolean>(false);
-
   return (
     <div className={styles.container}>
-      <SearchInput setIsText={setIsText} />
-      {!isText && (
-        <>
-          <RecentSearch keywords={recentKeywords} />
-          <PopularSearch keywords={ranks} />
-        </>
-      )}
+      <SearchInput />
+      <RecentSearch keywords={recentKeywords} />
+      <PopularSearch keywords={ranks} />
     </div>
   );
 };

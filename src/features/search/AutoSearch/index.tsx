@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import {useEffect} from 'react';
 import {IoSearchSharp} from 'react-icons/io5';
 
@@ -22,10 +23,14 @@ const AutoSearch = ({keyword}: AutoSearchProps) => {
     <div className={styles.container}>
       {autoSearchText.map((text, index) => {
         return (
-          <div key={`${text}-${index}`} className={styles['auto-search']}>
+          <Link
+            key={`${text}-${index}`}
+            className={styles['auto-search']}
+            href={`/recruitments?keyword=${text}`}
+          >
             <IoSearchSharp size={16} />
             <span className={styles['auto-text']}>{text}</span>
-          </div>
+          </Link>
         );
       })}
     </div>
