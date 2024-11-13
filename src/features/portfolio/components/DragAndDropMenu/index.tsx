@@ -18,7 +18,7 @@ const cx = classNames.bind(styles);
 
 const tasks: Task[] = [
   {id: 1, title: '프로필', essential: true, path: 'profile'},
-  {id: 2, title: '학력', essential: true, path: 'education'},
+  {id: 2, title: '학력', essential: false, path: 'education'},
   {id: 3, title: '경력 및 분야', essential: false, path: 'experience'},
   {id: 4, title: '수상 및 활동', essential: false, path: 'activity'},
   {id: 5, title: '기술스택', essential: false, path: 'skill'},
