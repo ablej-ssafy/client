@@ -11,6 +11,7 @@ const recruitmentScrapAction = async (formData: FormData) => {
 
   if (typeof recruitmentIdRaw !== 'string') {
     console.error('잘못된 요청입니다.');
+    return;
   }
 
   const recruitmentId = Number(recruitmentIdRaw);
