@@ -301,4 +301,18 @@ export default {
       },
     });
   },
+  /**
+   * 이력서 PDF 파일을 업로드하는 함수
+   * @param file PDF 파일
+   * @param accessToken 액세스 토큰
+   */
+  uploadResume: async (file: File, accessToken: AccessToken) => {
+    const form = new FormData();
+    form.append('file', file);
+    return httpClient.post<ResponseType<null>>('/resume/auto', form, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
 };

@@ -43,6 +43,7 @@ const CustomDatePicker = (props: CustomDatePicker) => {
         tabIndex={1}
         dateFormat="yyyy.MM.dd"
         maxDate={new Date()}
+        disabled={props.readOnly}
       />
       <input
         name={props.name}

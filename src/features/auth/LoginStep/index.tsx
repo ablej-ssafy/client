@@ -28,13 +28,15 @@ const LoginStep = ({isModal = false}: LoginStepProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (state.error) {
-      toast.error(state.error);
-      return;
-    }
-    if (state.success) {
-      router.back();
-    }
+    if (!state.error) return;
+    toast.error(state.error);
+    return;
+  }, [router, state]);
+
+  useEffect(() => {
+    if (!state.success) return;
+    toast.success('로그인 되었습니다.');
+    router.back();
   }, [router, state]);
 
   return (

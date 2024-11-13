@@ -10,7 +10,7 @@ const scheme = z.object({
   password: z.string().min(8, {message: '비밀번호는 8자 이상이어야 합니다.'}),
   name: z.string(),
   careerYear: z.coerce.number(),
-  jobIds: z.coerce.number().array(),
+  jobId: z.coerce.number(),
 });
 
 const signupAction = async (_prevState: unknown, formData: FormData) => {
@@ -19,7 +19,7 @@ const signupAction = async (_prevState: unknown, formData: FormData) => {
     password: formData.get('password'),
     name: formData.get('name'),
     careerYear: formData.get('careerYear'),
-    jobIds: formData.getAll('jobIds'),
+    jobId: formData.get('jobId'),
   });
 
   if (!success) {
@@ -28,7 +28,7 @@ const signupAction = async (_prevState: unknown, formData: FormData) => {
       password: error?.flatten().fieldErrors.password,
       name: error?.flatten().fieldErrors.name,
       careerYear: error?.flatten().fieldErrors.careerYear,
-      jobIds: error?.flatten().fieldErrors.jobIds,
+      jobId: error?.flatten().fieldErrors.jobId,
       error: '',
       success: false,
     };
@@ -43,7 +43,7 @@ const signupAction = async (_prevState: unknown, formData: FormData) => {
       password: [],
       name: [],
       careerYear: [],
-      jobIds: [],
+      jobId: [],
       success: true,
     };
   }

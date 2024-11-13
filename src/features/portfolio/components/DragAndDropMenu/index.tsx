@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import {useState} from 'react';
+import {useRef, useState} from 'react';
 import {DndProvider} from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend';
 
@@ -28,6 +28,7 @@ const tasks: Task[] = [
 ];
 
 const DragAndDropMenu = () => {
+  const dndContextElement = useRef<HTMLDivElement>(null);
   const [items, setItems] = useState(tasks);
 
   const moveCardHandler = (dragIndex: number, hoverIndex: number) => {
@@ -42,8 +43,11 @@ const DragAndDropMenu = () => {
   };
 
   return (
-    <div className={cx('drag-and-drop')}>
-      <DndProvider backend={HTML5Backend}>
+    <DndProvider
+      backend={HTML5Backend}
+      options={{rootElement: dndContextElement}}
+    >
+      <div className={cx('drag-and-drop')} ref={dndContextElement}>
         {items.map((item, index) => {
           return (
             <DragAndDrop
@@ -57,8 +61,8 @@ const DragAndDropMenu = () => {
             />
           );
         })}
-      </DndProvider>
-    </div>
+      </div>
+    </DndProvider>
   );
 };
 

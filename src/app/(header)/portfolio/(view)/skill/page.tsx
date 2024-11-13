@@ -13,9 +13,7 @@ const SkillPage = async () => {
 
   const {data} = await ableJ.getTechStackInfo(accessToken);
 
-  console.log('data', data);
-
-  return <SkillSection techStackInfo={data} />;
+  return <SkillSection techSkill={data} />;
 };
 
 export default SkillPage;
