@@ -7,7 +7,7 @@
   width: 100%;
   height: 4.6rem;
   padding: 0 2rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 600;
   color: colors.$gray3;
   cursor: pointer;
@@ -20,8 +20,8 @@
     scale 0.1s;
 
   &:hover {
-    color: colors.$gray5;
-    background-color: colors.$gray3;
+    color: colors.$black;
+    background-color: #f5f5f5;
   }
 
   &:active {
