@@ -112,13 +112,7 @@ const Carousel = ({imageArray}: CarouselProps) => {
 
             return (
               <li key={key} className={styles['carousel-item']}>
-                <Image
-                  src={image}
-                  alt="carousel=img"
-                  layout="responsive"
-                  width={3}
-                  height={2}
-                />
+                <Image src={image} alt="carousel=img" width={3} height={2} />
               </li>
             );
           })}
