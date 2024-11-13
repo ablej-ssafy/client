@@ -1,10 +1,15 @@
 import classNames from 'classnames/bind';
+import {Metadata} from 'next';
 import Image from 'next/image';
 import {ReactNode} from 'react';
 
 import HiringImage from '@/assets/images/hiring.jpg';
 
 import styles from './layout.module.scss';
+
+export const metadata: Metadata = {
+  title: '회원가입',
+};
 
 const cx = classNames.bind(styles);
 

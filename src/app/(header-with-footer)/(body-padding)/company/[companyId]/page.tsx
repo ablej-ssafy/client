@@ -1,5 +1,3 @@
-import {Metadata} from 'next';
-
 import Carousel from '@/components/common/Carousel';
 import CompanyInfo from '@/features/company/CompanyInfo';
 import CompanyRecruitments from '@/features/company/CompanyRecruitments.tsx';
@@ -13,7 +11,7 @@ interface CompanyPageProps {
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-async function getCompanyInfo(companyId: number) {
+async function getCompany(companyId: number) {
   const response = await fetch(`${BASE_URL}/api/v1/companies/${companyId}`, {
     next: {
       revalidate: 3600 * 24,
@@ -28,22 +26,41 @@ async function getCompanyInfo(companyId: number) {
 
 export async function generateMetadata({
   params: {companyId},
-}: CompanyPageProps): Promise<Metadata> {
-  const company = await getCompanyInfo(Number(companyId));
-
+}: {
+  params: {companyId: string};
+}) {
+  const company = await getCompany(Number(companyId));
+  let thumbnail = '';
+  if (company.images.length > 0) {
+    thumbnail = company.images[0];
+  }
   return {
     title: company.name,
+    description: company.description,
+    images: company.images,
+    openGraph: {
+      title: company.name,
+      type: 'website',
+      images: {
+        url: thumbnail,
+      },
+      description: company.description,
+    },
+    twitter: {
+      card: thumbnail,
+      image: thumbnail,
+    },
   };
 }
 
 const CompanyPage = async ({params: {companyId}}: CompanyPageProps) => {
-  const data = await getCompanyInfo(Number(companyId));
+  const company = await getCompany(Number(companyId));
 
   return (
     <>
-      <Carousel imageArray={data.images} />
-      <CompanyInfo companyInfo={data} />
-      <CompanyRecruitments companyInfo={data} />
+      <Carousel imageArray={company.images} />
+      <CompanyInfo companyInfo={company} />
+      <CompanyRecruitments companyInfo={company} />
     </>
   );
 };
