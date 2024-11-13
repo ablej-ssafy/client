@@ -19,6 +19,7 @@ const CategoryBox = ({categoryId = '0'}: CategoryBoxProps) => {
           <Link
             href={`/recruitments?categoryId=${category.id}`}
             key={category.id}
+            prefetch={false}
             className={cx(
               'category-text',
               Number(categoryId) === category.id ? 'selected' : 'no-selected',

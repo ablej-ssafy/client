@@ -22,14 +22,17 @@ const CompanyRecruitmentCard = ({
 }: CompanyRecruitmentCardProps) => {
   return (
     <div className={styles.container}>
-      <Link href={`/recruitments/${recruitmentId}`} className={styles.link}>
+      <Link
+        href={`/recruitments/${recruitmentId}`}
+        className={styles.link}
+        prefetch={false}
+      >
         <Image
           src={thumbnail}
           alt="sample_img"
           width={280}
           height={180}
           quality={100}
-          objectFit="cover"
           className={styles.img}
         />
       </Link>

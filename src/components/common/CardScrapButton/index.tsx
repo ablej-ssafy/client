@@ -1,5 +1,3 @@
-'use client';
-
 import {FaBookmark, FaRegBookmark} from 'react-icons/fa6';
 
 import styles from './cardScrapButton.module.scss';
@@ -17,7 +15,7 @@ const CardScrapButton = ({
     <div>
       <input
         type="hidden"
-        name={`isScrap-${recruitmentId}`}
+        name={`isScrap:${recruitmentId}`}
         value={String(isScrap)}
       />
       <label

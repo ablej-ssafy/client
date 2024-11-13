@@ -27,7 +27,6 @@ const MainSection = () => {
           alt="백그라운드 이미지"
           src={BackgroundImage}
           objectPosition="center"
-          objectFit="cover"
           fill={true}
           className={cx('main-bg')}
         />
