@@ -1,5 +1,9 @@
 import httpClient from '@/configs/httpClient';
-import {RankSearchResponse, SearchResponse} from '@/types/ableJ';
+import {
+  AutoSearchResponse,
+  RankSearchResponse,
+  SearchResponse,
+} from '@/types/ableJ';
 
 export default {
   /**
@@ -52,5 +56,18 @@ export default {
         Authorization: `Bearer ${accessToken}`,
       },
     });
+  },
+
+  /**
+   * 자동완성 검색어를 조회하는 함수
+   * @param keyword 키워드
+   */
+  getAutoSearchKeyword: async (keyword: string) => {
+    const params = new URLSearchParams();
+    params.append('q', keyword);
+    console.log('params', params);
+    return httpClient.get<AutoSearchResponse>(
+      `/search/suggestions?${params.toString()}`,
+    );
   },
 };

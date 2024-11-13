@@ -5,15 +5,16 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'storage.googleapis.com'
+        hostname: 'storage.googleapis.com',
       },
       {
         protocol: 'https',
-        hostname: 'static.wanted.co.kr'
-      }
+        hostname: 'static.wanted.co.kr',
+      },
     ],
-    unoptimized: true
+    unoptimized: true,
   },
+  reactStrictMode: false,
 };
 
 export default nextConfig;

@@ -1,16 +1,19 @@
 'use client';
 
 import {useRouter} from 'next/navigation';
-import {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {ChangeEvent, KeyboardEvent, useEffect, useState} from 'react';
 import {IoSearchSharp} from 'react-icons/io5';
+
+import AutoSearch from '@/features/search/AutoSearch';
 
 import styles from './searchInput.module.scss';
 
 interface SearchInputProps {
   keyword?: string;
+  setIsText?: (isText: boolean) => void;
 }
 
-const SearchInput = ({keyword}: SearchInputProps) => {
+const SearchInput = ({keyword, setIsText}: SearchInputProps) => {
   const [inputValue, setInputValue] = useState(keyword);
   const router = useRouter();
 
@@ -19,10 +22,20 @@ const SearchInput = ({keyword}: SearchInputProps) => {
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && router) {
       router.push(`/recruitments?keyword=${inputValue}`);
     }
   };
+
+  useEffect(() => {
+    if (setIsText) {
+      if (inputValue?.trim()) {
+        setIsText(true);
+      } else {
+        setIsText(false);
+      }
+    }
+  }, [inputValue, setIsText]);
 
   return (
     <div className={styles.container}>
@@ -38,6 +51,7 @@ const SearchInput = ({keyword}: SearchInputProps) => {
         size={20}
         color="#BBBBBB"
       />
+      {inputValue && <AutoSearch keyword={inputValue} />}
     </div>
   );
 };
