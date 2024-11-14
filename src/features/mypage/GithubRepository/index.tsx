@@ -3,6 +3,7 @@
 import {Octokit} from '@octokit/rest';
 import React, {useEffect, useState} from 'react';
 
+import resumeUpdateAction from '@/actions/github/analysisGitHubAction';
 import {useRootStore} from '@/zustand/rootStore';
 
 interface Repository {
@@ -14,7 +15,11 @@ interface Repository {
 const GitHubRepository = () => {
   const accessToken = useRootStore(state => state.gitHubToken);
   const [repositories, setRepositories] = useState<Repository[]>([]);
+  const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
+  const [selectedBranch, setSelectedBranch] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [branches, setBranches] = useState<string[]>([]);
+  const [resultMessage, setResultMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchRepositories = async () => {
@@ -28,10 +33,8 @@ const GitHubRepository = () => {
       });
 
       try {
-        // 사용자 레포지토리 목록 가져오기
         const {data: repos} = await octokit.repos.listForAuthenticatedUser();
 
-        // 각 레포지토리에 대해 브랜치 목록 가져오기
         const repositoriesWithBranches: Repository[] = await Promise.all(
           repos.map(async repo => {
             const {data: branchesData} = await octokit.repos.listBranches({
@@ -39,9 +42,7 @@ const GitHubRepository = () => {
               repo: repo.name,
             });
 
-            // 브랜치 이름 목록 추출
             const branches = branchesData.map(branch => branch.name);
-
             return {
               name: repo.name,
               owner: repo.owner.login,
@@ -61,23 +62,89 @@ const GitHubRepository = () => {
     fetchRepositories();
   }, [accessToken]);
 
+  const handleRepoChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const repoName = event.target.value;
+    setSelectedRepo(repoName);
+    setSelectedBranch(null);
+    const selectedRepo = repositories.find(repo => repo.name === repoName);
+    if (selectedRepo) {
+      setBranches(selectedRepo.branches);
+    }
+  };
+
+  const handleBranchChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedBranch(event.target.value);
+  };
+
+  const handleButtonClick = async () => {
+    if (selectedRepo && selectedBranch && accessToken) {
+      const selectedRepository = repositories.find(
+        repo => repo.name === selectedRepo,
+      );
+
+      if (selectedRepository) {
+        const response = await resumeUpdateAction(
+          selectedRepository.owner,
+          selectedRepository.name,
+          selectedBranch,
+          accessToken,
+        );
+
+        if (response.success) {
+          setResultMessage('GitHub analysis request was successful.');
+        } else {
+          setResultMessage('GitHub analysis request failed.');
+        }
+      }
+    }
+  };
+
   if (loading) return <div>Loading...</div>;
 
   return (
     <div>
-      <h2>Repository List</h2>
-      {repositories.map(repo => (
-        <div key={repo.name}>
-          <h3>name: {repo.name}</h3>
-          <p>Owner: {repo.owner}</p>
-          <p>Branches:</p>
-          <ul>
-            {repo.branches.map(branch => (
-              <li key={branch}>{branch}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      <h2>GitHub Repository Selector</h2>
+
+      <label>
+        Select Repository:
+        <select value={selectedRepo || ''} onChange={handleRepoChange}>
+          <option value="" disabled>
+            -- Select a Repository --
+          </option>
+          {repositories.map(repo => (
+            <option key={repo.name} value={repo.name}>
+              {repo.name}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label>
+        Select Branch:
+        <select
+          value={selectedBranch || ''}
+          onChange={handleBranchChange}
+          disabled={!selectedRepo}
+        >
+          <option value="" disabled>
+            -- Select a Branch --
+          </option>
+          {branches.map(branch => (
+            <option key={branch} value={branch}>
+              {branch}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <button
+        onClick={handleButtonClick}
+        disabled={!selectedRepo || !selectedBranch}
+      >
+        Confirm Selection
+      </button>
+
+      {resultMessage && <p>{resultMessage}</p>}
     </div>
   );
 };

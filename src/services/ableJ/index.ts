@@ -1,5 +1,6 @@
 import Auth from './auth';
 import Company from './company';
+import GitHub from './github';
 import Job from './job';
 import Recruitment from './recruitment';
 import Resume from './resume';
@@ -12,4 +13,5 @@ export default {
   ...Recruitment,
   ...Search,
   ...Company,
+  ...GitHub,
 };
