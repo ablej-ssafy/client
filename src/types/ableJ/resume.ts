@@ -89,6 +89,14 @@ export interface TechStackInfoForm {
   techSkills: Skill['skillId'][] | null;
 }
 
+export interface AiParsedResume {
+  aiBasic: ResumeBasicInfo;
+  aiEducationals: EducationInfo[];
+  aiExperiences: ExperienceInfo[];
+  aiCertifications: CertificationInfo[];
+}
+
+export type GetAiParsedResumeResponseData = AiParsedResume;
 export type GetResumePDFResponse = ResponseType<ResumePDF[]>;
 export type GetAllJobsResponseData = Job[];
 export type GetAllTechSkillsResponseData = Skill[];
@@ -105,6 +113,8 @@ export type GetTechStackInfoResponseData = {
 };
 export type PostProfileImageResponseData = ProfileImageUrl;
 
+export type GetAiParsedResumeResponse =
+  ResponseType<GetAiParsedResumeResponseData>;
 export type GetAllJobsResponse = ResponseType<GetAllJobsResponseData>;
 export type GetAllTechSkillsResponse =
   ResponseType<GetAllTechSkillsResponseData>;
