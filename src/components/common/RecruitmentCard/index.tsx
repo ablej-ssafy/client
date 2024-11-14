@@ -32,6 +32,7 @@ const RecruitmentCard = ({
   scrap = true,
 }: RecruitmentCardProps) => {
   const [isScrapped, setIsScrapped] = useState(item.scrapped);
+  const toggleScrapStatus = useRootStore(state => state.toggleScrapStatus);
 
   const handleScrap = async () => {
     const result = isScrapped
@@ -42,22 +43,7 @@ const RecruitmentCard = ({
       const newScrappedState = !isScrapped;
       setIsScrapped(newScrappedState);
 
-      useRootStore.setState(state => {
-        const updatedRecruitments: {[key: string]: RecruitmentCardType[]} = {
-          ...state.recruitments,
-        };
-
-        Object.keys(updatedRecruitments).forEach(key => {
-          updatedRecruitments[key] = updatedRecruitments[key].map(
-            (recruitment: RecruitmentCardType) =>
-              recruitment.id === item.id
-                ? {...recruitment, scrapped: newScrappedState}
-                : recruitment,
-          );
-        });
-
-        return {recruitments: updatedRecruitments};
-      });
+      toggleScrapStatus(item.id, newScrappedState);
     } else {
       console.error(isScrapped ? '스크랩 취소 실패' : '스크랩 실패');
     }

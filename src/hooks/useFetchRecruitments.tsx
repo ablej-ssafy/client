@@ -33,9 +33,7 @@ const useFetchRecruitments = ({resumeId}: UseFetchRecruitmentsProps) => {
   }, [resumeId, accessToken, currentRecruitments, setRecruitments]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      fetchRecruitments();
-    }
+    fetchRecruitments();
   }, [fetchRecruitments]);
 
   return {recruitments: currentRecruitments, loading};
