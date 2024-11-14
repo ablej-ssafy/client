@@ -18,9 +18,9 @@ interface ScrapActionProps {
 }
 
 const fetchData = async (
-  keyword: string | undefined,
-  categoryId: number | undefined,
   page: number,
+  keyword?: string,
+  categoryId?: number,
 ) => {
   const accessToken = getCookie('accessToken');
 
@@ -71,7 +71,7 @@ const useInfiniteRecruitment = ({
 
     try {
       const nextPage = page + 1;
-      const {content} = await fetchData(keyword, categoryId, nextPage);
+      const {content} = await fetchData(nextPage, keyword, categoryId);
       if (fetchRecruitments.length > 0) {
         setFetchRecruitments(prev => [...prev, ...content]);
         setPage(nextPage);

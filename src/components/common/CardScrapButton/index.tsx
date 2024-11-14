@@ -7,7 +7,9 @@ interface CompanyRecruitmentCardProps {
 
 const CardScrapButton = ({scrap, isScrap}: CompanyRecruitmentCardProps) => {
   return (
-    <div onClick={scrap}>{isScrap ? <FaBookmark /> : <FaRegBookmark />}</div>
+    <button onClick={scrap}>
+      {isScrap ? <FaBookmark /> : <FaRegBookmark />}
+    </button>
   );
 };
 

@@ -8,8 +8,8 @@ import {Search} from '@/types/ableJ';
 import styles from './resultBox.module.scss';
 
 interface ResultBoxProps {
-  keyword: string | undefined;
-  categoryId: string | undefined;
+  keyword?: string;
+  categoryId?: string;
   initialRecruitments: Search[];
 }
 
@@ -18,10 +18,6 @@ const ResultBox = ({
   keyword,
   categoryId,
 }: ResultBoxProps) => {
-  // TODO: 실제 스크랩 업데이트 된 결과를 처리하기 위해 해당 부분을 optimistically update로 변경해야 함.
-  // TODO: 과정에서 기존에 채용공고 상세 페이지에서 처리한 서버 액션 방식으로 처리하는게 더 나을 듯.
-  // TODO: 최초에는 서버 사이드 렌더링 이후에는 클라이언트 사이드 렌더링으로 변경해야 함.
-
   const {recruitments, scrap, fetchNextPage, isLoading} =
     useInfiniteRecruitment({
       initialRecruitments,
