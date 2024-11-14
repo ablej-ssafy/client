@@ -77,7 +77,7 @@ const useInfiniteRecruitment = ({
         content,
         page: {totalPages},
       } = await fetchData(nextPage, keyword, categoryId);
-      setEnable(totalPages < nextPage);
+      setEnable(totalPages > nextPage);
 
       if (fetchRecruitments.length > 0) {
         setFetchRecruitments(prev => [...prev, ...content]);
