@@ -4,8 +4,7 @@ import Link from 'next/link';
 
 import RecruitmentTag from '@/features/recruitment/Detail/RecruitmentTag';
 import {Category, Company} from '@/types/ableJ';
-import {convertAnnual} from '@/utils/annual';
-import {convertLocation} from '@/utils/location';
+import {convertAnnual, convertLocation} from '@/utils/convert';
 
 import styles from './recruitmentTitle.module.scss';
 

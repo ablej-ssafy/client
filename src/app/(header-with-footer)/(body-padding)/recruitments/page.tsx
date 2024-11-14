@@ -4,8 +4,8 @@ const RecruitmentPage = async ({
   searchParams: {keyword, categoryId},
 }: {
   searchParams: {
-    keyword: string | undefined;
-    categoryId: string | undefined;
+    keyword?: string;
+    categoryId?: string;
   };
 }) => {
   return <SearchResult keyword={keyword} categoryId={categoryId} />;
