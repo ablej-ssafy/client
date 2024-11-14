@@ -30,10 +30,6 @@ const SignUpCareerStep = () => {
   const [state, formAction] = useFormState(signupAction, INITIAL_STATE);
   const router = useRouter();
 
-  console.log('prevForm', prevForm);
-
-  console.log(state);
-
   useEffect(() => {
     if (!state.error) return;
     toast.error(state.error);
