@@ -11,17 +11,31 @@
     font-size: 2.4rem;
   }
 
+  .image {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    object-position: center;
+  }
+
   .email-content {
-    font-size: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .email-text {
+      font-size: 1.4rem;
+    }
   }
 
   .email-button {
     padding: 4px 10px;
     margin-top: 1rem;
     font-size: 1.8rem;
+    color: colors.$gray5;
     cursor: pointer;
     background-color: transparent;
-    border: 1px solid colors.$black;
+    border: 1px solid colors.$gray5;
     border-radius: 4px;
   }
 }

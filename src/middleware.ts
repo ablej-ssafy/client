@@ -8,13 +8,13 @@ export const middleware = async (request: NextRequest) => {
   const accessToken = cookieStore.get('accessToken')?.value;
 
   if (!accessToken) {
-    return NextResponse.redirect(request.nextUrl.origin + '/signin');
+    return NextResponse.redirect(new URL('/signin', request.url));
   }
 
   const response = await ableJ.getProfile(accessToken);
 
   if (!response.success) {
-    return NextResponse.redirect(request.nextUrl.origin + '/verify-email');
+    return NextResponse.redirect(new URL('/verify-email', request.url));
   }
 
   return NextResponse.next();

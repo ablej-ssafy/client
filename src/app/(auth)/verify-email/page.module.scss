@@ -1,18 +1,13 @@
 @use '@/styles/constants/colors' as colors;
 
-.verification {
+.guide-section {
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: center;
 
-  .title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: colors.$red;
-  }
-
-  .message {
+  & > a {
     font-size: 1.6rem;
+    color: colors.$gray4;
   }
 }
