@@ -11,11 +11,11 @@ import styles from './page.module.scss';
 const cx = classNames.bind(styles);
 
 const VerifyPage = async ({
-  searchParams,
+  searchParams: {key},
 }: {
-  searchParams: {[key: string]: string | string[] | undefined};
+  searchParams: {key?: string};
 }) => {
-  if (!searchParams || !searchParams['key']) {
+  if (!key) {
     return (
       <div className={cx('verification')}>
         <h2 className={cx('title')}>에러 발생</h2>
@@ -30,7 +30,7 @@ const VerifyPage = async ({
     );
   }
 
-  const response = await ableJ.verifyEmail(searchParams['key'] as string);
+  const response = await ableJ.verifyEmail(key);
 
   if (!response.success) {
     return (
