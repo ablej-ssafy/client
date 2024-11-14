@@ -8,14 +8,11 @@ import searchService from '@/services/ableJ';
 import styles from './searchResult.module.scss';
 
 interface SearchResultProps {
-  keyword: string | undefined;
-  categoryId: string | undefined;
+  keyword?: string;
+  categoryId?: string;
 }
 
-const fetchData = async (
-  keyword: string | undefined,
-  categoryId: number | undefined,
-) => {
+const fetchData = async (keyword?: string, categoryId?: number) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get('accessToken')?.value;
 
