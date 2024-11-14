@@ -13,7 +13,6 @@ interface SearchInputProps {
 }
 
 const SearchInput = ({keyword}: SearchInputProps) => {
-  console.log('keyword', keyword);
   const [inputValue, setInputValue] = useState(keyword);
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const router = useRouter();
@@ -33,6 +32,7 @@ const SearchInput = ({keyword}: SearchInputProps) => {
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    console.log(inputValue);
     if (e.key === 'Enter' && router) {
       router.push(`/recruitments?keyword=${inputValue}`);
     }

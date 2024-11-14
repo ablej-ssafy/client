@@ -34,6 +34,7 @@ const CompanyRecruitmentCard = ({
           src={thumbnail}
           alt="sample_img"
           width={280}
+          objectFit="cover"
           height={180}
           quality={100}
           className={styles.img}

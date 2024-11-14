@@ -1,5 +1,5 @@
 import {getCookie} from 'cookies-next';
-import {useOptimistic, useState} from 'react';
+import {useEffect, useOptimistic, useState} from 'react';
 
 import deleteScrapAction from '@/actions/recruitment/deleteScrapAction';
 import scrapAction from '@/actions/recruitment/scrapAction';
@@ -67,6 +67,10 @@ const useInfiniteRecruitment = ({
   const [enable, setEnable] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    setFetchRecruitments(initialRecruitments);
+  }, [initialRecruitments]);
+
   const fetchNextPage = async () => {
     setIsLoading(true);
 
@@ -77,11 +81,12 @@ const useInfiniteRecruitment = ({
         content,
         page: {totalPages},
       } = await fetchData(nextPage, keyword, categoryId);
-      setEnable(totalPages > nextPage);
 
       if (fetchRecruitments.length > 0) {
         setFetchRecruitments(prev => [...prev, ...content]);
         setPage(nextPage);
+        console.log(totalPages, nextPage);
+        setEnable(totalPages > nextPage);
       }
     } finally {
       setIsLoading(false);

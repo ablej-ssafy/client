@@ -24,6 +24,7 @@ const ResultBox = ({
       keyword,
       categoryId: Number(categoryId),
     });
+
   return (
     <div className={styles.container}>
       <p className={styles['result-count']}>
