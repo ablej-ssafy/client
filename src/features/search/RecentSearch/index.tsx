@@ -1,3 +1,5 @@
+'use client';
+
 import RecentSearchTag from '@/features/search/RecentSearchTag';
 import {RankContent} from '@/types/ableJ';
 

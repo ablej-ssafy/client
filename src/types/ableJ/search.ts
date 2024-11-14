@@ -24,3 +24,4 @@ export interface RankContent {
 
 export type SearchResponse = ResponseType<Paging<Search[]>>;
 export type RankSearchResponse = ResponseType<RankSearch>;
+export type AutoSearchResponse = ResponseType<string[]>;
