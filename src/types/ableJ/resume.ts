@@ -96,6 +96,22 @@ export interface AiParsedResume {
   aiCertifications: CertificationInfo[];
 }
 
+export interface ResumeOrder {
+  basic: number;
+  education: number;
+  company: number;
+  project: number;
+  activity: number;
+  qualification: number;
+  language: number;
+  tech: number;
+}
+
+export type ChangeResumeOrderForm = {
+  key: keyof ResumeOrder;
+  order: number;
+};
+
 export type GetAiParsedResumeResponseData = AiParsedResume;
 export type GetResumePDFResponse = ResponseType<ResumePDF[]>;
 export type GetAllJobsResponseData = Job[];
@@ -112,6 +128,7 @@ export type GetTechStackInfoResponseData = {
   notionUrl: string | null;
 };
 export type PostProfileImageResponseData = ProfileImageUrl;
+export type GetResumeOrderResponseData = ResumeOrder;
 
 export type GetAiParsedResumeResponse =
   ResponseType<GetAiParsedResumeResponseData>;
@@ -129,3 +146,4 @@ export type GetTechStackInfoResponse =
   ResponseType<GetTechStackInfoResponseData>;
 export type PostProfileImageResponse =
   ResponseType<PostProfileImageResponseData>;
+export type GetResumeOrderResponse = ResponseType<GetResumeOrderResponseData>;

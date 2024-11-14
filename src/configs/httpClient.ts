@@ -127,6 +127,25 @@ class HttpClient {
   }
 
   /**
+   * PATCH 요청을 보내는 함수
+   * @param url 요청 URL
+   * @param body 요청 바디
+   * @param options fetch API의 RequestInit 객체
+   */
+  patch<T>(url: string, body?: CustomBody, options?: CustomOptions) {
+    return this.afterResponse<T>(
+      HttpClient.httpClient!(
+        HttpClient.BASE_URL + url,
+        this.beforeRequest({
+          ...options,
+          body,
+          method: 'PATCH',
+        }),
+      ),
+    );
+  }
+
+  /**
    * DELETE 요청을 보내는 함수
    * @param url 요청 URL
    * @param options fetch API의 RequestInit 객체

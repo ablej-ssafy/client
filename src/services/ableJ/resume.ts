@@ -2,6 +2,7 @@ import httpClient from '@/configs/httpClient';
 import {
   AccessToken,
   CertificationInfo,
+  ChangeResumeOrderForm,
   EducationInfo,
   ExperienceInfo,
   GetAiParsedResumeResponse,
@@ -10,6 +11,7 @@ import {
   GetEducationInfoResponse,
   GetExperienceInfoResponse,
   GetResumeBasicInfoResponse,
+  GetResumeOrderResponse,
   GetResumePDFResponse,
   GetTechStackInfoResponse,
   PostProfileImageResponse,
@@ -322,6 +324,32 @@ export default {
    */
   getAiParsedResume: async (accessToken: AccessToken) => {
     return httpClient.get<GetAiParsedResumeResponse>('/resume/auto', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+  /**
+   * 이력서 섹션 순서를 가져오는 함수
+   * @param accessToken 액세스 토큰
+   */
+  getResumeOrder: async (accessToken: AccessToken) => {
+    return httpClient.get<GetResumeOrderResponse>('/resume/order', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+  /**
+   * 이력서 섹션 순서를 변경하는 함수
+   * @param data 변경할 순서
+   * @param accessToken 액세스 토큰
+   */
+  changeResumeOrder: async (
+    data: ChangeResumeOrderForm,
+    accessToken: AccessToken,
+  ) => {
+    return httpClient.post<ResponseType<null>>('/resume/order', data, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

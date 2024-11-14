@@ -12,22 +12,72 @@ interface Task {
   title: string;
   essential: boolean;
   path: string;
+  serverKey: string;
 }
 
 const cx = classNames.bind(styles);
 
 const tasks: Task[] = [
-  {id: 1, title: '프로필', essential: true, path: 'profile'},
-  {id: 2, title: '학력', essential: false, path: 'education'},
-  {id: 3, title: '경력 및 분야', essential: false, path: 'experience'},
-  {id: 4, title: '수상 및 활동', essential: false, path: 'activity'},
-  {id: 5, title: '기술스택', essential: false, path: 'skill'},
-  {id: 6, title: '프로젝트', essential: false, path: 'project'},
-  {id: 7, title: '자격증', essential: false, path: 'license'},
-  {id: 8, title: '어학성적', essential: false, path: 'language'},
+  {
+    id: 1,
+    title: '프로필',
+    essential: true,
+    path: 'profile',
+    serverKey: 'basic',
+  },
+  {
+    id: 2,
+    title: '학력',
+    essential: false,
+    path: 'education',
+    serverKey: 'education',
+  },
+  {
+    id: 3,
+    title: '경력 및 분야',
+    essential: false,
+    path: 'experience',
+    serverKey: 'company',
+  },
+  {
+    id: 4,
+    title: '수상 및 활동',
+    essential: false,
+    path: 'activity',
+    serverKey: 'activity',
+  },
+  {
+    id: 5,
+    title: '기술스택',
+    essential: false,
+    path: 'skill',
+    serverKey: 'tech',
+  },
+  {
+    id: 6,
+    title: '프로젝트',
+    essential: false,
+    path: 'project',
+    serverKey: 'project',
+  },
+  {
+    id: 7,
+    title: '자격증',
+    essential: false,
+    path: 'license',
+    serverKey: 'qualification',
+  },
+  {
+    id: 8,
+    title: '어학성적',
+    essential: false,
+    path: 'language',
+    serverKey: 'language',
+  },
 ];
 
 const DragAndDropMenu = () => {
+  // const resumeOrder = useResumeOrder();
   const dndContextElement = useRef<HTMLDivElement>(null);
   const [items, setItems] = useState(tasks);
 
