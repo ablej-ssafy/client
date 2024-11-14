@@ -16,9 +16,8 @@ const GithubPage = () => {
   const setGitHubToken = useRootStore(state => state.setGitHubToken);
 
   const handleGitHubLogin = (): void => {
-    const redirectUri = 'http://localhost:3000/mypage/github';
     router.push(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/github/authorize?redirect_url=${redirectUri}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/github/authorize?redirect_url=${process.env.NEXT_PUBLIC_BASE_URL}/mypage/github`,
     );
   };
 
