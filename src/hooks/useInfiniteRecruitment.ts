@@ -64,14 +64,21 @@ const useInfiniteRecruitment = ({
     },
   );
   const [page, setPage] = useState(0);
+  const [enable, setEnable] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchNextPage = async () => {
     setIsLoading(true);
 
     try {
+      if (!enable) return;
       const nextPage = page + 1;
-      const {content} = await fetchData(nextPage, keyword, categoryId);
+      const {
+        content,
+        page: {totalPages},
+      } = await fetchData(nextPage, keyword, categoryId);
+      setEnable(totalPages < nextPage);
+
       if (fetchRecruitments.length > 0) {
         setFetchRecruitments(prev => [...prev, ...content]);
         setPage(nextPage);
