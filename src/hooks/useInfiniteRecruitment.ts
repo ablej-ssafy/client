@@ -69,6 +69,7 @@ const useInfiniteRecruitment = ({
 
   useEffect(() => {
     setFetchRecruitments(initialRecruitments);
+    setEnable(true);
   }, [initialRecruitments]);
 
   const fetchNextPage = async () => {
@@ -85,7 +86,6 @@ const useInfiniteRecruitment = ({
       if (fetchRecruitments.length > 0) {
         setFetchRecruitments(prev => [...prev, ...content]);
         setPage(nextPage);
-        console.log(totalPages, nextPage);
         setEnable(totalPages > nextPage);
       }
     } finally {

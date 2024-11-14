@@ -32,7 +32,6 @@ const SearchInput = ({keyword}: SearchInputProps) => {
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    console.log(inputValue);
     if (e.key === 'Enter' && router) {
       router.push(`/recruitments?keyword=${inputValue}`);
     }
