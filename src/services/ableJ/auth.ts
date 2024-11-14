@@ -9,6 +9,7 @@ import {
   SignupForm,
   SignUpResponse,
 } from '@/types/ableJ';
+import {ResponseType} from '@/types/common';
 
 export default {
   /**
@@ -58,5 +59,27 @@ export default {
         Authorization: `Bearer ${accessToken}`,
       },
     });
+  },
+  /**
+   * 이메일 인증.
+   * @param key 이메일 인증 키
+   */
+  verifyEmail: async (key: string) => {
+    return httpClient.get<ResponseType<null>>(`/auth/confirm/email/${key}`);
+  },
+  /**
+   * 이메일 코드 재전송
+   * @param accessToken 액세스 토큰
+   */
+  resendVerificationEmail: async (accessToken: AccessToken) => {
+    return httpClient.post<ResponseType<null>>(
+      '/auth/resend',
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      },
+    );
   },
 };
