@@ -8,8 +8,8 @@ import {Search} from '@/types/ableJ';
 
 interface UseInfinteRecruitmentProps {
   initialRecruitments: Search[];
-  keyword: string | undefined;
-  categoryId: number | undefined;
+  keyword?: string;
+  categoryId?: number;
 }
 
 interface ScrapActionProps {

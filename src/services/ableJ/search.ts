@@ -65,7 +65,6 @@ export default {
   getAutoSearchKeyword: async (keyword: string) => {
     const params = new URLSearchParams();
     params.append('q', keyword);
-    console.log('params', params);
     return httpClient.get<AutoSearchResponse>(
       `/search/suggestions?${params.toString()}`,
     );

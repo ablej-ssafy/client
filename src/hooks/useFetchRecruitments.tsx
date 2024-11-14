@@ -5,7 +5,7 @@ import recruitmentService from '@/services/ableJ';
 import {useRootStore} from '@/zustand/rootStore';
 
 interface UseFetchRecruitmentsProps {
-  resumeId: string | undefined;
+  resumeId?: string;
 }
 
 const useFetchRecruitments = ({resumeId}: UseFetchRecruitmentsProps) => {
