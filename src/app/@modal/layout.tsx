@@ -11,6 +11,7 @@ const ModalLayout = ({children}: {children: ReactNode}) => {
   const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
   useClickOutside(ref, () => router.back());
+
   return (
     <Backdrop>
       <Modal ref={ref}>{children}</Modal>

@@ -30,12 +30,19 @@ const SignUpCareerStep = () => {
   const [state, formAction] = useFormState(signupAction, INITIAL_STATE);
   const router = useRouter();
 
+  console.log('prevForm', prevForm);
+
+  console.log(state);
+
   useEffect(() => {
-    if (state.error) {
-      toast.error(state.error);
-      return;
-    }
-    if (state.success) router.back();
+    if (!state.error) return;
+    toast.error(state.error);
+  }, [router, state]);
+
+  useEffect(() => {
+    if (!state.success) return;
+    toast.success('회원가입을 성공하였습니다');
+    router.back();
   }, [router, state]);
 
   return (
