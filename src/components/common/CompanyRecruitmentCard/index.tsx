@@ -10,11 +10,13 @@ interface CompanyRecruitmentCardProps {
   name: string;
   thumbnail: string;
   companyName: string;
+  scrap: () => void;
   isScrap: boolean;
 }
 
 const CompanyRecruitmentCard = ({
   recruitmentId,
+  scrap,
   name,
   thumbnail,
   companyName,
@@ -36,7 +38,7 @@ const CompanyRecruitmentCard = ({
           className={styles.img}
         />
       </Link>
-      <CardScrapButton recruitmentId={recruitmentId} isScrap={isScrap} />
+      <CardScrapButton scrap={scrap} isScrap={isScrap} />
       <div className={styles['job-title']}>{name}</div>
       <span className={styles['company-name']}>{companyName}</span>
     </div>
