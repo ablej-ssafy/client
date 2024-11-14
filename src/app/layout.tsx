@@ -50,7 +50,11 @@ export default function RootLayout({
         }}
         className={`${pretendard.variable}`}
       >
-        <Toaster position="top-center" toastOptions={{duration: 1000}} />
+        <Toaster
+          position="top-center"
+          toastOptions={{duration: 1000}}
+          containerStyle={{zIndex: 99999}}
+        />
         {children}
         {modal}
       </body>

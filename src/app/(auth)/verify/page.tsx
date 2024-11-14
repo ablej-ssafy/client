@@ -1,37 +1,38 @@
-'use client';
-
-import {useRouter, useSearchParams} from 'next/navigation';
-import {useCallback, useEffect} from 'react';
-import toast from 'react-hot-toast';
+import classNames from 'classnames/bind';
+import {redirect} from 'next/navigation';
 
 import ableJ from '@/services/ableJ';
 
-const VerifyPage = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+import styles from './page.module.scss';
 
-  const key = searchParams.get('key');
+const cx = classNames.bind(styles);
 
-  if (!key) {
-    router.back();
+const VerifyPage = async ({
+  searchParams,
+}: {
+  searchParams: {[key: string]: string | string[] | undefined};
+}) => {
+  if (!searchParams || !searchParams['key']) {
+    return (
+      <div>
+        <h2>이메일 인증</h2>
+        <p className={cx('message')}>이메일 인증에 실패했습니다.</p>
+      </div>
+    );
   }
 
-  const verifyEmail = useCallback(async () => {
-    const response = await ableJ.verifyEmail(key!);
+  const response = await ableJ.verifyEmail(searchParams['key'] as string);
 
-    if (!response.success) {
-      toast.error('이메일 인증에 실패하였습니다.');
-      router.back();
-      return;
-    }
+  if (!response.success) {
+    return (
+      <div className={cx('verification')}>
+        <h2 className={cx('title')}>이메일 인증</h2>
+        <p className={cx('message')}>{response.message}</p>
+      </div>
+    );
+  }
 
-    toast.success('이메일 인증에 성공하였습니다. 로그인 해주세요.');
-    router.replace('/');
-  }, [key, router]);
-
-  useEffect(() => {}, [(async () => await verifyEmail())()]);
-
-  return null;
+  redirect('/');
 };
 
 export default VerifyPage;

@@ -9,6 +9,7 @@ import {
   SignupForm,
   SignUpResponse,
 } from '@/types/ableJ';
+import {ResponseType} from '@/types/common';
 
 export default {
   /**
@@ -58,5 +59,12 @@ export default {
         Authorization: `Bearer ${accessToken}`,
       },
     });
+  },
+  /**
+   * 이메일 인증.
+   * @param key 이메일 인증 키
+   */
+  verifyEmail: async (key: string) => {
+    return httpClient.get<ResponseType<null>>(`/auth/confirm/email/${key}`);
   },
 };
