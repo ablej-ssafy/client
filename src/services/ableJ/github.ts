@@ -14,6 +14,7 @@ export default {
     repo: string,
     branch: string,
     githubToken: string,
+    accessToken: string,
   ) => {
     return httpClient.post<AnalysisGitHubResponse>(
       `/github/analysis`,
@@ -24,7 +25,9 @@ export default {
         token: githubToken,
       },
       {
-        headers: {Authorization: `Bearer ${githubToken}`},
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       },
     );
   },
