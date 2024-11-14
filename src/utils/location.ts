@@ -2,7 +2,7 @@
  * 주소를 반환
  */
 
-export const getLocation = (location?: string, strict?: string) => {
+export const convertLocation = (location?: string, strict?: string) => {
   if (location && strict) {
     return location + ' > ' + strict;
   }

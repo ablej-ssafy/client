@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import {useEffect} from 'react';
 import {IoSearchSharp} from 'react-icons/io5';
 
 import useAutoSearch from '@/hooks/useAutoSearch';
@@ -13,11 +12,7 @@ interface AutoSearchProps {
 }
 
 const AutoSearch = ({keyword}: AutoSearchProps) => {
-  const {autoSearchText, refetch} = useAutoSearch(keyword);
-
-  useEffect(() => {
-    refetch();
-  }, [keyword, refetch]);
+  const {autoSearchText} = useAutoSearch(keyword);
 
   return (
     <div className={styles.container}>
@@ -26,7 +21,10 @@ const AutoSearch = ({keyword}: AutoSearchProps) => {
           <Link
             key={`${text}-${index}`}
             className={styles['auto-search']}
-            href={`/recruitments?keyword=${text}`}
+            href={{
+              pathname: '/recruitments',
+              query: {keyword: text},
+            }}
           >
             <IoSearchSharp size={16} />
             <span className={styles['auto-text']}>{text}</span>

@@ -28,7 +28,7 @@ const useAutoSearch = (keyword: string) => {
     };
   }, [debouncedFetchAutoSearch, keyword]);
 
-  return {autoSearchText, refetch: debouncedFetchAutoSearch};
+  return {autoSearchText};
 };
 
 export default useAutoSearch;

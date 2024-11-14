@@ -2,7 +2,7 @@ import styles from './recruitmentTag.module.scss';
 
 interface RecruitmentTagProps {
   title: string;
-  content: string | undefined;
+  content?: string;
 }
 
 const RecruitmentTag = ({title, content}: RecruitmentTagProps) => {

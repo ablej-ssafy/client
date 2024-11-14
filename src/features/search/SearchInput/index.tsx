@@ -1,7 +1,7 @@
 'use client';
 
 import {useRouter} from 'next/navigation';
-import {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {ChangeEvent, KeyboardEvent, useEffect, useState} from 'react';
 import {IoSearchSharp} from 'react-icons/io5';
 
 import AutoSearch from '@/features/search/AutoSearch';
@@ -13,9 +13,20 @@ interface SearchInputProps {
 }
 
 const SearchInput = ({keyword}: SearchInputProps) => {
+  console.log('keyword', keyword);
   const [inputValue, setInputValue] = useState(keyword);
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (keyword !== undefined) {
+      setInputValue(keyword);
+    }
+
+    return () => {
+      setInputValue('');
+    };
+  }, [keyword]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
