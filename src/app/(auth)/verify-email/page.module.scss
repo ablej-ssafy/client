@@ -1,0 +1,18 @@
+@use '@/styles/constants/colors' as colors;
+
+.verification {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+
+  .title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: colors.$red;
+  }
+
+  .message {
+    font-size: 1.6rem;
+  }
+}

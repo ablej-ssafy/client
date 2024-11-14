@@ -67,4 +67,19 @@ export default {
   verifyEmail: async (key: string) => {
     return httpClient.get<ResponseType<null>>(`/auth/confirm/email/${key}`);
   },
+  /**
+   * 이메일 코드 재전송
+   * @param accessToken 액세스 토큰
+   */
+  resendVerificationEmail: async (accessToken: AccessToken) => {
+    return httpClient.post<ResponseType<null>>(
+      '/auth/resend',
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      },
+    );
+  },
 };

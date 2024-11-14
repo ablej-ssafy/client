@@ -1,0 +1,27 @@
+@use '@/styles/constants/colors' as colors;
+
+.email {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+
+  .email-title {
+    margin-bottom: 1rem;
+    font-size: 2.4rem;
+  }
+
+  .email-content {
+    font-size: 1.4rem;
+  }
+
+  .email-button {
+    padding: 4px 10px;
+    margin-top: 1rem;
+    font-size: 1.8rem;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid colors.$black;
+    border-radius: 4px;
+  }
+}
