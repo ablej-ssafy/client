@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import CardScrapButton from '@/components/common/CardScrapButton';
+import CardScrapServerButton from '@/components/common/CardScrapServerButton';
 
 import styles from './companyRecruitmentCard.module.scss';
 
@@ -10,7 +11,7 @@ interface CompanyRecruitmentCardProps {
   name: string;
   thumbnail: string;
   companyName: string;
-  scrap: () => void;
+  scrap?: () => void;
   isScrap: boolean;
 }
 
@@ -38,7 +39,14 @@ const CompanyRecruitmentCard = ({
           className={styles.img}
         />
       </Link>
-      <CardScrapButton scrap={scrap} isScrap={isScrap} />
+      {scrap ? (
+        <CardScrapButton scrap={scrap} isScrap={isScrap} />
+      ) : (
+        <CardScrapServerButton
+          recruitmentId={recruitmentId}
+          isScrap={isScrap}
+        />
+      )}
       <div className={styles['job-title']}>{name}</div>
       <span className={styles['company-name']}>{companyName}</span>
     </div>

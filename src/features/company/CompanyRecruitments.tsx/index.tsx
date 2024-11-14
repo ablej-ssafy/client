@@ -69,7 +69,6 @@ const CompanyRecruitments = async ({companyInfo}: CompanyRecruitmentsProps) => {
         {companyInfo.recruitments.length > 0 &&
           companyInfo.recruitments.map(recruitment => (
             <CompanyRecruitmentCard
-              scrap={() => {}}
               key={recruitment.recruitmentId}
               recruitmentId={recruitment.recruitmentId}
               name={recruitment.name}

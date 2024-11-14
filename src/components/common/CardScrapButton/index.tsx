@@ -1,7 +1,7 @@
 import {FaBookmark, FaRegBookmark} from 'react-icons/fa6';
 
 interface CompanyRecruitmentCardProps {
-  scrap: () => void;
+  scrap?: () => void;
   isScrap: boolean;
 }
 

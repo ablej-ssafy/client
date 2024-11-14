@@ -7,6 +7,7 @@ import {redirect} from 'next/navigation';
 import recruitmentService from '@/services/ableJ';
 
 const recruitmentScrapAction = async (formData: FormData) => {
+  console.log(formData);
   const recruitmentIdRaw = formData.get('recruitmentId');
   const isScrapRaw = formData.get(`isScrap:${recruitmentIdRaw}`);
   const tag = formData.get('tag');
