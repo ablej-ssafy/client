@@ -58,7 +58,6 @@ const RecruitmentCard = ({
           width={280}
           height={180}
           quality={100}
-          objectFit="cover"
           className={styles.img}
         />
         {scrap && (

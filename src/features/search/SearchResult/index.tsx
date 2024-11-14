@@ -28,16 +28,14 @@ const fetchData = async (
   }
 
   if (categoryId) {
-    const {data} = await searchService.getCategoryRecruitment(
-      categoryId,
-      0,
-      20,
+    const {data} = await searchService.getCategoryRecruitment({
+      categoryId: +categoryId,
       accessToken,
-    );
+    });
     return data;
   }
 
-  const {data} = await searchService.getAllRecruitment(0, 21, accessToken);
+  const {data} = await searchService.getAllRecruitment({accessToken});
   return data;
 };
 
@@ -49,7 +47,11 @@ const SearchResult = async ({keyword, categoryId}: SearchResultProps) => {
       <CategoryBox categoryId={categoryId} />
       <div className={styles['search-result']}>
         <SearchInput keyword={keyword} />
-        <ResultBox recruitments={recruitments} />
+        <ResultBox
+          initialRecruitments={recruitments}
+          keyword={keyword}
+          categoryId={categoryId}
+        />
       </div>
     </div>
   );

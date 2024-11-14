@@ -14,11 +14,15 @@ export default {
    * @param size 페이지 크기
    * @param accessToken 액세스 토큰
    */
-  getAllRecruitment: async (
-    page: number,
-    size: number,
-    accessToken?: string,
-  ): Promise<SearchResponse> => {
+  getAllRecruitment: async ({
+    page = 0,
+    size = 21,
+    accessToken,
+  }: {
+    page?: number;
+    size?: number;
+    accessToken?: string;
+  }): Promise<SearchResponse> => {
     return httpClient.get<SearchResponse>(
       `/recruitments?page=${page}&size=${size}`,
       {
@@ -48,12 +52,17 @@ export default {
    * @param size 페이지 크기
    * @param accessToken 액세스 토큰
    */
-  getCategoryRecruitment: async (
-    categoryId: number,
-    page: number,
-    size: number,
-    accessToken?: string,
-  ) => {
+  getCategoryRecruitment: async ({
+    categoryId,
+    page = 0,
+    size = 21,
+    accessToken,
+  }: {
+    categoryId: number;
+    page?: number;
+    size?: number;
+    accessToken?: string;
+  }) => {
     return httpClient.get<SearchResponse>(
       `/recruitments/category/${categoryId}?page=${page}&size=${size}`,
       {
