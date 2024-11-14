@@ -16,7 +16,7 @@ export interface RecruitmentDetail {
   hireRound?: string;
   dueTime?: string;
   annualTo: number;
-  annualFrom?: number;
+  annualFrom: number;
 }
 
 export interface Category {

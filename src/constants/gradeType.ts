@@ -8,7 +8,7 @@ const GRADE_TYPE = [
     text: '4.3',
   },
   {
-    id: 'FOUR_POINT_ZERO ',
+    id: 'FOUR_POINT_ZERO',
     text: '4.0',
   },
 ];

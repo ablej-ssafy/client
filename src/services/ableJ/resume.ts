@@ -4,6 +4,7 @@ import {
   CertificationInfo,
   EducationInfo,
   ExperienceInfo,
+  GetAiParsedResumeResponse,
   GetAllTechSkillsResponse,
   GetCertificationInfoResponse,
   GetEducationInfoResponse,
@@ -310,6 +311,17 @@ export default {
     const form = new FormData();
     form.append('file', file);
     return httpClient.post<ResponseType<null>>('/resume/auto', form, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+  /**
+   * AI로 파싱된 이력서를 가져오는 함수
+   * @param accessToken 액세스 토큰
+   */
+  getAiParsedResume: async (accessToken: AccessToken) => {
+    return httpClient.get<GetAiParsedResumeResponse>('/resume/auto', {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

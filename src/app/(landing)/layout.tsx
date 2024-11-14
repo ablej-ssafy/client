@@ -1,8 +1,8 @@
 import type {ReactNode} from 'react';
 
-import LoginButton from '@/app/components/LoginButton';
 import Footer from '@/components/layout/Footer';
 import LandingHeader from '@/components/layout/LandingHeader';
+import LoginButton from '@/components/layout/LoginButton';
 
 const LandingLayout = ({children}: {children: ReactNode}) => {
   return (

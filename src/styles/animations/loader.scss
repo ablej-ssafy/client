@@ -2,7 +2,7 @@
   width: 80px;
   aspect-ratio: 6;
 
-  --g: no-repeat radial-gradient(circle closest-side, #ad9eff 90%, #fff);
+  --g: no-repeat radial-gradient(circle closest-side, #ad9eff 90%, transparent);
 
   background:
     var(--g) 0% 50%,

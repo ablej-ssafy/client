@@ -1,4 +1,8 @@
+@use '@/styles/constants/colors' as colors;
+@use '@/styles/mixin' as mixins;
+
 .grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
@@ -17,5 +21,41 @@
     flex-direction: column;
     grid-column: 2;
     gap: 20px;
+  }
+
+  .info {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    z-index: 1;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 32px;
+    background-color: rgb(255 255 255 / 85%);
+    border-radius: 8px;
+    transform: translateX(-50%);
+
+    @include mixins.flex-default;
+
+    .info-text {
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 26px;
+      color: colors.$red;
+      text-align: center;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 20px;
+      font-size: 1.4rem;
+
+      .button {
+        font-weight: 600;
+        color: colors.$black;
+        cursor: pointer;
+        background-color: transparent;
+      }
+    }
   }
 }

@@ -16,9 +16,10 @@ const cx = classNames.bind(styles);
 const PortfolioLayout = ({children}: PropsWithChildren) => {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const accessToken = getCookie('accessToken');
 
-  if (!accessToken) router.push('/signin');
+  if (!accessToken) router.replace('/signin');
 
   const handleDragEnter = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -46,13 +47,16 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
       return;
     }
 
+    setIsLoading(true);
     await ableJ.uploadResume(resume, accessToken as string);
+    setIsLoading(false);
+    router.push('/portfolio/auto');
   };
 
   return (
     <div className={cx('container')}>
       <main
-        className={cx('main', {active: isActive})}
+        className={cx('main', {active: isActive}, {loading: isLoading})}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
