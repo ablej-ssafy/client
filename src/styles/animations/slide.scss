@@ -1,0 +1,15 @@
+@mixin slide-down($duration: 0.8s, $easing: ease-out) {
+  animation: slide-down $duration $easing forwards;
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

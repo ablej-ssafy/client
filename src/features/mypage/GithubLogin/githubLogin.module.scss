@@ -1,0 +1,51 @@
+@use '@/styles/mixin' as mixin;
+@use '@/styles/animations/slide' as slide;
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 40px;
+
+  @include mixin.flex-default;
+
+  img {
+    margin-right: 40px;
+    filter: blur(2px);
+    border: 1px solid rgb(213 213 213);
+  }
+
+  & > div {
+    padding-bottom: 40px;
+
+    .script {
+      margin-bottom: 40px;
+      font-size: 1.6rem;
+      color: #757575;
+    }
+
+    button {
+      gap: 16px;
+      width: 240px;
+      padding: 6px 0;
+      font-size: 1.7rem;
+      color: #fff;
+      cursor: pointer;
+      background-color: #2b2b2b;
+      border-radius: 6px;
+
+      @include mixin.flex-default;
+
+      svg {
+        width: 28px;
+      }
+    }
+  }
+}
+
+.slide-down {
+  margin-bottom: 20px;
+  font-size: 1.9rem;
+  font-weight: 500;
+
+  @include slide.slide-down;
+}
