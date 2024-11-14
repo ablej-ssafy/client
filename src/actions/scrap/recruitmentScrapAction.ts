@@ -7,16 +7,18 @@ import {redirect} from 'next/navigation';
 import recruitmentService from '@/services/ableJ';
 
 const recruitmentScrapAction = async (formData: FormData) => {
+  console.log(formData);
   const recruitmentIdRaw = formData.get('recruitmentId');
+  const isScrapRaw = formData.get(`isScrap:${recruitmentIdRaw}`);
+  const tag = formData.get('tag');
 
-  if (typeof recruitmentIdRaw !== 'string') {
+  if (typeof recruitmentIdRaw !== 'string' || typeof isScrapRaw !== 'string') {
     console.error('잘못된 요청입니다.');
     return;
   }
 
   const recruitmentId = Number(recruitmentIdRaw);
-  const isScrap = formData.get(`isScrap-${recruitmentId}`);
-  const tag = formData.get('tag');
+  const isScrap = isScrapRaw === 'true';
 
   const accessToken = cookies().get('accessToken')?.value;
 
@@ -25,7 +27,7 @@ const recruitmentScrapAction = async (formData: FormData) => {
     redirect('/signin');
   }
 
-  if (isScrap === 'true') {
+  if (isScrap) {
     await recruitmentService.deleteScrapRecruitment(recruitmentId, accessToken);
   } else {
     const response = await recruitmentService.scrapRecruitment(

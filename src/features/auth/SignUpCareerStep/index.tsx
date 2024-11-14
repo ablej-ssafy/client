@@ -31,11 +31,14 @@ const SignUpCareerStep = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (state.error) {
-      toast.error(state.error);
-      return;
-    }
-    if (state.success) router.back();
+    if (!state.error) return;
+    toast.error(state.error);
+  }, [router, state]);
+
+  useEffect(() => {
+    if (!state.success) return;
+    toast.success('회원가입을 성공하였습니다');
+    router.back();
   }, [router, state]);
 
   return (

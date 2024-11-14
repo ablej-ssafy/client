@@ -1,7 +1,7 @@
 @use '@/styles/constants/colors' as colors;
 
 .divider {
-  flex: 1;
+  align-self: stretch;
   width: 100%;
   min-width: 300px;
   height: 1px;

@@ -1,6 +1,5 @@
 'use server';
 
-import {redirect, RedirectType} from 'next/navigation';
 import {z} from 'zod';
 
 import ableJ from '@/services/ableJ';
@@ -44,11 +43,19 @@ const signupAction = async (_prevState: unknown, formData: FormData) => {
       name: [],
       careerYear: [],
       jobId: [],
-      success: true,
+      success: false,
     };
   }
 
-  redirect('/signin', RedirectType.replace);
+  return {
+    error: '',
+    email: [],
+    password: [],
+    name: [],
+    careerYear: [],
+    jobId: [],
+    success: true,
+  };
 };
 
 export default signupAction;

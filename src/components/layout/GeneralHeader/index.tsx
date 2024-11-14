@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 
-import LoginButton from '@/app/components/LoginButton';
 import Header from '@/components/layout/Header';
+import LoginButton from '@/components/layout/LoginButton';
 
 import styles from './generalHeader.module.scss';
 
