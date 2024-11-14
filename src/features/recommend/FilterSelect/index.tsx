@@ -71,23 +71,13 @@ const FilterSelect = ({data = []}: ResumePDFProps) => {
 
   // 새로고침
   const handleRefresh = () => {
-    const recommendData = sessionStorage.getItem('recommend');
     const pathId = Number(pathLast);
 
-    if (recommendData) {
-      const parsedData = JSON.parse(recommendData);
-
-      if (parsedData.state && parsedData.state.recruitments) {
-        delete parsedData.state.recruitments[pathId];
-
-        sessionStorage.setItem('recommend', JSON.stringify(parsedData));
-        useRootStore.setState(state => {
-          const updatedRecruitments = {...state.recruitments};
-          delete updatedRecruitments[pathId];
-          return {recruitments: updatedRecruitments};
-        });
-      }
-    }
+    useRootStore.setState(state => {
+      const updatedRecruitments = {...state.recruitments};
+      delete updatedRecruitments[pathId];
+      return {recruitments: updatedRecruitments};
+    });
 
     router.replace(`/recommend/${pathId}`);
   };
