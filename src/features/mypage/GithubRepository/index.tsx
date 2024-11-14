@@ -1,66 +1,20 @@
 'use client';
 
-import {Octokit} from '@octokit/rest';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 import resumeUpdateAction from '@/actions/github/analysisGitHubAction';
+import useGithubRepository from '@/hooks/useGithubRepository';
 import {useRootStore} from '@/zustand/rootStore';
 
-interface Repository {
-  name: string;
-  owner: string;
-  branches: string[];
-}
+import styles from './githubRepository.module.scss';
 
 const GitHubRepository = () => {
-  const accessToken = useRootStore(state => state.gitHubToken);
-  const [repositories, setRepositories] = useState<Repository[]>([]);
+  const githubToken = useRootStore(state => state.githubToken);
+  const {repositories, loading} = useGithubRepository();
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
   const [selectedBranch, setSelectedBranch] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
   const [branches, setBranches] = useState<string[]>([]);
   const [resultMessage, setResultMessage] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchRepositories = async () => {
-      if (!accessToken) {
-        setLoading(false);
-        return;
-      }
-
-      const octokit = new Octokit({
-        auth: `Bearer ${accessToken}`,
-      });
-
-      try {
-        const {data: repos} = await octokit.repos.listForAuthenticatedUser();
-
-        const repositoriesWithBranches: Repository[] = await Promise.all(
-          repos.map(async repo => {
-            const {data: branchesData} = await octokit.repos.listBranches({
-              owner: repo.owner.login,
-              repo: repo.name,
-            });
-
-            const branches = branchesData.map(branch => branch.name);
-            return {
-              name: repo.name,
-              owner: repo.owner.login,
-              branches,
-            };
-          }),
-        );
-
-        setRepositories(repositoriesWithBranches);
-      } catch (error) {
-        console.error('Failed to fetch repositories:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRepositories();
-  }, [accessToken]);
 
   const handleRepoChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const repoName = event.target.value;
@@ -77,7 +31,7 @@ const GitHubRepository = () => {
   };
 
   const handleButtonClick = async () => {
-    if (selectedRepo && selectedBranch && accessToken) {
+    if (selectedRepo && selectedBranch && githubToken) {
       const selectedRepository = repositories.find(
         repo => repo.name === selectedRepo,
       );
@@ -87,24 +41,27 @@ const GitHubRepository = () => {
           selectedRepository.owner,
           selectedRepository.name,
           selectedBranch,
-          accessToken,
+          githubToken,
         );
 
-        if (response.success) {
-          setResultMessage('GitHub analysis request was successful.');
-        } else {
-          setResultMessage('GitHub analysis request failed.');
-        }
+        setResultMessage(
+          response.success
+            ? 'GitHub analysis request was successful.'
+            : 'GitHub analysis request failed.',
+        );
       }
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className={styles['load-container']}>
+        <div className={styles.loader}></div>
+      </div>
+    );
 
   return (
     <div>
-      <h2>GitHub Repository Selector</h2>
-
       <label>
         Select Repository:
         <select value={selectedRepo || ''} onChange={handleRepoChange}>

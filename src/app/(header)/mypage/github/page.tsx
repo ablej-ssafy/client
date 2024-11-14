@@ -12,17 +12,17 @@ import styles from './page.module.scss';
 const GithubPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const githubToken = useRootStore(state => state.gitHubToken);
-  const setGitHubToken = useRootStore(state => state.setGitHubToken);
+  const githubToken = useRootStore(state => state.githubToken);
+  const setGithubToken = useRootStore(state => state.setGithubToken);
 
   useEffect(() => {
     const accessToken = searchParams.get('accessToken');
 
     if (accessToken) {
-      setGitHubToken(accessToken);
+      setGithubToken(accessToken);
       router.push('/mypage/github');
     }
-  }, [router, setGitHubToken, searchParams]);
+  }, [router, setGithubToken, searchParams]);
 
   return (
     <main className={styles.container}>
