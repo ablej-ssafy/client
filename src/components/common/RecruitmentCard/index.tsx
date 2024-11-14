@@ -42,14 +42,13 @@ const RecruitmentCard = ({
       const newScrappedState = !isScrapped;
       setIsScrapped(newScrappedState);
 
-      const recommendData = sessionStorage.getItem('recommend');
-      if (recommendData) {
-        // 세션 스토리지 데이터 업데이트
-        const parsedData = JSON.parse(recommendData);
-        const recruitments = parsedData.state.recruitments;
+      useRootStore.setState(state => {
+        const updatedRecruitments: {[key: string]: RecruitmentCardType[]} = {
+          ...state.recruitments,
+        };
 
-        Object.keys(recruitments).forEach(key => {
-          recruitments[key] = recruitments[key].map(
+        Object.keys(updatedRecruitments).forEach(key => {
+          updatedRecruitments[key] = updatedRecruitments[key].map(
             (recruitment: RecruitmentCardType) =>
               recruitment.id === item.id
                 ? {...recruitment, scrapped: newScrappedState}
@@ -57,25 +56,8 @@ const RecruitmentCard = ({
           );
         });
 
-        parsedData.state.recruitments = recruitments;
-        sessionStorage.setItem('recommend', JSON.stringify(parsedData));
-
-        // zustand 데이터 업데이트
-        useRootStore.setState(state => {
-          const updatedRecruitments: {[key: string]: RecruitmentCardType[]} = {
-            ...state.recruitments,
-          };
-          Object.keys(updatedRecruitments).forEach(key => {
-            updatedRecruitments[key] = updatedRecruitments[key].map(
-              (recruitment: RecruitmentCardType) =>
-                recruitment.id === item.id
-                  ? {...recruitment, scrapped: newScrappedState}
-                  : recruitment,
-            );
-          });
-          return {recruitments: updatedRecruitments};
-        });
-      }
+        return {recruitments: updatedRecruitments};
+      });
     } else {
       console.error(isScrapped ? '스크랩 취소 실패' : '스크랩 실패');
     }

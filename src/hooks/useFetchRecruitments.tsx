@@ -10,7 +10,7 @@ interface UseFetchRecruitmentsProps {
 
 const useFetchRecruitments = ({resumeId}: UseFetchRecruitmentsProps) => {
   const accessToken = getCookie('accessToken');
-  const {recruitments, setRecruitments, isHydrated} = useRootStore();
+  const {recruitments, setRecruitments} = useRootStore();
   const currentRecruitments = recruitments[Number(resumeId)];
   const [loading, setLoading] = useState(false);
 
@@ -33,10 +33,10 @@ const useFetchRecruitments = ({resumeId}: UseFetchRecruitmentsProps) => {
   }, [resumeId, accessToken, currentRecruitments, setRecruitments]);
 
   useEffect(() => {
-    if (!isHydrated || typeof window === 'undefined') return;
-
-    fetchRecruitments();
-  }, [isHydrated, fetchRecruitments]);
+    if (typeof window !== 'undefined') {
+      fetchRecruitments();
+    }
+  }, [fetchRecruitments]);
 
   return {recruitments: currentRecruitments, loading};
 };
