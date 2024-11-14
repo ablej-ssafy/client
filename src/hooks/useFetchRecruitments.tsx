@@ -5,12 +5,12 @@ import recruitmentService from '@/services/ableJ';
 import {useRootStore} from '@/zustand/rootStore';
 
 interface UseFetchRecruitmentsProps {
-  resumeId: string | undefined;
+  resumeId?: string;
 }
 
 const useFetchRecruitments = ({resumeId}: UseFetchRecruitmentsProps) => {
   const accessToken = getCookie('accessToken');
-  const {recruitments, setRecruitments, isHydrated} = useRootStore();
+  const {recruitments, setRecruitments} = useRootStore();
   const currentRecruitments = recruitments[Number(resumeId)];
   const [loading, setLoading] = useState(false);
 
@@ -33,10 +33,8 @@ const useFetchRecruitments = ({resumeId}: UseFetchRecruitmentsProps) => {
   }, [resumeId, accessToken, currentRecruitments, setRecruitments]);
 
   useEffect(() => {
-    if (!isHydrated || typeof window === 'undefined') return;
-
     fetchRecruitments();
-  }, [isHydrated, fetchRecruitments]);
+  }, [fetchRecruitments]);
 
   return {recruitments: currentRecruitments, loading};
 };

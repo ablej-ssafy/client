@@ -8,14 +8,10 @@ interface RecruitmentContentProps {
 }
 
 const RecruitmentContent = ({title, content}: RecruitmentContentProps) => {
-  const formattedContent = content.replace(/\n/g, '<br />');
   return (
     <div className={styles.container}>
       <Tag title={title} />
-      <p
-        className={styles.content}
-        dangerouslySetInnerHTML={{__html: formattedContent}}
-      ></p>
+      <p className={styles.content}>{content}</p>
     </div>
   );
 };

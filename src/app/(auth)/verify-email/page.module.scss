@@ -1,0 +1,13 @@
+@use '@/styles/constants/colors' as colors;
+
+.guide-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+
+  & > a {
+    font-size: 1.6rem;
+    color: colors.$gray4;
+  }
+}

@@ -1,8 +1,7 @@
 import {cookies} from 'next/headers';
 import {MdBookmark, MdBookmarkBorder} from 'react-icons/md';
 
-import createRecruitmentScarpAction from '@/actions/scrap/createRecruitmentScrapAction';
-import deleteRecruitmentScarpAction from '@/actions/scrap/deleteRecruitmentScrapAction';
+import recruitmentScrapAction from '@/actions/scrap/recruitmentScrapAction';
 import {ScrapResponse} from '@/types/ableJ';
 
 import styles from './scrapButton.module.scss';
@@ -35,13 +34,20 @@ const getScrapStatus = async (recruitmentId: number) => {
 
 const ScrapButton = async ({recruitmentId}: ScrapButtonProps) => {
   const isScrap = await getScrapStatus(recruitmentId);
-  const action = isScrap
-    ? deleteRecruitmentScarpAction
-    : createRecruitmentScarpAction;
 
   return (
-    <form className={styles.container} action={action}>
+    <form className={styles.container} action={recruitmentScrapAction}>
       <input name="recruitmentId" type="hidden" value={String(recruitmentId)} />
+      <input
+        name="tag"
+        type="hidden"
+        value={`recruitment-${recruitmentId}-scrap`}
+      />
+      <input
+        name={`isScrap:${recruitmentId}`}
+        type="hidden"
+        value={String(isScrap)}
+      />
       <label htmlFor="submit-button" className={styles['submit-button']}>
         <input
           type="submit"

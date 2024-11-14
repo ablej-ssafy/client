@@ -1,24 +1,18 @@
-import {cookies} from 'next/headers';
+'use client';
 
 import PopularSearch from '@/features/search/PopularSearch';
 import RecentSearch from '@/features/search/RecentSearch';
 import SearchInput from '@/features/search/SearchInput';
-import searchService from '@/services/ableJ';
+import {RankContent} from '@/types/ableJ';
 
 import styles from './noSearchText.module.scss';
 
-const fetchKeyword = async () => {
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get('accessToken')?.value;
+interface NoSearchTextProps {
+  ranks: RankContent[];
+  recentKeywords: RankContent[];
+}
 
-  const {data} = await searchService.getRankSearch(accessToken);
-
-  return data;
-};
-
-const NoSearchText = async () => {
-  const {ranks, recentKeywords} = await fetchKeyword();
-
+const NoSearchText = ({ranks, recentKeywords}: NoSearchTextProps) => {
   return (
     <div className={styles.container}>
       <SearchInput />

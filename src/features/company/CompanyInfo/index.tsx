@@ -42,6 +42,7 @@ const CompanyInfo = ({companyInfo}: CompanyInfoProps) => {
                 <Link
                   className={styles['company-text']}
                   href={addHttp(companyInfo.link)}
+                  target="_blank"
                 >
                   {companyInfo.link}
                 </Link>

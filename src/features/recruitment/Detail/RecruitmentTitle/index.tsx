@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import RecruitmentTag from '@/features/recruitment/Detail/RecruitmentTag';
 import {Category, Company} from '@/types/ableJ';
+import {convertAnnual, convertLocation} from '@/utils/convert';
 
 import styles from './recruitmentTitle.module.scss';
 
@@ -16,7 +17,7 @@ interface RecruitmentTitleProps {
   company: Company;
   dueTime?: string;
   annualTo: number;
-  annualFrom?: number;
+  annualFrom: number;
   thumbnail: string;
 }
 
@@ -30,10 +31,8 @@ const RecruitmentTitle = ({
   annualFrom,
   thumbnail,
 }: RecruitmentTitleProps) => {
-  const location = company.location + ' > ' + company.strict;
-  const annual = annualFrom
-    ? `${annualFrom} ~ ${annualTo}년`
-    : `${annualTo}년 이상`;
+  const location = convertLocation(company.location, company.strict);
+  const annual = convertAnnual(annualTo, annualFrom);
   const closedDate = dueTime || '상시 채용';
   const categoryJoin = `${category.name} > ${childCategories.map(child => child.name).join(', ')}`;
   return (

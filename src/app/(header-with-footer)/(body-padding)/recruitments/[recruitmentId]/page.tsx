@@ -5,6 +5,8 @@ import RecruitmentBox from '@/features/recruitment/Detail/RecruitmentBox';
 import RecruitmentTitle from '@/features/recruitment/Detail/RecruitmentTitle';
 import {RecruitmentDetailResponse} from '@/types/ableJ';
 
+import styles from './recruitmentDetailPage.module.scss';
+
 interface RecruitmentDetailPageProps {
   params: {
     recruitmentId: string;
@@ -60,10 +62,13 @@ export async function generateMetadata({
   return {
     title: `${recruitment.company.name} | ${recruitment.name}`,
     description: recruitment.intro,
+    images: recruitment.images,
     openGraph: {
       title: recruitment.name,
       type: 'website',
-      image: thumbnail,
+      images: {
+        url: thumbnail,
+      },
       description: recruitment.intro,
     },
     twitter: {
@@ -79,7 +84,7 @@ const RecruitmentDetailPage = async ({
   const recruitment = await getRecruitment(recruitmentId);
 
   return (
-    <>
+    <div className={styles.container}>
       <Carousel imageArray={recruitment.images} />
       <RecruitmentTitle
         name={recruitment.name}
@@ -101,7 +106,7 @@ const RecruitmentDetailPage = async ({
         companyInfo={recruitment.company}
         hireRound={recruitment.hireRound}
       />
-    </>
+    </div>
   );
 };
 

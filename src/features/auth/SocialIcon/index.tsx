@@ -25,7 +25,6 @@ const SocialIcon = ({children, social}: SocialIconProps) => {
   const GOOGLE_AUTH_URL = `${BASE_URL}/oauth2/authorization/google?oauth_redirect_uri=${REDIRECT_URI}`;
 
   const handleClick = () => {
-    console.log('social', social);
     if (social === 'kakao') {
       window.location.href = KAKAO_AUTH_URL;
       return;

@@ -16,8 +16,6 @@ const ProjectInfoSectionList = async () => {
   const response = await ableJ.getExperienceInfo('project', accessToken);
   const {experiences} = response.data;
 
-  console.log('experiences', experiences);
-
   return (
     !!experiences?.length &&
     experiences.map(project => (

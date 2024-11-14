@@ -19,11 +19,13 @@ const PopularSearch = ({keywords}: PopularSearchProps) => {
     router.refresh();
   };
 
+  const nowHour = new Date().getHours();
+
   return (
     <div className={styles.container}>
       <div className={styles['popular-title']}>
         <span className={styles['popular-text']}>인기 검색어</span>
-        <span className={styles.time}>17 : 00 기준</span>
+        <span className={styles.time}>{nowHour} : 00 기준</span>
         <TbReload size={15} className={styles.reroll} onClick={handleReload} />
       </div>
       <div className={styles['tag-container']}>

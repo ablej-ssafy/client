@@ -18,8 +18,6 @@ const RecentSearchTag = ({keyword}: RecentSearchTagProps) => {
   const handleDelete = async () => {
     const response = await recentKeywordDeleteAction(keyword.keyword);
 
-    console.log('response', response);
-
     if (response.success) {
       await revalidateSearchPage();
     }
