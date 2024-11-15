@@ -1,0 +1,21 @@
+@use '@/styles/mixin' as mixin;
+@use '@/styles/animations/loader' as animations;
+
+.load-container {
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  height: calc(100vh - 280px);
+  font-size: 1.8rem;
+
+  @media (width >= 1500px) {
+    width: 1300px;
+    margin: 0 auto 30px;
+  }
+
+  @media (width < 600px) {
+    margin-top: 18px;
+  }
+
+  @include mixin.flex-default;
+}
