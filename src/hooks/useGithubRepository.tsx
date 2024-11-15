@@ -9,6 +9,19 @@ interface Repository {
   branches: string[];
 }
 
+const reorderBranches = (branches: string[]): string[] => {
+  const mainOrMaster = branches.find(
+    branch => branch === 'main' || branch === 'master',
+  );
+  if (mainOrMaster) {
+    return [
+      mainOrMaster,
+      ...branches.filter(branch => branch !== mainOrMaster),
+    ];
+  }
+  return branches;
+};
+
 const useGitHubRepository = () => {
   const githubToken = useRootStore(state => state.githubToken);
   const [repositories, setRepositories] = useState<Repository[]>([]);
@@ -35,7 +48,10 @@ const useGitHubRepository = () => {
               repo: repo.name,
             });
 
-            const branches = branchesData.map(branch => branch.name);
+            const branches = reorderBranches(
+              branchesData.map(branch => branch.name),
+            );
+
             return {
               name: repo.name,
               owner: repo.owner.login,

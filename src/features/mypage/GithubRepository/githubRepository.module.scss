@@ -31,7 +31,7 @@
       width: 17px;
       height: 17px;
       margin-right: 8px;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: colors.$primary;
 
       @include mixin.flex-default;
@@ -43,6 +43,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  max-height: 180px;
+  overflow-y: auto;
+
+  @include mixin.custom-scrollbar;
 }
 
 .card {
@@ -54,6 +58,13 @@
   border: 1px solid #d4d4d4;
   border-radius: 4px;
   transition: border-color 0.3s ease;
+}
+
+.branch {
+  max-height: 150px;
+  overflow-y: auto;
+
+  @include mixin.custom-scrollbar;
 }
 
 .branch-container {
