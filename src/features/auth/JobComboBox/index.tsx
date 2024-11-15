@@ -4,6 +4,7 @@ import {disassemble} from 'es-hangul';
 import {MouseEvent, useRef, useState} from 'react';
 
 import LabelWrapper from '@/components/common/LabelWrapper';
+import useClickOutside from '@/hooks/useClickOutside';
 import useJobs from '@/hooks/useJobs';
 import {Job} from '@/types/ableJ';
 
@@ -17,14 +18,13 @@ const JobComboBox = () => {
   const [selectedJob, setSelectedJob] = useState<Job['id']>();
   const [keyword, setKeyword] = useState('');
   const jobs = useJobs();
-  // useClickOutside(ref, () => setIsOpen(false));
+  useClickOutside(ref, () => setIsOpen(false));
 
   const handleSelectJob = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     const jobId = +e.currentTarget.value;
     setSelectedJob(jobId);
     setIsOpen(false);
-    console.log('event');
   };
 
   return (
