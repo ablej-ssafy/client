@@ -1,9 +1,10 @@
 import classNames from 'classnames/bind';
-import {useRef, useState} from 'react';
+import {useEffect, useMemo, useRef, useState} from 'react';
 import {DndProvider} from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend';
 
 import DragAndDrop from '@/components/common/DragAndDropItem';
+import useResumeOrder from '@/hooks/useResumeOrder';
 
 import styles from './dragAndDrop.module.scss';
 
@@ -17,69 +18,81 @@ interface Task {
 
 const cx = classNames.bind(styles);
 
-const tasks: Task[] = [
+const TASKS: Task[] = [
   {
-    id: 1,
+    id: 0,
     title: '프로필',
     essential: true,
     path: 'profile',
     serverKey: 'basic',
   },
   {
-    id: 2,
+    id: 1,
     title: '학력',
     essential: false,
     path: 'education',
     serverKey: 'education',
   },
   {
-    id: 3,
+    id: 2,
     title: '경력 및 분야',
     essential: false,
     path: 'experience',
     serverKey: 'company',
   },
   {
-    id: 4,
+    id: 3,
     title: '수상 및 활동',
     essential: false,
     path: 'activity',
     serverKey: 'activity',
   },
   {
-    id: 5,
+    id: 4,
     title: '기술스택',
     essential: false,
     path: 'skill',
     serverKey: 'tech',
   },
   {
-    id: 6,
+    id: 5,
     title: '프로젝트',
     essential: false,
     path: 'project',
     serverKey: 'project',
   },
   {
-    id: 7,
+    id: 6,
     title: '자격증',
     essential: false,
     path: 'license',
     serverKey: 'qualification',
   },
   {
-    id: 8,
+    id: 7,
     title: '어학성적',
     essential: false,
     path: 'language',
     serverKey: 'language',
   },
-];
+] as const;
 
 const DragAndDropMenu = () => {
-  // const resumeOrder = useResumeOrder();
+  const resumeOrder = useResumeOrder();
+  const sortedResume: Task[] = useMemo(() => {
+    const sortedArr = Array.from({length: TASKS.length}, (_, index) => ({
+      ...TASKS[index],
+    }));
+
+    for (const [sectionName, order] of Object.entries(resumeOrder)) {
+      sortedArr[order] = TASKS.find(task => task.serverKey === sectionName)!;
+    }
+
+    return sortedArr;
+  }, [resumeOrder]);
+
   const dndContextElement = useRef<HTMLDivElement>(null);
-  const [items, setItems] = useState(tasks);
+  const [items, setItems] = useState(sortedResume);
 
   const moveCardHandler = (dragIndex: number, hoverIndex: number) => {
     if (dragIndex === hoverIndex) return;
@@ -92,12 +105,19 @@ const DragAndDropMenu = () => {
     });
   };
 
+  // console.log('resumeOrder', resumeOrder);
+  console.log('sortedResume', sortedResume);
+
+  useEffect(() => {
+    setItems([...sortedResume]);
+  }, [sortedResume]);
+
   return (
-    <DndProvider
-      backend={HTML5Backend}
-      options={{rootElement: dndContextElement}}
-    >
-      <div className={cx('drag-and-drop')} ref={dndContextElement}>
+    <div className={cx('drag-and-drop')} ref={dndContextElement}>
+      <DndProvider
+        backend={HTML5Backend}
+        options={{rootElement: dndContextElement.current}}
+      >
         {items.map((item, index) => {
           return (
             <DragAndDrop
@@ -105,14 +125,15 @@ const DragAndDropMenu = () => {
               id={item.id}
               index={index}
               title={item.title}
+              serverKey={item.serverKey}
               essential={item.essential}
               path={item.path}
               moveCardHandler={moveCardHandler}
             />
           );
         })}
-      </div>
-    </DndProvider>
+      </DndProvider>
+    </div>
   );
 };
 

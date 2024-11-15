@@ -349,7 +349,7 @@ export default {
     data: ChangeResumeOrderForm,
     accessToken: AccessToken,
   ) => {
-    return httpClient.post<ResponseType<null>>('/resume/order', data, {
+    return httpClient.patch<ResponseType<null>>('/resume/order', data, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
