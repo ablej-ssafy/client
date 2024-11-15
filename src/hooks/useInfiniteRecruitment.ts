@@ -1,4 +1,5 @@
-import {getCookie} from 'cookies-next';
+import {getCookie, setCookie} from 'cookies-next';
+import {useRouter} from 'next/navigation';
 import {useEffect, useOptimistic, useState} from 'react';
 
 import deleteScrapAction from '@/actions/recruitment/deleteScrapAction';
@@ -51,6 +52,7 @@ const useInfiniteRecruitment = ({
   keyword,
   categoryId,
 }: UseInfinteRecruitmentProps) => {
+  const router = useRouter();
   const [fetchRecruitments, setFetchRecruitments] =
     useState<Search[]>(initialRecruitments);
   const [recruitments, addRecruitments] = useOptimistic(
@@ -66,6 +68,7 @@ const useInfiniteRecruitment = ({
   const [page, setPage] = useState(0);
   const [enable, setEnable] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  // const [isInfiniteLoading, setIsInfiniteLoading] = useState(false);
 
   useEffect(() => {
     setFetchRecruitments(initialRecruitments);
@@ -87,6 +90,8 @@ const useInfiniteRecruitment = ({
         setFetchRecruitments(prev => [...prev, ...content]);
         setPage(nextPage);
         setEnable(totalPages > nextPage);
+      } else {
+        setEnable(false);
       }
     } finally {
       setIsLoading(false);
@@ -94,6 +99,12 @@ const useInfiniteRecruitment = ({
   };
 
   const scrap = async ({recruitmentId, isScrap}: ScrapActionProps) => {
+    const accessToken = getCookie('accessToken');
+    if (!accessToken) {
+      setCookie('redirect_url', '');
+      router.push('/signin');
+      return;
+    }
     const newScrap = !isScrap;
     addRecruitments({recruitmentId, isScrap: newScrap});
 
