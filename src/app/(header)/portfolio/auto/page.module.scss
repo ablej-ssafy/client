@@ -25,15 +25,14 @@
 
   .info {
     position: fixed;
-    top: 100px;
-    left: 50%;
+    right: 20px;
+    bottom: 20px;
     z-index: 1;
     flex-direction: column;
     gap: 16px;
     padding: 24px 32px;
     background-color: rgb(255 255 255 / 85%);
     border-radius: 8px;
-    transform: translateX(-50%);
 
     @include mixins.flex-default;
 

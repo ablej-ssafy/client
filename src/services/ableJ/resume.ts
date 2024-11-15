@@ -355,4 +355,19 @@ export default {
       },
     });
   },
+  /**
+   * AI로 파싱된 이력서로 변경하는 함수
+   * @param accessToken 액세스 토큰
+   */
+  changeToAiParsedResume: async (accessToken: AccessToken) => {
+    return httpClient.post<ResponseType<null>>(
+      '/resume/auto/change',
+      undefined,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      },
+    );
+  },
 };

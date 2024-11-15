@@ -4,6 +4,7 @@ import Columns from '@/features/portfolio/components/Column';
 import DatePicker from '@/features/portfolio/components/DatePicker';
 import Divider from '@/features/portfolio/components/Divider';
 import Input from '@/features/portfolio/components/Input';
+import TextArea from '@/features/portfolio/components/TextArea';
 import {ExperienceInfo} from '@/types/ableJ';
 
 interface ProjectInfoSectionProps extends PropsWithChildren {
@@ -32,7 +33,7 @@ const ProjectInfoSection = ({
         defaultValue={project?.affiliation || ''}
         readOnly={readOnly}
       />
-      <Input
+      <TextArea
         isLabeled
         label="내용"
         name="description"
