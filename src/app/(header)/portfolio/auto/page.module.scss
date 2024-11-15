@@ -1,5 +1,5 @@
 @use '@/styles/constants/colors' as colors;
-@use '@/styles/mixin' as mixins;
+@use '@/styles/mixin' as mixin;
 
 .grid {
   position: relative;
@@ -35,7 +35,7 @@
     border-radius: 8px;
     transform: translateX(-50%);
 
-    @include mixins.flex-default;
+    @include mixin.flex-default;
 
     .info-text {
       font-size: 1.6rem;
