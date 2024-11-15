@@ -13,7 +13,7 @@ const GithubLogin = () => {
 
   const handleGitHubLogin = (): void => {
     router.push(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/github/authorize?redirect_url=http://localhost:3000/mypage/github`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/github/authorize?redirect_url=${process.env.NEXT_PUBLIC_BASE_URL}/mypage/github`,
     );
   };
 
