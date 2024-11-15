@@ -20,7 +20,7 @@ const GithubLogin = () => {
     <div className={styles.container}>
       <Image width={300} height={360} src={ReportImage} alt="레포트 이미지" />
       <div>
-        <p className={styles['slide-down']}>
+        <p className={styles.title}>
           프로젝트 분석 보고서를 받아보고 싶지 않으신가요?
         </p>
         <p className={styles.script}>

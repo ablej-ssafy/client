@@ -17,6 +17,8 @@
   & > div {
     padding-bottom: 40px;
 
+    @include slide.slide-down;
+
     .script {
       margin-bottom: 40px;
       font-size: 1.6rem;
@@ -39,13 +41,11 @@
         width: 28px;
       }
     }
+
+    .title {
+      margin-bottom: 20px;
+      font-size: 1.9rem;
+      font-weight: 500;
+    }
   }
-}
-
-.slide-down {
-  margin-bottom: 20px;
-  font-size: 1.9rem;
-  font-weight: 500;
-
-  @include slide.slide-down;
 }
