@@ -3,7 +3,7 @@ import Link from 'next/link';
 import {ReactNode} from 'react';
 
 import FilterSelect from '@/features/recommend/FilterSelect';
-import resumeService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 
 import styles from './layout.module.scss';
 
@@ -23,7 +23,7 @@ const RecommendLayout = async ({children}: {children: ReactNode}) => {
     );
   }
 
-  const {data} = await resumeService.getResumeList(token);
+  const {data} = await ableJ.getResumeList(token);
 
   return (
     <>

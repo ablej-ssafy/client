@@ -3,7 +3,7 @@ import {useOptimistic, useState} from 'react';
 
 import deleteScrapAction from '@/actions/recruitment/deleteScrapAction';
 import scrapAction from '@/actions/recruitment/scrapAction';
-import searchService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 import {Search} from '@/types/ableJ';
 
 interface UseInfinteRecruitmentProps {
@@ -25,7 +25,7 @@ const fetchData = async (
   const accessToken = getCookie('accessToken');
 
   if (keyword) {
-    const {data} = await searchService.recruitmentSearch({
+    const {data} = await ableJ.recruitmentSearch({
       keyword,
       page,
       accessToken,
@@ -34,7 +34,7 @@ const fetchData = async (
   }
 
   if (categoryId) {
-    const {data} = await searchService.getCategoryRecruitment({
+    const {data} = await ableJ.getCategoryRecruitment({
       categoryId: +categoryId,
       page,
       accessToken,
@@ -42,7 +42,7 @@ const fetchData = async (
     return data;
   }
 
-  const {data} = await searchService.getAllRecruitment({accessToken, page});
+  const {data} = await ableJ.getAllRecruitment({accessToken, page});
   return data;
 };
 

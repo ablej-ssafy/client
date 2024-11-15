@@ -1,13 +1,13 @@
 import {cookies} from 'next/headers';
 
 import NoSearchText from '@/features/search/NoSearchText';
-import searchService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 
 const fetchKeyword = async () => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get('accessToken')?.value;
 
-  const {data} = await searchService.getRankSearch(accessToken);
+  const {data} = await ableJ.getRankSearch(accessToken);
 
   return data;
 };

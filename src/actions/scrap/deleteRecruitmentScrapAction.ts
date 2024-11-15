@@ -4,7 +4,7 @@ import {revalidateTag} from 'next/cache';
 import {cookies} from 'next/headers';
 import {redirect} from 'next/navigation';
 
-import recruitmentService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 
 const deleteRecruitmentScrapAction = async (formData: FormData) => {
   const recruitmentIdRaw = formData.get('recruitmentId');
@@ -23,7 +23,7 @@ const deleteRecruitmentScrapAction = async (formData: FormData) => {
     redirect('/signin');
   }
 
-  await recruitmentService.deleteScrapRecruitment(recruitmentId, accessToken);
+  await ableJ.deleteScrapRecruitment(recruitmentId, accessToken);
 
   if (tag) {
     revalidateTag(tag as string);
