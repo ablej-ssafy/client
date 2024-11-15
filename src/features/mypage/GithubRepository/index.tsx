@@ -1,5 +1,6 @@
 'use client';
 
+import {useRouter} from 'next/navigation';
 import React, {useState} from 'react';
 
 import resumeUpdateAction from '@/actions/github/analysisGitHubAction';
@@ -14,7 +15,7 @@ const GitHubRepository = () => {
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
   const [selectedBranch, setSelectedBranch] = useState<string | null>(null);
   const [branches, setBranches] = useState<string[]>([]);
-  const [, setResultMessage] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleRepoSelect = (repoName: string) => {
     setSelectedRepo(repoName);
@@ -43,11 +44,11 @@ const GitHubRepository = () => {
           githubToken,
         );
 
-        setResultMessage(
-          response.success
-            ? 'GitHub analysis request was successful.'
-            : 'GitHub analysis request failed.',
-        );
+        if (response.success) {
+          router.push(
+            `/mypage/github/result?project=${encodeURIComponent(selectedRepo)}`,
+          );
+        }
       }
     }
   };
@@ -70,11 +71,11 @@ const GitHubRepository = () => {
             <div
               key={repo.name}
               className={`${styles.card} ${
-                selectedRepo === repo.name ? styles.selected : ''
+                selectedRepo === repo.name && styles.selected
               }`}
               onClick={() => handleRepoSelect(repo.name)}
             >
-              {repo.name}
+              {`${repo.owner} / ${repo.name}`}
             </div>
           ))
         ) : (
@@ -93,7 +94,7 @@ const GitHubRepository = () => {
                 <div
                   key={branch}
                   className={`${styles['branch-card']} ${
-                    selectedBranch === branch ? styles.selected : ''
+                    selectedBranch === branch && styles.selected
                   }`}
                   onClick={() => handleBranchSelect(branch)}
                 >
