@@ -2,7 +2,7 @@
 
 import {cookies} from 'next/headers';
 
-import recruitmentService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 
 const deleteScrapAction = async (
   recruitmentId: number,
@@ -16,10 +16,7 @@ const deleteScrapAction = async (
   }
 
   try {
-    const response = await recruitmentService.deleteScrapRecruitment(
-      recruitmentId,
-      token,
-    );
+    const response = await ableJ.deleteScrapRecruitment(recruitmentId, token);
     return {success: response.status === 204};
   } catch (error) {
     console.error('스크랩 취소 중 api 오류:', error);

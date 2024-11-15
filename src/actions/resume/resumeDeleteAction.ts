@@ -2,7 +2,7 @@
 
 import {cookies} from 'next/headers';
 
-import resumeService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 
 const resumeDeleteAction = async (
   resumeId: number,
@@ -16,7 +16,7 @@ const resumeDeleteAction = async (
   }
 
   try {
-    const response = await resumeService.resumeDelete(resumeId, token);
+    const response = await ableJ.resumeDelete(resumeId, token);
     return {success: response.status === 204};
   } catch (error) {
     console.error('파일 삭제 중 api 오류:', error);

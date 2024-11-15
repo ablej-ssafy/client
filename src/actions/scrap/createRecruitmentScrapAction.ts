@@ -4,7 +4,7 @@ import {revalidateTag} from 'next/cache';
 import {cookies} from 'next/headers';
 import {redirect} from 'next/navigation';
 
-import recruitmentService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 
 const createRecruitmentScrapAction = async (formData: FormData) => {
   const recruitmentIdRaw = formData.get('recruitmentId');
@@ -23,10 +23,7 @@ const createRecruitmentScrapAction = async (formData: FormData) => {
     redirect('/signin');
   }
 
-  const response = await recruitmentService.scrapRecruitment(
-    recruitmentId,
-    accessToken,
-  );
+  const response = await ableJ.scrapRecruitment(recruitmentId, accessToken);
 
   if (!response.success) {
     throw new Error('스크랩에 실패했습니다.');

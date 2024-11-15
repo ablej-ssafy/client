@@ -1,7 +1,7 @@
 import {getCookie} from 'cookies-next';
 import {useCallback, useEffect, useState} from 'react';
 
-import recruitmentService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 import {useRootStore} from '@/zustand/rootStore';
 
 interface UseFetchRecruitmentsProps {
@@ -20,7 +20,7 @@ const useFetchRecruitments = ({resumeId}: UseFetchRecruitmentsProps) => {
     setLoading(true);
 
     try {
-      const {data} = await recruitmentService.getRecommendedRecruitments(
+      const {data} = await ableJ.getRecommendedRecruitments(
         Number(resumeId),
         accessToken,
       );

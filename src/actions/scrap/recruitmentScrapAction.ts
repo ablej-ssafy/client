@@ -4,7 +4,7 @@ import {revalidatePath, revalidateTag} from 'next/cache';
 import {cookies} from 'next/headers';
 import {redirect} from 'next/navigation';
 
-import recruitmentService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 
 const recruitmentScrapAction = async (formData: FormData) => {
   const recruitmentIdRaw = formData.get('recruitmentId');
@@ -27,12 +27,9 @@ const recruitmentScrapAction = async (formData: FormData) => {
   }
 
   if (isScrap) {
-    await recruitmentService.deleteScrapRecruitment(recruitmentId, accessToken);
+    await ableJ.deleteScrapRecruitment(recruitmentId, accessToken);
   } else {
-    const response = await recruitmentService.scrapRecruitment(
-      recruitmentId,
-      accessToken,
-    );
+    const response = await ableJ.scrapRecruitment(recruitmentId, accessToken);
 
     if (!response.success) {
       throw new Error('스크랩에 실패했습니다.');

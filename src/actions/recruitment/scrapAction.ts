@@ -2,7 +2,7 @@
 
 import {cookies} from 'next/headers';
 
-import recruitmentService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 
 const ScrapAction = async (
   recruitmentId: number,
@@ -16,10 +16,7 @@ const ScrapAction = async (
   }
 
   try {
-    const response = await recruitmentService.scrapRecruitment(
-      recruitmentId,
-      token,
-    );
+    const response = await ableJ.scrapRecruitment(recruitmentId, token);
     return {success: response.code === 200};
   } catch (error) {
     console.error('스크랩 중 api 오류:', error);

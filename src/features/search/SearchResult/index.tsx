@@ -3,7 +3,7 @@ import {cookies} from 'next/headers';
 import CategoryBox from '@/features/search/CategoryBox';
 import ResultBox from '@/features/search/ResultBox';
 import SearchInput from '@/features/search/SearchInput';
-import searchService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 
 import styles from './searchResult.module.scss';
 
@@ -17,7 +17,7 @@ const fetchData = async (keyword?: string, categoryId?: number) => {
   const accessToken = cookieStore.get('accessToken')?.value;
 
   if (keyword) {
-    const {data} = await searchService.recruitmentSearch({
+    const {data} = await ableJ.recruitmentSearch({
       keyword,
       accessToken,
     });
@@ -25,14 +25,14 @@ const fetchData = async (keyword?: string, categoryId?: number) => {
   }
 
   if (categoryId) {
-    const {data} = await searchService.getCategoryRecruitment({
+    const {data} = await ableJ.getCategoryRecruitment({
       categoryId: +categoryId,
       accessToken,
     });
     return data;
   }
 
-  const {data} = await searchService.getAllRecruitment({accessToken});
+  const {data} = await ableJ.getAllRecruitment({accessToken});
   return data;
 };
 
