@@ -12,8 +12,7 @@ import styles from './page.module.scss';
 const GithubPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const githubToken = useRootStore(state => state.githubToken);
-  const setGithubToken = useRootStore(state => state.setGithubToken);
+  const {githubToken, setGithubToken} = useRootStore(state => state);
 
   useEffect(() => {
     const accessToken = searchParams.get('accessToken');
