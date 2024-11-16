@@ -1,5 +1,3 @@
-'use client';
-
 import PopularSearch from '@/features/search/PopularSearch';
 import RecentSearch from '@/features/search/RecentSearch';
 import SearchInput from '@/features/search/SearchInput';

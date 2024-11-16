@@ -32,7 +32,7 @@ const useFetchRankSearchText = () => {
     fetchRanks();
   }, [fetchRanks]);
 
-  return {ranks, loading};
+  return {ranks, loading, refetch: fetchRanks};
 };
 
 export default useFetchRankSearchText;

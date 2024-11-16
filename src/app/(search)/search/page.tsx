@@ -1,26 +1,16 @@
-'use client';
+import {cookies} from 'next/headers';
 
 import NoSearchText from '@/features/search/NoSearchText';
-import useFetchRankSearchText from '@/hooks/useFetchRankSearchText';
+import ableJ from '@/services/ableJ';
 
-import styles from './layout.module.scss';
+const SearchPage = async () => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get('accessToken')?.value;
 
-const SearchPage = () => {
-  const {ranks, loading} = useFetchRankSearchText();
+  const {data: ranks} = await ableJ.getRankSearch(accessToken);
 
   return (
-    <>
-      {loading ? (
-        <div className={styles['load-container']}>
-          <div className={styles.loader}></div>
-        </div>
-      ) : (
-        <NoSearchText
-          ranks={ranks.ranks}
-          recentKeywords={ranks.recentKeywords}
-        />
-      )}
-    </>
+    <NoSearchText ranks={ranks.ranks} recentKeywords={ranks.recentKeywords} />
   );
 };
 

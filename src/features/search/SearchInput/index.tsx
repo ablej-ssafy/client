@@ -13,7 +13,7 @@ interface SearchInputProps {
 }
 
 const SearchInput = ({keyword}: SearchInputProps) => {
-  const [inputValue, setInputValue] = useState(keyword);
+  const [inputValue, setInputValue] = useState(keyword || '');
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const router = useRouter();
 
