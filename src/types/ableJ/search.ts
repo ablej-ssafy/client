@@ -22,6 +22,7 @@ export interface RankContent {
   keyword: string;
 }
 
+export type ScrapListResponse = ResponseType<Search[]>;
 export type SearchResponse = ResponseType<Paging<Search[]>>;
 export type RankSearchResponse = ResponseType<RankSearch>;
 export type AutoSearchResponse = ResponseType<string[]>;
