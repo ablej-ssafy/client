@@ -1,7 +1,7 @@
 import {cookies} from 'next/headers';
-import Link from 'next/link';
 import {ReactNode} from 'react';
 
+import redirectAction from '@/actions/redirectAction';
 import FilterSelect from '@/features/recommend/FilterSelect';
 import ableJ from '@/services/ableJ';
 
@@ -15,10 +15,11 @@ const RecommendLayout = async ({children}: {children: ReactNode}) => {
     return (
       <>
         <FilterSelect data={[]} />
-        <div className={styles.container}>
+        <form className={styles.container} action={redirectAction}>
           <div>로그인 후 이용 가능한 서비스 입니다.</div>
-          <Link href="/signin">로그인 하러 가기</Link>
-        </div>
+          <input type="hidden" name="redirectUrl" value="/recommend" />
+          <button type="submit">로그인 하러 가기</button>
+        </form>
       </>
     );
   }

@@ -15,14 +15,9 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const getCompanyRecruitmentScrap = async (
   recruitmentIds: number[],
   companyId: number,
-) => {
+): Promise<number[]> => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get('accessToken')?.value;
-
-  if (!accessToken) {
-    console.log('accessToken이 없습니다.');
-    return;
-  }
   const params = new URLSearchParams();
   params.append('recruitmentIds', recruitmentIds.join(','));
   const response = await fetch(

@@ -3,12 +3,22 @@ import {NextRequest, NextResponse} from 'next/server';
 
 import ableJ from '@/services/ableJ';
 
+import {AUTH_REDIRECT_KEY} from './constants/cookie';
+
 export const middleware = async (request: NextRequest) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get('accessToken')?.value;
 
   if (!accessToken) {
-    return NextResponse.redirect(new URL('/signin', request.url));
+    const response = NextResponse.redirect(new URL('/signin', request.url));
+
+    response.cookies.set(AUTH_REDIRECT_KEY, request.nextUrl.pathname, {
+      httpOnly: false,
+      path: '/',
+      maxAge: 60 * 5,
+    });
+
+    return response;
   }
 
   const response = await ableJ.getProfile(accessToken);
@@ -21,5 +31,5 @@ export const middleware = async (request: NextRequest) => {
 };
 
 export const config = {
-  matcher: ['/resume', '/mypage/github'],
+  matcher: ['/resume', '/portfolio', '/mypage/github'],
 };

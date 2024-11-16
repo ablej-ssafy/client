@@ -1,6 +1,7 @@
 'use client';
 
 import classNames from 'classnames/bind';
+import {getCookie} from 'cookies-next';
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 import {useEffect} from 'react';
@@ -11,6 +12,7 @@ import {RiKakaoTalkFill} from 'react-icons/ri';
 
 import loginAction from '@/actions/loginAction';
 import Input from '@/components/common/Input';
+import {AUTH_REDIRECT_KEY} from '@/constants/cookie';
 import Index from '@/features/auth/SocialIcon';
 
 import styles from './loginStep.module.scss';
@@ -36,7 +38,8 @@ const LoginStep = ({isModal = false}: LoginStepProps) => {
   useEffect(() => {
     if (!state.success) return;
     toast.success('로그인 되었습니다.');
-    router.back();
+    const redirectUrl = getCookie(AUTH_REDIRECT_KEY);
+    router.push(redirectUrl || '/');
   }, [router, state]);
 
   return (

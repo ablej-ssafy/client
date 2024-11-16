@@ -4,6 +4,7 @@ import {revalidatePath, revalidateTag} from 'next/cache';
 import {cookies} from 'next/headers';
 import {redirect} from 'next/navigation';
 
+import {AUTH_REDIRECT_KEY} from '@/constants/cookie';
 import ableJ from '@/services/ableJ';
 
 const recruitmentScrapAction = async (formData: FormData) => {
@@ -18,12 +19,16 @@ const recruitmentScrapAction = async (formData: FormData) => {
 
   const recruitmentId = Number(recruitmentIdRaw);
   const isScrap = isScrapRaw === 'true';
+  const cookieStore = cookies();
 
-  const accessToken = cookies().get('accessToken')?.value;
+  const accessToken = cookieStore.get('accessToken')?.value;
 
   if (!accessToken) {
     console.log('Access Token이 없습니다.');
-    redirect('/signin');
+    cookies().set(AUTH_REDIRECT_KEY, `/recruitments/${recruitmentId}`, {
+      maxAge: 60 * 5,
+    });
+    redirect('/(.)signin');
   }
 
   if (isScrap) {
