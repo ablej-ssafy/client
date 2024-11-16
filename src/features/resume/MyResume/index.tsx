@@ -1,7 +1,7 @@
 import {cookies} from 'next/headers';
 
 import MyResumeCard from '@/features/resume/MyResumeCard';
-import resumeService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 import {getTodayDate} from '@/utils/date';
 
 import styles from './myResume.module.scss';
@@ -15,7 +15,7 @@ const MyResume = async () => {
     return;
   }
 
-  const {data} = await resumeService.getResumeList(token);
+  const {data} = await ableJ.getResumeList(token);
 
   return (
     <div className={styles.container}>

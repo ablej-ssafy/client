@@ -1,13 +1,13 @@
 import debounce from 'lodash/debounce';
 import {useCallback, useEffect, useMemo, useState} from 'react';
 
-import searchService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 
 const useAutoSearch = (keyword: string) => {
   const [autoSearchText, setAutoSearchText] = useState<string[]>([]);
 
   const fetchAutoSearch = useCallback(async () => {
-    const {data} = await searchService.getAutoSearchKeyword(keyword);
+    const {data} = await ableJ.getAutoSearchKeyword(keyword);
     setAutoSearchText([...data]);
   }, [keyword]);
 

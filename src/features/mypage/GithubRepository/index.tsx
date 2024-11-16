@@ -1,150 +1,143 @@
 'use client';
 
-import {Octokit} from '@octokit/rest';
+import {useRouter} from 'next/navigation';
 import React, {useEffect, useState} from 'react';
 
 import resumeUpdateAction from '@/actions/github/analysisGitHubAction';
+import useGithubRepository from '@/hooks/useGithubRepository';
 import {useRootStore} from '@/zustand/rootStore';
 
-interface Repository {
-  name: string;
+import styles from './githubRepository.module.scss';
+
+type SelectedRepo = {
   owner: string;
-  branches: string[];
-}
+  name: string;
+  branch: string;
+};
 
 const GitHubRepository = () => {
-  const accessToken = useRootStore(state => state.gitHubToken);
-  const [repositories, setRepositories] = useState<Repository[]>([]);
-  const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
-  const [selectedBranch, setSelectedBranch] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const githubToken = useRootStore(state => state.githubToken);
+  const {repositories, loading} = useGithubRepository();
+  const [selectedRepo, setSelectedRepo] = useState<SelectedRepo | null>(null);
   const [branches, setBranches] = useState<string[]>([]);
-  const [resultMessage, setResultMessage] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
-    const fetchRepositories = async () => {
-      if (!accessToken) {
-        setLoading(false);
-        return;
-      }
+    if (repositories.length > 0 && !selectedRepo) {
+      const firstRepo = repositories[0];
 
-      const octokit = new Octokit({
-        auth: `Bearer ${accessToken}`,
+      setSelectedRepo({
+        owner: firstRepo.owner,
+        name: firstRepo.name,
+        branch: firstRepo.branches[0],
       });
+      setBranches(firstRepo.branches);
+    }
+  }, [repositories]);
 
-      try {
-        const {data: repos} = await octokit.repos.listForAuthenticatedUser();
+  const handleRepoSelect = (repoOwner: string, repoName: string) => {
+    const selectedRepo = repositories.find(
+      repo => repo.owner === repoOwner && repo.name === repoName,
+    );
 
-        const repositoriesWithBranches: Repository[] = await Promise.all(
-          repos.map(async repo => {
-            const {data: branchesData} = await octokit.repos.listBranches({
-              owner: repo.owner.login,
-              repo: repo.name,
-            });
-
-            const branches = branchesData.map(branch => branch.name);
-            return {
-              name: repo.name,
-              owner: repo.owner.login,
-              branches,
-            };
-          }),
-        );
-
-        setRepositories(repositoriesWithBranches);
-      } catch (error) {
-        console.error('Failed to fetch repositories:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRepositories();
-  }, [accessToken]);
-
-  const handleRepoChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const repoName = event.target.value;
-    setSelectedRepo(repoName);
-    setSelectedBranch(null);
-    const selectedRepo = repositories.find(repo => repo.name === repoName);
     if (selectedRepo) {
+      setSelectedRepo({
+        owner: repoOwner,
+        name: repoName,
+        branch: selectedRepo.branches[0],
+      });
       setBranches(selectedRepo.branches);
     }
   };
 
-  const handleBranchChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedBranch(event.target.value);
+  const handleBranchSelect = (branchName: string) => {
+    setSelectedRepo(prev => prev && {...prev, branch: branchName});
   };
 
   const handleButtonClick = async () => {
-    if (selectedRepo && selectedBranch && accessToken) {
-      const selectedRepository = repositories.find(
-        repo => repo.name === selectedRepo,
+    if (selectedRepo && githubToken) {
+      const response = await resumeUpdateAction(
+        selectedRepo.owner,
+        selectedRepo.name,
+        selectedRepo.branch,
+        githubToken,
       );
 
-      if (selectedRepository) {
-        const response = await resumeUpdateAction(
-          selectedRepository.owner,
-          selectedRepository.name,
-          selectedBranch,
-          accessToken,
+      if (response.success) {
+        router.push(
+          `/mypage/github/result?project=${encodeURIComponent(
+            `${selectedRepo.owner}/${selectedRepo.name}`,
+          )}`,
         );
-
-        if (response.success) {
-          setResultMessage('GitHub analysis request was successful.');
-        } else {
-          setResultMessage('GitHub analysis request failed.');
-        }
       }
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className={styles['load-container']}>
+        <div className={styles.loader}></div>
+      </div>
+    );
 
   return (
-    <div>
-      <h2>GitHub Repository Selector</h2>
+    <div className={styles.container}>
+      <h3>
+        <span>1</span>분석할 Repository를 선택해주세요
+      </h3>
+      <div className={styles['card-container']}>
+        {repositories.length > 0 ? (
+          repositories.map(repo => (
+            <div
+              key={`${repo.owner} / ${repo.name}`}
+              className={`${styles.card} ${
+                selectedRepo &&
+                selectedRepo.owner === repo.owner &&
+                selectedRepo.name === repo.name &&
+                styles.selected
+              }`}
+              onClick={() => handleRepoSelect(repo.owner, repo.name)}
+            >
+              {`${repo.owner} / ${repo.name}`}
+            </div>
+          ))
+        ) : (
+          <div className={styles['empty-message']}>Repository가 없습니다</div>
+        )}
+      </div>
 
-      <label>
-        Select Repository:
-        <select value={selectedRepo || ''} onChange={handleRepoChange}>
-          <option value="" disabled>
-            -- Select a Repository --
-          </option>
-          {repositories.map(repo => (
-            <option key={repo.name} value={repo.name}>
-              {repo.name}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <label>
-        Select Branch:
-        <select
-          value={selectedBranch || ''}
-          onChange={handleBranchChange}
-          disabled={!selectedRepo}
-        >
-          <option value="" disabled>
-            -- Select a Branch --
-          </option>
-          {branches.map(branch => (
-            <option key={branch} value={branch}>
-              {branch}
-            </option>
-          ))}
-        </select>
-      </label>
+      {selectedRepo && (
+        <div className={styles['branch-container']}>
+          <h3>
+            <span>2</span>분석할 Branch를 선택해주세요
+          </h3>
+          <div className={styles.branch}>
+            {branches.length > 0 ? (
+              branches.map(branch => (
+                <div
+                  key={branch}
+                  className={`${styles['branch-card']} ${
+                    selectedRepo.branch === branch && styles.selected
+                  }`}
+                  onClick={() => handleBranchSelect(branch)}
+                >
+                  {branch}
+                </div>
+              ))
+            ) : (
+              <div className={styles['empty-message']}>Branch가 없습니다</div>
+            )}
+          </div>
+        </div>
+      )}
 
       <button
         onClick={handleButtonClick}
-        disabled={!selectedRepo || !selectedBranch}
+        disabled={!selectedRepo}
+        className={`${styles.btn} ${selectedRepo ? styles['btn-active'] : ''}`}
       >
-        Confirm Selection
+        분석하기
       </button>
-
-      {resultMessage && <p>{resultMessage}</p>}
     </div>
   );
 };

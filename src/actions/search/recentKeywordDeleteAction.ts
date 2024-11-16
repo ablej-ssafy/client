@@ -2,7 +2,7 @@
 
 import {cookies} from 'next/headers';
 
-import searchService from '@/services/ableJ';
+import ableJ from '@/services/ableJ';
 
 const recentKeywordDeleteAction = async (
   keyword: string,
@@ -16,10 +16,7 @@ const recentKeywordDeleteAction = async (
   }
 
   try {
-    const response = await searchService.deleteRecentSearch(
-      keyword,
-      accessToken,
-    );
+    const response = await ableJ.deleteRecentSearch(keyword, accessToken);
     return {success: response.status === 204};
   } catch (error) {
     console.error('최근 검색어 삭제 중 api 오류:', error);
