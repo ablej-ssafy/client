@@ -24,12 +24,12 @@
 
 .scrap-button {
   display: none;
-  cursor: pointer;
 }
 
 .submit-button {
   width: 100%;
   height: 100%;
+  cursor: pointer;
 
   @include mixin.flex-default;
 }
