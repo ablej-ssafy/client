@@ -27,15 +27,22 @@
     &.active {
       background-color: #efeef3;
     }
+  }
 
-    &.loading::after {
-      @include loader.loader-animation;
+  .loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
 
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      content: '';
-      transform: translate(-50%, -50%);
+    .loading-description {
+      position: absolute;
+      font-size: 1.6rem;
+      color: colors.$gray4;
+      transform: translateY(calc(50% - 130px));
     }
   }
 }

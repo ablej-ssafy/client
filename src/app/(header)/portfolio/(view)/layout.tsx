@@ -6,6 +6,7 @@ import {useRouter} from 'next/navigation';
 import {DragEvent, PropsWithChildren, useState} from 'react';
 import toast from 'react-hot-toast';
 
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 import DragAndDropMenu from '@/features/portfolio/components/DragAndDropMenu';
 import ableJ from '@/services/ableJ';
 
@@ -56,7 +57,7 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
   return (
     <div className={cx('container')}>
       <main
-        className={cx('main', {active: isActive}, {loading: isLoading})}
+        className={cx('main', {active: isActive})}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
@@ -67,6 +68,14 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
       <aside className={cx('sidebar')}>
         <DragAndDropMenu />
       </aside>
+      {isLoading && (
+        <div className={cx('loading')}>
+          <p className={cx('loading-description')}>
+            이력서 데이터를 AI가 읽고 있습니다
+          </p>
+          <LoadingSpinner />
+        </div>
+      )}
     </div>
   );
 };
