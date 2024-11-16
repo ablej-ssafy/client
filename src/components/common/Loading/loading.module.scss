@@ -8,6 +8,8 @@
   height: calc(100vh - 280px);
   font-size: 1.8rem;
 
+  @include mixin.flex-default;
+
   @media (width >= 1500px) {
     width: 1300px;
     margin: 0 auto 30px;
@@ -16,6 +18,8 @@
   @media (width < 600px) {
     margin-top: 18px;
   }
+}
 
-  @include mixin.flex-default;
+.loader {
+  @include animations.loader-animation;
 }

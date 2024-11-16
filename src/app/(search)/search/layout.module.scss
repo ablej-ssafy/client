@@ -1,3 +1,6 @@
+@use '@/styles/mixin' as mixin;
+@use '@/styles/animations/loader' as animations;
+
 .child-container {
   padding: 35px 100px;
 
@@ -16,4 +19,18 @@
   @media (width <= 430px) {
     padding: 28px 16px;
   }
+}
+
+.load-container {
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  height: calc(100vh - 280px);
+  font-size: 1.8rem;
+
+  @include mixin.flex-default;
+}
+
+.loader {
+  @include animations.loader-animation;
 }

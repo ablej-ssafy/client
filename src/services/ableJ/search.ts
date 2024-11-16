@@ -59,6 +59,18 @@ export default {
   },
 
   /**
+   * 최근 검색어를 전체 삭제하는 함수
+   * @param accessToken 액세스 토큰
+   */
+  deleteAllRecentSearch: async (accessToken: string) => {
+    return httpClient.delete('/search/all', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+
+  /**
    * 자동완성 검색어를 조회하는 함수
    * @param keyword 키워드
    */

@@ -1,5 +1,6 @@
 'use client';
 
+import recentKeywordAllDeleteAction from '@/actions/search/recentKeywordAllDeleteAction';
 import RecentSearchTag from '@/features/search/RecentSearchTag';
 import {RankContent} from '@/types/ableJ';
 
@@ -10,11 +11,17 @@ interface RecentSearchProps {
 }
 
 const RecentSearch = ({keywords}: RecentSearchProps) => {
+  const haneleDeleteAll = async () => {
+    await recentKeywordAllDeleteAction();
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles['recent-title']}>
         <span className={styles['recent-text']}>최근 검색어</span>
-        <span className={styles['delete-text']}>전체 삭제</span>
+        <span className={styles['delete-text']} onClick={haneleDeleteAll}>
+          전체 삭제
+        </span>
       </div>
       <div className={styles['recent-tag']}>
         {keywords.length > 0 ? (
