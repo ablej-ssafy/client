@@ -47,7 +47,7 @@ const ResultBox = ({
     const index = rowIndex * 3 + columnIndex;
     const recruitment = recruitments[index];
 
-    if (!recruitment) return null;
+    if (!recruitment) return <div></div>;
 
     return (
       <div
@@ -58,6 +58,7 @@ const ResultBox = ({
         }}
       >
         <CompanyRecruitmentCard
+          key={`${recruitment.recruitmentId}-${index}`}
           recruitmentId={recruitment.recruitmentId}
           name={recruitment.name}
           thumbnail={recruitment.thumbnail}
@@ -79,22 +80,18 @@ const ResultBox = ({
       <p className={styles['result-count']}>
         총 {recruitments.length}개의 채용 공고가 있습니다.
       </p>
-      <div>
+      <div style={{width: '100%', height: '150vh'}}>
         <InfiniteLoader
           isRowLoaded={isRowLoaded}
           loadMoreRows={loadMoreRows}
           rowCount={hasMore ? recruitments.length + 3 : recruitments.length}
         >
           {({onRowsRendered, registerChild}) => (
-            <AutoSizer
-              style={{
-                width: '100%',
-                height: '70vh',
-              }}
-            >
+            <AutoSizer>
               {({height, width}) => {
                 return (
                   <Grid
+                    key={recruitments.length}
                     ref={registerChild}
                     onSectionRendered={({rowStartIndex, rowStopIndex}) => {
                       onRowsRendered({

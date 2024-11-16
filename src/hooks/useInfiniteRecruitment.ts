@@ -75,6 +75,7 @@ const useInfiniteRecruitment = ({
   }, [initialRecruitments]);
 
   const fetchNextPage = useCallback(async () => {
+    console.log('run this', enable, page);
     setIsLoading(true);
 
     try {

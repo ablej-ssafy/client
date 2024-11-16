@@ -12,7 +12,7 @@ interface ScrapButtonProps {
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const getScrapStatus = async (recruitmentId: number) => {
+const getScrapStatus = async (recruitmentId: number): Promise<boolean> => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get('accessToken')?.value;
   const response = await fetch(
@@ -28,7 +28,6 @@ const getScrapStatus = async (recruitmentId: number) => {
   );
 
   const {data}: ScrapResponse = await response.json();
-
   return data;
 };
 

@@ -23,7 +23,7 @@ const recruitmentScrapAction = async (formData: FormData) => {
 
   if (!accessToken) {
     console.log('Access Token이 없습니다.');
-    redirect('/signin');
+    redirect('/(.)signin');
   }
 
   if (isScrap) {
