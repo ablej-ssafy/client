@@ -3,10 +3,10 @@
 
 .title {
   align-self: flex-start;
-  padding: 0.2rem 1.2rem;
-  border-radius: 0.5rem;
+  padding: 2px 8px;
+  border-radius: 4px;
 
-  @include mixin.text-bold(600, 1.8rem);
+  @include mixin.text-bold(600, 1.4rem);
 }
 
 .primary {

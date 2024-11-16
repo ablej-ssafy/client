@@ -5,8 +5,8 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 3rem;
-  padding-bottom: 20px;
-  margin-top: 15px;
+  padding-bottom: 36px;
+  margin-top: 32px;
   border-bottom: 1px solid colors.$gray2;
 
   @media (width <= 932px) {

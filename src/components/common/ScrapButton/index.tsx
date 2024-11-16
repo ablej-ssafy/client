@@ -55,9 +55,9 @@ const ScrapButton = async ({recruitmentId}: ScrapButtonProps) => {
         />
         <span className={styles.scrap}>스크랩</span>
         {isScrap ? (
-          <MdBookmark size={25} color="white" />
+          <MdBookmark size={23} color="white" />
         ) : (
-          <MdBookmarkBorder size={25} color="white" />
+          <MdBookmarkBorder size={23} color="white" />
         )}
       </label>
     </form>
