@@ -19,8 +19,6 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
   const [isLoading, setIsLoading] = useState(false);
   const accessToken = getCookie('accessToken');
 
-  if (!accessToken) router.replace('/signin');
-
   const handleDragEnter = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsActive(true);

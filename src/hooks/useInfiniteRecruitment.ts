@@ -101,7 +101,7 @@ const useInfiniteRecruitment = ({
   const scrap = async ({recruitmentId, isScrap}: ScrapActionProps) => {
     const accessToken = getCookie('accessToken');
     if (!accessToken) {
-      setCookie('redirect_url', '');
+      setCookie(process.env.NEXT_PUBLIC_AUTH_REDIRECT_KEY || '', '');
       router.push('/signin');
       return;
     }
