@@ -14,10 +14,7 @@ interface SocialIconProps {
 
 const SocialIcon = ({children, social}: SocialIconProps) => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  const host =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : 'https://noteme.kro.kr';
+  const host = process.env.NEXT_PUBLIC_BASE_URL;
 
   const REDIRECT_URI = `${host}/callback/auth`;
 

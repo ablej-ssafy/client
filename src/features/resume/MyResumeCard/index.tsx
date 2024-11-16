@@ -51,7 +51,7 @@ const MyResumeCard = ({id, url, title, date, type}: ResumeCardProps) => {
           {type ? (
             <div className={styles.self}>{type}</div>
           ) : (
-            <div className={styles.default}>기본 이력서</div>
+            <div className={styles.default}>이력서</div>
           )}
           <div
             onClick={e => {
