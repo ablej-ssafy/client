@@ -25,6 +25,11 @@
       padding: 2rem 1rem;
       background-color: colors.$white;
       border-radius: layout.$border_button;
+      box-shadow:
+        0 39px 16px rgb(191 191 191 / 1%),
+        0 22px 13px rgb(191 191 191 / 5%),
+        0 10px 10px rgb(191 191 191 / 9%),
+        0 2px 5px rgb(191 191 191 / 10%);
 
       .toggle-button {
         display: flex;
@@ -39,6 +44,7 @@
       &:not(:first-child) {
         margin-top: 10px;
         background-color: transparent;
+        box-shadow: none;
       }
 
       .template-button {
