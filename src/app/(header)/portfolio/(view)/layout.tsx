@@ -3,6 +3,7 @@
 import classNames from 'classnames/bind';
 import {getCookie} from 'cookies-next';
 import {useRouter} from 'next/navigation';
+import type {MouseEvent} from 'react';
 import {ChangeEvent, DragEvent, PropsWithChildren, useState} from 'react';
 import toast from 'react-hot-toast';
 
@@ -10,8 +11,10 @@ import toggleResumeVisibilityAction from '@/actions/resume/toggleResumeVisibilit
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import ToggleButton from '@/components/common/ToggleButton';
 import DragAndDropMenu from '@/features/portfolio/components/DragAndDropMenu';
+import TemplateModal from '@/features/portfolio/components/TemplateModal';
 import useResumeInfo from '@/hooks/useResumeInfo';
 import ableJ from '@/services/ableJ';
+import {ResumeTemplateType} from '@/types/ableJ';
 
 import styles from './layout.module.scss';
 
@@ -22,6 +25,7 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
   const {resumeInfo, fetchResumeInfo} = useResumeInfo();
   const [isActive, setIsActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isTemplateOpen, setIsTemplateOpen] = useState(false);
   const accessToken = getCookie('accessToken');
 
   if (!accessToken) router.replace('/signin');
@@ -75,6 +79,12 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
     await fetchResumeInfo();
   };
 
+  const handleSelectedTemplate = async (e: MouseEvent<HTMLButtonElement>) => {
+    const selectedTemplate = e.currentTarget.value as ResumeTemplateType;
+    await ableJ.changeResumeTemplate(selectedTemplate, accessToken as string);
+    toast.success('템플릿이 변경되었습니다.');
+    setIsTemplateOpen(false);
+  };
   return (
     <div className={cx('container')}>
       <main
@@ -106,16 +116,27 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
               onChange={handleFileChange}
             />
           </label>
-          <button className={cx('template-button')}>템플릿 선택</button>
+          <button
+            className={cx('template-button')}
+            type="button"
+            onClick={() => setIsTemplateOpen(true)}
+          >
+            템플릿 선택
+          </button>
         </div>
       </aside>
       {isLoading && (
-        <div className={cx('loading')}>
-          <p className={cx('loading-description')}>
-            이력서 데이터를 AI가 읽고 있습니다
-          </p>
+        <div className={cx('backdrop')}>
+          <p className={cx('loading')}>이력서 데이터를 AI가 읽고 있습니다</p>
           <LoadingSpinner />
         </div>
+      )}
+      {isTemplateOpen && (
+        <TemplateModal
+          selectedTemplate={resumeInfo?.templateType}
+          onClickOutside={() => setIsTemplateOpen(false)}
+          onSelectedTemplate={handleSelectedTemplate}
+        />
       )}
     </div>
   );

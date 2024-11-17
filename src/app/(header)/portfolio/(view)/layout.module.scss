@@ -1,6 +1,7 @@
 @use '@/styles/constants/colors' as colors;
 @use '@/styles/constants/layout' as layout;
 @use '@/styles/animations/loader' as loader;
+@use '@/styles/mixin' as mixin;
 
 .container {
   position: relative;
@@ -39,27 +40,27 @@
         margin-top: 10px;
         background-color: transparent;
       }
-    }
 
-    .template-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 23rem;
-      height: 38px;
-      font-size: 1.4rem;
-      color: colors.$primary;
-      cursor: pointer;
-      background-color: colors.$white;
-      border: 1px solid colors.$primary;
-      border-radius: 4px;
+      .template-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 23rem;
+        height: 38px;
+        font-size: 1.4rem;
+        color: colors.$primary;
+        cursor: pointer;
+        background-color: colors.$white;
+        border: 1px solid colors.$primary;
+        border-radius: 4px;
 
-      &:not(:first-child) {
-        margin-top: 10px;
-      }
+        &:not(:first-child) {
+          margin-top: 10px;
+        }
 
-      & input {
-        display: none;
+        & input {
+          display: none;
+        }
       }
     }
   }
@@ -75,16 +76,15 @@
     }
   }
 
-  .loading {
+  .backdrop {
     position: absolute;
     inset: 0;
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     backdrop-filter: blur(4px);
 
-    .loading-description {
+    @include mixin.flex-default(center);
+
+    .loading {
       position: absolute;
       font-size: 1.6rem;
       color: colors.$gray4;
