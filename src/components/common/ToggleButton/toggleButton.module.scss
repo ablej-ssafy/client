@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 40px;
+  width: 42px;
   height: 22px;
   padding: 0 2px;
   cursor: pointer;
@@ -25,7 +25,7 @@
     background-color: colors.$primary;
 
     .ball {
-      transform: translateX(17px);
+      transform: translateX(18px);
     }
   }
 }

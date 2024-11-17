@@ -5,10 +5,10 @@ import {getCookie} from 'cookies-next';
 import {useRouter} from 'next/navigation';
 import {DragEvent, PropsWithChildren, useState} from 'react';
 import toast from 'react-hot-toast';
-import {BsEye, BsEyeSlash, BsInfoCircle} from 'react-icons/bs';
 
 import toggleResumeVisibilityAction from '@/actions/resume/toggleResumeVisibilityAction';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import ToggleButton from '@/components/common/ToggleButton';
 import DragAndDropMenu from '@/features/portfolio/components/DragAndDropMenu';
 import useResumeInfo from '@/hooks/useResumeInfo';
 import ableJ from '@/services/ableJ';
@@ -77,21 +77,12 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
         {children}
       </main>
       <aside className={cx('sidebar')}>
-        <div className={cx('tooltip-container')}>
-          <button
-            type="button"
-            className={cx('visibility-button')}
-            onClick={handleVisibility}
-          >
-            {resumeInfo?.private ? (
-              <BsEyeSlash size={20} />
-            ) : (
-              <BsEye size={20} />
-            )}
-          </button>
-          <div className={cx('tooltip')}>
-            <BsInfoCircle size={16} />
-          </div>
+        <div className={cx('button-container')}>
+          공개
+          <ToggleButton
+            onToggle={handleVisibility}
+            isToggled={!!resumeInfo?.private}
+          />
         </div>
         <DragAndDropMenu />
       </aside>
