@@ -6,6 +6,7 @@ const cookieOptions = {
   secure: true,
   httpOnly: true,
   path: '/',
+  domain: '.noteme.kro.kr',
 };
 
 export const POST = async (request: Request) => {
