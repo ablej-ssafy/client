@@ -24,7 +24,6 @@ const CompanyRecruitmentCard = ({
   companyName,
   isScrap,
 }: CompanyRecruitmentCardProps) => {
-  console.log(typeof '');
   return (
     <div className={styles.container}>
       <Link
