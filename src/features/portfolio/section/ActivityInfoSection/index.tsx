@@ -4,6 +4,7 @@ import Columns from '@/features/portfolio/components/Column';
 import DatePicker from '@/features/portfolio/components/DatePicker';
 import Divider from '@/features/portfolio/components/Divider';
 import Input from '@/features/portfolio/components/Input';
+import TextArea from '@/features/portfolio/components/TextArea';
 import {ExperienceInfo} from '@/types/ableJ';
 
 interface ActivityInfoSectionProps extends PropsWithChildren {
@@ -32,7 +33,7 @@ const ActivityInfoSection = ({
         defaultValue={activity?.affiliation || ''}
         readOnly={readOnly}
       />
-      <Input
+      <TextArea
         isLabeled
         label="활동 소개"
         name="description"

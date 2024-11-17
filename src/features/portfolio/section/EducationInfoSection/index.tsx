@@ -7,6 +7,7 @@ import DatePicker from '@/features/portfolio/components/DatePicker';
 import Divider from '@/features/portfolio/components/Divider';
 import DropdownMenu from '@/features/portfolio/components/DropdownMenu';
 import Input from '@/features/portfolio/components/Input';
+import TextArea from '@/features/portfolio/components/TextArea';
 import {EducationInfo} from '@/types/ableJ';
 
 interface EducationInfoSectionProps {
@@ -29,7 +30,7 @@ const EducationInfoSection = ({
         defaultValue={education?.name || ''}
         readOnly={readOnly}
       />
-      <Input
+      <TextArea
         isLabeled
         label="설명"
         name={'description'}
