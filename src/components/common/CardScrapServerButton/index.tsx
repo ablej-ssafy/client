@@ -20,10 +20,7 @@ const CardScrapButton = ({
         name={`isScrap:${recruitmentId}`}
         value={String(isScrap)}
       />
-      <label
-        htmlFor={`submit-button-${recruitmentId}`}
-        className={styles.container}
-      >
+      <label htmlFor={`submit-button-${recruitmentId}`}>
         <input
           type="submit"
           name="recruitmentId"
@@ -31,7 +28,9 @@ const CardScrapButton = ({
           id={`submit-button-${recruitmentId}`}
           className={styles['scrap-button']}
         />
-        {isScrap ? <FaBookmark /> : <FaRegBookmark />}
+        <div className={styles.container}>
+          {isScrap ? <FaBookmark /> : <FaRegBookmark />}
+        </div>
       </label>
     </div>
   );
