@@ -5,6 +5,11 @@
   align-items: flex-start;
   padding: 30px;
   border-radius: 8px;
+  box-shadow:
+    0 39px 16px rgb(191 191 191 / 1%),
+    0 22px 13px rgb(191 191 191 / 5%),
+    0 10px 10px rgb(191 191 191 / 9%),
+    0 2px 5px rgb(191 191 191 / 10%);
 
   & > form {
     display: contents;

@@ -13,7 +13,7 @@ const toggleResumeVisibilityAction = async (isPrivate: boolean) => {
     redirect('/(.)signin');
   }
 
-  const request = isPrivate ? ableJ.hideResume : ableJ.revealResume;
+  const request = isPrivate ? ableJ.revealResume : ableJ.hideResume;
   await request(accessToken as string);
 };
 

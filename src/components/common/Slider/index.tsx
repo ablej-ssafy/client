@@ -18,7 +18,9 @@ const cx = classNames.bind(styles);
 
 const Slider = ({unit, fill, label, ...props}: SliderProps) => {
   const [value, setValue] = useState(0);
-  const composedLabel = `${label}: ${value}${unit ?? ''}`;
+  const composedLabel = label
+    ? `${label}: ${value}${unit ?? ''}`
+    : `${value}${unit ?? ''}`;
   const middle = (value / props.max) * 100;
 
   return (

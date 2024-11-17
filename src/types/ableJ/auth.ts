@@ -1,4 +1,3 @@
-import type {Job} from '@/types/ableJ/resume';
 import {ResponseType} from '@/types/common';
 
 export type Email = string;
@@ -21,7 +20,10 @@ export interface Profile {
   name: Name;
   email: Email;
   career: number;
-  jobCategoryResponse: Job[];
+  jobCategory: {
+    id: number;
+    name: string;
+  };
 }
 
 export interface LoginResponseData {
