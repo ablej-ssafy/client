@@ -22,10 +22,10 @@
   }
 
   &.toggled {
-    background-color: colors.$primary;
+    background-color: rgba(colors.$primary, 0.7);
 
     .ball {
-      transform: translateX(18px);
+      transform: translateX(19px);
     }
   }
 }
