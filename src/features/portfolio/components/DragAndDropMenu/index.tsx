@@ -105,9 +105,6 @@ const DragAndDropMenu = () => {
     });
   };
 
-  // console.log('resumeOrder', resumeOrder);
-  console.log('sortedResume', sortedResume);
-
   useEffect(() => {
     setItems([...sortedResume]);
   }, [sortedResume]);

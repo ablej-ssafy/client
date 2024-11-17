@@ -11,12 +11,14 @@ import {
   GetEducationInfoResponse,
   GetExperienceInfoResponse,
   GetResumeBasicInfoResponse,
+  GetResumeInfoResponse,
   GetResumeOrderResponse,
   GetResumePDFResponse,
   GetTechStackInfoResponse,
   PostProfileImageResponse,
   RecruitmentCardListResponse,
   ResumeBasicInfo,
+  ResumeTemplateType,
   TechStackInfoForm,
 } from '@/types/ableJ';
 import {ResponseType} from '@/types/common';
@@ -363,6 +365,58 @@ export default {
     return httpClient.post<ResponseType<null>>(
       '/resume/auto/change',
       undefined,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      },
+    );
+  },
+  /**
+   * 이력서 정보 조회
+   * @param accessToken 액세스 토큰
+   */
+  getResumeInfo: async (accessToken: AccessToken) => {
+    return httpClient.get<GetResumeInfoResponse>('/resume', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+  /**
+   * 이력서 공개 여부 변경
+   * @param accessToken 액세스 토큰
+   */
+  revealResume: async (accessToken: AccessToken) => {
+    return httpClient.post<ResponseType<null>>('/resume/visible', undefined, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+  /**
+   * 이력서 숨김 여부 변경
+   * @param accessToken 액세스 토큰
+   */
+  hideResume: async (accessToken: AccessToken) => {
+    return httpClient.delete('/resume/visible', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+  /**
+   * 이력서 템플릿 변경
+   * @param template
+   * @param accessToken
+   */
+  changeResumeTemplate: async (
+    template: ResumeTemplateType,
+    accessToken: AccessToken,
+  ) => {
+    return httpClient.patch<ResponseType<null>>(
+      '/resume/template',
+      {templateType: template},
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,

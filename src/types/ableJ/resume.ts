@@ -112,6 +112,12 @@ export type ChangeResumeOrderForm = {
   order: number;
 };
 
+export interface ResumeInfo {
+  hashKey: string;
+  templateType: ResumeTemplateType;
+  private: boolean;
+}
+
 export type GetAiParsedResumeResponseData = AiParsedResume;
 export type GetResumePDFResponse = ResponseType<ResumePDF[]>;
 export type GetAllJobsResponseData = Job[];
@@ -127,8 +133,16 @@ export type GetTechStackInfoResponseData = {
   githubUrl: string | null;
   notionUrl: string | null;
 };
+
+export type ResumeTemplateType =
+  | 'BASIC_LIGHT'
+  | 'BASIC_DARK'
+  | 'MODERN_LIGHT'
+  | 'MODERN_DARK';
+
 export type PostProfileImageResponseData = ProfileImageUrl;
 export type GetResumeOrderResponseData = ResumeOrder;
+export type GetResumeInfoResponseData = ResumeInfo;
 
 export type GetAiParsedResumeResponse =
   ResponseType<GetAiParsedResumeResponseData>;
@@ -147,3 +161,4 @@ export type GetTechStackInfoResponse =
 export type PostProfileImageResponse =
   ResponseType<PostProfileImageResponseData>;
 export type GetResumeOrderResponse = ResponseType<GetResumeOrderResponseData>;
+export type GetResumeInfoResponse = ResponseType<GetResumeInfoResponseData>;

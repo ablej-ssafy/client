@@ -5,9 +5,12 @@ import {getCookie} from 'cookies-next';
 import {useRouter} from 'next/navigation';
 import {DragEvent, PropsWithChildren, useState} from 'react';
 import toast from 'react-hot-toast';
+import {BsEye, BsEyeSlash, BsInfoCircle} from 'react-icons/bs';
 
+import toggleResumeVisibilityAction from '@/actions/resume/toggleResumeVisibilityAction';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import DragAndDropMenu from '@/features/portfolio/components/DragAndDropMenu';
+import useResumeInfo from '@/hooks/useResumeInfo';
 import ableJ from '@/services/ableJ';
 
 import styles from './layout.module.scss';
@@ -16,9 +19,12 @@ const cx = classNames.bind(styles);
 
 const PortfolioLayout = ({children}: PropsWithChildren) => {
   const router = useRouter();
+  const {resumeInfo, fetchResumeInfo} = useResumeInfo();
   const [isActive, setIsActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const accessToken = getCookie('accessToken');
+
+  console.log('is private?', resumeInfo?.private);
 
   if (!accessToken) router.replace('/signin');
 
@@ -54,6 +60,11 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
     router.push('/portfolio/auto');
   };
 
+  const handleVisibility = async () => {
+    await toggleResumeVisibilityAction(resumeInfo!.private);
+    await fetchResumeInfo();
+  };
+
   return (
     <div className={cx('container')}>
       <main
@@ -66,6 +77,22 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
         {children}
       </main>
       <aside className={cx('sidebar')}>
+        <div className={cx('tooltip-container')}>
+          <button
+            type="button"
+            className={cx('visibility-button')}
+            onClick={handleVisibility}
+          >
+            {resumeInfo?.private ? (
+              <BsEyeSlash size={20} />
+            ) : (
+              <BsEye size={20} />
+            )}
+          </button>
+          <div className={cx('tooltip')}>
+            <BsInfoCircle size={16} />
+          </div>
+        </div>
         <DragAndDropMenu />
       </aside>
       {isLoading && (

@@ -15,7 +15,88 @@
   .sidebar {
     position: fixed;
     grid-column: 3;
-    padding-top: 2.5rem;
+    padding: 2rem 1rem;
+    margin-top: 2.5rem;
+    background-color: colors.$white;
+    border-radius: layout.$border_button;
+
+    .tooltip-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+
+      .visibility-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background-color: transparent;
+      }
+
+      .tooltip {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: help;
+
+        &::before,
+        &::after {
+          position: absolute;
+          left: 50%;
+          z-index: -100;
+          opacity: 0;
+        }
+
+        &:hover::before,
+        &:focus::before,
+        &:hover::after,
+        &:focus::after {
+          z-index: 9999;
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+
+        &::before {
+          top: 100%;
+          margin-left: -0.5em;
+          content: '';
+          border-color: #3e474f transparent transparent;
+          border-style: solid;
+          border-width: 1em 0.75em 0;
+          transition:
+            all 0.65s cubic-bezier(0.84, -0.18, 0.31, 1.26),
+            opacity 0.65s 0.5s;
+          transform: scale(0.6) translateY(-90%);
+          rotate: 180deg;
+        }
+
+        &:hover::before,
+        &:focus::before {
+          transition: all 0.65s cubic-bezier(0.84, -0.18, 0.31, 1.26) 0.2s;
+        }
+
+        &::after {
+          top: 180%;
+          z-index: 9999;
+          width: 20em;
+          padding: 1em;
+          margin-left: -8.75em;
+          color: white;
+          content: 'Pdf 이력서를 드롭하면 포트폴리오를 자동으로 채울 수 있습니다.';
+          background: #3e474f;
+          border-radius: 0.25em;
+          transition: all 0.65s cubic-bezier(0.84, -0.18, 0.31, 1.26) 0.2s;
+          transform: scale(0.6) translateY(50%);
+        }
+
+        &:hover::after,
+        &:focus::after {
+          transition: all 0.65s cubic-bezier(0.84, -0.18, 0.31, 1.26);
+        }
+      }
+    }
   }
 
   .main {
