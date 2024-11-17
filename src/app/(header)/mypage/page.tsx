@@ -27,7 +27,7 @@ const MyPage = async () => {
         label="이름"
         name="name"
         type="text"
-        defaultValue={data.name}
+        defaultValue={data?.name}
         readOnly
       />
       <LabelInput
@@ -36,10 +36,10 @@ const MyPage = async () => {
         name="email"
         type="email"
         readOnly
-        defaultValue={data.email}
+        defaultValue={data?.email}
       />
       <form>
-        <JobComboBox prevJob={data.jobCategory.id} standAlone />
+        <JobComboBox prevJob={data?.jobCategory.id} standAlone />
       </form>
     </main>
   );
