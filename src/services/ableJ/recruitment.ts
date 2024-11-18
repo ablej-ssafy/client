@@ -2,6 +2,7 @@ import httpClient from '@/configs/httpClient';
 import {
   RecruitmentCardListResponse,
   RecruitmentDetailResponse,
+  ScrapListResponse,
   ScrapRecruitmentResponse,
   ScrapResponse,
   SearchResponse,
@@ -126,6 +127,18 @@ export default {
     accessToken: string,
   ) => {
     return httpClient.delete(`/recruitments/${recruitmentId}/scrap`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+
+  /**
+   * 스크랩한 채용 공고를 가져오는 함수
+   * @param accessToken 액세스 토큰
+   */
+  getScrapList: async (accessToken: string) => {
+    return httpClient.get<ScrapListResponse>('/member/scrap', {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
