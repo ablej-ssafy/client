@@ -3,12 +3,11 @@
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
-import {useRef, useState} from 'react';
+import {useRef} from 'react';
 import {useDrag, useDrop} from 'react-dnd';
 import {FaStarOfLife} from 'react-icons/fa6';
 import {IoMenu} from 'react-icons/io5';
 
-import changeResumeOrderAction from '@/actions/resume/changeResumeOrderAction';
 import {ResumeOrder} from '@/types/ableJ';
 
 import styles from './dragAndDrop.module.scss';
@@ -23,6 +22,7 @@ interface DragAndDropProps {
   essential?: boolean;
   path: string;
   moveCardHandler: (dragIndex: number, hoverIndex: number) => void;
+  setIsDrop: (isDrop: boolean) => void;
 }
 
 const DragAndDropItem = ({
@@ -33,18 +33,24 @@ const DragAndDropItem = ({
   serverKey,
   path,
   moveCardHandler,
+  setIsDrop,
 }: DragAndDropProps) => {
-  const [prevIndex, setPrevIndex] = useState(index);
   const pathname = usePathname().split('/')[2];
   const selected = pathname === path;
   const ref = useRef<HTMLDivElement>(null);
 
+  const isDraggable = id !== 0;
+
   const [{isDragging}, drag, preview] = useDrag({
     type: 'PROFILE',
-    item: {id, index, serverKey}, // 드래깅 물체 안에 넣어줄 정보 세팅
+    item: () => {
+      setIsDrop(false);
+      return {id, index, serverKey};
+    }, // 드래깅 물체 안에 넣어줄 정보 세팅
     collect: monitor => ({
       isDragging: monitor.isDragging(), // 드래그 중인지 아닌지를 리턴
     }),
+    canDrag: () => isDraggable,
   });
 
   const [, drop] = useDrop({
@@ -54,20 +60,15 @@ const DragAndDropItem = ({
       index: number;
       serverKey: keyof ResumeOrder;
     }) => {
+      if (id === 0) return;
+
       if (draggedItem.index !== index) {
         moveCardHandler(draggedItem.index, index);
         draggedItem.index = index;
       }
     },
-    drop: async item => {
-      console.log(
-        `${item.serverKey}, prevIndex: ${prevIndex}, newIndex: ${item.index}, medium: ${(prevIndex - item.index) / 2}`,
-      );
-      await changeResumeOrderAction({
-        key: item.serverKey,
-        order: (prevIndex - item.index) / 2,
-      });
-      setPrevIndex(item.index);
+    drop: () => {
+      setIsDrop(true);
     },
   });
 
@@ -84,9 +85,11 @@ const DragAndDropItem = ({
           <span className={styles.title}>{title}</span>
           {essential && <FaStarOfLife className={styles.essential} size={6} />}
         </div>
-        <div className={styles.menu}>
-          <IoMenu size={18} />
-        </div>
+        {isDraggable && (
+          <div className={styles.menu}>
+            <IoMenu size={18} />
+          </div>
+        )}
       </div>
     </Link>
   );
