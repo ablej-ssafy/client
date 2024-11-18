@@ -60,7 +60,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 23rem;
+          width: 25rem;
           height: 38px;
           font-size: 1.4rem;
           color: colors.$primary;
@@ -76,6 +76,10 @@
           & input {
             display: none;
           }
+        }
+
+        &:has(.template-button) {
+          padding: 2rem 0;
         }
       }
     }
