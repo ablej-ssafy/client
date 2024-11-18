@@ -1,6 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 
 import CompanyRecruitmentCard from '@/components/common/CompanyRecruitmentCard';
+import useScrapList from '@/hooks/useScrapList';
 import {Search} from '@/types/ableJ';
 
 import styles from './scrapList.module.scss';
@@ -9,7 +12,10 @@ interface ScrapListProps {
   data: Search[];
 }
 
-const ScrapList = async ({data = []}: ScrapListProps) => {
+const ScrapList = ({data = []}: ScrapListProps) => {
+  const {scraps, scrap} = useScrapList({
+    scrapped: data.map(item => item.recruitmentId),
+  });
   if (data.length === 0) {
     return (
       <div className={styles['no-scrap']}>
@@ -28,7 +34,13 @@ const ScrapList = async ({data = []}: ScrapListProps) => {
           name={item.name}
           thumbnail={item.thumbnail}
           companyName={item.companyName}
-          isScrap={item.scrapped}
+          isScrap={scraps.includes(item.recruitmentId)}
+          scrap={() => {
+            scrap({
+              recruitmentId: item.recruitmentId,
+              isScrap: scraps.includes(item.recruitmentId),
+            });
+          }}
         />
       ))}
     </div>
