@@ -21,7 +21,7 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'AI 헤드헌팅',
+  title: 'AI Recruit',
   description:
     'AI 기반 맞춤형 채용 매칭 서비스. 이력서 업로드만으로 최적의 채용공고를 추천받고, 스마트한 이력서 작성부터 AI 면접 준비까지 원스톱으로 제공하는 차세대 취업 플랫폼입니다.',
 };
