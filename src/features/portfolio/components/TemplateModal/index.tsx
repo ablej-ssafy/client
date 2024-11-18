@@ -1,7 +1,10 @@
 import classNames from 'classnames/bind';
 import type {MouseEvent, MouseEventHandler} from 'react';
 
-import PreviewImage from '@/assets/images/preview.png';
+import BasicDarkImage from '@/assets/images/basic_dark.png';
+import BasicLightImage from '@/assets/images/basic_light.png';
+import ModernDarkImage from '@/assets/images/modern_dark.png';
+import ModernLightImage from '@/assets/images/modern_light.png';
 import TemplateButton from '@/features/portfolio/components/TemplateButton';
 import {ResumeTemplateType} from '@/types/ableJ';
 
@@ -31,25 +34,25 @@ const TemplateModal = ({
         <h2 className={cx('template-modal-title')}>템플릿 선택</h2>
         <div className={cx('template-container')}>
           <TemplateButton
-            imgSrc={PreviewImage}
+            imgSrc={BasicLightImage}
             value="BASIC_LIGHT"
             selectedTemplate={selectedTemplate}
             onClick={onSelectedTemplate}
           />
           <TemplateButton
-            imgSrc={PreviewImage}
+            imgSrc={BasicDarkImage}
             value="BASIC_DARK"
             selectedTemplate={selectedTemplate}
             onClick={onSelectedTemplate}
           />
           <TemplateButton
-            imgSrc={PreviewImage}
+            imgSrc={ModernLightImage}
             value="MODERN_LIGHT"
             selectedTemplate={selectedTemplate}
             onClick={onSelectedTemplate}
           />
           <TemplateButton
-            imgSrc={PreviewImage}
+            imgSrc={ModernDarkImage}
             value="MODERN_DARK"
             selectedTemplate={selectedTemplate}
             onClick={onSelectedTemplate}
