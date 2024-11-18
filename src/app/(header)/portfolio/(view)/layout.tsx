@@ -2,6 +2,7 @@
 
 import classNames from 'classnames/bind';
 import {getCookie} from 'cookies-next';
+import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 import type {MouseEvent} from 'react';
 import {ChangeEvent, DragEvent, PropsWithChildren, useState} from 'react';
@@ -93,7 +94,7 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
               공개
               <ToggleButton
                 onToggle={handleVisibility}
-                isToggled={!!resumeInfo?.private}
+                isToggled={!resumeInfo?.private}
               />
             </div>
             <DragAndDropMenu />
@@ -127,10 +128,13 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
         {children}
       </main>
       <div className={cx('right-column')}>
-        <button type="button" className={cx('resume-button')}>
+        <Link
+          className={cx('resume-button')}
+          href={'https://portfolio.noteme.kro.kr/resume/' + resumeInfo?.hashKey}
+        >
           <RiFilePaper2Line size={22} />
           이력서 보기
-        </button>
+        </Link>
       </div>
       {isLoading && (
         <div className={cx('backdrop')}>
