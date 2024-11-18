@@ -6,6 +6,7 @@ import {useRouter} from 'next/navigation';
 import type {MouseEvent} from 'react';
 import {ChangeEvent, DragEvent, PropsWithChildren, useState} from 'react';
 import toast from 'react-hot-toast';
+import {RiFilePaper2Line} from 'react-icons/ri';
 
 import toggleResumeVisibilityAction from '@/actions/resume/toggleResumeVisibilityAction';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
@@ -85,6 +86,37 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
   };
   return (
     <div className={cx('container')}>
+      <div className={cx('left-column')}>
+        <aside className={cx('sidebar')}>
+          <div className={cx('button-container')}>
+            <div className={cx('toggle-button')}>
+              공개
+              <ToggleButton
+                onToggle={handleVisibility}
+                isToggled={!!resumeInfo?.private}
+              />
+            </div>
+            <DragAndDropMenu />
+          </div>
+          <div className={cx('button-container')}>
+            <label className={cx('template-button')}>
+              이력서 업로드
+              <input
+                type="file"
+                accept="application/pdf"
+                onChange={handleFileChange}
+              />
+            </label>
+            <button
+              className={cx('template-button')}
+              type="button"
+              onClick={() => setIsTemplateOpen(true)}
+            >
+              템플릿 선택
+            </button>
+          </div>
+        </aside>
+      </div>
       <main
         className={cx('main', {active: isActive})}
         onDragEnter={handleDragEnter}
@@ -94,35 +126,12 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
       >
         {children}
       </main>
-      <aside className={cx('sidebar')}>
-        <div className={cx('button-container')}>
-          <div className={cx('toggle-button')}>
-            공개
-            <ToggleButton
-              onToggle={handleVisibility}
-              isToggled={!!resumeInfo?.private}
-            />
-          </div>
-          <DragAndDropMenu />
-        </div>
-        <div className={cx('button-container')}>
-          <label className={cx('template-button')}>
-            이력서 업로드
-            <input
-              type="file"
-              accept="application/pdf"
-              onChange={handleFileChange}
-            />
-          </label>
-          <button
-            className={cx('template-button')}
-            type="button"
-            onClick={() => setIsTemplateOpen(true)}
-          >
-            템플릿 선택
-          </button>
-        </div>
-      </aside>
+      <div className={cx('right-column')}>
+        <button type="button" className={cx('resume-button')}>
+          <RiFilePaper2Line size={22} />
+          이력서 보기
+        </button>
+      </div>
       {isLoading && (
         <div className={cx('backdrop')}>
           <p className={cx('loading')}>이력서 데이터를 AI가 읽고 있습니다</p>

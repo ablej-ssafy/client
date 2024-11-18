@@ -6,68 +6,108 @@
 .container {
   position: relative;
   display: grid;
+  grid-template-rows: 1fr;
   grid-template-columns: 1fr 1.5fr 1fr;
   gap: 20px;
+  align-content: start;
   height: 100%;
   min-height: calc(100vh - #{layout.$nav_height});
   padding: 2.5rem;
   background-color: #f6f6f6;
 
-  .sidebar {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    grid-column: 3;
-    align-items: center;
-    margin-top: 2.5rem;
+  .left-column {
+    position: relative;
+    grid-row: 1;
+    grid-column: 1;
 
-    .button-container {
-      padding: 2rem 1rem;
-      background-color: colors.$white;
-      border-radius: layout.$border_button;
+    .sidebar {
+      position: sticky;
+      top: calc(2.5rem + #{layout.$nav_height});
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-self: end;
+      width: fit-content;
+
+      .button-container {
+        padding: 2rem 1rem;
+        background-color: colors.$white;
+        border-radius: layout.$border_button;
+        box-shadow:
+          0 39px 16px rgb(191 191 191 / 1%),
+          0 22px 13px rgb(191 191 191 / 5%),
+          0 10px 10px rgb(191 191 191 / 9%),
+          0 2px 5px rgb(191 191 191 / 10%);
+
+        .toggle-button {
+          display: flex;
+          align-items: center;
+          align-self: stretch;
+          justify-content: space-between;
+          padding: 0 20px;
+          font-size: 1.5rem;
+          font-weight: 500;
+        }
+
+        &:not(:first-child) {
+          margin-top: 10px;
+          background-color: transparent;
+          box-shadow: none;
+        }
+
+        .template-button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 23rem;
+          height: 38px;
+          font-size: 1.4rem;
+          color: colors.$primary;
+          cursor: pointer;
+          background-color: colors.$white;
+          border: 1px solid colors.$primary;
+          border-radius: 4px;
+
+          &:not(:first-child) {
+            margin-top: 10px;
+          }
+
+          & input {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .right-column {
+    position: relative;
+    grid-row: 1;
+    grid-column: 3;
+
+    .resume-button {
+      position: fixed;
+      right: 40px;
+      bottom: 30px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      font-size: 1.6rem;
+      color: white;
+      cursor: pointer;
+      background-color: colors.$primary;
+      border-radius: 33px;
       box-shadow:
         0 39px 16px rgb(191 191 191 / 1%),
         0 22px 13px rgb(191 191 191 / 5%),
         0 10px 10px rgb(191 191 191 / 9%),
         0 2px 5px rgb(191 191 191 / 10%);
+      transition: all 0.3s ease;
 
-      .toggle-button {
-        display: flex;
-        align-items: center;
-        align-self: stretch;
-        justify-content: space-between;
-        padding: 0 20px;
-        font-size: 1.5rem;
-        font-weight: 500;
-      }
-
-      &:not(:first-child) {
-        margin-top: 10px;
-        background-color: transparent;
-        box-shadow: none;
-      }
-
-      .template-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 23rem;
-        height: 38px;
-        font-size: 1.4rem;
-        color: colors.$primary;
-        cursor: pointer;
-        background-color: colors.$white;
-        border: 1px solid colors.$primary;
-        border-radius: 4px;
-
-        &:not(:first-child) {
-          margin-top: 10px;
-        }
-
-        & input {
-          display: none;
-        }
-      }
+      @include mixin.flex-default(center);
     }
   }
 
