@@ -108,8 +108,13 @@ export interface ResumeOrder {
 }
 
 export type ChangeResumeOrderForm = {
-  key: keyof ResumeOrder;
-  order: number;
+  education: number;
+  company: number;
+  project: number;
+  activity: number;
+  qualification: number;
+  language: number;
+  tech: number;
 };
 
 export interface ResumeInfo {

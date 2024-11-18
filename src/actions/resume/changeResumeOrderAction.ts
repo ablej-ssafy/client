@@ -8,6 +8,7 @@ import ableJ from '@/services/ableJ';
 import {ChangeResumeOrderForm} from '@/types/ableJ';
 
 const changeResumeOrderAction = async (data: ChangeResumeOrderForm) => {
+  console.log('data', data);
   const cookieStore = cookies();
   const accessToken = cookieStore.get('accessToken')?.value;
 

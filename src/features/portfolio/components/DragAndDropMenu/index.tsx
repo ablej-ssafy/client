@@ -1,10 +1,12 @@
 import classNames from 'classnames/bind';
-import {useEffect, useMemo, useRef, useState} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import {DndProvider} from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend';
 
+import changeResumeOrderAction from '@/actions/resume/changeResumeOrderAction';
 import DragAndDrop from '@/components/common/DragAndDropItem';
 import useResumeOrder from '@/hooks/useResumeOrder';
+import {ChangeResumeOrderForm} from '@/types/ableJ';
 
 import styles from './dragAndDrop.module.scss';
 
@@ -79,35 +81,65 @@ const TASKS: Task[] = [
 
 const DragAndDropMenu = () => {
   const resumeOrder = useResumeOrder();
-  const sortedResume: Task[] = useMemo(() => {
+  const [isDrop, setIsDrop] = useState<boolean>(false);
+  const [sortedResume, setSortedResume] = useState<Task[]>(() => {
     const sortedArr = Array.from({length: TASKS.length}, (_, index) => ({
       ...TASKS[index],
-    }));
+    })).sort((a, b) => a.id - b.id);
 
     for (const [sectionName, order] of Object.entries(resumeOrder)) {
       sortedArr[order] = TASKS.find(task => task.serverKey === sectionName)!;
     }
 
     return sortedArr;
+  });
+
+  useEffect(() => {
+    const sortedArr = Array.from({length: TASKS.length}, (_, index) => ({
+      ...TASKS[index],
+    })).sort((a, b) => a.id - b.id);
+
+    for (const [sectionName, order] of Object.entries(resumeOrder)) {
+      sortedArr[order] = TASKS.find(task => task.serverKey === sectionName)!;
+    }
+
+    setSortedResume(sortedArr);
   }, [resumeOrder]);
 
   const dndContextElement = useRef<HTMLDivElement>(null);
-  const [items, setItems] = useState(sortedResume);
 
-  const moveCardHandler = (dragIndex: number, hoverIndex: number) => {
-    if (dragIndex === hoverIndex) return;
-
-    setItems(prevItems => {
-      const updatedItems = [...prevItems];
-      const [draggedItem] = updatedItems.splice(dragIndex, 1); // 드래그된 아이템 삭제
-      updatedItems.splice(hoverIndex, 0, draggedItem); // 드래그된 아이템 새 위치에 삽입
-      return updatedItems;
-    });
-  };
+  const moveCardHandler = useCallback(
+    (dragIndex: number, hoverIndex: number) => {
+      setSortedResume(prevItems => {
+        const newItems = [...prevItems];
+        const [removed] = newItems.splice(dragIndex, 1);
+        newItems.splice(hoverIndex, 0, removed);
+        return newItems;
+      });
+    },
+    [],
+  );
 
   useEffect(() => {
-    setItems([...sortedResume]);
-  }, [sortedResume]);
+    const updateOrder = async () => {
+      if (isDrop) {
+        let orderIndex = 1;
+        const newOrder = sortedResume.reduce(
+          (acc, item) => {
+            if (item.serverKey !== 'basic') {
+              acc[item.serverKey] = orderIndex++;
+            }
+
+            return acc;
+          },
+          {} as Record<string, number>,
+        );
+        await changeResumeOrderAction(newOrder as ChangeResumeOrderForm);
+      }
+    };
+
+    updateOrder();
+  }, [isDrop, sortedResume]);
 
   return (
     <div className={cx('drag-and-drop')} ref={dndContextElement}>
@@ -115,7 +147,7 @@ const DragAndDropMenu = () => {
         backend={HTML5Backend}
         options={{rootElement: dndContextElement.current}}
       >
-        {items.map((item, index) => {
+        {sortedResume.map((item, index) => {
           return (
             <DragAndDrop
               key={item.id}
@@ -126,6 +158,7 @@ const DragAndDropMenu = () => {
               essential={item.essential}
               path={item.path}
               moveCardHandler={moveCardHandler}
+              setIsDrop={setIsDrop}
             />
           );
         })}
