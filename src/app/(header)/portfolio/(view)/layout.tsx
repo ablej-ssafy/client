@@ -131,6 +131,7 @@ const PortfolioLayout = ({children}: PropsWithChildren) => {
         <Link
           className={cx('resume-button')}
           href={'https://portfolio.noteme.kro.kr/resume/' + resumeInfo?.hashKey}
+          target="_blank"
         >
           <RiFilePaper2Line size={22} />
           이력서 보기

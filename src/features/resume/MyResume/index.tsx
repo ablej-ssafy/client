@@ -17,6 +17,9 @@ const MyResume = async () => {
 
   const {data: resumeList} = await ableJ.getResumeList(accessToken);
   const {data: profile} = await ableJ.getProfile(accessToken);
+  const {
+    data: {hashKey},
+  } = await ableJ.getResumeInfo(accessToken);
 
   return (
     <div className={styles.container}>
@@ -26,7 +29,7 @@ const MyResume = async () => {
           <MyResumeCard
             key={0}
             id={0}
-            url=""
+            url={`https://portfolio.noteme.kro.kr/resume/${hashKey}`}
             title="포트폴리오"
             date={getTodayDate()}
             type="포트폴리오"

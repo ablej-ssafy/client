@@ -14,7 +14,7 @@ const Navigation = ({children, invert}: NavigationProps) => {
   return (
     <nav className={cx('navigation', {invert: invert})}>
       <Link className={cx('title', {invert: invert})} href={'/'}>
-        AI HeadHunting
+        Able Recruit
       </Link>
       <div className={cx('nav-button-container')}>{children}</div>
     </nav>

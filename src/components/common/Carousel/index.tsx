@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import {TouchEventHandler, useEffect, useRef, useState} from 'react';
-import {HiArrowCircleLeft, HiArrowCircleRight} from 'react-icons/hi';
+import {SlArrowLeft, SlArrowRight} from 'react-icons/sl';
 
 import styles from './carousel.module.scss';
 
@@ -94,17 +94,17 @@ const Carousel = ({imageArray}: CarouselProps) => {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <HiArrowCircleLeft
+        <SlArrowLeft
           className={styles['swipe-left']}
           onClick={() => handleSwipe(-1)}
           color="white"
-          size={40}
+          size={30}
         />
-        <HiArrowCircleRight
+        <SlArrowRight
           className={styles['swipe-right']}
           onClick={() => handleSwipe(1)}
           color="white"
-          size={40}
+          size={30}
         />
         <ul className={styles.carousel} ref={carouselRef}>
           {currentList?.map((image, index) => {
