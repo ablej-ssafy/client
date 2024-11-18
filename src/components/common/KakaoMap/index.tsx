@@ -28,12 +28,7 @@ const KakaoMap = ({companyInfo}: KakaoMapProps) => {
           });
         }}
       />
-      {!isLoaded && (
-        <div className={styles.container}>
-          <Loading height={280} />
-        </div>
-      )}
-      {isLoaded && (
+      {isLoaded ? (
         <div className={styles.container}>
           <Map
             center={{lat: companyInfo.latitude, lng: companyInfo.longitude}}
@@ -45,6 +40,10 @@ const KakaoMap = ({companyInfo}: KakaoMapProps) => {
             />
           </Map>
           <p className={styles.location}>{companyInfo.address}</p>
+        </div>
+      ) : (
+        <div className={styles.container}>
+          <Loading height={280} />
         </div>
       )}
     </>
