@@ -14,7 +14,7 @@ interface SocialIconProps {
 
 const SocialIcon = ({children, social}: SocialIconProps) => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  const host = process.env.NEXT_PUBLIC_BASE_URL;
+  const host = process.env.NEXT_PUBLIC_NEXT_SERVER_URL;
 
   const REDIRECT_URI = `${host}/callback/auth`;
 

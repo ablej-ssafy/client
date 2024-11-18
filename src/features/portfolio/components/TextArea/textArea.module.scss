@@ -11,9 +11,10 @@
   .textarea {
     width: 100%;
     height: auto;
-    padding: 8px;
+    padding: 12px;
     font-size: 15px;
     font-weight: 600;
+    resize: none;
     background-color: #eee;
     border: 0;
     border-radius: 8px;
@@ -28,11 +29,11 @@
     }
 
     &:read-only {
-      background-color: colors.$gray3;
+      color: #ababab;
     }
 
     &:disabled {
-      background-color: colors.$gray3;
+      color: #ababab;
     }
   }
 

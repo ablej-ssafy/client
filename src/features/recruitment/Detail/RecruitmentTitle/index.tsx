@@ -45,7 +45,7 @@ const RecruitmentTitle = ({
           <Image
             className={styles['margin-right']}
             src={thumbnail}
-            alt="회사 로고"
+            alt={company.name}
             width={45}
             height={45}
           />

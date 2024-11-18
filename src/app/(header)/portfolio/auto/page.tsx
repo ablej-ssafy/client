@@ -4,7 +4,7 @@ import {cookies} from 'next/headers';
 import Link from 'next/link';
 import {redirect} from 'next/navigation';
 
-import replaceResumeAction from '@/actions/portfolio/replaceResumeAction';
+import changeToAiParsedResumeAction from '@/actions/resume/changeToAiParsedResumeAction';
 import ActivityInfoSection from '@/features/portfolio/section/ActivityInfoSection';
 import BasicInfoSection from '@/features/portfolio/section/BasicInfoSection';
 import CertificateInfoSection from '@/features/portfolio/section/CertificateInfoSection';
@@ -112,81 +112,79 @@ const AutoResumeSelectPage = async () => {
           ))}
       </div>
       <div className={cx('column-right')}>
-        <form className={cx('form')} action={replaceResumeAction}>
-          <h2>AI가 자동으로 채워준 포트폴리오</h2>
-          <BasicInfoSection basicInfo={data.aiBasic} readOnly />
-          {data.aiEducationals.map(educationInfo => (
-            <EducationInfoSection
-              key={educationInfo.educationId}
-              education={educationInfo}
+        <h2>AI가 자동으로 채워준 포트폴리오</h2>
+        <BasicInfoSection basicInfo={data.aiBasic} readOnly />
+        {data.aiEducationals.map(educationInfo => (
+          <EducationInfoSection
+            key={educationInfo.educationId}
+            education={educationInfo}
+            readOnly
+          />
+        ))}
+        {data.aiExperiences
+          .filter(experience => experience.experienceType === 'COMPANY')
+          .map(experience => (
+            <ExperienceInfoSection
+              key={experience.experienceId}
+              experience={experience}
               readOnly
             />
           ))}
-          {data.aiExperiences
-            .filter(experience => experience.experienceType === 'COMPANY')
-            .map(experience => (
-              <ExperienceInfoSection
-                key={experience.experienceId}
-                experience={experience}
-                readOnly
-              />
-            ))}
-          {data.aiExperiences
-            .filter(experience => experience.experienceType === 'ACTIVITY')
-            .map(experience => (
-              <ActivityInfoSection
-                key={experience.experienceId}
-                activity={experience}
-                readOnly
-              />
-            ))}
-          {data.aiExperiences
-            .filter(experience => experience.experienceType === 'PROJECT')
-            .map(experience => (
-              <ProjectInfoSection
-                key={experience.experienceId}
-                project={experience}
-                readOnly
-              />
-            ))}
-          {data.aiCertifications
-            .filter(
-              certificationInfo =>
-                certificationInfo.certificationType === 'QUALIFICATION',
-            )
-            .map(certificationInfo => (
-              <CertificateInfoSection
-                key={certificationInfo.certificationId}
-                certificate={certificationInfo}
-                readOnly
-              />
-            ))}
-          {data.aiCertifications
-            .filter(
-              certificationInfo =>
-                certificationInfo.certificationType === 'QUALIFICATION',
-            )
-            .map(certificationInfo => (
-              <LanguageProficiencyInfoSection
-                key={certificationInfo.certificationId}
-                languageInfo={certificationInfo}
-                readOnly
-              />
-            ))}
-          <div className={cx('info')}>
-            <p className={cx('info-text')}>
-              수락하시면 작성한 포트폴리오가 덮어 씌워질 수 있습니다. <br />
-              수락하시겠습니까?
-            </p>
-            <div className={cx('button-container')}>
-              <Link href="/portfolio" className={cx('button')}>
-                취소
-              </Link>
-              <button type="submit" className={cx('button')}>
-                수락
-              </button>
-            </div>
-          </div>
+        {data.aiExperiences
+          .filter(experience => experience.experienceType === 'ACTIVITY')
+          .map(experience => (
+            <ActivityInfoSection
+              key={experience.experienceId}
+              activity={experience}
+              readOnly
+            />
+          ))}
+        {data.aiExperiences
+          .filter(experience => experience.experienceType === 'PROJECT')
+          .map(experience => (
+            <ProjectInfoSection
+              key={experience.experienceId}
+              project={experience}
+              readOnly
+            />
+          ))}
+        {data.aiCertifications
+          .filter(
+            certificationInfo =>
+              certificationInfo.certificationType === 'QUALIFICATION',
+          )
+          .map(certificationInfo => (
+            <CertificateInfoSection
+              key={certificationInfo.certificationId}
+              certificate={certificationInfo}
+              readOnly
+            />
+          ))}
+        {data.aiCertifications
+          .filter(
+            certificationInfo =>
+              certificationInfo.certificationType === 'QUALIFICATION',
+          )
+          .map(certificationInfo => (
+            <LanguageProficiencyInfoSection
+              key={certificationInfo.certificationId}
+              languageInfo={certificationInfo}
+              readOnly
+            />
+          ))}
+      </div>
+      <div className={cx('info')}>
+        <p className={cx('info-text')}>작성한 포트폴리오가 업데이트 됩니다</p>
+        <form
+          className={cx('button-container')}
+          action={changeToAiParsedResumeAction}
+        >
+          <Link href="/portfolio" className={cx('button')}>
+            취소
+          </Link>
+          <button type="submit" className={cx('button')}>
+            확인
+          </button>
         </form>
       </div>
     </div>

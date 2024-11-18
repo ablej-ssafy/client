@@ -31,11 +31,11 @@
     }
 
     &:read-only {
-      background-color: colors.$gray3;
+      color: #ababab;
     }
 
     &:disabled {
-      background-color: colors.$gray3;
+      color: #ababab;
     }
   }
 

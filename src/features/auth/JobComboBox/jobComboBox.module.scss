@@ -13,6 +13,7 @@ $combobox-padding: 10px;
     display: flex; /* 추가 */
     align-items: center; /* 추가 */
     width: 100%;
+    min-width: 33.8rem;
     height: $combobox-height;
     padding: 0 $combobox-padding;
     text-align: left;
@@ -24,7 +25,8 @@ $combobox-padding: 10px;
 
   .dropdown {
     position: absolute;
-    top: $combobox-height;
+    top: $combobox-height + 1px;
+    display: none;
     width: 100%;
     max-height: calc($combobox-height * 5);
     background-color: colors.$white;
@@ -32,10 +34,13 @@ $combobox-padding: 10px;
     border-radius: layout.$border_button;
 
     .combobox-input {
+      left: layout.$border_button;
       width: 100%;
       height: $combobox-height;
       padding: 0 $combobox-padding;
       border: 0;
+      border-top-left-radius: layout.$border_button;
+      border-top-right-radius: layout.$border_button;
       outline: none;
     }
 
@@ -61,6 +66,10 @@ $combobox-padding: 10px;
           background-color: colors.$gray1;
         }
       }
+    }
+
+    &.open {
+      display: block;
     }
   }
 }

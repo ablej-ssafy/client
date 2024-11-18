@@ -4,7 +4,7 @@
 
 .navigation {
   position: fixed;
-  z-index: dimensions.$modal;
+  z-index: dimensions.$foreground;
   display: flex;
   gap: 30px;
   align-items: center;

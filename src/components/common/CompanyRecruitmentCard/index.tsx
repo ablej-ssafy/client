@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import BaseImage from '@/assets/images/base-image.png';
 import CardScrapButton from '@/components/common/CardScrapButton';
 import CardScrapServerButton from '@/components/common/CardScrapServerButton';
 
@@ -31,7 +32,7 @@ const CompanyRecruitmentCard = ({
         prefetch={false}
       >
         <Image
-          src={thumbnail}
+          src={thumbnail ? thumbnail : BaseImage}
           alt="sample_img"
           width={280}
           objectFit="cover"
@@ -39,6 +40,8 @@ const CompanyRecruitmentCard = ({
           quality={100}
           className={styles.img}
         />
+        <div className={styles['job-title']}>{name}</div>
+        <span className={styles['company-name']}>{companyName}</span>
       </Link>
       {scrap ? (
         <CardScrapButton scrap={scrap} isScrap={isScrap} />
@@ -48,8 +51,6 @@ const CompanyRecruitmentCard = ({
           isScrap={isScrap}
         />
       )}
-      <div className={styles['job-title']}>{name}</div>
-      <span className={styles['company-name']}>{companyName}</span>
     </div>
   );
 };

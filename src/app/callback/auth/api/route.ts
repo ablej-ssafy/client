@@ -6,6 +6,8 @@ const cookieOptions = {
   secure: true,
   httpOnly: true,
   path: '/',
+  domain:
+    process.env.NODE_ENV === 'production' ? '.noteme.kro.kr' : 'localhost',
 };
 
 export const POST = async (request: Request) => {
