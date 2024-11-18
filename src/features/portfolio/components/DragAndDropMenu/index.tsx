@@ -94,6 +94,18 @@ const DragAndDropMenu = () => {
     return sortedArr;
   });
 
+  useEffect(() => {
+    const sortedArr = Array.from({length: TASKS.length}, (_, index) => ({
+      ...TASKS[index],
+    })).sort((a, b) => a.id - b.id);
+
+    for (const [sectionName, order] of Object.entries(resumeOrder)) {
+      sortedArr[order] = TASKS.find(task => task.serverKey === sectionName)!;
+    }
+
+    setSortedResume(sortedArr);
+  }, [resumeOrder]);
+
   const dndContextElement = useRef<HTMLDivElement>(null);
 
   const moveCardHandler = useCallback(
