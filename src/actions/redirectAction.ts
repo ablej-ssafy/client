@@ -18,7 +18,7 @@ export async function redirectCookie(formData: FormData) {
   cookies().set(AUTH_REDIRECT_KEY, redirectUrl, {
     maxAge: 60 * 5,
   });
-  redirect('/(.)signin');
+  redirect('/signin');
 }
 
 export default redirectCookie;
